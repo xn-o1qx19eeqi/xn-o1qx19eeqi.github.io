@@ -298,7 +298,7 @@ document.getElementById("申请认养").innerHTML=缩[5];
 function 输入互动(){
     try{
         临时=document.getElementById("输入互动").value.split("/");
-        let 地址="/o/hz/z/"+临时[0]+".json";
+        let 地址="/i/z/"+临时[0]+".json";
         let GetJson=$.ajax({
             url:地址,
             type:"GET",
@@ -351,7 +351,7 @@ function 换背景(背景){
         document.getElementById("选择颜色_背景").value=背景颜色;
         document.getElementById("输入颜色_背景").placeholder=背景颜色;
     }else{
-        document.getElementById("房子").style="background-image:url(/o/hz/y/"+背景+")";
+        document.getElementById("房子").style="background-image:url(/i/y/"+背景+")";
         document.getElementById("输入颜色_背景").placeholder=背景;
     }
     document.getElementById("style_root").innerHTML="<style>:root{--点点:#"+颜色+";--背景:"+背景颜色+"}</style>";
@@ -368,7 +368,7 @@ function 加载(){
     if(颜色.length!=6){颜色="000000"}
     let dy="";
     try{
-        let 地址="/o/hz/x/"+颜色+".json";
+        let 地址="/i/x/"+颜色+".json";
         let GetJson=$.ajax({
             url:地址,
             type:"GET",
@@ -527,7 +527,7 @@ function 刷新(){
                         let 临时4=临时3[1].split("})");
                         临时4[0]=临时4[0].split(",");
                         if(临时4[0][0]=="a"){dy+="background-color:#00000000;background-blend-mode:lighten;background-size:cover;-webkit-mask-mode:luminance;mask-mode:luminance;background-image:url("+临时4[0][2]+"),linear-gradient("+临时4[0][1]+","+临时4[0][1]+");-webkit-mask-image:url("+临时4[0][2]+");mask-image:url("+临时4[0][2]+");"}
-                        if(临时4[0][0]=="y"){dy+="/o/hz/y/"}
+                        if(临时4[0][0]=="y"){dy+="/i/y/"}
                         dy+=临时4[1];
                     }
                 }
