@@ -5,10 +5,9 @@ BiaoTi: 跳转中
 ---
 <script>
     let 当前url=window.location.href.split(".cn/")[1];
-    alert(当前url);
-    // if(当前url.length==6&&当前url.replace(new RegExp('[0-9a-fA-F]', "g"),"")){
-    //     window.location.href="/?t="+当前url;
-    // }else{
-    //     window.location.href="/4O4";
-    // }
+    if(当前url.length==6&&当前url.replace(new RegExp('[0-9a-fA-F]',"g"),"")==""){
+        window.location.href="/?t="+当前url;
+    }else{
+        window.location.href="/4O4";
+    }
 </script>
