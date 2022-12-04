@@ -1,0 +1,200 @@
+---
+layout: default
+---
+<title>{% if page.BiaoTi %}{{ page.BiaoTi }} - {{ page.ShuMing }}{% else %}{{ site.title }}{% endif %}</title>
+
+<script src="/i/5/mq-wzjm.js"></script>
+
+<style>
+#正文{line-height:2;}
+.内容1,#右侧,.底部,#设置{box-shadow:2px 2px 8px #00000030;}
+.内容1{position: relative;width:60%;margin: 0 auto;padding: 30px 60px;}
+.导航{font-size:.9em;}
+h1{margin: 0;}
+#右侧{position: fixed;right:13%;bottom:0;z-index:901;}
+.tubiao{cursor:pointer;}
+.底部{position: relative;width:60%;margin: 0 auto;z-index:900;}
+.底部 td{width:30%;text-align:center;padding:20px;}
+footer{position: relative;top: 300px;z-index: -1001;}
+footer img{position: relative;bottom: 50px;display: block;margin: 0 auto;}
+#设置{display:none;position: fixed;bottom:10%;right:18%;width:30%;height:60%;z-index:1000;padding:0 30px;}
+#关闭设置{display:none;position: fixed;top:0;left:0;width:100%;height:100%;z-index:999;cursor:pointer;}
+#设置x{position: absolute;width: 25px;height: 25px;border-radius: 5px;background: red;color: #fff;right: 20px;top: 20px;text-align: center;cursor: pointer;}
+#设置x:hover{background-color: #ff5858;}
+.chaolianjie{cursor:pointer;}
+
+@media screen and (max-width: 767px){
+.内容1{padding: 30px;width:80%;}
+#右侧{right:3%;}
+#设置{padding:5px;width:90%;height:80%;right:5%;}
+.底部{width:90%;}
+}
+</style>
+
+</head><body>
+
+<div id="配色"></div>
+
+<br><br><br>
+<div class="内容1">
+    <div class="导航"><a href="/">{{ site.title }}</a> &nbsp;/ &nbsp;<a href="/w/{% if page.MuLu %}{{ page.MuLu }}{% else %}{% endif %}">{% if page.ShuMing %}{{ page.ShuMing }}{% else %}{% endif %}</a></div>
+    <h1 class="tubiao">{% if page.BiaoTi %}{{ page.BiaoTi }}{% else %}{% endif %}</h1>
+    <small>作者: {% if page.ZuoZhe %}{{ page.ZuoZhe }}{% else %}-{% endif %}{% if page.ShiJian %}　时间: {{ page.ShiJian }}{% else %}{% endif %}</small>
+    <hr class="hr4">
+    <div id="正文">加载中...</div>
+    <a name="底部"></a>
+<br><br><br><br><br>
+</div>
+
+<table class="底部" style="top:-20px;"><tr><td class="tubiao{% if page.Q %} chaolianjie" onclick="window.location.href='/w/{{ page.Q }}'">{% else %}">{% endif %}上一章</td><td class="tubiao{% if page.MuLu %} chaolianjie" onclick="window.location.href='/w/{{ page.MuLu }}'">{% else %}">{% endif %}目录</td><td class="tubiao{% if page.E %} chaolianjie" onclick="window.location.href='/w/{{ page.E }}'">{% else %}">{% endif %}下一章</td></tr></table>
+<div id="右侧"><table><tr><td class="tubiao" onclick="window.scrollTo(0,0);">TOP</td></tr><tr><td class="tubiao" onclick="打开设置()">设置</td></tr><tr><td class="tubiao" onclick="window.open('{{ site.mq }}/donate','_blank');">打赏</td></tr><tr>
+    {% if page.PingLun %}<td class="tubiao" onclick="window.location.href='#评论'">评论</td>
+    {% else %}<td class="tubiao" onclick="window.open('{{ site.mq }}/liuyan','_blank');">留言</td>{% endif %}
+</tr></table></div>
+
+<div id="设置">
+    <div id="设置x" onclick="关闭设置();">X</div>
+    <h2>设置</h2>
+    <div id="设置打印"></div>
+    <br>
+    <table><tr><td><b>字体大小：</b></td><td class="tubiao" onclick="设置大小(选择大小='减')" style="font-size:.9em;">减-</td><td onclick="设置大小(选择大小='默认')" class="tubiao">恢复默认</td><td onclick="设置大小(选择大小='加')" class="tubiao" style="font-size:1.1em;">加+</td></tr></table>
+    <br>
+    <table><tr><td><b>密码：</b><small>(同目录的加密章节自动解锁)</small></td></tr>
+        <tr><td><input type='text' id="输入密码" placeholder='输入密码' autocomplete='off'><button onclick="确定密码()">确定</button></td></tr></table>
+</div>
+<div id="关闭设置" onclick="关闭设置();"></div>
+
+<script>
+    let 书名="";
+    let wzjm_输入="{{ content }}";
+    let wzjm_密码="{% if page.MiMa %}{% else %}ix{% endif %}";
+    if(localStorage.getItem(书名+"_密码")&&wzjm_密码!="ix"){wzjm_密码 = localStorage.getItem(书名+"_密码");}else{wzjm_密码="ix";}
+    wzjm_解密();let 正文="本页无内容。";if (wzjm_输入.indexOf("。") != -1){正文=wzjm_输入;}
+    wzjm_输入="{% if page.TiHuan %}{{ page.TiHuan }}{% else %}{% endif %}";wzjm_解密();wzjm_输入=wzjm_输入.split("［");
+    let 替换表={};
+    for(let i=1;wzjm_输入.length>i;i++){
+        let 临时=wzjm_输入[i].split("］")[0].split("〈");
+        替换表[临时[0]]=[];
+        let 临时2=临时[1].split("〉");
+        if (临时2[0].indexOf("|") != -1){
+            let 临时3=临时2[0].split("|");
+            替换表[临时[0]][0]=临时3[0];
+            替换表[临时[0]][1]=临时3[1];
+            替换表[临时[0]][2]=临时3[2];
+        }else{
+            替换表[临时[0]][0]="";
+            替换表[临时[0]][1]=临时2[0];
+            替换表[临时[0]][2]="";
+            if(临时2[0]==""){替换表[临时[0]][1]=临时[0];}
+        }
+        if (临时2[1].indexOf("|") != -1){
+            临时2=临时2[1].split("|");
+            替换表[临时[0]][3]=临时2[0];
+            替换表[临时[0]][4]=临时2[1];
+        }else{
+            替换表[临时[0]][3]="";
+            替换表[临时[0]][4]=临时2[1];
+        }
+    }
+
+    正文=正文.split("［");
+    let dy=正文[0];
+    for(let i=1;正文.length>i;i++){
+        let 临时=正文[i].split("］");
+        if(替换表[临时[0]]){
+            let 临时2=替换表[临时[0]];
+            let 临时3,临时4;
+            dy+=临时2[0];
+            if(临时2[3]=="同"){
+                临时3=替换表[临时2[4]][4];临时4=临时2[1];
+            }else{
+                if(临时2[3]!=""){
+                    临时3=临时2[4];临时4=临时2[3];
+                }else{
+                    临时3=临时2[4];临时4=临时2[1];
+                }
+            }
+            if(临时3>0){dy+="<a class='js chaolianjie' onclick=\"dw(dwb='"+临时3+"',dwd='"+临时4;}
+            else{dy+="<a class='js' onmouseout=\"dmx()\" onmousemove=\"dm(dmm='"+临时3+"',dmd='"+临时4;}
+            dy+="')\">"+临时2[1]+"</a>"+临时2[2];
+        }else{
+            dy+="<span class='js'>"+临时[0]+"</span>";
+        }
+        dy+=临时[1];
+    }
+
+    document.getElementById("正文").innerHTML = dy;
+
+
+    let 方案列表=["淡绿色","淡蓝色","灰色","牛皮纸","夜间",];
+    let 配色={0:[
+            "body{background-color:",//外背景色
+            ".内容1,#设置,#弹窗,#dw_hd,#dwd,#dwc,.dw_tk{background-color:",//内背景色
+            "body,td,.js,blockquote,#弹窗,#dw_hd{color:",//正文字色
+            "a,.chaolianjie,#dw_hd a{color:",//超链接
+            "a:hover,.chaolianjie:hover,#dw_hd a:hover{color:",//超链接点击
+            "td,blockquote{background-color:",//小菜单背景
+            "td.tubiao:hover{background-color:",//小菜单背景点击
+            "td,blockquote,blockquote a,blockquote a:hover{color:"],//小菜单文字
+        "淡绿色":["#CDDFCD","#E5F1E5","#616361","#006699","#0085A1","#F5F5F5","#AAAAAA","#616361"],
+        "淡蓝色":["#CFDDE1","#E3F0F4","#262626","#006699","#0085A1","#F5F5F5","#AAAAAA","#262626"],
+        "淡粉色":["#EBCECE","#F5E4E4","#262626","#CF3336","#ED4259","#F5F5F5","#AAAAAA","#262626"],
+        "灰色":["#D3D3D3","#DCDCDC","#262626","#006699","#0085A1","#F5F5F5","#AAAAAA","#262626"],
+        "牛皮纸":["#DCCB9C","#F3E9C7","#262626","#CF3336","#ED4259","#F5F5F5","#AAAAAA","#262626"],
+        "夜间":["#0F1112","#17191A","#666666","#BFBFBF","#8C8C8C","#161819","#0F1112","#666666"],
+    };
+
+    let 配色方案;
+    function 改配色(){
+        if(localStorage.getItem("e1文字大小")){}else{localStorage.setItem("e1文字大小", "1.2");}
+        let 文字大小=localStorage.getItem("e1文字大小");
+        if(localStorage.getItem("e1配色")){}else{localStorage.setItem("e1配色", "淡绿色");}
+        if(localStorage.getItem("e1配色")=="自定义"){配色["自定义"]=localStorage.getItem("e1自定义").split("／");}
+        配色方案=配色[localStorage.getItem("e1配色")];
+        let dyy="<style>.内容1{font-size:"+文字大小+"em;}";
+        for(let i=0;配色方案.length>i;i++){
+            dyy+=配色[0][i]+配色方案[i]+"}";
+        }
+        dyy+="</style>";
+        document.getElementById("配色").innerHTML = dyy;
+    }
+    改配色();
+
+
+    let 设置dy="<table><tr>";
+        设置dy+="<td><b>配色：</b></td></tr><tr>";
+        for(let i=0;方案列表.length>i;i++){
+            if(方案列表[i]=="br"){设置dy+="</tr><tr>";}else{
+            设置dy+="<td class='tubiao' onclick=\"设置配色(选择配色='"+方案列表[i]+"')\" style='background-color:"+配色[方案列表[i]][1]+";color:"+配色[方案列表[i]][2]+"'>"+方案列表[i]+"</td>";
+        }
+        }
+        设置dy+="</tr></table><a href='/i/peise#配色方案' target='_blank'>更多配色</a>";
+        document.getElementById("设置打印").innerHTML = 设置dy;
+
+    function 打开设置(){document.getElementById('设置').style.display = "inline-block";document.getElementById('关闭设置').style.display = "inline-block";}
+    function 关闭设置(){document.getElementById('设置').style.display = "none";document.getElementById('关闭设置').style.display = "none";}
+
+    let 选择配色;function 设置配色(){localStorage.setItem("e1配色", 选择配色);改配色();}
+    let 选择大小;function 设置大小(){
+        let 临时=localStorage.getItem("e1文字大小");
+        if(选择大小=="加"){临时=临时*1+0.1;localStorage.setItem("e1文字大小", 临时);
+        }else if(选择大小=="减"){临时=临时*1-0.1;localStorage.setItem("e1文字大小", 临时);
+        }else{localStorage.setItem("e1文字大小", "1.2");}
+        改配色();
+    }
+
+    function 确定密码(){
+        let 临时=document.getElementById("输入密码").value;
+        localStorage.setItem(书名_密码, 临时);
+        location.reload();
+    }
+
+    document.addEventListener('contextmenu',function(e){e.preventDefault();window.location.href='#底部';})
+</script>
+
+<br><br><br>
+<div class="内容1"><a name="评论"></a>{% if page.PingLun %}{% include Valine.html %}{% endif %}</div>
+
+<footer><a href="{{ site.mq }}/maoqiu"><img class="tubiao" src="/img/footer.png" alt="关于我" title="关于我" width=120px/></a></footer>
+
+</body>
