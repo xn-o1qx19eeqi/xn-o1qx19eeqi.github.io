@@ -135,7 +135,7 @@ layout: default
 
     <div class="内容背景"></div></div>
     <!-- <footer><a href="{{ site.mq }}/maoqiu"><img class="tubiao" src="/img/footer.png" alt="关于我" title="关于我" width=120px id="footer" style=""/></a></footer> -->
-    <footer><a href="{{ site.mq }}/maoqiu"><img class="tubiao" src="/img/i/ufo.gif" alt="关于我" width=70px id="footer" style=""/></a></footer>
+    <footer><a href="{{ site.mq }}/maoqiu"><img class="tubiao" src="/img/logo/ufo.gif" alt="关于我" width=70px id="footer" style=""/></a></footer>
     </div>
 
     <script>
@@ -154,9 +154,9 @@ layout: default
         let 背景图片颜色="";
         if(打印背景图片[0]=="0"||打印背景图片[0]=="2"){
             背景图片颜色=":root{--a-color:#50a3ec;--a-hover-color:#8cbee9;--body-color:#e0e0e0;--huise-color:#bbbbbb;}.内容0{background-color: #22222250;}body{background-color:#ffffff;}";
-            document.getElementById("footer").style = "filter: drop-shadow(0 0 3px #00000070) invert(100%);";
+            // document.getElementById("footer").style = "filter: drop-shadow(0 0 3px #00000070) invert(100%);";
         }else{
-            document.getElementById("footer").style = "filter: drop-shadow(0 0 3px #ffffff70);";
+            // document.getElementById("footer").style = "filter: drop-shadow(0 0 3px #ffffff70);";
         }
         if(打印背景图片[0]=="2"||打印背景图片[0]=="3"){
             背景图片颜色+="body,.内容背景{background-position:bottom;}";
