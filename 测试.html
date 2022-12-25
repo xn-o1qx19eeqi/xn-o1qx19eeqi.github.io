@@ -11,7 +11,7 @@ BiaoTi: 小像素点
 颜色：<input type="text" placeholder="000000" autocomplete="off" id="输入颜色" onkeyup="输入颜色()"><input type="color" id="选择颜色" oninput="选择颜色()"><input type="button" value="查询" onclick="查询()"><input type="button" value="随机一只" onclick="随机一只()"> <small>（<a href="/i/b#内容">已有像素点列表</a>）</small><br><sup><span id="未被认养"></span></sup><br>
 互动：<span id="互动"></span><a onclick="document.getElementById('更多互动').style='';document.getElementById('更多互动_按钮').innerHTML=''" id="更多互动_按钮">更多</a><span id="更多互动" style="display:none;"><input type="text" placeholder="动作代码" autocomplete="off" id="输入互动"><input type="button" value="确定" onclick="输入互动()"><small>（<a href="/i/c#动作代码">动作代码是什么？</a>）</small></span><br><br>
 
-换背景：<br>
+换背景：<small>在这里更换的背景只有自己能看到，想要永久设置需要使用<a href="#隐藏玩法">隐藏玩法</a></small><br>
 <div id="选择背景"></div>
 <a onclick="document.getElementById('选择背景_多').style='';document.getElementById('选择背景_更').innerHTML=''" id="选择背景_更">更多</a>
 <div style="display:none;" id="选择背景_多"><input type="text" autocomplete="off" id="输入颜色_背景"><input type="color" id="选择颜色_背景" oninput="选择颜色_背景()"><input type="button" value="更换" onclick="新背景()"><small>（<a href="/i/c#更多背景">还有哪些背景？</a>）</small></div><br>
@@ -86,7 +86,7 @@ BiaoTi: 小像素点
 
 <br>
 
-<h4>隐藏玩法</h4>
+<a name="隐藏玩法"></a><h4>隐藏玩法</h4>
 认养的小像素点除了改名字、添加留言，还有其他可自定义的地方：改默认背景颜色、使用图片作为背景、自定义一天的日程、自定义独特的动作。<br>
 可以定制独特的动作（或互动），还可以让它只在某一只小像素点身上才能生效。<br>
 不过由于我时间精力优先，这些需要我手动操作的内容平时不开放使用。（如果你能设计出有趣的动作，我会很愿意尝试实现它）<br>
@@ -354,6 +354,8 @@ function 换背景(背景){
         document.getElementById("房子").style="background-image:url(/i/y/"+背景+")";
         document.getElementById("输入颜色_背景").placeholder=背景;
     }
+    console.log(背景);
+    console.log(背景颜色);
     document.getElementById("style_root").innerHTML="<style>:root{--点点:#"+颜色+";--背景:"+背景颜色+"}</style>";
 }
 
