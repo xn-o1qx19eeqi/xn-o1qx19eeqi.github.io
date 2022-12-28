@@ -2,7 +2,7 @@
 layout: o
 permalink: 看望打卡
 ---
-<script src="//unpkg.com/leancloud-storage@3/dist/av-min.js"></script>
+<script src="//unpkg.com/leancloud-storage@3/dist/av-min1.js"></script>
 
 <script>
 AV.init({
@@ -14,7 +14,7 @@ AV.init({
 let url=location.href.split("?")[1];
 
     try{
-        const TestObject = AV.Object.extend('xsd1');
+        const TestObject = AV.Object.extend('xsd');
         const testObject = new TestObject();
         testObject.set('words', url);
         testObject.save().then((testObject) => {
