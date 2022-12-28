@@ -9,6 +9,12 @@
 <script>
 let o=0;
 let url=location.href.split("?")[1];
+
+if(url.indexOf("&")!=-1){
+    url=url.split("&")[0];
+    o=3;
+}
+
 try {
     AV.init({
         appId: "ZvAplyDOpQXqSHj4pKeaoHZJ-gzGzoHsz",
@@ -31,6 +37,6 @@ catch(e){
     document.getElementById("加载").style="display:none;";
 }
 if(o==0){
-    if(location.href.split("?")[2]){}else{window.location.href='?加载失败';}
+    window.location.href='&加载失败';
 }
 </script>
