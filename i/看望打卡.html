@@ -14,14 +14,14 @@ AV.init({
 let url=location.href;
 
 if(url.indexOf("?")!=-1){
-    url=rul.split("?")[1];
+    url=url.split("?")[1];
     const TestObject = AV.Object.extend('xsd');
         const testObject = new TestObject();
         testObject.set('words', url);
         testObject.save().then((testObject) => {
         try{notyf.confirm("打卡成功")}catch(e){alert("打卡成功");}
     })
-    document.write("返回上一页面？");
+    document.write("返回像素点页面？");
 }else{
     document.write("打卡失败");
 }
