@@ -4,10 +4,11 @@
 
 <small id="成功" style="display:none;">打卡成功</small>
 <small id="失败" style="display:none;">打卡失败，请过段时间再试，或与我联系</small>
-<small id="加载" style="background-color:#000000;">加载中……如果长时间没能加载成功，请刷新页面</small>
+<small id="加载" style="background-color:#000000;">加载中……如果长时间没能加载成功，请<a onclick="javascript:location.reload();">点此刷新页面</a></small>
 
 <script>
-let url = location.href.split("?")[1];
+let o=0;
+let url=location.href.split("?")[1];
 try {
     AV.init({
         appId: "ZvAplyDOpQXqSHj4pKeaoHZJ-gzGzoHsz",
@@ -18,13 +19,18 @@ try {
     const testObject = new TestObject();
     testObject.set('words', url);
     testObject.save().then((testObject) => {
+        o=1;
         document.getElementById("成功").style="background-color:#01EC0C;";
         document.getElementById("加载").style="display:none;";
     })
 
 }
-catch (e) {
+catch(e){
+    o=2;
     document.getElementById("失败").style="background-color:#FF0000;";
     document.getElementById("加载").style="display:none;";
+}
+if(o==0){
+    if(location.href.split("?")[2]){}else{window.location.href='?加载失败';}
 }
 </script>
