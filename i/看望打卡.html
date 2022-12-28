@@ -5,15 +5,16 @@ permalink: 看望打卡
 <script src="//unpkg.com/leancloud-storage@3/dist/av-min1.js"></script>
 
 <script>
-AV.init({
-  appId: "ZvAplyDOpQXqSHj4pKeaoHZJ-gzGzoHsz",
-  appKey: "cBfrhtl738wwWQeOIEHJpiZg",
-  serverURL: "https://zvaplydo.lc-cn-n1-shared.com"
-});
+
 
 let url=location.href.split("?")[1];
 
     try{
+        AV.init({
+  appId: "ZvAplyDOpQXqSHj4pKeaoHZJ-gzGzoHsz",
+  appKey: "cBfrhtl738wwWQeOIEHJpiZg",
+  serverURL: "https://zvaplydo.lc-cn-n1-shared.com"
+});
         const TestObject = AV.Object.extend('xsd');
         const testObject = new TestObject();
         testObject.set('words', url);
