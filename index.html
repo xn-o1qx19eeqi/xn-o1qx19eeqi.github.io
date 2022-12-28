@@ -385,7 +385,8 @@ function 加载(){
         if(内容[0].length<50){
             if(内容[0]&&内容[0]!=""){名字=内容[0]}else{名字="小像素点"}
             if(内容[1]&&内容[1]!=""){主人=内容[1]}else{主人="无"}
-            dy="<h2 style='display:inline;'>"+名字+"</h2>　<small>#"+颜色+" <a onclick=\"复制像素点()\">复制地址</a></small><br><small>认养人：</small>"+主人+" <small><a onclick=\"看望打卡()\">打卡</a><span id='打卡结果'></span></small>";
+            dy="<h2 style='display:inline;'>"+名字+"</h2>　<small>#"+颜色+" <a onclick=\"复制像素点()\">复制地址</a></small><br><small>认养人：</small>"+主人;
+            if(主人!="(不可认养)"){dy+=" <small><a id=\"看望打卡\" onclick=\"看望打卡()\">打卡</a>";}
             document.getElementById("未被认养").innerHTML='';
             if(内容[2]&&内容[2]!=""){
                 if(内容[2].indexOf("〈放弃认养〉")!=-1){内容[2]=内容[2].replace(/〈放弃认养〉/g, "");固定动作="放弃认养";}
@@ -591,7 +592,7 @@ function 随机一只(){
 }
 function 复制像素点(){制="{{ site.mq_url }}/"+颜色;复()}
 
-function 看望打卡(){document.getElementById("打卡结果").innerHTML="<iframe src='/i/看望打卡?"+颜色+"' frameborder='0' width='4em' height='1em'></iframe>";}
+function 看望打卡(){document.getElementById("看望打卡").innerHTML="<iframe src='/i/看望打卡?"+颜色+"' frameborder='0' width='50%' height='30px'></iframe>";}
 
 function 新互动(d){
     notyf.confirm("你的指令正在传递中……");

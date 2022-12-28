@@ -1,5 +1,8 @@
 <script src="//unpkg.com/leancloud-storage@3/dist/av-min.js"></script>
 
+<small id="成功" style="display:none;">打卡成功，不过现在是在测试，测试测试。</small>
+<small id="失败" style="display:none;">打卡失败，请过段时间再试，或与我联系。</small>
+
 <script>
 let url = location.href.split("?")[1];
 try {
@@ -12,11 +15,11 @@ try {
     const testObject = new TestObject();
     testObject.set('words', url);
     testObject.save().then((testObject) => {
-        document.write("打卡成功");
+        document.getElementById("成功").style="background-color:#01EC0C;color:#ffffff;";
     })
 
 }
 catch (e) {
-    document.write("打卡失败");
+    document.getElementById("失败").style="background-color:#FF0000;color:#ffffff;";
 }
 </script>
