@@ -1,0 +1,29 @@
+---
+layout: o
+permalink: 看望打卡
+---
+<script src="//unpkg.com/leancloud-storage@3/dist/av-min.js"></script>
+
+<script>
+AV.init({
+  appId: "ZvAplyDOpQXqSHj4pKeaoHZJ-gzGzoHsz",
+  appKey: "cBfrhtl738wwWQeOIEHJpiZg",
+  serverURL: "https://zvaplydo.lc-cn-n1-shared.com"
+});
+
+let url=location.href;
+
+if(url.indexOf("?")!=-1){
+    url=rul.split("?")[1];
+    const TestObject = AV.Object.extend('xsd');
+        const testObject = new TestObject();
+        testObject.set('words', url);
+        testObject.save().then((testObject) => {
+        try{notyf.confirm("打卡成功")}catch(e){alert("打卡成功");}
+    })
+    document.write("返回上一页面？");
+}else{
+    document.write("打卡失败");
+}
+
+</script>
