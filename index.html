@@ -387,7 +387,7 @@ function 加载(){
             if(内容[0]&&内容[0]!=""){名字=内容[0]}else{名字="小像素点"}
             if(内容[1]&&内容[1]!=""){主人=内容[1]}else{主人="无"}
             dy="<h2 style='display:inline;'>"+名字+"</h2>　<small>#"+颜色+" <a onclick=\"复制像素点()\">复制地址</a></small><br><small>认养人：</small>"+主人;
-            if(主人!="(不可认养)"){dy+=" <small><a id=\"看望打卡\" onclick=\"看望打卡()\">打卡</a>";}
+            if(主人!="（不可认养）"){dy+=" <small><a id=\"看望打卡\" onclick=\"看望打卡()\">打卡</a>";}
             document.getElementById("未被认养").innerHTML='';
             if(内容[2]&&内容[2]!=""){
                 if(内容[2].indexOf("〈放弃认养〉")!=-1){内容[2]=内容[2].replace(/〈放弃认养〉/g, "");固定动作="放弃认养";}
@@ -608,4 +608,5 @@ function 改url(){
 }
 
 window.location.href='#limaoqiu.com';
+window.location.href=window.location.href;
 </script>
