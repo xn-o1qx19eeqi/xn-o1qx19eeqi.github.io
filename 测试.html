@@ -1,0 +1,28 @@
+<script src="https://code.bdstatic.com/npm/leancloud-storage@4.14.0/dist/av-min.js"></script>
+<script>
+
+AV.init({
+  appId: "mCBnOpmsOyb6hrMiiKQ3kuRu-gzGzoHsz",
+  appKey: "YCCregxILHitovzescjVs4X1",
+  serverURL: "https://mcbnopms.lc-cn-n1-shared.com"
+});
+
+const TestObject = AV.Object.extend('TestObject');
+const testObject = new TestObject();
+testObject.set('words', 'Hello world!');
+testObject.save().then((testObject) => {
+  console.log('保存成功。')
+})
+
+/*
+https://xn--7qvz7xssa.com
+http://xn--7qvz7xssa.com
+https://limaoqiu.com
+http://limaoqiu.com
+https://xn--z7x.cafe
+http://xn--z7x.cafe
+https://xn--o1qx19eeqi.cn
+http://xn--o1qx19eeqi.cn
+*/
+
+</script>
