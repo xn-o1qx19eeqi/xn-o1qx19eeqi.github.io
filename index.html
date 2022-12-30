@@ -515,7 +515,7 @@ function 刷新(){
                         let 临时4=临时3[1].split("})");
                         临时4[0]=临时4[0].split(",");
                         if(临时4[0][0]=="a"){dy+="background-color:#00000000;background-blend-mode:lighten;background-size:cover;-webkit-mask-mode:luminance;mask-mode:luminance;background-image:url("+临时4[0][2]+"),linear-gradient("+临时4[0][1]+","+临时4[0][1]+");-webkit-mask-image:url("+临时4[0][2]+");mask-image:url("+临时4[0][2]+");"}
-                        if(临时4[0][0]=="b"){for(let i4=0;临时4[0][3]>i4-1;i4++){dy+=(临时4[0][1]+(临时4[0][2]*i4))+临时4[0][4]}}
+                        if(临时4[0][0]=="b"){for(let i4=0;临时4[0][3]>i4-1;i4++){dy+=(临时4[0][1]+(临时4[0][2]*i4))+"%,"}}
                         if(临时4[0][0]=="y"){dy+="/i/y/"}
                         dy+=临时4[1];
                     }
