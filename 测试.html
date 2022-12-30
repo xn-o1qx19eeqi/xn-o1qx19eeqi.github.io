@@ -17,20 +17,6 @@ BiaoTi: 小像素点
 <div style="display:none;" id="选择背景_多"><input type="text" autocomplete="off" id="输入颜色_背景"><input type="color" id="选择颜色_背景" oninput="选择颜色_背景()"><input type="button" value="更换" onclick="新背景()"><small>（<a href="/i/c#更多背景">还有哪些背景？</a>）</small></div><br>
 <hr><div id="oo">
 
-<!-- <h3>小像素点规则调整通知：</h3>
-<ol>
-    <li>今后的申请认养改为邀请码制，已经成为认养人可以申请邀请码用于分享给朋友。</li>
-    <li>小像素点的归属权不再是永久有效，超过365天不看望小像素点将会失去它，需要在过期前打卡，每次打卡重置倒计时为365天。</li>
-</ol>
-<small>
-    <b>为什么要做这样的改动？</b><br>
-    以前可以随意申请，一次申请永久有效，让很多人对像素点很不珍惜。<br>
-    出现了一些试图用小像素点发布不良内容的情况，因此改用邀请码制限制人数。<br>
-    还有的申请后就再也不来看望小像素点，相当于是抛弃了它，那么就理应允许别人再次申请认养这只小像素点。<br>
-</small>
-
-<br> -->
-
 <span style="background-color:#E0E0E0;color:#E0E0E0;font-size:1px;">如果你看到了这行字，说明你的浏览器开启了“强制暗色模式”，会导致页面显示异常，建议关闭此模式。</span>
 
 <a name="如何认养"></a><h3>如何认养？</h3>
@@ -44,7 +30,6 @@ BiaoTi: 小像素点
 </ol>
 <b>注意1</b>：不可以有违反法律或不道德的内容，如果损害他人利益一经发现会立刻删除。<small>发现有违规内容，请<a href="{{ site.mq }}/contactus">联系我</a>，我会尽快处理。</small><br>
 <b>注意2</b>：请不要冷落小像素点，超过一年没有打卡可能会失去认养资格。<br>
-<!-- <b>注意2</b>：请不要冷落小像素点，超过一年没来看望将失去认养资格。（为了证明你有来看望它，会有一个365天的倒计时，低于100天时会有提示，需要在过期前<a href='https://wj.qq.com/s2/10560058/b06e' target='_blank'>点击此处</a>填写像素点编号，每次填写将重置倒计时为365天）<br> -->
 
 <br>
 
@@ -77,22 +62,19 @@ BiaoTi: 小像素点
 <br>
 
 <h4>我写错了信息，可以修改么？</h4>
-可以修改。<br>
-方法1：<a href="https://wj.qq.com/s2/11013288/5bdc">填写表格</a>。<small>（※这里是更改信息，不是申请新的像素点！※）</small><br>
+方法1：<a href="https://wj.qq.com/s2/11013288/5bdc">填写表格</a>。<br>
 方法2：用申请时预留的联系方式<a href="{{ site.mq }}/contactus">联系我</a>。<br>
 
 <br>
 
 <h4>我忘了我的小像素点编号了怎么办？</h4>
-在<a href="/i/b#申请进度">申请进度</a>页面可以输入你的名字，将会显示你的申请记录。<br>
-还可以<a href="{{ site.mq }}/contactus">联系我</a>。<br>
+在<a href="/i/b#申请进度">申请进度</a>页面输入你的名字，将会显示你的申请记录。<br>
 
 <br>
 
 <a name="隐藏玩法"></a><h4>隐藏玩法</h4>
-认养的小像素点除了改名字、添加留言，还有其他可自定义的地方：改默认背景颜色、使用图片作为背景、自定义一天的日程、自定义独特的动作。<br>
-可以定制独特的动作（或互动），还可以让它只在某一只小像素点身上才能生效。<br>
-不过由于我时间精力优先，这些需要我手动操作的内容平时不开放使用。（如果你能设计出有趣的动作，我会很愿意尝试实现它）<br>
+认养的小像素点除了改名字、添加留言，还有其他可自定义的地方：改默认背景颜色、使用图片作为背景、自定义一天的日程、新增动作。<br>
+不过由于我时间精力有限，这些需要我手动操作的内容平时不开放使用。（如果你能设计出有趣的动作，我会很愿意尝试实现它）<br>
 
 <br>
 
@@ -101,6 +83,7 @@ BiaoTi: 小像素点
 <a href="/i/b#logo">logo</a><br>
 <a href="/i/c#更新日志">更新日志</a><br>
 <a href="{{ site.mq }}/donate">打赏</a><br>
+<a href="{{ site.mq }}/maoqiu">关于猫球</a><br>
 
 <br>
 
@@ -521,24 +504,25 @@ function 刷新(){
         for(let i=0;互动.length>i;i++){
             let 临时2=动作[临时[0]].split("，");
             if(临时[0].indexOf("_匀速")!=-1){dy+="#点点,.群演{animation-timing-function:linear}"}
-            dy+="@keyframes "+临时[0]+"{"+临时2[0]+"}";
             let dy2="";
-            for(let i2=1;临时2.length>i2;i2++){
-                dy+="@keyframes "+临时[0]+"_群演"+i2+"{";
+            for(let i2=0;临时2.length>i2;i2++){
+                if(i2==0){dy+="@keyframes "+临时[0]+"{";}
+                else{dy+="@keyframes "+临时[0]+"_群演"+i2+"{";}
                 if(临时2[i2].indexOf("({")!=-1){
                     let 临时3=临时2[i2].split("({");
                     dy+=临时3[0];
                     for(let i3=1;临时3.length>i3;i3++){
-                        let 临时4=临时3[1].split("})");
+                        let 临时4=临时3[i3].split("})");
                         临时4[0]=临时4[0].split(",");
                         if(临时4[0][0]=="a"){dy+="background-color:#00000000;background-blend-mode:lighten;background-size:cover;-webkit-mask-mode:luminance;mask-mode:luminance;background-image:url("+临时4[0][2]+"),linear-gradient("+临时4[0][1]+","+临时4[0][1]+");-webkit-mask-image:url("+临时4[0][2]+");mask-image:url("+临时4[0][2]+");"}
+                        if(临时4[0][0]=="b"){for(let i4=0;临时4[0][3]>i4;i4++){dy+=(临时4[0][1]+(临时4[0][2]*i4))+"%,"}}
                         if(临时4[0][0]=="y"){dy+="/i/y/"}
                         dy+=临时4[1];
                     }
                 }
                 else{dy+=临时2[i2]}
                 dy+="}";
-                dy2="<div class='群演' style='animation-name:"+临时[0]+"_群演"+i2+"'></div>"+dy2;
+                if(i2!=0){dy2="<div class='群演' style='animation-name:"+临时[0]+"_群演"+i2+"'></div>"+dy2;}
             }
             document.getElementById("小窝").innerHTML=dy2+"<div id='点点'></div>";
         }

@@ -74,7 +74,8 @@ let data=[
     "飞天／0%{}5%{height:15px;top:5px;opacity:1.0}5.5%{height:10px;top:-300px;opacity:0}",
     "br",
 
-
+    "测试／0%{}({b,1,2,7})19%,21%,23%,25%{top:-10px}({b,2,2,7})18%,20%,22%,24%,26%{top:0}15%{left:200px;opacity:0}17.5%{left:-200px;opacity:0}26%{left:0;opacity:1}",
+    "测跑／0%{}({b,1,2,7})19%,21%,23%,25%{top:-10px}2%,4%,6%,8%,10%,12%,14%,18%,20%,22%,24%,26%{top:0}15%{left:200px;opacity:0}17.5%{left:-200px;opacity:0}26%{left:0;opacity:1}",
 
 
 ];
@@ -97,33 +98,64 @@ function 动作(d){
     dy="";
 
     let 临时2=临时[1].split("，");
-    dy+="@keyframes "+临时[0]+"{"+临时2[0]+"}";
     let dy3="";
     let 匀速="";
     if (临时[0].indexOf("_匀速") != -1){匀速="animation-timing-function:linear;"}
-    for(let ii=1;临时2.length>ii;ii++){
-
-    dy+="@keyframes "+临时[0]+"_群演"+ii+"{";
+    for(let ii=0;临时2.length>ii;ii++){
+        if(ii==0){dy+="@keyframes "+临时[0]+"{";}
+        else{dy+="@keyframes "+临时[0]+"_群演"+ii+"{";}
     if(临时2[ii].indexOf("({")!=-1){
         let 临时3=临时2[ii].split("({");
         dy+=临时3[0];
         for(let i3=1;临时3.length>i3;i3++){
-            let 临时4=临时3[1].split("})");
+            let 临时4=临时3[i3].split("})");
             临时4[0]=临时4[0].split(",");
             if(临时4[0][0]=="a"){dy+="background-color:#00000000;background-blend-mode:lighten;background-size:cover;-webkit-mask-mode:luminance;mask-mode:luminance;background-image:url("+临时4[0][2]+"),linear-gradient("+临时4[0][1]+","+临时4[0][1]+");-webkit-mask-image:url("+临时4[0][2]+");mask-image:url("+临时4[0][2]+");"}
-            if(临时4[0][0]=="b"){for(let i4=0;临时4[0][3]>i4-1;i4++){dy+=(临时4[0][1]+(临时4[0][2]*i4))+"%,"}}
+            if(临时4[0][0]=="b"){for(let i4=0;临时4[0][3]>i4;i4++){dy+=(临时4[0][1]*1+(临时4[0][2]*i4))+"%,"}}
             if(临时4[0][0]=="y"){dy+="/i/y/"}
             dy+=临时4[1];
         }
     }
     else{dy+=临时2[ii];}
     dy+="}";
-    dy3="<div class='群演' style='animation-name:"+临时[0]+"_群演"+ii+";"+匀速+"'></div>"+dy3;
+    if(ii!=0){dy3="<div class='群演' style='animation-name:"+临时[0]+"_群演"+ii+";"+匀速+"'></div>"+dy3;}
     }
     document.getElementById("h2").innerHTML = 临时[0];
     document.getElementById("小窝").innerHTML = dy3+"<div class='点点' style='animation-name:"+临时[0]+";"+匀速+"'></div>";
     document.getElementById("style").innerHTML = "<style>"+dy+"</style>";
 }
+// function 动作(d){
+//     let 临时=data[d].split("／");
+//     dy="";
+
+//     let 临时2=临时[1].split("，");
+//     dy+="@keyframes "+临时[0]+"{"+临时2[0]+"}";
+//     let dy3="";
+//     let 匀速="";
+//     if (临时[0].indexOf("_匀速") != -1){匀速="animation-timing-function:linear;"}
+//     for(let ii=1;临时2.length>ii;ii++){
+
+//     dy+="@keyframes "+临时[0]+"_群演"+ii+"{";
+//     if(临时2[ii].indexOf("({")!=-1){
+//         let 临时3=临时2[ii].split("({");
+//         dy+=临时3[0];
+//         for(let i3=1;临时3.length>i3;i3++){
+//             let 临时4=临时3[1].split("})");
+//             临时4[0]=临时4[0].split(",");
+//             if(临时4[0][0]=="a"){dy+="background-color:#00000000;background-blend-mode:lighten;background-size:cover;-webkit-mask-mode:luminance;mask-mode:luminance;background-image:url("+临时4[0][2]+"),linear-gradient("+临时4[0][1]+","+临时4[0][1]+");-webkit-mask-image:url("+临时4[0][2]+");mask-image:url("+临时4[0][2]+");"}
+//             if(临时4[0][0]=="b"){for(let i4=0;临时4[0][3]>i4-1;i4++){dy+=(临时4[0][1]+(临时4[0][2]*i4))+"%,"}}
+//             if(临时4[0][0]=="y"){dy+="/i/y/"}
+//             dy+=临时4[1];
+//         }
+//     }
+//     else{dy+=临时2[ii];}
+//     dy+="}";
+//     dy3="<div class='群演' style='animation-name:"+临时[0]+"_群演"+ii+";"+匀速+"'></div>"+dy3;
+//     }
+//     document.getElementById("h2").innerHTML = 临时[0];
+//     document.getElementById("小窝").innerHTML = dy3+"<div class='点点' style='animation-name:"+临时[0]+";"+匀速+"'></div>";
+//     document.getElementById("style").innerHTML = "<style>"+dy+"</style>";
+// }
 动作(0);
 </script>
 
