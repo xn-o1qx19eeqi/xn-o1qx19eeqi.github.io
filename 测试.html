@@ -253,8 +253,8 @@ let 动作={
 "仰卧起坐":"0%,80%{transform:none;left:0}8%,14%,20%,26%,32%,38%,44%,69%{left:-10px;transform:rotate(-90deg)}11%,17%,23%,29%,35%,41%{left:-5px;transform:rotate(-40deg)}47%,57%,67%{transform:rotate(-90deg) scale(1)}52%,62%{transform:rotate(-90deg) scale(1.3)}",
 "打瞌睡":"0%{}24%{top:20px}25%,27%{top:10px}28%{top:0}25.5%,26.5%,27.5%{left:5px}26%,27%,28%{left:-5px}",
 "躺":"0%{}5%,35%{top:10px;left:20px;transform:rotate(90deg)}50%{top:0;left:0;transform:rotate(0)}",
-"颤抖":"0%,20%{left:0}0.5%,1.5%,2.5%,3.5%,4.5%,5.5%,6.5%,7.5%,8.5%,9.5%,10.5%,11.2%,12.5%,13.5%,14.5%,15.5%,16.5%,17.5%,18.5%,19.5%{left:1px}1%,2%,3%,4%,5%,6%,7%,8%,9%,10%,11%,12%,13%,14%,15%,16%,17%,18%,19%{left:-1px}",
-"上下抖":"0%,20%{top:0}0.5%,1.5%,2.5%,3.5%,4.5%,5.5%,6.5%,7.5%,8.5%,9.5%,10.5%,11.5%,12.5%,13.5%,14.5%,15.5%,16.5%,17.5%,18.5%,19.5%{top:-2px}1%,2%,3%,4%,5%,6%,7%,8%,9%,10%,11%,12%,13%,14%,15%,16%,17%,18%,19%{top:0}",
+"颤抖":"0%,20%{left:0}({b,0.5,1,19})19.5%{left:1px}({b,1,1,18})19%{left:-1px}",
+"上下抖":"0%,20%{top:0}({b,0.5,1,19})19.5%{top:-2px}({b,1,1,18})19%{top:0}",
 "喝":"0%{}5%{top:-40px;left:20px;transform:rotate(20deg)}10%{top:-43px;left:23px;transform:rotate(50deg)}15%{top:0;left:0;transform:rotate(0)}",
 "摇头":"0%,7.5%{left:0}1.5%,4.5%{left:10px}3%,6%{left:-10px}",
 "分身术A":"0%{}2.5%,35%{left:0}5%,30%{left:-20px}，0%,2.5%,35%{left:0}5%,30%{left:20px}0%,30%{opacity:0}2.5%,25%{opacity:1}",
@@ -514,9 +514,9 @@ function 刷新(){
                     for(let i3=1;临时3.length>i3;i3++){
                         let 临时4=临时3[i3].split("})");
                         临时4[0]=临时4[0].split(",");
-                        if(临时4[0][0]=="a"){dy+="background-color:#00000000;background-blend-mode:lighten;background-size:cover;-webkit-mask-mode:luminance;mask-mode:luminance;background-image:url("+临时4[0][2]+"),linear-gradient("+临时4[0][1]+","+临时4[0][1]+");-webkit-mask-image:url("+临时4[0][2]+");mask-image:url("+临时4[0][2]+");"}
-                        if(临时4[0][0]=="b"){for(let i4=0;临时4[0][3]>i4;i4++){dy+=(临时4[0][1]+(临时4[0][2]*i4))+"%,"}}
-                        if(临时4[0][0]=="y"){dy+="/i/y/"}
+    if(临时4[0][0]=="a"){dy+="background-color:#00000000;background-blend-mode:lighten;background-size:cover;-webkit-mask-mode:luminance;mask-mode:luminance;background-image:url("+临时4[0][2]+"),linear-gradient("+临时4[0][1]+","+临时4[0][1]+");-webkit-mask-image:url("+临时4[0][2]+");mask-image:url("+临时4[0][2]+");"}
+    if(临时4[0][0]=="b"){if(临时4[0][4]){临时4[0][4]=临时4[0][4].split(".");}for(let i4=0;临时4[0][3]>i4;i4++){if(临时4[0][4]&&临时4[0][4].indexOf(i4+1)!=-1){}else{dy+=(临时4[0][1]*1+(临时4[0][2]*i4))+"%,"}}}
+    if(临时4[0][0]=="y"){dy+="/i/y/"}
                         dy+=临时4[1];
                     }
                 }
