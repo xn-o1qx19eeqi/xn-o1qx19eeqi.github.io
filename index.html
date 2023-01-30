@@ -588,6 +588,7 @@ function 新互动(d){
 
 function 改url(){
     let url=location.href.split("?")[0].split("#")[0];
+    if(url.indexOf("http://")!=-1){url="https://"+url.split("http://")[1];}
     history.replaceState(null,null, url);
     history.replaceState(null,null, url+"?t="+号码);
 }
