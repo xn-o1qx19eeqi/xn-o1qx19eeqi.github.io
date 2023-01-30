@@ -588,9 +588,12 @@ function 新互动(d){
 
 function 改url(){
     let url=location.href.split("?")[0].split("#")[0];
-    if(url.indexOf("http://")!=-1){url="https://"+url.split("http://")[1];}
-    history.replaceState(null,null, url);
-    history.replaceState(null,null, url+"?t="+号码);
+    if(url.indexOf("http://")!=-1){
+        window.location.href="https://像素点.cn"+url.split("http://")[1]+"?t="+号码
+    }else{
+        history.replaceState(null,null, url);
+        history.replaceState(null,null, url+"?t="+号码);
+    }
 }
 
 window.location.href='#limaoqiu.com';
