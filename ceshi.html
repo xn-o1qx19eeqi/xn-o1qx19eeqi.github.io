@@ -349,7 +349,6 @@ function 换背景(背景){
         document.getElementById("输入颜色_背景").placeholder=背景;
     }
     document.getElementById("style_root").innerHTML="<style>:root{--点点:#"+颜色+";--背景:"+背景颜色+";--反色:"+反色+"}</style>";
-    console.log("点点:#"+颜色+";背景:"+背景颜色+";反色:"+反色)
 }
 
 function 加载(){
@@ -502,7 +501,7 @@ function 加载(){
     document.getElementById("选择背景").innerHTML=dy;
     document.getElementById("实时").innerHTML="　";
     document.getElementById("小窝").innerHTML="<div id='点点'></div>";
-    document.getElementById("style_root").innerHTML="<style>:root{--点点:#"+颜色+";--背景:"+背景颜色+"}</style>";
+    document.getElementById("style_root").innerHTML="<style>:root{--点点:#"+颜色+";--背景:"+背景颜色+";--反色:"+反色+"}</style>";
 }
 
 function 刷新(){
