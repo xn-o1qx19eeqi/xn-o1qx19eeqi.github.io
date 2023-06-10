@@ -154,7 +154,7 @@ let 日程={
     "喝／〈x〉喝了杯奶茶。",
     "上下抖／〈x〉想到了好笑的事。",
     "上下抖／〈x〉在吃薯片。",
-    "取快递／〈x〉去取了快递。",
+    "收快递／〈x〉去取了快递。",
     "看电视／〈x〉看了会儿电视。",
     "看电视／〈x〉看了会儿电视。",
     "玩电脑／〈x〉玩了会儿游戏。",
@@ -248,6 +248,7 @@ let 节日={
 };
 let 动作={
 "o":"0%{}",
+"bug":"0%{}",
 "跳":"0%{top:0}2.5%{top:-100px}7.5%{top:0}",
 "跳跳":"0%{top:0}1.5%{top:-100px}3%{top:0}4.5%{top:-100px}6%{top:0}",
 "大跳":"0%{top:0}2.5%{top:30px}5%{top:-150px}6%{top:-150px}9%{top:0}",
@@ -314,7 +315,7 @@ function 输入互动(){
                 if(临时2.indexOf("〈")!=-1){
                     互动="";notyf.alert("指令有误");
                 }else{
-                    动作[地址[0]]=临时2
+                    动作[地址[0]]=临时2;
                 }
             }
             if(地址[3]){if(地址[3].indexOf(颜色)!=-1){}else{互动="";notyf.alert("你使用的指令不属于这只小像素点")}}
@@ -507,8 +508,16 @@ function 刷新(){
     else{互动=日程[o][1];临时=互动[Math.floor(Math.random()*互动.length)]}
     临时=临时.split("／");
     dy="<style>";
-        for(let i=0;互动.length>i;i++){
-            let 临时2=动作[临时[0]].split("，");
+        // for(let i=0;互动.length>i;i++){
+            let 临时2;
+            if(动作[临时[0]]){
+                临时2=动作[临时[0]].split("，");
+            }else{
+                console.log("BUG："+临时[0]);
+                notyf.alert("发现BUG：<br>【"+临时[0]+"】<br>请与我联系，非常感谢！");
+                临时2=动作["o"].split("，");
+            }
+            
             if(临时[0].indexOf("_匀速")!=-1){dy+="#点点,.群演{animation-timing-function:linear}"}
             dy+="@keyframes "+临时[0]+"{"+临时2[0]+"}";
             let dy2="";
@@ -531,7 +540,7 @@ function 刷新(){
                 dy2="<div class='群演' style='animation-name:"+临时[0]+"_群演"+i2+"'></div>"+dy2;
             }
             document.getElementById("小窝").innerHTML=dy2+"<div id='点点'></div>";
-        }
+        // }
     dy+="</style>";
     互动="";
     document.getElementById("style").innerHTML=dy;
