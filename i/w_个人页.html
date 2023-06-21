@@ -1,0 +1,82 @@
+---
+layout: e0
+permalink: w
+BeiJing: 0
+BeiJing_SJ: 0
+BiaoTi: 小像素点
+title: 小像素点 个人页
+h1: 小像素点 个人页
+h2: <a href="/">返回</a>
+---
+【！注意！本页并不上传到服务器，仅仅是保存在浏览器的缓存里，清除缓存、出现bug都会导致内容被清空，强烈建议将你的像素点编号保存在别的地方。】<br>
+<br>
+
+<style>
+    /* .xsd{padding:20px;} */
+    .白{color:#ffffff;}
+    .黑{color:#000000;}
+</style>
+
+<div id="dy"></div>
+
+<br>
+
+<input type="text" placeholder="像素点编号" autocomplete="off" id="添加1">
+<input type="text" placeholder="备注名" autocomplete="off" id="添加2">
+<button onclick="添加()">添加</button>
+
+<script>
+
+let 数据=[];
+let 输出="";
+
+if(location.href.indexOf("?")!=-1){
+    输出=location.href.split("?")[1].split("#")[0];
+}else if(localStorage.getItem("像素点_个人页")){
+    输出=localStorage.getItem("像素点_个人页").split(",");
+}
+if(输出!=""){数据=输出.split(",");}
+for(let i=0;数据.length>i;i++){
+    数据[i]=数据[i].split(".");
+}
+
+function 打印(){
+    let dy="";
+    for(let i=0;数据.length>i;i++){
+        let 背景颜色="白";
+        if(数据[i][0][0]=="D"||数据[i][0][0]=="E"||数据[i][0][0]=="F"){
+            if(数据[i][0][2]=="D"||数据[i][0][2]=="E"||数据[i][0][2]=="F"){
+                if(数据[i][0][4]=="D"||数据[i][0][4]=="E"||数据[i][0][4]=="F"){
+                    背景颜色="黑";
+                }
+            }
+        }
+        dy+="<span class='xsd "+背景颜色+"' style='background-color:#"+数据[i][0]+"' onclick=\"访问("+i+")\">"+数据[i][1]+" "+数据[i][0]+"</span> <small><a onclick=\"删除("+i+")\">删除</a></small><br>";
+    }
+    document.getElementById("dy").innerHTML=dy;
+}
+
+function 访问(o){
+    window.location.href="/"+数据[o][0];
+}
+
+function 删除(o){
+    数据=数据.splice(o,1);
+    打印();
+}
+
+function 添加(){
+    let 临时=document.getElementById("添加1").value;
+    if(临时.indexOf("#")!=-1){临时=临时.split("#")[1];}
+    if(临时.indexOf("/")!=-1){临时=临时.split("/");临时=临时[临时.length-1];}
+    let 临时2=document.getElementById("添加2").value.replace(new RegExp(',',"g"),"").replace(new RegExp('\\\.',"g"),"");
+    数据[数据.length]=[临时,临时2];
+    输出+=","+临时+"."+临时2;
+    打印();
+}
+
+打印();
+
+
+
+</script>
