@@ -342,7 +342,7 @@ function 输入互动(){
     }catch(e){
         notyf.alert("失败，代码有误或网络故障");
     }
-    加载();
+    刷新();
 }
 
 if(直接互动){
@@ -617,7 +617,7 @@ function 新互动(d){
     notyf.confirm("你的指令正在传递中……");
     if(d.indexOf("［")!=-1){d=d.split("［");d=d[Math.floor(Math.random()*d.length)]}
     互动=d;
-    加载();
+    刷新();
 }
 
 function 改url(){
