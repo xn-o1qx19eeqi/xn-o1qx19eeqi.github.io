@@ -22,7 +22,7 @@ h2: <a href="/">返回</a>
 </style>
 
 
-<input type="text" id="选手名单" placeholder="选手名单" autocomplete="off"> <a onclick="确认()" id="确认">确认参赛</a>
+<input type="text" id="选手名单" placeholder="选手名单" autocomplete="off"> <a onclick="确认()" id="确认">确认参赛</a> <small><a onclick="询问()" id="询问">怎么填？</a></small>
 <a onclick="准备()" id="准备" style="display:none;">准备</a>
 <a onclick="开始()" id="开始" style="display:none;">开始！</a>
 
@@ -37,7 +37,8 @@ h2: <a href="/">返回</a>
 </div>
 
 <script>
-    //FFFFFF.小白点,000000.小黑点,C77232.测试员,FEBCC0.小猪又,DF7460.小胡糊,92D1E2.小猫球,FFE1A1.小二扯,0000FF.蓝蓝,FF0000.大红,CCCCCC.小C
+//建设过程中参与测试的功臣们：
+//FFFFFF.小白点,000000.小黑点,C77232.测试员,FEBCC0.小猪又,DF7460.小胡糊,92D1E2.小猫球,FFE1A1.小二扯,0000FF.蓝蓝,FF0000.大红,CCCCCC.小C
 let 选手;
 
 let arr;function 随机(){let _arr=arr.slice();for(let i=0;i<_arr.length;i++){let j=getRandomInt(0,i);let t=_arr[i];_arr[i]=_arr[j];_arr[j]=t;}function getRandomInt(min,max){return Math.floor(Math.random()*(max-min+1)+min);}arr=_arr;}
@@ -80,6 +81,7 @@ function 确认(){
     if(医生==0){//医生：检查完毕，没有问题。
         document.getElementById("选手名单").style="display:none;";
         document.getElementById("确认").style="display:none;";
+        document.getElementById("询问").style="display:none;";
         document.getElementById("准备").style="";
         document.getElementById("dy").innerHTML=新闻稿;
     }else{//医生：有问题，都抓起来！
@@ -118,6 +120,10 @@ function 开始(){
             break;
         }
     }
+}
+
+function 询问(){
+    document.getElementById("dy").innerHTML="选手名单的格式为：<b>编号.像素点的名字,</b><small>(下一个选手)</small><b>编号.像素点的名字</b><small>（小写的逗号“,”和点“.”，编号不用加“#”）</small><br>如“<b>FEBCC0.小猪又,DF7460.小胡糊,92D1E2.小猫球,FFE1A1.小二扯</b>”";
 }
 
 </script>
