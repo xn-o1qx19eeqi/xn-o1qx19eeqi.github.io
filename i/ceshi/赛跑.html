@@ -1,0 +1,117 @@
+---
+layout: e0
+permalink: i/ceshi/a
+BeiJing: 0
+BeiJing_SJ: 0
+BiaoTi: 小像素点
+title: 小像素点 赛跑
+h1: 小像素点 赛跑
+h2: <a href="/">返回</a>
+---
+
+
+
+<style>
+.跑道{display:block;width:1000px;padding:10px;}
+.像素点{width:10px;height:10px;animation:1;animation-timing-function:linear;animation-fill-mode:forwards;position:relative;}
+@keyframes 赛跑{0%{left:0;}100%{left:1000px;}}
+@keyframes 第一名{0%,99%{background-color:#ffffff00;}100%{background-color:#ffb70f;}}
+.领奖台{animation:1;animation-timing-function:linear;animation-fill-mode:forwards;}
+</style>
+
+
+<input type="text" id="选手名单" placeholder="选手名单" autocomplete="off"> <a onclick="确认()" id="确认">确认参赛</a>
+<a onclick="准备()" id="准备" style="display:none;">准备</a>
+<a onclick="开始()" id="开始" style="display:none;">开始！</a>
+
+<br><br>
+
+<div id="dy"></div>
+
+<br><br>
+
+<div id="公布结果"></div>
+
+<script>
+    //FFFFFF.小白点,000000.小黑点,C77232.测试员,FEBCC0.小猪又,DF7460.小胡糊,92D1E2.小猫球,FFE1A1.小二扯,0000FF.蓝蓝,FF0000.大红,CCCCCC.小C
+let 选手;
+
+let arr;function 随机(){let _arr=arr.slice();for(let i=0;i<_arr.length;i++){let j=getRandomInt(0,i);let t=_arr[i];_arr[i]=_arr[j];_arr[j]=t;}function getRandomInt(min,max){return Math.floor(Math.random()*(max-min+1)+min);}arr=_arr;}
+
+function 确认(){
+    选手=document.getElementById("选手名单").value.split(",");
+    arr=选手;
+    随机();
+    选手=arr;
+    let 医生=0;
+    let 身份验证=["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"];
+    let 新闻稿="参赛选手：";
+    for(let i=0;选手.length>i;i++){
+        //选手登记
+        选手[i]=选手[i].split(".");
+        选手[i][0]=选手[i][0].toUpperCase();
+        //身份验证
+        if(选手[i][0].length==6
+        &&身份验证.indexOf(选手[i][0][0])!=-1
+        &&身份验证.indexOf(选手[i][0][1])!=-1
+        &&身份验证.indexOf(选手[i][0][2])!=-1
+        &&身份验证.indexOf(选手[i][0][3])!=-1
+        &&身份验证.indexOf(选手[i][0][4])!=-1
+        &&身份验证.indexOf(选手[i][0][5])!=-1
+        ){}else{医生=1;break;}
+        //身体检查
+        let 背景颜色="FFFFFF";
+        if(选手[i][0][0]=="D"||选手[i][0][0]=="E"||选手[i][0][0]=="F"){
+            if(选手[i][0][2]=="D"||选手[i][0][2]=="E"||选手[i][0][2]=="F"){
+                if(选手[i][0][4]=="D"||选手[i][0][4]=="E"||选手[i][0][4]=="F"){
+                    背景颜色="000000";
+                }
+            }
+        }
+        选手[i][选手[i].length]=背景颜色;
+        //采访
+        if(i!=0){新闻稿+="、";}
+        新闻稿+="<b>"+选手[i][1]+"</b><small style='background-color:#"+选手[i][2]+";color:#"+选手[i][0]+"'> #"+选手[i][0]+"</small>";
+    }
+    if(医生==0){//医生：检查完毕，没有问题。
+        document.getElementById("选手名单").style="display:none;";
+        document.getElementById("确认").style="display:none;";
+        document.getElementById("准备").style="";
+        document.getElementById("dy").innerHTML=新闻稿;
+    }else{//医生：有问题，都抓起来！
+        document.getElementById("dy").innerHTML="选手名单有问题，请核实清楚。";
+    }
+}
+
+function 准备(){
+    let 赛道="<table>";//铺设赛道
+    for(let i=0;选手.length>i;i++){//选手入场
+        赛道+="<tr><td id='领奖"+选手[i][0]+"' class='领奖台'>"+选手[i][1]+"</td><td class='跑道' style='background-color:#"+选手[i][2]+"'><div id='选手"+选手[i][0]+"' style='background-color:#"+选手[i][0]+"' class='像素点'></div></td></tr>";
+    }
+    document.getElementById("dy").innerHTML=赛道;
+    document.getElementById("准备").style="display:none;";
+    document.getElementById("开始").style="";
+}
+
+function 开始(){
+    let 结果=100;
+    let 实况转播="<style>";
+    document.getElementById("开始").style="display:none;";
+    for(let i=0;选手.length>i;i++){
+        let 赛况=Math.floor(Math.random()*30)+10;
+        if(赛况<结果){结果=赛况;}else if(赛况==结果){赛况+=1;}
+        选手[i][选手[i].length]=赛况;
+        赛况=赛况/10;
+        //紧张刺激的赛跑开始了
+        document.getElementById("选手"+选手[i][0]).style="background-color:#"+选手[i][0]+";animation-duration:"+赛况+"s;animation-name:赛跑;";
+    }
+
+    for(let i=0;选手.length>i;i++){
+        if(选手[i][3]==结果){
+            document.getElementById("领奖"+选手[i][0]).style="animation-duration:"+(结果/10)+"s;animation-name:第一名;";
+            break;
+        }
+    }
+}
+
+</script>
