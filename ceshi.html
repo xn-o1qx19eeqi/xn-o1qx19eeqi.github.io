@@ -323,6 +323,7 @@ function 输入互动(){
                     临时=临时[1].split("_");
                     for(let i=0;临时.length>i;i++){
                         临时2=临时2.replace("〈"+i+"〉",临时[i]);
+                        互动=互动.replace("〈"+i+"〉",临时[i]);
                     }
                 }
                 if(临时2.indexOf("〈")!=-1){
