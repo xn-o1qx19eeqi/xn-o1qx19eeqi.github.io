@@ -8,15 +8,17 @@ title: 小像素点 赛跑
 h1: 小像素点 赛跑
 h2: <a href="/">返回</a>
 ---
-
-
-
 <style>
+.选手{padding:5px;}
 .跑道{display:block;width:1000px;padding:10px;}
 .像素点{width:10px;height:10px;animation:1;animation-timing-function:linear;animation-fill-mode:forwards;position:relative;}
 @keyframes 赛跑{0%{left:0;}100%{left:1000px;}}
-@keyframes 第一名{0%,99%{background-color:#ffffff00;}100%{background-color:#ffb70f;}}
-.领奖台{animation:1;animation-timing-function:linear;animation-fill-mode:forwards;}
+@keyframes 第一名{0%,99%{background-color:#ffffff00;}100%{background-color:#FFA800;}}
+.领奖台{animation:1;animation-timing-function:linear;animation-fill-mode:forwards;color:#000000;}
+#公布结果{width:400px;height:400px;animation-timing-function:linear;animation-fill-mode:forwards;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAGQCAMAAAC3Ycb+AAAAQlBMVEUAAAD/qAD/qAD/qAD/qAD/qAD/qAD/qAD/qAD/qAD/qAD/qAD/qAD/qAD/qAD/qAD/qAD/qAD/qAD/qAD/qAD/qACTWhbeAAAAFXRSTlMA4DDwIEDQKwcbxNJPwAy2Jzg8NKbyfpsdAAAEb0lEQVR42uzc7W6CQBCF4dVKFdva7/u/1SZsdtpkcAqi5Oz6Pr8mQrOZnJTNgJgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACa0j8OjmmKt3zya2qLVFu778FDmmKbT96ktki1RSBibRGIWFsEItYWgYi1RSBibR26wUea4tQN3lNbGm0L1x0MrbAxyQo/QX3m4muk6EpRD83B0Aq7olrhL7ZdLh5HiudcvKR6SO0hBEIgcghEDIGIIRAxUoHYYGiFjUlWFO7Q50jR52Kb6sFgCKffDJ6iT8w+Hzom7z0f0pipIkFbUWH9+SK79tbhP5l3jbWto0KlraAINksCSYlACIRAIgRCIAQSaTmQw3awDz6ZdOiUD72lCpW2gsL6s6LqjvG/s/OgFVrz0q3E8+6KE/DZrcMKrUtrYNV7itYfgfwiEAIhkAiBEAiBRJoM5Ow8aMX9zEvWjdPYBIwb8xOUyqPDGYv6UbjiJ6LuYqtyl3HGon7XrPjmKYEQCIEQCIEQCIE0EkiZoOQGJ7fonG6afyKKBdZ9YuiWuPqiXS6+pjQa8GuuZd2bi26JxYvG70DEjQb8mv8iEAIhkAiBEAiBRAik9UDWeGLo/nzZokGxcLr1a+Lu7R4GmxTY53OeUusUGi2X1mre4x7XzgvrBCLWKIGINUogYo0SiFijBCLW6GGXTTinT627m0YxfzC0wqajqPjIxXGkeM6F2JcvRyxt9A/pm4v1/ICZ5nsXBEIgKghEDIGIIRAxmoGUwdAV/YXFqZrh6qL+GB4RDE4T6A+GfgKe49aD4dW/g6G/h/jN0pF774JACCRAIARCIBECIRDNQC6ahfQHQzcB81QRy+alqgdD/0S0UB8Mz19aq95D/M3TQn0PIRACGUUgBEIgEQIhEM1AAPj/5IXffr+fH1J2HRNISgRCIAQSIRACIZAfdu7gtmEYCIBgmlD/reZBwMmDtmUYsJb0TAnaF6njPbJ1kNut9FubHCbvWNYRv35nHZv+tVx3trfwWvjP5tPvgghSIUiMIDGCxKwbpLD57p+9NzkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAyzie+uEBQXYnSIwgMYLECBIjyHWO01SaEeRSx0mC3CHI5gSJESRGkJjPBXnvHCKIIKcIsjtBYgSJESRGkJjPHQAcQARZkSAxgsQIEiNIjCAx5z+IqZMZQXYnSIwgMYLECBIjSIwgMYLECBIjSIwgMYLEXHzbqoQgcYLECBIjSIwgMYLENIYMvqDE8YLrHwEKciPInCCCDILMCSLIIMicIIIMgswJIsggyJwgggyCzAkiyCDIb/t2aAQwEMNAsAr332qAqX7GAQF577ZwVMoEEaQJkgkiSBMkE0SQJki2Ncie1UkNCZIJIkgTJBNEkCZIJogg3/AxFOQfakiQTBBBmiCZIII0QbJ1QdapGUEOBLldzQhyIMjtakYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgvQf1tWq6RTmcTgAAAABJRU5ErkJggg==)}
+#冠军{position:relative;width:10px;height:10px;left:170px;top:240px;animation:infinite;animation-duration:10s;animation-name:获奖的喜悦;}
+@keyframes 获奖的喜悦{0%,4%,8%,40%,44%,47%,80%,84%,88%{top:240px;}2%,6%,42%,46%,82%,86%{top:220px;}}
+@keyframes 比赛结束{0%,99%{opacity:0;}100%{opacity:1;}}
 </style>
 
 
@@ -30,7 +32,9 @@ h2: <a href="/">返回</a>
 
 <br><br>
 
-<div id="公布结果"></div>
+<div id="公布结果" style="display:none;">
+    <div id="冠军"></div>
+</div>
 
 <script>
     //FFFFFF.小白点,000000.小黑点,C77232.测试员,FEBCC0.小猪又,DF7460.小胡糊,92D1E2.小猫球,FFE1A1.小二扯,0000FF.蓝蓝,FF0000.大红,CCCCCC.小C
@@ -70,8 +74,8 @@ function 确认(){
         }
         选手[i][选手[i].length]=背景颜色;
         //采访
-        if(i!=0){新闻稿+="、";}
-        新闻稿+="<b>"+选手[i][1]+"</b><small style='background-color:#"+选手[i][2]+";color:#"+选手[i][0]+"'> #"+选手[i][0]+"</small>";
+        if(i!=0){新闻稿+="　";}
+        新闻稿+="<b class='选手' style='background-color:#"+选手[i][0]+";color:#"+选手[i][2]+"'>"+选手[i][1]+"</b>";
     }
     if(医生==0){//医生：检查完毕，没有问题。
         document.getElementById("选手名单").style="display:none;";
@@ -86,7 +90,7 @@ function 确认(){
 function 准备(){
     let 赛道="<table>";//铺设赛道
     for(let i=0;选手.length>i;i++){//选手入场
-        赛道+="<tr><td id='领奖"+选手[i][0]+"' class='领奖台'>"+选手[i][1]+"</td><td class='跑道' style='background-color:#"+选手[i][2]+"'><div id='选手"+选手[i][0]+"' style='background-color:#"+选手[i][0]+"' class='像素点'></div></td></tr>";
+        赛道+="<tr><td id='领奖"+选手[i][0]+"' class='领奖台' onclick=\"复(制='"+选手[i][0]+"')\">"+选手[i][1]+"</td><td class='跑道' style='background-color:#"+选手[i][2]+"'><div id='选手"+选手[i][0]+"' style='background-color:#"+选手[i][0]+"' class='像素点'></div></td></tr>";
     }
     document.getElementById("dy").innerHTML=赛道;
     document.getElementById("准备").style="display:none;";
@@ -109,6 +113,8 @@ function 开始(){
     for(let i=0;选手.length>i;i++){
         if(选手[i][3]==结果){
             document.getElementById("领奖"+选手[i][0]).style="animation-duration:"+(结果/10)+"s;animation-name:第一名;";
+            document.getElementById("公布结果").style="animation-duration:"+(结果/10)+"s;animation-name:比赛结束;background-color:#"+选手[i][2];
+            document.getElementById("冠军").style="background-color:#"+选手[i][0];
             break;
         }
     }
