@@ -334,7 +334,7 @@ function 输入互动(){
             }
             if(地址[3]){if(地址[3].indexOf(颜色)!=-1){}else{互动="";notyf.alert("你使用的指令不属于这只小像素点")}}
             if(互动==""){}
-            else{notyf.confirm("你的指令正在传递中……")}
+            else{notyf.confirm("指令正确")}
         }else{
             console.log("bug");
             adddlert("bug");
@@ -614,7 +614,7 @@ function 复制像素点(){制="{{ site.mq_url }}/"+颜色;复()}
 function 看望打卡(){document.getElementById("看望打卡").innerHTML="<iframe src='/i/看望打卡?"+颜色+"' frameborder='0' width='50%' height='30px'></iframe>";}
 
 function 新互动(d){
-    notyf.confirm("你的指令正在传递中……");
+    notyf.confirm("指令正确");
     if(d.indexOf("［")!=-1){d=d.split("［");d=d[Math.floor(Math.random()*d.length)]}
     互动=d;
     刷新();
