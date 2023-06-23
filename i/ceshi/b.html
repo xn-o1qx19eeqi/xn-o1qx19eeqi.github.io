@@ -14,12 +14,14 @@ h2: <a href="/">返回</a>
 
 
 <div id="测试"></div>
-<input type="text" id="测试" placeholder="测试" autocomplete="off"> <a onclick="测试(document.getElementById('测试').value)">确定</a><br>
+<input type="text" id="测" placeholder="测试" autocomplete="off"> <a onclick="测试(document.getElementById('测').value)">确定</a><br>
 <script>
     function 测试(o){
         document.getElementById("测试").innerHTML="<style>.点{margin:"+o+"px}</style>";
     }
-</script>
+</script><br><br><br><br><br>
+
+
 
 <div id="列表"></div>
 <hr>
@@ -29,22 +31,20 @@ h2: <a href="/">返回</a>
 
 <br><hr>
 
-<a name="申请进度"></a><h2 style="display:inline;">申请进度</h2> 2023年6月22日 23:59 之前的申请已经全部审核完毕<br>
-<small><a onclick="document.getElementById('bzy1').style='';">“我在这之前提交了申请，但这里没有我的记录”</a><span id="bzy1" style="display:none;">：<br>
-可能1：输入有误，请检查你输入的内容是否有错字、遗漏，检查是否勾选错了选项。<br>
-可能2：申请时填写了不适宜内容，在这里也不便展示。<br>
-可能3：在<ruby><rb>错误的时间</rb><rt>不是星期六</rt></ruby>提交了申请，申请直接清除，不保留记录。<br>
-可能4：记录超过1个月被清除了。<br>
-可能5：未知BUG（非常非常非常抱歉，请重新提交申请）
-</span><br>
-<a onclick="document.getElementById('bzy2').style='';">“我对审核结果不满意”</a><span id="bzy2" style="display:none;">：<br>可以在<a href="{{ site.mq }}/contactus">这里</a>联系我。</span><br>
-<br>
+<a name="申请进度"></a><h2 style="display:inline;">申请进度</h2> （2023年6月22日 23:59 之前的申请已经全部审核完毕）<br>
 <input type="text" id="搜索_输入" placeholder="输入像素点的编号" autocomplete="off"> <a onclick="搜索_确认(document.getElementById('搜索_输入').value)">搜索</a><br>
 <input type="radio" oninput="搜索_选项(0)" id="搜索0" checked><label for="搜索0">编号</label>
 <input type="radio" oninput="搜索_选项(1)" id="搜索1"><label for="搜索1">像素点名字</label>
 <input type="radio" oninput="搜索_选项(2)" id="搜索2"><label for="搜索2">认养人</label><br>
-
 <div id="搜索结果"></div>
+<small><a onclick="document.getElementById('bzy1').style='';">“我在很久之前提交了申请，但这里没有我的记录”</a><span id="bzy1" style="display:none;">：<br>
+可能1：输入有误，请检查你输入的内容是否有错字、遗漏，检查是否勾选错了选项。<br>
+可能2：申请时填写了不适宜内容，在这里也不便展示。<br>
+可能3：在<ruby><rb>错误的时间</rb><rt>不是星期六</rt></ruby>提交了申请，申请直接清除，不保留记录。<br>
+可能4：记录超过1个月被清除了。
+</span><br>
+<a onclick="document.getElementById('bzy2').style='';">“我对审核结果不满意”</a><span id="bzy2" style="display:none;">：<br>可以在<a href="{{ site.mq }}/contactus">这里</a>联系我。</span></small>
+
 <script>
 
 let 申请={"通过":[
