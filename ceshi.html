@@ -9,7 +9,7 @@ BiaoTi: 小像素点
 <div id="style_root"></div><div id="style"></div>
 <div id="屋顶"></div><div id="房子"><div id="小窝"></div></div><div id="地板"></div><div id="实时"></div><br>
 颜色：<input type="text" placeholder="000000" autocomplete="off" id="输入颜色" onkeyup="输入颜色()"><input type="color" id="选择颜色" oninput="选择颜色()"><input type="button" value="查询" onclick="查询()"><input type="button" value="随机一只" onclick="随机一只()"> <small>（<a href="/i/b#内容">已有像素点列表</a>）</small><br><sup><span id="未被认养"></span></sup><br>
-互动：<span id="互动"></span><input type="text" placeholder="动作" autocomplete="off" id="输入互动"><input type="button" value="确定" onclick="输入互动()"><small>（<a href="/i/c#动作代码">动作指令有哪些？</a>）</small><br><br>
+互动<input type="checkbox" oninput="互动模式()">：<span id="互动"></span><input type="text" placeholder="动作" autocomplete="off" id="输入互动"><input type="button" value="确定" onclick="输入互动()"><small>（<a href="/i/c#动作代码">动作指令有哪些？</a>）</small><br><br>
 
 换背景：<small>(在这里更换的背景只有自己能看到)</small><br>
 <div id="选择背景"></div>
@@ -77,12 +77,6 @@ BiaoTi: 小像素点
 <h4>如果我不打卡就会失去它？</h4>
 最初的想法是可以任意申请、一次申请永久获得，但测试阶段发现有的人并不重视像素点，仅仅“抢注”就不再理会，我认为这对小像素点很残忍，因此增加了一些限制<small>（以前还试过采用邀请制，但效果并不好）</small>。<br>
 “每年打卡”这条规则的重点实际上是“证明你依然喜欢它”，“一年”是我认为比较适中的时长。<br>
-通过其他方式证明你真的很喜欢它，可以将像素点的打卡时长延期，甚至永久。如参加像素点相关比赛取得名次、<del>打赏小像素点网站<small>（每1元延期一个月，10元延期一年，300元永久，打赏时记得注明像素点编号）</small></del>（收到许多反馈认为“打赏延期”这个方案不好，因此取消）。<br>
-<br>
-
-<a name="隐藏玩法"></a><h4>隐藏玩法</h4>
-认养的小像素点除了改名字、添加留言，还有其他可自定义的地方：改默认背景颜色、使用图片作为背景、自定义一天的日程、新增动作。<br>
-不过由于我时间精力有限，这些需要我手动操作的内容平时不开放使用。（如果你能设计出有趣的动作，我会很愿意尝试实现它）<br>
 
 <br>
 
@@ -91,6 +85,24 @@ BiaoTi: 小像素点
 <br>
 
 </div>
+
+<hr>
+
+<h3>更多玩法</h3>
+在设计之初我就给小像素点定下了“简单”这个基调，因此“增加养成系统”之类的建议我都没有直接采纳，我认为过多的玩法会破坏小像素点的轻松氛围。<br>
+同时我也注意到大家对小像素点的热情，会希望有一些围绕小像素点而设计的。<br>
+我会试着设计一些小活动、小游戏，或是找其他志同道合的朋友的作品“联动”一下，在不影响小像素点本质的前提下，拓展一些“周边玩法”。<br>
+<br>
+
+<h4>小像素点运动会</h4>
+第一届小像素点运动会<b>尼斯湖水怪杯</b>1000px短跑开始报名啦！<br>
+报名地址和活动说明：<a href="https://wj.qq.com/s2/12622183/69ae">wj.qq.com/s2/12622183/69ae</a><br>
+<br>
+
+<h4><b>小像素点</b> × <b>A Wave</b></h4>
+一段简单的介绍。<br>
+<a href="/">链接</a><br>
+<br>
 
 <hr>
 
@@ -108,7 +120,7 @@ BiaoTi: 小像素点
 
 <script>
 if(location.href.indexOf("http://")!=-1){window.location.href="https://"+location.href.split("http://")[1];}let LocString=String(window.document.location.href);function GetQueryString(name){let rs=new RegExp("(^|)"+name+"=([^&]*)(&|$)","gi").exec(LocString),tmp;if(tmp=rs){return decodeURI(tmp[2])}return ""}
-let 号码=GetQueryString("t").split("#")[0],直接互动=GetQueryString("h").split("#")[0],颜色="000000",今天,今日,背景,背景颜色,反色,o,临时,名字,主人,固定动作=0,特色动作,内容="",互动="",字母="0123456789ABCDEF",oo=encodeURI(document.getElementById("oo").innerHTML.replace(/[ \n\d]/g, "")).replace(/[^0-9A-Z%]/g, "").replace(/^%/g, "").split("%");
+let 号码=GetQueryString("t").split("#")[0],直接互动=GetQueryString("h").split("#")[0],颜色="000000",今天,今日,背景,背景颜色,反色,o,临时,名字,主人,固定动作=0,特色动作,内容="",互动="",互模=0,字母="0123456789ABCDEF",oo=encodeURI(document.getElementById("oo").innerHTML.replace(/[ \n\d]/g, "")).replace(/[^0-9A-Z%]/g, "").replace(/^%/g, "").split("%");
 let 选择背景=["#000000","#FFFFFF","#E8F2E8","#474B5B","夜空.jpg"];
 let 月常=["o","休息日","玩闹","工作","运动"];
 let 月表=[
@@ -144,8 +156,6 @@ let 缩=[
 "o／〈x〉好像在思考什么。",
 "躺／〈x〉躺了一会儿。",
 "<a href='https://wj.qq.com/s2/12608539/01b6' target='_blank'>申请认养</a>",
-//1：https://wj.qq.com/s2/10233552/579e
-//2：https://wj.qq.com/s2/12608539/01b6
 "<a href='https://wj.qq.com/s2/10560058/b06e' target='_blank'>点击此处</a>填写像素点编号",
 ]
 let 日程={
@@ -334,7 +344,7 @@ function 输入互动(){
             }
             if(地址[3]){if(地址[3].indexOf(颜色)!=-1){}else{互动="";notyf.alert("你使用的指令不属于这只小像素点")}}
             if(互动==""){}
-            else{notyf.confirm("指令正确")}
+            else{notyf.confirm("你的指令正在传递中……")}
         }else{
             console.log("bug");
             adddlert("bug");
@@ -342,7 +352,7 @@ function 输入互动(){
     }catch(e){
         notyf.alert("失败，代码有误或网络故障");
     }
-    刷新();
+    if(互模==1){刷新();}
 }
 
 if(直接互动){
@@ -614,10 +624,14 @@ function 复制像素点(){制="{{ site.mq_url }}/"+颜色;复()}
 function 看望打卡(){document.getElementById("看望打卡").innerHTML="<iframe src='/i/看望打卡?"+颜色+"' frameborder='0' width='50%' height='30px'></iframe>";}
 
 function 新互动(d){
-    notyf.confirm("指令正确");
+    notyf.confirm("你的指令正在传递中……");
     if(d.indexOf("［")!=-1){d=d.split("［");d=d[Math.floor(Math.random()*d.length)]}
     互动=d;
-    刷新();
+    if(互模==1){刷新();}
+}
+
+function 互动模式(){
+    if(互模==0){互模=1;notyf.confirm("开启立即执行模式")}else{互模=0;notyf.confirm("关闭立即执行模式")}
 }
 
 function 改url(){
