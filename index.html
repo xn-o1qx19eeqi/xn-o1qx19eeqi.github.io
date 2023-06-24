@@ -31,7 +31,7 @@ BiaoTi: 小像素点
     <li>等待通过。<small>（<a href="/i/b#申请进度">申请进度</a>）</small></li>
 </ol>
 <b>注意1</b>：不适宜的内容将不会通过<small>（如违反法律、敏感、引人不适、过于商业的广告）</small>，如果损害他人利益一经发现会立刻删除。<small>发现有违规内容，请<a href="{{ site.mq }}/contactus">联系我</a>，我会尽快处理。</small><br>
-<b>注意2</b>：请不要冷落小像素点，超过一年没有打卡，小像素点会恢复为可申请状态。（如果没人申请，原信息会继续保留）<small>（点击认养人右侧的“打卡”按钮即可，或者点击<a href="https://wj.qq.com/s2/10560058/b06e/">此处</a>填表打卡）</small><br>
+<b>注意2</b>：请不要冷落小像素点，超过一年没有打卡，小像素点会恢复为可申请状态。（如果没人申请，原信息会继续保留）<small>（点击认养人右侧的“打卡”按钮即可，如果一直提示“打卡失败”请等待一段时间再试，或者联系我）</small><br>
 <b>注意3</b>：每人最多可以认养4只。<br>
 
 <br>
@@ -405,7 +405,14 @@ function 加载(){
             if(内容[0]&&内容[0]!=""){名字=内容[0]}else{名字="小像素点"}
             if(内容[1]&&内容[1]!=""){主人=内容[1]}else{主人="无"}
             dy="<h2 style='display:inline;'>"+名字+"</h2>　<small>#"+颜色+" <a onclick=\"复制像素点()\">复制地址</a></small><br><small>认养人：</small>"+主人;
-            if(主人!="（不可认养）"){dy+=" <small><a id=\"看望打卡\" onclick=\"看望打卡()\">打卡</a>";}
+            if(主人!="（不可认养）"){
+                let 打卡临时=0;
+                if(内容[7]&&内容[7]!=""&&Math.trunc((new Date().getTime()-new Date(内容[7]).getTime())/1000/60/60/24)>90){
+                    dy+=" <small><a id=\"看望打卡\" onclick=\"看望打卡(0)\">打卡</a>";
+                }else{
+                    dy+=" <small><a id=\"看望打卡\" onclick=\"看望打卡(1)\">打卡</a>";
+                }
+                }
             document.getElementById("未被认养").innerHTML='';
             if(内容[2]&&内容[2]!=""){
                 if(内容[2].indexOf("〈放弃认养〉")!=-1){内容[2]=内容[2].replace(/〈放弃认养〉/g, "");固定动作="放弃认养";}
@@ -457,8 +464,8 @@ function 加载(){
                 }
             }
             if(内容[7]&&内容[7]!=""){
-                临时=395-Math.trunc((new Date().getTime()-new Date(内容[7]).getTime())/1000/60/60/24);
-                if(临时<1){dy+="由于原认养人<small>（<b>"+主人+"</b>）</small><ruby><rb>超过一年</rb><rt>"+(临时*-1+395)+"天</rt></ruby>没来看望<b>"+名字+"</b>，系统暂时收回认养资格，<b>"+名字+"</b>目前处于可以申请认养的状态<small>（请在申请表格的“像素点编号”里备注，如“000000【收回资格】”）</small>。原认养人可以打卡恢复认养资格。";主人="无"}
+                临时=(365+90)-Math.trunc((new Date().getTime()-new Date(内容[7]).getTime())/1000/60/60/24);
+                if(临时<1){dy+="由于原认养人<small>（<b>"+主人+"</b>）</small><ruby><rb>超过一年</rb><rt>"+(临时*-1+(365+90))+"天</rt></ruby>没来看望<b>"+名字+"</b>，系统暂时收回认养资格，<b>"+名字+"</b>目前处于可以申请认养的状态，原认养人可以打卡恢复认养资格。";主人="无"}
                 else if(临时<100){dy+="<b>"+主人+"</b>很久没来看望<b>"+名字+"</b>了，请在"+临时+"天内打卡，以免因为冷落像素点过久而失去认养资格。"}
             }
             document.title=名字+" - 小像素点";
@@ -626,7 +633,9 @@ function 随机一只(){
 }
 function 复制像素点(){制="{{ site.mq_url }}/"+颜色;复()}
 
-function 看望打卡(){document.getElementById("看望打卡").innerHTML="<iframe src='/i/看望打卡?"+颜色+"' frameborder='0' width='50%' height='30px'></iframe>";}
+function 看望打卡(o){
+    if(o==0){document.getElementById("看望打卡").innerHTML="<iframe src='/i/看望打卡?"+颜色+"' frameborder='0' width='50%' height='30px'></iframe>";}else{document.getElementById("看望打卡").innerHTML="<sup style='background-color:#01EC0C;color:#ffffff'>打卡成功</sup>";}
+}
 
 function 新互动(d){
     notyf.confirm("你的指令正在传递中……");
