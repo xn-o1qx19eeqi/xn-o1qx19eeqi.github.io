@@ -597,6 +597,8 @@ function 查询(){
     let 判断查询=document.getElementById("输入颜色").value.replace(/#/g, "");
     if(判断查询.length==6&&判断查询.toUpperCase().replace(/[0-9A-F]/g,"")==""){
         notyf.confirm("编号正确")
+    }else if(判断查询==""){
+        notyf.confirm("当前编号："+号码)
     }else{
         notyf.alert("编号不正确")
     }
