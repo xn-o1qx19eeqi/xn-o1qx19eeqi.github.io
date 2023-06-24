@@ -464,8 +464,8 @@ function 加载(){
                 }
             }
             if(内容[7]&&内容[7]!=""){
-                临时=395-Math.trunc((new Date().getTime()-new Date(内容[7]).getTime())/1000/60/60/24);
-                if(临时<1){dy+="由于原认养人<small>（<b>"+主人+"</b>）</small><ruby><rb>超过一年</rb><rt>"+(临时*-1+395)+"天</rt></ruby>没来看望<b>"+名字+"</b>，系统暂时收回认养资格，<b>"+名字+"</b>目前处于可以申请认养的状态，原认养人可以打卡恢复认养资格。";主人="无"}
+                临时=(365+90)-Math.trunc((new Date().getTime()-new Date(内容[7]).getTime())/1000/60/60/24);
+                if(临时<1){dy+="由于原认养人<small>（<b>"+主人+"</b>）</small><ruby><rb>超过一年</rb><rt>"+(临时*-1+(365+90))+"天</rt></ruby>没来看望<b>"+名字+"</b>，系统暂时收回认养资格，<b>"+名字+"</b>目前处于可以申请认养的状态，原认养人可以打卡恢复认养资格。";主人="无"}
                 else if(临时<100){dy+="<b>"+主人+"</b>很久没来看望<b>"+名字+"</b>了，请在"+临时+"天内打卡，以免因为冷落像素点过久而失去认养资格。"}
             }
             document.title=名字+" - 小像素点";
@@ -634,7 +634,7 @@ function 随机一只(){
 function 复制像素点(){制="{{ site.mq_url }}/"+颜色;复()}
 
 function 看望打卡(o){
-    if(o==0){document.getElementById("看望打卡").innerHTML="<iframe src='/i/看望打卡?"+颜色+"' frameborder='0' width='50%' height='30px'></iframe>";}else{document.getElementById("").innerHTML="<sup style='background-color:#01EC0C;color:#ffffff'>打卡成功</sup>";}
+    if(o==0){document.getElementById("看望打卡").innerHTML="<iframe src='/i/看望打卡?"+颜色+"' frameborder='0' width='50%' height='30px'></iframe>";}else{document.getElementById("看望打卡").innerHTML="<sup style='background-color:#01EC0C;color:#ffffff'>打卡成功</sup>";}
 }
 
 function 新互动(d){
