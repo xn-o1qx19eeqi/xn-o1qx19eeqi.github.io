@@ -141,10 +141,11 @@ let 晋级名单=[];
 
 function 确认(){
     document.getElementById("倒计时").innerHTML="<div id='倒计时2'></div>";
+    console.log(参赛名单.length)
+    console.log(场次)
     if(参赛名单.length>场次){
         选手=参赛名单[场次].split(",");
-        场次+=1;
-        document.getElementById("场次").innerHTML="<b>第"+场次+"场</b><br>";
+        document.getElementById("场次").innerHTML="<b>第"+(场次+1)+"场</b><br>";
         arr=选手;
         随机();
         选手=arr;
@@ -187,10 +188,24 @@ function 确认(){
         }else{//医生：有问题，都抓起来！
             document.getElementById("dy").innerHTML="选手名单有问题，请核实清楚。";
         }
+        准备();
     }else{
-        document.getElementById("dy").innerHTML="本场比赛结束，晋级名单："+晋级名单;
+        let dx="<table>";
+            let 新名单="";
+        for(let i=0;晋级名单.length>i;i++){
+            if(i%5==0){
+                dx+="</tr><tr>";
+            }
+            dx+="<td>　</td><td style='background-color:#"+晋级名单[i][2]+"'><div style='background-color:#"+晋级名单[i][0]+";' class='像素点'></div></td><td>"+晋级名单[i][1]+"</td>";
+            新名单+=晋级名单[0]+","
+        }
+        dx+="</tr></table>";
+        dx=dx.replace(new RegExp('<table></tr>',"g"),"<table>");
+        document.getElementById("场次").innerHTML="本场比赛结束，恭喜以下选手晋级："+dx;
+        console.log(新名单)
     }
-    准备();
+    场次+=1;
+    
 }
 
 function 准备(){
@@ -223,7 +238,7 @@ function 开始(){
             document.getElementById("领奖"+选手[i][0]).style="animation-duration:"+(结果/10)+"s;animation-name:第一名;";
             // document.getElementById("公布结果").style="animation-duration:"+(结果/10)+"s;animation-name:比赛结束;background-color:#"+选手[i][2];
             document.getElementById("冠军").style="background-color:#"+选手[i][0];
-            晋级名单+=选手[i][0]+",";
+            晋级名单[晋级名单.length]=[选手[i][0],选手[i][1],选手[i][2]];
             break;
         }
     }
