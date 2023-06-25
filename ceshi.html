@@ -654,9 +654,31 @@ function 改url(){
     history.replaceState(null,null, url+"?t="+号码);
 }
 
+function 改字体(o){
+    if(o==1){
+        if(localStorage.getItem("改字体")){
+            localStorage.removeItem("改字体");
+            o=2;
+        }else{
+            localStorage.setItem("改字体","1");
+            o=1;
+        }
+    }
+
+    if(o==0){
+        document.getElementById("ziti").innerHTML="<style>@font-face{font-family:俐方体11号;src:url('/i/ceshi/1.ttf')}body{font-family:'俐方体11号'}</style>";
+    }else if(o==2){
+        document.getElementById("ziti").innerHTML="";
+    }
+
+    
+}
+
 window.location.href='#limaoqiu.com';
 window.onload=function(){
     改url();
-    document.getElementById("ziti").innerHTML="<style>@font-face{font-family:俐方体11号;src:url('/i/ceshi/1.ttf')}body{font-family:'俐方体11号'}</style>";
+    if(localStorage.getItem("改字体")){
+        改字体(0);
     }
+}
 </script>
