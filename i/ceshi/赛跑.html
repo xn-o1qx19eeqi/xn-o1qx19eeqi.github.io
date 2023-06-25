@@ -25,6 +25,7 @@ h2: <a href="/">返回</a>
 <input type="text" id="选手名单" placeholder="选手名单" autocomplete="off"> <a onclick="确认()" id="确认">确认参赛</a> <small><a onclick="询问()" id="询问">怎么填？</a></small>
 <a onclick="准备()" id="准备" style="display:none;">准备</a>
 <a onclick="开始()" id="开始" style="display:none;">开始！</a>
+<a onclick="重来()" id="重来" style="display:none;">　</a>
 
 <br><br>
 
@@ -105,6 +106,7 @@ function 开始(){
     let 结果=100;
     let 实况转播="<style>";
     document.getElementById("开始").style="display:none;";
+    document.getElementById("重来").style="";
     for(let i=0;选手.length>i;i++){
         let 赛况=Math.floor(Math.random()*30)+10;
         if(赛况<结果){结果=赛况;}else if(赛况==结果){赛况+=1;}
@@ -122,6 +124,16 @@ function 开始(){
             break;
         }
     }
+}
+
+function 重来(){
+    document.getElementById("重来").style="display:none;";
+    document.getElementById("公布结果").style="display:none;";
+    document.getElementById("选手名单").style="";
+    document.getElementById("选手名单").value="";
+    document.getElementById("确认").style="";
+    document.getElementById("询问").style="";
+    document.getElementById("dy").innerHTML="";
 }
 
 function 询问(){

@@ -9,4 +9,15 @@ h1: 运动会赛程查询
 h2: <a href="/">返回</a>
 ---
 <input type="text" id="输入" placeholder="输入像素点的编号" autocomplete="off"> <a onclick="搜索(document.getElementById('输入').value.toUpperCase())">搜索</a><br>
+<small>（6位编号，如 92D1E2，不要加多余的符号）</small><br>
+<div id="dy"></div>
 
+<script>
+    let a=[
+    ]
+    function 搜索(o){
+        if(o.length!=6||o.replace(/[0-9A-F]/g, "")!=""){document.getElementById("dy").innerHTML="编号错误，请检查。";}else{
+
+        }
+    }
+</script>
