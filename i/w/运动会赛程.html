@@ -10,7 +10,9 @@ h2: <a href="/">返回</a>
 ---
 <input type="text" id="输入" placeholder="输入像素点的编号" autocomplete="off"> <a onclick="搜索(document.getElementById('输入').value.toUpperCase())">搜索</a><br>
 <small>（6位编号，如 92D1E2，不要加多余的符号）</small><br>
+<br>
 <div id="dz"></div>
+<br>
 <div id="dy"></div>
 
 <script>
@@ -128,7 +130,7 @@ h2: <a href="/">返回</a>
     let dy="<table class='tm'>";
     for(let i=0;a.length>i;i++){
         let b=a[i].split(",");
-        dy+="<tr><td colspan='2'><br><b>第"+(i+1)+"场</b></td></tr>";
+        if(i!=0){dy+="<tr><td colspan='2'><hr><b>第"+(i+1)+"场</b></td></tr>";}
         for(let ii=0;b.length>ii;ii++){
             let c=b[ii].split(".");
             dy+="<tr><td><a href='/"+c[0]+"'>"+c[0]+"</a></td><td>"+c[1]+"</td><td>";
