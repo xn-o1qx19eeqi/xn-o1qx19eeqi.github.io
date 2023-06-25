@@ -9,6 +9,7 @@ h1: 小像素点运动会 初赛
 h2: 
 ---
 <style>
+#footer{display:none;}
 .选手{padding:5px;}
 .跑道{display:block;width:1000px;padding:10px;}
 .像素点{width:10px;height:10px;animation:1;animation-timing-function:linear;animation-fill-mode:forwards;position:relative;}
@@ -39,7 +40,7 @@ evt = (evt) ? evt : window.event
 if (evt.keyCode) {
 if(evt.keyCode == 65){
 if(流程==0){
-    流程=1;重来();确认();
+    流程=2;重来();确认();
 }else if(流程==1){
     流程=2;准备();
 }else if(流程==2){
@@ -165,6 +166,7 @@ function 确认(){
     }else{
         document.getElementById("dy").innerHTML="本场比赛结束，晋级名单："+晋级名单;
     }
+    准备();
 }
 
 function 准备(){
