@@ -26,7 +26,7 @@ h2:
 
 <div id="dy"></div>
 
-<br><br>
+<br><br><br><br><br><br><br>
 
 <div id="公布结果" style="display:none;">
     <div id="冠军"></div>
@@ -196,7 +196,7 @@ function 开始(){
     for(let i=0;选手.length>i;i++){
         if(选手[i][3]==结果){
             document.getElementById("领奖"+选手[i][0]).style="animation-duration:"+(结果/10)+"s;animation-name:第一名;";
-            document.getElementById("公布结果").style="animation-duration:"+(结果/10)+"s;animation-name:比赛结束;background-color:#"+选手[i][2];
+            // document.getElementById("公布结果").style="animation-duration:"+(结果/10)+"s;animation-name:比赛结束;background-color:#"+选手[i][2];
             document.getElementById("冠军").style="background-color:#"+选手[i][0];
             晋级名单+=选手[i][0]+",";
             break;
@@ -206,7 +206,7 @@ function 开始(){
 
 function 重来(){
     // document.getElementById("重来").style="display:none;";
-    document.getElementById("公布结果").style="display:none;";
+    // document.getElementById("公布结果").style="display:none;";
     // document.getElementById("选手名单").style="";
     // document.getElementById("选手名单").value="";
     // document.getElementById("确认").style="";
