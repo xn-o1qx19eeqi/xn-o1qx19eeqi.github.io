@@ -94,7 +94,7 @@ BiaoTi: 小像素点
 
 <br>
 
-<a onclick="改字体(1)">改字体</a><br>
+<b>改字体</b>：<a onclick="改字体(0)">默认</a>、<a onclick="改字体('俐方体11号')">俐方体11号</a><br>
 
 <br>
 
@@ -126,6 +126,7 @@ BiaoTi: 小像素点
 <script>
 if(location.href.indexOf("http://")!=-1){window.location.href="https://"+location.href.split("http://")[1];}let LocString=String(window.document.location.href);function GetQueryString(name){let rs=new RegExp("(^|)"+name+"=([^&]*)(&|$)","gi").exec(LocString),tmp;if(tmp=rs){return decodeURI(tmp[2])}return ""}
 let 号码=GetQueryString("t").split("#")[0],直接互动=GetQueryString("h").split("#")[0],颜色="000000",今天,今日,背景,背景颜色,反色,o,临时,名字,主人,固定动作=0,特色动作,内容="",互动="",互模=0,字母="0123456789ABCDEF",oo=encodeURI(document.getElementById("oo").innerHTML.replace(/[ \n\d]/g, "")).replace(/[^0-9A-Z%]/g, "").replace(/^%/g, "").split("%");
+if(号码==""&&localStorage.getItem("像素点")){号码=localStorage.getItem("像素点");}
 let 选择背景=["#000000","#FFFFFF","#E8F2E8","#474B5B","夜空.jpg"];
 let 月常=["o","休息日","玩闹","工作","运动"];
 let 月表=[
@@ -391,7 +392,8 @@ function 加载(){
             颜色+=号码[i];
         }
     }
-    if(颜色.length!=6){颜色="000000"}
+
+    if(颜色.length!=6){颜色="000000"}else{localStorage.setItem("像素点",颜色)}
     let dy="";
     try{
         let 地址="/i/x/"+颜色+".json";
@@ -659,30 +661,20 @@ function 改url(){
 }
 
 function 改字体(o){
-    if(o==1){
-        if(localStorage.getItem("改字体")){
-            localStorage.removeItem("改字体");
-            o=2;
-        }else{
-            localStorage.setItem("改字体","1");
-            o=1;
-        }
-    }
-
     if(o==0){
-        document.getElementById("ziti").innerHTML="<style>@font-face{font-family:俐方体11号;src:url('/i/ceshi/1.ttf')}body{font-family:'俐方体11号'}</style>";
-    }else if(o==2){
+        localStorage.removeItem("改字体");
         document.getElementById("ziti").innerHTML="";
+    }else{
+        document.getElementById("ziti").innerHTML="<style>@font-face{font-family:"+o+";src:url('/i/w/"+o+".ttf')}body{font-family:'"+o+"'}</style>";
+        localStorage.setItem("改字体",o);
     }
-
-    
 }
 
 window.location.href='#limaoqiu.com';
 window.onload=function(){
     改url();
     if(localStorage.getItem("改字体")){
-        改字体(0);
+        改字体(localStorage.getItem("改字体"));
     }
 }
 </script>
