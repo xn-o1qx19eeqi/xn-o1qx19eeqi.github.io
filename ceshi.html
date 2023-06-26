@@ -1,11 +1,11 @@
 ---
 layout: e0
-permalink: index.html
+permalink: ceshi
 BeiJing: 0／0-01.png
 BeiJing_SJ: 0／0-01.png
 BiaoTi: 小像素点
 ---
-<a name="limaoqiu.com"></a><style>#房子{width:400px;height:400px;overflow:hidden;background-color:var(--背景)}#小窝{position:relative;top:270px;left:191px}#点点,.群演{position:relative;width:10px;height:10px;top:0;left:0;animation-duration:20s;animation-delay:3s;background-color:var(--点点)}.群演{position:absolute;opacity:0}#地板{font-size:0.8em}</style>
+<a name="limaoqiu.com"></a><style>#房子{width:400px;height:400px;overflow:hidden;background-color:var(--背景)}#小窝{position:relative;top:270px;left:191px}#点点,.群演{position:relative;width:10px;height:10px;top:0;left:0;animation-duration:20s;animation-delay:3s;background-color:var(--点点)}.群演{position:absolute;opacity:0}#地板{font-size:0.8em}.点{display:inline-block;width:10px;height:10px;cursor:pointer;transition:all 0.3s;margin:.8px;}.点:hover{transform:scale(1.6)}</style>
 <div id="style_root"></div><div id="style"></div><div id="ziti"></div>
 <div id="屋顶"></div><div id="房子"><div id="小窝"></div></div><div id="地板"></div><div id="实时"></div><br>
 颜色：<input type="text" placeholder="000000" autocomplete="off" id="输入颜色" onkeyup="输入颜色()"><input type="color" id="选择颜色" oninput="选择颜色()"><input type="button" value="查询" onclick="查询()"><input type="button" value="随机一只" onclick="随机一只()"> <small>（<a href="/i/b#内容">已有像素点列表</a>）</small><br><sup><span id="未被认养"></span></sup><br>
@@ -430,6 +430,19 @@ function 加载(){
                 if(内容[2].indexOf("〈放弃认养〉")!=-1){内容[2]=内容[2].replace(/〈放弃认养〉/g, "");固定动作="放弃认养";}
                 if(内容[2].indexOf("〈固定〉")!=-1){内容[2]=内容[2].replace(/〈固定〉/g, "");固定动作="固定";}
                 if(内容[2].indexOf("〈完全固定〉")!=-1){内容[2]=内容[2].replace(/〈完全固定〉/g, "");固定动作="完全固定";}
+                if(内容[2].indexOf("[")!=-1&&内容[2].indexOf("]")!=-1){
+                    let 临时2=内容[2].split("[");
+                    内容[2]=临时2[0];
+                    for(let i=1;临时2.length>i;i++){
+                        临时2[i]=临时2[i].split("]");
+                        if(临时2[i][0].indexOf(",")!=-1){ //代码
+
+                        }else{
+                            内容[2]+="<a class='点' href='/"+临时2[i][0]+"' style='background-color:#"+临时2[i][0]+"'></a>";
+                        }
+                        内容[2]+=临时2[i][1];
+                    }
+                }
                 dy+="<blockquote>"+内容[2]+"</blockquote>";
             }else{dy+="<br><br>"}
             if(内容[3]&&内容[3]!=""){
