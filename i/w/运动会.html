@@ -3,10 +3,10 @@ layout: e0
 permalink: w/yundonghui
 BeiJing: 0-01.png
 BeiJing_SJ: 0-01.png
-BiaoTi: 运动会
-title: 运动会赛程查询
-h1: 运动会赛程查询
-h2: <a href="/">返回</a><br>第一届小像素点运动会 <b>尼斯湖水怪杯</b> 正在筹备中
+BiaoTi: 小像素点运动会
+title: 小像素点运动会
+h1: 小像素点运动会
+h2: <a href="/">返回</a><br>第一届小像素点运动会 <b>尼斯湖水怪杯</b> 正在进行中
 ---
 <input type="text" id="输入" placeholder="输入像素点的编号" autocomplete="off"> <a onclick="搜索(document.getElementById('输入').value.toUpperCase())">搜索</a><br>
 <small>（6位编号，如 92D1E2，不要加多余的符号）</small><br>
@@ -28,6 +28,7 @@ h2: <a href="/">返回</a><br>第一届小像素点运动会 <b>尼斯湖水怪�
     }
     //编号.名字.结果
 
+    // let 初赛="初赛";//<a href=''>初赛</a>
     let 初赛="初赛";//<a href=''>初赛</a>
     let 决赛="半决赛";//<a href=''>半决赛</a>
 
@@ -83,63 +84,7 @@ h2: <a href="/">返回</a><br>第一届小像素点运动会 <b>尼斯湖水怪�
     "2A52BE.蓝精灵,F19D05.xiaohuan,A9E58C.ワスラ,00EEFF.ピンポン,3BA4A4.cff_0102,77CCFF.绯,B7EDFA.ovo,ABEDFF.岚,228234.羽,87D0FF.小点点",
     "FFB0C3.泡泡,BDDD22.x,1DDA16.flowey,50D0D0.平板推车,96BECD.莓酱,0FA3BA.冒冒,BB5A00.面包块,A597E6.藕荷,02EEF2.青鸾,87C2FF.MH37"
     ];
-    function 搜索(o){
-        let dz="";
-        if(o.length!=6||o.replace(/[0-9A-F]/g, "")!=""){document.getElementById("dy").innerHTML="编号错误，请检查。";}else{
-            for(let i=0;a.length>i;i++){
-                let b=a[i].split(",");
-                for(let ii=0;b.length>ii;ii++){
-                    let c=b[ii].split(".");
-                    if(o==c[0]){
-                        let d=((i/10)+"").split(".")[0]*1+1;
-                        dz="<b>"+c[1]+"</b> <small><a href='/"+c[0]+"'>#"+c[0]+"</a></small> ";
-                        if(目前==2){
-                            if(c[2]&&c[2]==3){
-                                dz+="取得了本届小像素点运动会的冠军！";
-                            }else if(c[2]&&c[2]==2){
-                                dz+="在初赛和半决赛成功晋级，惜败于总决赛。"
-                            }else if(c[2]&&c[2]==1){
-                                dz+="在初赛成功晋级，惜败于半决赛。"
-                            }else{
-                                dz+="被淘汰了，别灰心，继续努力！<br>历史记录："+初赛+"第"+(i+1)+"场"
-                            }
-                            if(c[2]&&c[2]>0){
-                                dz+="<br>历史记录："+初赛+"第"+(i+1)+"场、"+决赛+"第"+d+"场";
-                            }
-                        }
-                        if(目前==1){
-                            if(c[2]&&c[2]==1){
-                                dz+="成功晋级半决赛。<br>即将进行：<b>决赛第"+d+"场</b><br>";
-                            }else{dz+="被淘汰了，别灰心，继续努力！"}
-                            dz+="<br>历史记录："+初赛+"第"+(i+1)+"场";
-                        }
-                        if(目前==0){
-                            dz+="<br>即将进行：<b>初赛第"+(i+1)+"场</b>";
-                        }
-                        break;
-                    }
-                }
-            }
-            if(dz==""){
-                dz="未查到相关记录。"
-            }
-            document.getElementById("dz").innerHTML=dz;
-        }
-    }
+   
 
-    let dy="<table class='tm'>";
-    for(let i=0;a.length>i;i++){
-        let b=a[i].split(",");
-        if(i!=0){dy+="<tr><td colspan='2'><hr><b>第"+(i+1)+"场</b></td></tr>";}
-        for(let ii=0;b.length>ii;ii++){
-            let c=b[ii].split(".");
-            dy+="<tr><td><a href='/"+c[0]+"'>"+c[0]+"</a></td><td>"+c[1]+"</td><td>";
-                if(c[2]&&c[2]!=""){
-                    dy+=结果[c[2]];
-                }
-            dy+="</td></tr>";
-        }
-    }
-    dy+="</table>";
-    document.getElementById("dy").innerHTML=dy;
+
 </script>
