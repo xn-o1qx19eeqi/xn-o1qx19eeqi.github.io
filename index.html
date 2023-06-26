@@ -672,7 +672,7 @@ function 改字体(o){
         localStorage.removeItem("改字体");
         document.getElementById("ziti").innerHTML="";
     }else{
-        document.getElementById("ziti").innerHTML="<style>@font-face{font-family:"+o+";src:url('/i/w/"+o+".ttf')}body{font-family:'"+o+"'}</style>";
+        document.getElementById("ziti").innerHTML="<style>@font-face{font-family:"+o+";src:url('/i/w/字体/"+o+".ttf')}body{font-family:'"+o+"'}</style>";
         localStorage.setItem("改字体",o);
     }
 }
