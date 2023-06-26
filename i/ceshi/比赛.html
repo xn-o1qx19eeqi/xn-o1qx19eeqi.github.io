@@ -14,7 +14,11 @@ body{font-family:'俐方体11号'}
 .选手{padding:5px;}
 .跑道{display:block;width:1000px;padding:10px;}
 .像素点{width:10px;height:10px;animation:1;animation-timing-function:linear;animation-fill-mode:forwards;position:relative;}
-@keyframes 赛跑{0%{left:0;}100%{left:1000px;}}
+@keyframes 赛跑0{0%{left:0;}50%{left:300px;}100%{left:1000px;}}
+@keyframes 赛跑1{0%{left:0;}50%{left:400px;}100%{left:1000px;}}
+@keyframes 赛跑2{0%{left:0;}50%{left:500px;}100%{left:1000px;}}
+@keyframes 赛跑3{0%{left:0;}50%{left:600px;}100%{left:1000px;}}
+@keyframes 赛跑4{0%{left:0;}50%{left:700px;}100%{left:1000px;}}
 @keyframes 第一名{0%,99%{background-color:#ffffff00;}100%{background-color:#FFA800;}}
 .领奖台{animation:1;animation-timing-function:linear;animation-fill-mode:forwards;color:#000000;}
 #公布结果{width:400px;height:400px;animation-timing-function:linear;animation-fill-mode:forwards;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAGQCAMAAAC3Ycb+AAAAQlBMVEUAAAD/qAD/qAD/qAD/qAD/qAD/qAD/qAD/qAD/qAD/qAD/qAD/qAD/qAD/qAD/qAD/qAD/qAD/qAD/qAD/qAD/qACTWhbeAAAAFXRSTlMA4DDwIEDQKwcbxNJPwAy2Jzg8NKbyfpsdAAAEb0lEQVR42uzc7W6CQBCF4dVKFdva7/u/1SZsdtpkcAqi5Oz6Pr8mQrOZnJTNgJgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACa0j8OjmmKt3zya2qLVFu778FDmmKbT96ktki1RSBibRGIWFsEItYWgYi1RSBibR26wUea4tQN3lNbGm0L1x0MrbAxyQo/QX3m4muk6EpRD83B0Aq7olrhL7ZdLh5HiudcvKR6SO0hBEIgcghEDIGIIRAxUoHYYGiFjUlWFO7Q50jR52Kb6sFgCKffDJ6iT8w+Hzom7z0f0pipIkFbUWH9+SK79tbhP5l3jbWto0KlraAINksCSYlACIRAIgRCIAQSaTmQw3awDz6ZdOiUD72lCpW2gsL6s6LqjvG/s/OgFVrz0q3E8+6KE/DZrcMKrUtrYNV7itYfgfwiEAIhkAiBEAiBRJoM5Ow8aMX9zEvWjdPYBIwb8xOUyqPDGYv6UbjiJ6LuYqtyl3HGon7XrPjmKYEQCIEQCIEQCIE0EkiZoOQGJ7fonG6afyKKBdZ9YuiWuPqiXS6+pjQa8GuuZd2bi26JxYvG70DEjQb8mv8iEAIhkAiBEAiBRAik9UDWeGLo/nzZokGxcLr1a+Lu7R4GmxTY53OeUusUGi2X1mre4x7XzgvrBCLWKIGINUogYo0SiFijBCLW6GGXTTinT627m0YxfzC0wqajqPjIxXGkeM6F2JcvRyxt9A/pm4v1/ICZ5nsXBEIgKghEDIGIIRAxmoGUwdAV/YXFqZrh6qL+GB4RDE4T6A+GfgKe49aD4dW/g6G/h/jN0pF774JACCRAIARCIBECIRDNQC6ahfQHQzcB81QRy+alqgdD/0S0UB8Mz19aq95D/M3TQn0PIRACGUUgBEIgEQIhEM1AAPj/5IXffr+fH1J2HRNISgRCIAQSIRACIZAfdu7gtmEYCIBgmlD/reZBwMmDtmUYsJb0TAnaF6njPbJ1kNut9FubHCbvWNYRv35nHZv+tVx3trfwWvjP5tPvgghSIUiMIDGCxKwbpLD57p+9NzkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAyzie+uEBQXYnSIwgMYLECBIjyHWO01SaEeRSx0mC3CHI5gSJESRGkJjPBXnvHCKIIKcIsjtBYgSJESRGkJjPHQAcQARZkSAxgsQIEiNIjCAx5z+IqZMZQXYnSIwgMYLECBIjSIwgMYLECBIjSIwgMYLEXHzbqoQgcYLECBIjSIwgMYLENIYMvqDE8YLrHwEKciPInCCCDILMCSLIIMicIIIMgswJIsggyJwgggyCzAkiyCDIb/t2aAQwEMNAsAr332qAqX7GAQF577ZwVMoEEaQJkgkiSBMkE0SQJki2Ncie1UkNCZIJIkgTJBNEkCZIJogg3/AxFOQfakiQTBBBmiCZIII0QbJ1QdapGUEOBLldzQhyIMjtakYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgvQf1tWq6RTmcTgAAAABJRU5ErkJggg==)}
@@ -241,7 +245,7 @@ function 开始(){
         选手[i][选手[i].length]=赛况;
         赛况=赛况/10;
         //紧张刺激的赛跑开始了
-        document.getElementById("选手"+选手[i][0]).style="background-color:#"+选手[i][0]+";animation-duration:"+赛况+"s;animation-name:赛跑;";
+        document.getElementById("选手"+选手[i][0]).style="background-color:#"+选手[i][0]+";animation-duration:"+赛况+"s;animation-name:赛跑"+Math.floor(Math.random()*5)+";";
     }
 
     for(let i=0;选手.length>i;i++){
