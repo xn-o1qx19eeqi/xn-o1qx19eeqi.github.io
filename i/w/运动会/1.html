@@ -146,7 +146,7 @@ let b=[
 "000000000000000000000000000000000000000000000000000000000000000000000000",
 ];
 
-    let c=[
+    let e=[
         "1111111111111111111111111",
         "1111111111111111111111111",
         "1111111111111111111111111",
@@ -186,7 +186,7 @@ let b=[
     document.getElementById("dy").innerHTML=dy;
 
     b=b.join("2");
-    c=c.join("2");
+    e=e.join("2");
 
     function 搜索(o){
         let dz="";
@@ -235,12 +235,10 @@ let b=[
     function 列表(o){
         let dy="";
         let arr=a.join(",").split(",").slice();
-        if(o=="0"){o=b.slice();}else{o=c.slice();}
+        if(o=="0"){o=b.slice();}else{o=e.slice();}
         for(let i=0;i<arr.length;i++){let j=getRandomInt(0,i);let t=arr[i];arr[i]=arr[j];arr[j]=t;}function getRandomInt(min,max){return Math.floor(Math.random()*(max-min+1)+min);}
 
         let ii=0;
-
-
 
         for(let i=0;o.length>i;i++){
             if(o[i]=="0"){dy+="<div class='点' style='background-color:#00000000;'></div>"}
