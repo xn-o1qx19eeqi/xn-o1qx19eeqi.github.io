@@ -223,7 +223,7 @@ layout: default
         }
 
         if(localStorage.getItem("改字体")){
-            document.getElementById("ziti").innerHTML="<style>@font-face{font-family:"+o+";src:url('/i/w/字体/"+o+".ttf')}</style>";
+            document.getElementById("ziti").innerHTML="<style>@font-face{font-family:"+localStorage.getItem("改字体")+";src:url('/i/w/字体/"+localStorage.getItem("改字体")+".ttf')}</style>";
         }
 
         window.onload=function(){
