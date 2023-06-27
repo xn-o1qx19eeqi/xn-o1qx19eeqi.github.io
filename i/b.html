@@ -9,7 +9,7 @@ h1: 小像素点 列表
 h2: <a href="/">返回</a>
 ---
 <style>#xxsd{background-color:#ffffff}.通过{color:#00d320;}.未通过{color:#b60000;font-size:0.4em;}</style>
-<div id="列表"></div>
+<div id="列表" style="line-height:0"></div>
 <hr>
 <a name="logo"></a><h2>logo</h2><canvas id="myLove"></canvas><img src="/img/logo/xxsd.png" id="xxsd" width="600px" style="display:none;">
 <br>由25只最早的小像素点组成了英文单词“pixel<small>(像素)</small>”，延续了主页面对小像素点简约到极致的风格。<br>
@@ -9258,7 +9258,7 @@ function 列表刷新(){
         dy+="<div class='点' onmouseout='dmx()' onmousemove=\"dm(dmm='编号：#"+arr[i][0]+"<br>认养人："+arr[i][2]+"',dmd='"+arr[i][1]+"')\" onclick=\"window.location.href='/"+arr[i][0]+"'\" style='background-color:#"+arr[i][0]+"'></div>";
     }
 
-    document.getElementById("列表").innerHTML=dy+"<br><br><small>已有的小像素点共"+申请["通过"].length+"只（随机排序 <a onclick=\"列表刷新()\">刷新</a>）</small>";
+    document.getElementById("列表").innerHTML=dy+"<br><div><small>已有的小像素点共"+申请["通过"].length+"只（随机排序 <a onclick=\"列表刷新()\">刷新</a>）</small></div>";
 }
 列表刷新();
 
