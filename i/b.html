@@ -9258,7 +9258,7 @@ function 列表刷新(){
         dy+="<div class='点' onmouseout='dmx()' onmousemove=\"dm(dmm='编号：#"+arr[i][0]+"<br>认养人："+arr[i][2]+"',dmd='"+arr[i][1]+"')\" onclick=\"window.location.href='/"+arr[i][0]+"'\" style='background-color:#"+arr[i][0]+"'></div>";
     }
 
-    document.getElementById("列表").innerHTML=dy+"<br><div><small>已有的小像素点共"+申请["通过"].length+"只（随机排序 <a onclick=\"列表刷新()\">刷新</a>）</small></div>";
+    document.getElementById("列表").innerHTML=dy+"<br><div style='line-height:16px;'><small>已有的小像素点共"+申请["通过"].length+"只（随机排序 <a onclick=\"列表刷新()\">刷新</a>）</small></div>";
 }
 列表刷新();
 
