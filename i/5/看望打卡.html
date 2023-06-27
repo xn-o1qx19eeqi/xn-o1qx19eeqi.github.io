@@ -4,7 +4,7 @@
 
 <small id="成功" style="display:none;">打卡成功</small>
 <small id="失败" style="display:none;">打卡失败，请过段时间再试，或与我联系</small>
-<small id="加载" style="background-color:#000000;">加载中……如果长时间没能加载成功，请<a style="color:var(--a-color)" onclick="javascript:location.reload();">点此刷新页面</a></small>
+<small id="加载" style="background-color:#000000;"><a onclick="javascript:location.reload();">请点此处验证</a></small>
 
 <script>
 let o=0;
@@ -15,7 +15,7 @@ if(url.indexOf("&")!=-1){
     o=3;
 }
 
-try {
+try{
     AV.init({
         appId: "ZvAplyDOpQXqSHj4pKeaoHZJ-gzGzoHsz",
         appKey: "cBfrhtl738wwWQeOIEHJpiZg",
