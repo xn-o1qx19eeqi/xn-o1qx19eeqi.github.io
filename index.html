@@ -9,7 +9,7 @@ BiaoTi: 小像素点
 @media screen and (max-width: 767px){
 #房子{margin:0 0 0 -3%;}
 }</style>
-<div id="style_root"></div><div id="style"></div><div id="ziti"></div>
+<div id="style_root"></div><div id="style"></div>
 <div id="屋顶"></div><div id="房子"><div id="小窝"></div></div><div id="地板"></div><div id="实时"></div><br>
 颜色：<input type="text" placeholder="000000" autocomplete="off" id="输入颜色" onkeyup="输入颜色()"><input type="color" id="选择颜色" oninput="选择颜色()"><input type="button" value="查询" onclick="查询()"><input type="button" value="随机一只" onclick="随机一只()"> <small>（<a href="/i/b#内容">已有像素点列表</a>）</small><br><sup><span id="未被认养"></span></sup><br>
 互动<input type="checkbox" oninput="互动模式()">：<input type="text" placeholder="动作" autocomplete="off" id="输入互动"><input type="button" value="确定" onclick="输入互动()"><small>（<a href="/i/c#动作代码">动作指令有哪些？</a>）</small><br><span id="互动"></span><br>
@@ -708,21 +708,10 @@ function 改url(){
     history.replaceState(null,null, url+"?t="+号码);
 }
 
-function 改字体(o){
-    if(o==0){
-        localStorage.removeItem("改字体");
-        document.getElementById("ziti").innerHTML="";
-    }else{
-        document.getElementById("ziti").innerHTML="<style>@font-face{font-family:"+o+";src:url('/i/w/字体/"+o+".ttf')}body{font-family:'"+o+"'}</style>";
-        localStorage.setItem("改字体",o);
-    }
-}
+
 
 window.location.href='#limaoqiu.com';
 window.onload=function(){
     改url();
-    if(localStorage.getItem("改字体")){
-        改字体(localStorage.getItem("改字体"));
-    }
 }
 </script>

@@ -125,6 +125,7 @@ layout: default
 
 <body>
     <div id="打印背景图片"></div>
+    <div id="ziti"></div>
 
     <div style="position: absolute;top:40%;width:100%;"><h1 class="大标题"><span class="标题">加载中..</span></h1></div>
     <div class="左 导航"><a href="{{ site.mq }}{{ site.mq_i }}">猫球博客</a> &nbsp;<a>/</a> &nbsp;<a href="{{ site.mq_cafe }}">猫.cafe</a></div>
@@ -210,6 +211,26 @@ layout: default
             });
         });
         });
+
+        function 改字体(o){
+            if(o==0){
+                localStorage.removeItem("改字体");
+                document.getElementById("ziti").innerHTML="";
+            }else{
+                document.getElementById("ziti").innerHTML="<style>@font-face{font-family:"+o+";src:url('/i/w/字体/"+o+".ttf')}body{font-family:'"+o+"'}</style>";
+                localStorage.setItem("改字体",o);
+            }
+        }
+
+        if(localStorage.getItem("改字体")){
+            document.getElementById("ziti").innerHTML="<style>@font-face{font-family:"+o+";src:url('/i/w/字体/"+o+".ttf')}</style>";
+        }
+
+        window.onload=function(){
+            if(localStorage.getItem("改字体")){
+                改字体(localStorage.getItem("改字体"));
+            }
+        }
     </script>
 
 </body>
