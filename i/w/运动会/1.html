@@ -231,7 +231,7 @@ let b=[
     function 列表(o){
         let dy="";
         let arr=a.join(",").split(",").slice();
-        if(o=="0"){o=b.slice();}else{o=e.slice();dy+="<style>@media screen and (max-width: 767px){.点{width:4px;height:4px;margin:0;}}</style>";}
+        if(o=="0"){o=b.slice();dy+="<style>@media screen and (max-width: 767px){.点{width:4px;height:4px;margin:0;}}</style>";}else{o=e.slice();}
         for(let i=0;i<arr.length;i++){let j=getRandomInt(0,i);let t=arr[i];arr[i]=arr[j];arr[j]=t;}function getRandomInt(min,max){return Math.floor(Math.random()*(max-min+1)+min);}
 
         let ii=0;
