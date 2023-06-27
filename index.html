@@ -9,7 +9,8 @@ BiaoTi: 小像素点
 <div id="style_root"></div><div id="style"></div><div id="ziti"></div>
 <div id="屋顶"></div><div id="房子"><div id="小窝"></div></div><div id="地板"></div><div id="实时"></div><br>
 颜色：<input type="text" placeholder="000000" autocomplete="off" id="输入颜色" onkeyup="输入颜色()"><input type="color" id="选择颜色" oninput="选择颜色()"><input type="button" value="查询" onclick="查询()"><input type="button" value="随机一只" onclick="随机一只()"> <small>（<a href="/i/b#内容">已有像素点列表</a>）</small><br><sup><span id="未被认养"></span></sup><br>
-互动<input type="checkbox" oninput="互动模式()">：<span id="互动"></span><input type="text" placeholder="动作" autocomplete="off" id="输入互动"><input type="button" value="确定" onclick="输入互动()"><small>（<a href="/i/c#动作代码">动作指令有哪些？</a>）</small><br><br>
+互动<input type="checkbox" oninput="互动模式()">：<input type="text" placeholder="动作" autocomplete="off" id="输入互动"><input type="button" value="确定" onclick="输入互动()"><small>（<a href="/i/c#动作代码">动作指令有哪些？</a>）</small><br><span id="互动"></span><br>
+<br>
 
 换背景：<small>(在这里更换的背景只有自己能看到)</small><br>
 <div id="选择背景"></div>
@@ -334,10 +335,11 @@ let 默认互动=[
     ["投喂",缩[0][0]+"一颗奶糖"+缩[0][1]+"［"+缩[0][0]+"一颗水果糖"+缩[0][1]+"［"+缩[0][0]+"一颗软糖"+缩[0][1]+"［"+缩[0][0]+"一个果冻"+缩[0][1]+"［"+缩[0][0]+"一颗巧克力"+缩[0][1]],
     ["饮料",缩[1]+"好喝的苹果汁。［"+缩[1]+"鲜榨的芒果汁。［"+缩[1]+"爽口的汽水。［"+缩[1]+"清新的绿茶。"],
     ["敲屏幕","凑近／〈x〉听到声音，凑近屏幕看了看。"],
+    ["晚安","凑近／〈x〉也悄悄跟你说了声晚安，祝你做个好梦。"],
 ];
 dy="";
 for(let i=0;默认互动.length>i;i++){
-    dy+="<a onclick=\"新互动('"+默认互动[i][1]+"')\">"+默认互动[i][0]+"</a>、";
+    dy+="<a onclick=\"新互动('"+默认互动[i][1]+"')\">"+默认互动[i][0]+"</a> &nbsp;";
 }
 document.getElementById("互动").innerHTML=dy;
 document.getElementById("申请认养").innerHTML=缩[5];
