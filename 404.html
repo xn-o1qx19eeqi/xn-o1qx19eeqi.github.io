@@ -3,7 +3,7 @@ permalink: 404.html
 title: 跳转中
 ---
 <script>
-    let 当前url=window.location.href.split(".cn/")[1].split("?");
+    let 当前url=window.location.href.split(".cn/")[1].replace(new RegExp(',',"g"),"").split("?");
     if(当前url[1]){当前url[1]="&"+当前url[1];}else{当前url[1]="";}
     if(当前url[0].length==6&&当前url[0].replace(new RegExp('[0-9a-fA-F]',"g"),"")==""){
         window.location.href="/?t="+当前url+当前url[1];
