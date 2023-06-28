@@ -738,8 +738,9 @@ if(localStorage.getItem("互动模式")){
 function 改url(){
     let url=location.href.split("?")[0].split("#")[0];
     history.replaceState(null,null, url);
-    history.replaceState(null,null, url+"?t="+号码);
+    history.replaceState(null,null, url+号码);
 }
 
 document.getElementById('div0').scrollIntoView();
+改url();
 </script>

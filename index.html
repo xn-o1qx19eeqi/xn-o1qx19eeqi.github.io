@@ -134,7 +134,8 @@ QQ频道：<a href="https://pd.qq.com/s/6qkboum73">猫球频道</a>（闲聊、�
     素材 3
 -->
 
-<script>window.location.href='#limaoqiu.com';
+<script>
+// window.location.href='#limaoqiu.com';
 if(location.href.indexOf("http://")!=-1){window.location.href="https://"+location.href.split("http://")[1];}let LocString=String(window.document.location.href);function GetQueryString(name){let rs=new RegExp("(^|)"+name+"=([^&]*)(&|$)","gi").exec(LocString),tmp;if(tmp=rs){return decodeURI(tmp[2])}return ""}
 let 号码=GetQueryString("t").split("#")[0],直接互动=GetQueryString("h").split("#")[0],颜色="000000",今天,今日,背景,背景颜色,反色,o,临时,名字,主人,固定动作=0,特色动作,内容="",互动="",互模=0,字母="0123456789ABCDEF",oo=encodeURI(document.getElementById("oo").innerHTML.replace(/[ \n\d]/g, "")).replace(/[^0-9A-Z%]/g, "").replace(/^%/g, "").split("%");
 if(号码==""&&localStorage.getItem("像素点")){号码=localStorage.getItem("像素点");}
@@ -393,7 +394,7 @@ function 输入互动(){
     if(互模==1){
         clearInterval(循环);
         刷新();
-        循环=setInterval(function(){刷新()},26000);
+        循环=window.setInterval(()=>{setTimeout(刷新,0)},26000);
     }
 }
 
@@ -666,7 +667,7 @@ function 刷新(){
 }
 
 if(号码){}else{号码="000000"}加载();刷新();
-let 循环=setInterval(function(){刷新()},26000);
+let 循环=window.setInterval(()=>{setTimeout(刷新,0)},26000);
 
 function 输入颜色(){
     临时=document.getElementById("输入颜色").value;
@@ -720,7 +721,7 @@ function 新互动(d){
     if(互模==1){
         clearInterval(循环);
         刷新();
-        循环=setInterval(function(){刷新()},26000);
+        循环=window.setInterval(()=>{setTimeout(刷新,0)},26000);
     }
 }
 
@@ -738,12 +739,8 @@ function 改url(){
     let url=location.href.split("?")[0].split("#")[0];
     history.replaceState(null,null, url);
     history.replaceState(null,null, url+"?t="+号码);
-    console.log(号码)
 }
 
-
-window.onload=function(){
-    // 改url();
-    查询();
-}
+document.getElementById('div0').scrollIntoView();
+改url();
 </script>
