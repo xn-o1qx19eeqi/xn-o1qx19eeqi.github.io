@@ -391,9 +391,8 @@ function 输入互动(){
         notyf.alert("失败，代码有误或网络故障");
     }
     if(互模==1){
-        clearInterval(刷新);
-        刷新();
-        window.setInterval(()=>{setTimeout(刷新,0)},26000);
+        clearInterval(循环);
+        循环=setInterval(function(){刷新()},26000);
     }
 }
 
@@ -665,8 +664,8 @@ function 刷新(){
     document.getElementById("点点").style="animation-name:"+临时[0]+";";
 }
 
-if(号码){}else{号码="000000"}加载();刷新();
-window.setInterval(()=>{setTimeout(刷新,0)},26000);
+if(号码){}else{号码="000000"}加载();
+let 循环=setInterval(function(){刷新()},26000);
 
 function 输入颜色(){
     临时=document.getElementById("输入颜色").value;
@@ -718,9 +717,8 @@ function 新互动(d){
     if(d.indexOf("［")!=-1){d=d.split("［");d=d[Math.floor(Math.random()*d.length)]}
     互动=d;
     if(互模==1){
-        clearInterval(刷新);
-        刷新();
-        window.setInterval(()=>{setTimeout(刷新,0)},26000);
+        clearInterval(循环);
+        循环=setInterval(function(){刷新()},26000);
     }
 }
 
