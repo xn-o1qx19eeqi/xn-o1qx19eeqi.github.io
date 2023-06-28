@@ -134,7 +134,7 @@ QQ频道：<a href="https://pd.qq.com/s/6qkboum73">猫球频道</a>（闲聊、�
     素材 3
 -->
 
-<script>
+<script>window.location.href='#limaoqiu.com';
 if(location.href.indexOf("http://")!=-1){window.location.href="https://"+location.href.split("http://")[1];}let LocString=String(window.document.location.href);function GetQueryString(name){let rs=new RegExp("(^|)"+name+"=([^&]*)(&|$)","gi").exec(LocString),tmp;if(tmp=rs){return decodeURI(tmp[2])}return ""}
 let 号码=GetQueryString("t").split("#")[0],直接互动=GetQueryString("h").split("#")[0],颜色="000000",今天,今日,背景,背景颜色,反色,o,临时,名字,主人,固定动作=0,特色动作,内容="",互动="",互模=0,字母="0123456789ABCDEF",oo=encodeURI(document.getElementById("oo").innerHTML.replace(/[ \n\d]/g, "")).replace(/[^0-9A-Z%]/g, "").replace(/^%/g, "").split("%");
 if(号码==""&&localStorage.getItem("像素点")){号码=localStorage.getItem("像素点");}
@@ -735,7 +735,6 @@ if(localStorage.getItem("互动模式")){
 }
 
 function 改url(){
-    window.location.href='#limaoqiu.com';
     let url=location.href.split("?")[0].split("#")[0];
     history.replaceState(null,null, url);
     history.replaceState(null,null, url+"?t="+号码);
