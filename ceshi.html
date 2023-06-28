@@ -725,18 +725,19 @@ function 新互动(d){
 }
 
 function 互动模式(){
-    if(互模==0){互模=1;notyf.confirm("开启立即执行模式");localStorage.setItem("互动模式", "1");}else{互模=0;notyf.confirm("关闭立即执行模式");localStorage.removeItem("互动模式");}
+    if(互模==0){互模=1;notyf.confirm("开启立即执行模式");localStorage.setItem("互动模式", "1");
+    }else{互模=0;notyf.confirm("关闭立即执行模式");localStorage.removeItem("互动模式");}
+}
+
+if(localStorage.getItem("互动模式")){
+    document.getElementById("互动模式").checked="checked";
+    互模=1;
 }
 
 function 改url(){
     let url=location.href.split("?")[0].split("#")[0];
     history.replaceState(null,null, url);
     history.replaceState(null,null, url+"?t="+号码);
-}
-
-if(localStorage.getItem("互动模式")){
-    document.getElementById("互动模式").checked="checked";
-    互动模式();
 }
 
 window.location.href='#limaoqiu.com';
