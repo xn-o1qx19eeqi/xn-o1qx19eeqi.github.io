@@ -390,7 +390,10 @@ function 输入互动(){
     }catch(e){
         notyf.alert("失败，代码有误或网络故障");
     }
-    if(互模==1){刷新();}
+    if(互模==1){刷新();
+        clearInterval(刷新);
+        window.setInterval(()=>{setTimeout(刷新,0)},26000);
+    }
 }
 
 if(直接互动){
@@ -607,13 +610,17 @@ function 刷新(){
         // for(let i=0;互动.length>i;i++){
             let 临时2;
             if(动作[临时[0]]){
-                临时2=动作[临时[0]].split("，");
+                临时2=动作[临时[0]];
             }else{
                 console.log("BUG："+临时[0]);
                 notyf.alert("发现BUG：<br>【"+临时[0]+"】<br>请与我联系，非常感谢！");
-                临时2=动作["o"].split("，");
+                临时2=动作["o"];
             }
-            console.log(动作[临时[0]])
+            if(临时2.indexOf("＼")!=-1){
+                临时2=临时2.split("＼");
+                临时2=临时2[Math.floor(Math.random()*临时2.length)];
+            }
+            临时2=临时2.split("，");
             if(临时[0].indexOf("_匀速")!=-1){dy+="#点点,.群演{animation-timing-function:linear}"}
             dy+="@keyframes "+临时[0]+"{"+临时2[0]+"}";
             let dy2="";
@@ -658,7 +665,7 @@ function 刷新(){
 }
 
 if(号码){}else{号码="000000"}加载();刷新();
-window.setInterval(()=>{setTimeout(刷新, 0)}, 26000);
+window.setInterval(()=>{setTimeout(刷新,0)},26000);
 
 function 输入颜色(){
     临时=document.getElementById("输入颜色").value;
@@ -709,7 +716,10 @@ function 新互动(d){
     notyf.confirm("你的指令正在传递中……");
     if(d.indexOf("［")!=-1){d=d.split("［");d=d[Math.floor(Math.random()*d.length)]}
     互动=d;
-    if(互模==1){刷新();}
+    if(互模==1){刷新();
+        clearInterval(刷新);
+        window.setInterval(()=>{setTimeout(刷新,0)},26000);
+    }
 }
 
 function 互动模式(){
