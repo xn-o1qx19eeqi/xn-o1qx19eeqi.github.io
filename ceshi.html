@@ -390,8 +390,9 @@ function 输入互动(){
     }catch(e){
         notyf.alert("失败，代码有误或网络故障");
     }
-    if(互模==1){刷新();
+    if(互模==1){
         clearInterval(刷新);
+        刷新();
         window.setInterval(()=>{setTimeout(刷新,0)},26000);
     }
 }
@@ -716,8 +717,9 @@ function 新互动(d){
     notyf.confirm("你的指令正在传递中……");
     if(d.indexOf("［")!=-1){d=d.split("［");d=d[Math.floor(Math.random()*d.length)]}
     互动=d;
-    if(互模==1){刷新();
+    if(互模==1){
         clearInterval(刷新);
+        刷新();
         window.setInterval(()=>{setTimeout(刷新,0)},26000);
     }
 }
