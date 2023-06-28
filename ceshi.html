@@ -738,13 +738,11 @@ function 改url(){
     let url=location.href.split("?")[0].split("#")[0];
     history.replaceState(null,null, url);
     history.replaceState(null,null, url+"?t="+号码);
-    console.log(号码)
 }
 
-查询();
-
-
-// window.onload=function(){
-//     改url();
-// }
+</script>
+<script>
+window.onload=function(){
+    改url();
+}
 </script>
