@@ -10,7 +10,7 @@ h2: <a href="/w/yundonghui">返回</a>
 ---
 活动宣传视频：<a href="https://www.bilibili.com/video/BV1WV4y1y7pU/">bilibili.com/video/BV1WV4y1y7pU</a><br>
 初赛：<a href="https://www.bilibili.com/video/BV1Uz4y1H7Zv/">bilibili.com/video/BV1Uz4y1H7Zv</a><br>
-决赛：（暂未开始）<br>
+决赛：<a href="https://www.bilibili.com/video/BV1uM4y1J7s7/">bilibili.com/video/BV1uM4y1J7s7</a><br>
 
 <hr>
 
@@ -44,14 +44,14 @@ h2: <a href="/w/yundonghui">返回</a>
 
 
 <script>
-let 目前=1;
+let 目前=2;
 //0：还未开始
 //1：初赛结束
 //2：决赛结束
 
 // let 初赛="初赛";//<a href=''>初赛</a>
 let 初赛="<a href='https://www.bilibili.com/video/BV1Uz4y1H7Zv/'>初赛</a>";
-let 决赛="半决赛";//<a href=''>半决赛</a>
+let 决赛="<a href='https://www.bilibili.com/video/BV1uM4y1J7s7/'>半决赛</a>";//<a href=''>半决赛</a>
 
 let 结果={
     "0":"",
@@ -61,11 +61,11 @@ let 结果={
 }//编号.名字.结果
 
 let a=[
-"F8F7FC.百结.1,F8B6B5.呐小呐,7FDEFF.林中咪,ABCDEE.雪跡,7EC739.半见,72263A.砂糖菓子,00717F.森海,9900C6.鳞,0AC8F5.洋,76C452.LIMY",
+    "F8F7FC.百结.1,F8B6B5.呐小呐,7FDEFF.林中咪,ABCDEE.雪跡,7EC739.半见,72263A.砂糖菓子,00717F.森海,9900C6.鳞,0AC8F5.洋,76C452.LIMY",
     "599520.初见,4CE7E4.CSQN,E676C9.Nana,489070.火狐,6A859E.山中雀.1,3A7F49.可颂仔,7AFEB2.兮兮兮兮,B860FF.北山锦葵,FAD282.索拉尔,521D0E.Doe",
     "EDAF41.ora,A9FBD9.蒜泥白菜.1,45B0D5.鹏鹏,9DD8C4.camellia,07E3F2.灯烛,42FCFF.小青,38A716.绿色黎明,84A0C8.蓝咪咪,52F6FF.煤球兔,548A68.TLNH",
     "17FDCF.薄和,10D7E5.量子幽灵.1,D00905.骐骥,05ECE1.con,F23100.弗朗,000066.柳,24F0D7.伽罗,00EBD9.PYO,E6E0FF.Sei,01CDD0.轩然",
-    "FFB400.波奇酱,6403EA.蓝哑铃,76EE72.猫薄荷,0710A1.水委,234567.超帅小蓝,728311.脖贰忒,04FF00.永雏塔菲.1,D9C777.无产阶级,0D0800.木耳,70FFFF.塑梦",
+    "FFB400.波奇酱,6403EA.蓝哑铃,76EE72.猫薄荷,0710A1.水委,234567.超帅小蓝,728311.脖贰忒,04FF00.永雏塔菲.2,D9C777.无产阶级,0D0800.木耳,70FFFF.塑梦",
     "B0543F.亚硫酸钡,FCFCFC.小白,DED8C3.C3,ABDCAD.培瑞之点,1FADED.sp27,200611.Hope,44FF00.ee,4B0082.翅膀,FBAA24.报丧女妖,2C379C.布达拉肯.1",
     "16B1D0.阿冰!,33AAB1.清清最棒,829C1C.lime,3256A2.起司,D49C65.迈尔斯,13CF13.Gvan,00C8FC.C8FC,ECD236.Noa.1,2C5650.无字诗,0030A6.VV",
     "2BB5F5.好点子,9ACCE9.咪澜,609ED7.珂朵莉,144A74.sl,671542.月落,3C72CD.海蓝宝.1,4FF0FF.冬日飓风,319520.星之提督,04D2E1.爸妈太阳,E7F0F0.银狼",
@@ -79,7 +79,7 @@ let a=[
     "BBDEED.星云.1,FEB43F.DotCraft,2A85E2.zlsslz,EBB247.薯片,217FE4.little h,78B071.超级炫酷,ED1C24.决心红,2D4571.咨询侦探,E5AA40.甜萝卜丁,0E0360.王崎",
     "9EAF57.幾99,A93268.一掵红,E582AF.韬韬,BAFEFE.小幽,428F8A.代数,FF54AA.ff54aa.1,82B384.c某家的,FFEEAA.白鷺千聖,26B9FF.awa,ADEAEA.矿泉水",
     "CFFCFF.stunning,F6666F.氵,FCAF17.散步の布.1,6472B9.卡特咔,2BF598.大地,567D48.小绿叶,FFEFD3.杜林,1ED802.鼠兔,0057B7.乌克蓝,BBCCEE.欧阳傲天",
-    "D1B1FF.Lanv,728194.饭桶恶魔,302B43.大恶魔.1,C4A3AC.小粉,A1EF9E.三木木,FFE7A1.饶英,6699FF.龙切尔,AC77D1.鱿鱼崽,4AABF5.ssss,2600FF.艾咩咩",
+    "D1B1FF.Lanv,728194.饭桶恶魔,302B43.大恶魔.2,C4A3AC.小粉,A1EF9E.三木木,FFE7A1.饶英,6699FF.龙切尔,AC77D1.鱿鱼崽,4AABF5.ssss,2600FF.艾咩咩",
     "324799.珂作业凪.1,A02D50.Fsakin,4C6C8B.天蓝蓝,D58E5E.magi,C4E7EE.灵酱,FF6600.嫣汐,77E7BD.爱莉希雅,84B5CC.秦始皇蓝,FD1717.小Q点,638A96.夜步及",
     "E5D2FF.芝麻,081015.离.1,27FF0A.油绿绿,23FFDA.恬青,13100F.XYZ,091110.冲鸭,C2A7DA.狂客归舟,1993DC.米拉,FBE1FB.cy,E5EAFF.汤圆",
     "A05EB5.PPI513,D6C6F5.浅紫,8B00A0.东条希,491E7D.花紫,33DDDD.亓官墨,0A2470.阿司匹林,9FDBC2.风柠.1,2257BA.白沐·澪,FF8605.橙子,E5FF88.Toto",
@@ -90,7 +90,7 @@ let a=[
     "F75F5F.托托粉,727680.h,796366.小霸王！,5A1363.大紫,D11028.胡桃,FFF888.妙脆角,38F39C.小粉,E7A2DE.桃崽.1,5651B8.w56-004,37C52D.小橘",
     "FFF500.光羽,4C4181.愛星,67AFC5.darkmist,5F6527.橄榄绿.1,054188.Ikun,26B2ED.Wand,DB7780.阿朔,D1E6EB.挖矿中,100918.百九十八,4CE1BC.猫眼",
     "BED8B4.贺随.1,EBEBEB.白语,E99999.韬韬,4F5DA2.喵糖,FFEE96.柠檬,545598.momo,595945.hadrian,3BF56E.4PED,57B399.四季春,199696.带青加油",
-    "BFF249.白飞飞,299792.光速,7F2C11.理想,808AFF.长春花,DF6262.猎户.1,58B6D5.蓝色点点,1437DD.1437大帝,76E8A6.咕哝。,506655.小浴春,6A5ACD.瓦叶",
+    "BFF249.白飞飞,299792.光速,7F2C11.理想,808AFF.长春花,DF6262.猎户.2,58B6D5.蓝色点点,1437DD.1437大帝,76E8A6.咕哝。,506655.小浴春,6A5ACD.瓦叶",
     "BCFCFC.冰,07B08E.叶子,ADD8E7.一人区,82FFF7.岚岚岚,D96D36.OS.1,676CE0.岚梓晖,FCCA92.伊万团团,367CFF.解酒药,018480.小马尔斯,8AC2FF.Ishtar",
     "EB6100.小宵宫,4000FF.小夜,43B048.我,4669E9.小岚岚,00947A.森.1,FF8519.Orangin,1A009E.蓝日莓,77FF3D.kanata,C9EABD.抹茶选手,DDFF8F.Spring！",
     "65DA17.绿草,2099F1.结城理,005A3C.池风树影.1,D7D7D7.铬Ey,A4A4A4.A4,000019.Sanssss,521125.谢谢,20F8F5.happyxy,1681FB.1010,EBAEAC.cy_ttz",
@@ -100,11 +100,11 @@ let a=[
     "A31A31.小酒红a,EBE700.小金金,7F7FFF.AA金锭,FFBE5C.出山猴王,A6DAE6.滴定终点.1,33FFDD.大青,B6E2E2.梧呦,FF2B2B.红晴结菜,020703.眠眠,EBBA27.BUS",
     "C5D5E5.tint,FF7505.CLE-ORA,0B13E7.蓝莓,00FF2B.冲啊,F58B7F.小伊尔,37B8FF.小小小蓝,41A1A8.乌鸫,66CCFF.一只像素,44DD44.幽,6667AB.小紫.1",
     "115415.臭宝,29FFFF.蓝门.1,FFA860.Asu,97FFCB.Kity,BB00FF.鸢尾,E1B8F4.薰衣草,5B6890.Kyle,38FFF2.波瑠卡,6BE93B.Lime,9CBCE3.小小澈",
-    "ADFEFF.糸子,1F1E33.色号,D0F7F7.迷迭香,8CAFB4.咕哒,7090D7.元元,010C2D.你说得对,FEEEEE.铁铁,EBCB00.砂粒,9FC3B5.哇哈哈哈,D9EAF3.宵崎奏.1",
+    "ADFEFF.糸子,1F1E33.色号,D0F7F7.迷迭香,8CAFB4.咕哒,7090D7.元元,010C2D.你说得对,FEEEEE.铁铁,EBCB00.砂粒,9FC3B5.哇哈哈哈,D9EAF3.宵崎奏.3",
     "FF5E85.奶昔,95302E.宙暮,AB8279.四驱麻雀,8CC8CC.桂林烧烤,701715.胡桃,9ACADA.小云朵,256933.小森林.1,9ABEE6.心,77F0F9.林琅快跑,A002E4.flaggg",
     "E12323.小血块,6F7376.7376,A4D48F.A4纸.1,76ACB4.烂,9AC2F5.L062,FFD261.Pluto,D1FFD9.YY,55C0E1.我就信云,66FF00.爱作死,FFD700.金",
     "FFD400.黄猫,ADB2FC.poffy,FFCD7D.fly,3DE1AD.弱翡翠,FF9BAD.波奇酱,DB243D.陆小凤,576B85.S Holmes,FDB23B.咖啡姬.1,657094.小十,FF4D4D.小红oo",
-    "488CCE.小甜饼,7CCCCC.雾里青,FFFF33.sunny,32325A.小小沢,3D81B0.SCR.1,FADA5E.黄澄澄啊,7FF545.早苗绿,31A4EB.蓝风,A129FF.chocl,478146.朝阳",
+    "488CCE.小甜饼,7CCCCC.雾里青,FFFF33.sunny,32325A.小小沢,3D81B0.SCR.2,FADA5E.黄澄澄啊,7FF545.早苗绿,31A4EB.蓝风,A129FF.chocl,478146.朝阳",
     "41C6BB.Sky.1,3DD9BE.伊桑,235711.小质,33645E.六号选手,1593CA.缪斯,006400.2625,E5528C.世纪之花,B4FFFF.小间,009FFF.攸攸,B2A2DB.Napi",
     "030624.苏律.1,051017.玄珂,E5FFBF.Dinoo,E12E0E.唐暝,B6FF9A.咕了个咕,4B5078.地狱杀手,C35E13.面面,9EC6C2.玻璃,545599.mo3,FFF621.小兔",
     "3436CF.小星尘.1,8C8C8C.很热的刀,F7CE46.秋芳,8E73B5.非,FDAD92.因幡爱瑠,95C0FD.momica,A0A0A0.Zechia,3EC4A0.MOSS,057721.欧拉常数,56D79F.林君安",
