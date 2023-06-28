@@ -737,12 +737,9 @@ if(localStorage.getItem("互动模式")){
 }
 
 function 改url(){
-    console.log(location.href)
-    let url=location.href.split("?")[0].split("#")[0];
+    let url=location.href.split("?")[0].split("#")[0].replace(new RegExp(',',"g"),"");
     history.replaceState(null,null, url);
-    console.log(location.href)
     history.replaceState(null,null, url+号码);
-    console.log(location.href)
 }
 
 改url();
