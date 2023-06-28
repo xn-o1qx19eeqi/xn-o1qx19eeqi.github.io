@@ -735,12 +735,13 @@ if(localStorage.getItem("互动模式")){
 }
 
 function 改url(){
+    window.location.href='#limaoqiu.com';
     let url=location.href.split("?")[0].split("#")[0];
     history.replaceState(null,null, url);
     history.replaceState(null,null, url+"?t="+号码);
 }
 
-window.location.href='#limaoqiu.com';
+
 // window.onload=function(){
     改url();
 // }
