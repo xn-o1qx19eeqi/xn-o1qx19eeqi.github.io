@@ -737,11 +737,12 @@ if(localStorage.getItem("互动模式")){
 function 改url(){
     let url=location.href.split("?")[0].split("#")[0];
     history.replaceState(null,null, url);
+    console.log(号码)
     history.replaceState(null,null, url+"?t="+号码);
 }
 
 
-// window.onload=function(){
+window.onload=function(){
     改url();
-// }
+}
 </script>
