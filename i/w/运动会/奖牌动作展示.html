@@ -1,14 +1,20 @@
 ---
 layout: o
 permalink: w/yundonghui/jiangpai
-BiaoTi: 小像素点
-title: 小像素点 定制动作表
+BiaoTi: 展示奖牌动作演示
+title: 展示奖牌动作演示
 ---
 <style>#all{position: relative;width: 60%;top: 1em;margin: auto;}.index{position: fixed;top:1em;left:2.5%;width:15%;height: 100%;overflow:auto;}</style>
 <div id='index' class='index'></div>
 <div id="all">
 
-<h1 style="display:inline;">小像素点 动作表</h1> <a href="/">返回</a> / <a onclick="改颜色()">改颜色</a><hr>
+<h1 style="display:inline;">展示奖牌动作演示</h1> <a href="/">返回</a> / <a onclick="改颜色()">改颜色</a><hr>
+
+动作文案：（小像素点的名字）拿来了“（）杯”的（金牌/银牌）。<br>
+展示奖牌按钮：在第（）届小像素点运动会“（）杯”获得（金牌/银牌）。 <a>展示奖牌</a><br>
+<br>
+如果对文案或者动作有别的想法，可以和我说。<br>
+
 <div id="style_root"><style>:root{--点点:#ffffff;--背景:#000000;--反色:#ffffff;}</style></div>
 <style>#房子{width:400px;height:400px;background-color:var(--背景);overflow:hidden}#小窝{position: relative;top:270px;left:191px}.点点,.群演{position: relative;width:10px;height:10px;top:0;left:0;animation:infinite;animation-duration: 20s;}.点点,.群演{background-color:var(--点点)}.群演{position:absolute;opacity:0}</style>
 <div id="style"></div><h2 id="h2"></h2><div id='房子'><div id='小窝'></div></div>
@@ -16,9 +22,17 @@ title: 小像素点 定制动作表
 let data=[
     "o／0%{top:0}",
 
+    //〈x〉拿来了“【尼斯湖水怪】杯”的【金牌/银牌】。
+    //</blockquote>在第【一】届小像素点运动会“【尼斯湖水怪】杯”获得【金牌/银牌】。 [a,,展示奖牌,,运动会【1】_【C77232】]
+
     "展示奖牌1／0%,20%,70%,100%{left:0}5%,85%{left:300px}0%,22%,24%,26%{top:0}23%,25%{top:-10px}，0%,100%{background-color:#ffffff00;opacity:1;width:32px;height:32px;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUBAMAAAB/pwA+AAAAG1BMVEUAAAD42kr/8XP42kr/8XPooiPftiLwxET89bQcpDWtAAAAA3RSTlMAICBUnMC0AAAAh0lEQVQI103OwQ3CMAyFYXPonSWYwCkMEDdcgxTUARq5A+RgJujcPLtC4p0+/QfLhL0xolAStvCUFBuV6NIU8aMzYunZbBy90q3Iw4zT9qLWxSXHDD5tsGTnHpGDEZ3rPjyeZBYGF1o3TvnkdI8ovYIdMRWQmnrUxT/LikmNf3FMfr9jV/rfF9d4MSf/O25XAAAAAElFTkSuQmCC);background-size: 100% 100%;background-repeat:no-repeat}20%,70%{left:-10px}0%,5%,85%,100%{left:290px}0%,22%,24%,26%,100%{top:-32px}23%,23.4%,25%,25.4%{top:-42px}",
+    //0%,20%,70%,100%{left:0}5%,85%{left:300px}0%,22%,24%,26%{top:0}23%,25%{top:-10px}，0%,100%{background-color:#ffffff00;opacity:1;width:32px;height:32px;background-image:url(/i/w/运动会/【】.png);background-size: 100% 100%;background-repeat:no-repeat}20%,70%{left:-10px}0%,5%,85%,100%{left:290px}0%,22%,24%,26%,100%{top:-32px}23%,23.4%,25%,25.4%{top:-42px}
+    
     "展示奖牌2／0%,30%,40%,75%,100%{left:0}15%,55%{left:300px}，0%,100%{background-color:#ffffff00;opacity:1;top:-32px;width:32px;height:32px;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUBAMAAAB/pwA+AAAAG1BMVEUAAAD42kr/8XP42kr/8XPooiPftiLwxET89bQcpDWtAAAAA3RSTlMAICBUnMC0AAAAh0lEQVQI103OwQ3CMAyFYXPonSWYwCkMEDdcgxTUARq5A+RgJujcPLtC4p0+/QfLhL0xolAStvCUFBuV6NIU8aMzYunZbBy90q3Iw4zT9qLWxSXHDD5tsGTnHpGDEZ3rPjyeZBYGF1o3TvnkdI8ovYIdMRWQmnrUxT/LikmNf3FMfr9jV/rfF9d4MSf/O25XAAAAAElFTkSuQmCC);background-size: 100% 100%;background-repeat:no-repeat}30%,40%{left:-10px}0%,15%,55%,100%{left:290px}",
+    //0%,30%,40%,75%,100%{left:0}15%,55%{left:300px}，0%,100%{background-color:#ffffff00;opacity:1;top:-32px;width:32px;height:32px;background-image:url(/i/w/运动会/【】.png);background-size: 100% 100%;background-repeat:no-repeat}30%,40%{left:-10px}0%,15%,55%,100%{left:290px}
+    
     "展示奖牌3／0%,25%,35%,85%,100%{left:0}10%,60%{left:300px}38%{left:50px}，0%,100%{background-color:#ffffff00;opacity:1;width:32px;height:32px;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUBAMAAAB/pwA+AAAAG1BMVEUAAAD42kr/8XP42kr/8XPooiPftiLwxET89bQcpDWtAAAAA3RSTlMAICBUnMC0AAAAh0lEQVQI103OwQ3CMAyFYXPonSWYwCkMEDdcgxTUARq5A+RgJujcPLtC4p0+/QfLhL0xolAStvCUFBuV6NIU8aMzYunZbBy90q3Iw4zT9qLWxSXHDD5tsGTnHpGDEZ3rPjyeZBYGF1o3TvnkdI8ovYIdMRWQmnrUxT/LikmNf3FMfr9jV/rfF9d4MSf/O25XAAAAAElFTkSuQmCC);background-size: 100% 100%;background-repeat:no-repeat}25%,35%,38%{left:12px}0%,10%,64%,100%{left:312px}0%,100%{top:-16px}",
+    //0%,25%,35%,85%,100%{left:0}10%,60%{left:300px}38%{left:50px}，0%,100%{background-color:#ffffff00;opacity:1;width:32px;height:32px;background-image:url(/i/w/运动会/【】.png);background-size: 100% 100%;background-repeat:no-repeat}25%,35%,38%{left:12px}0%,10%,64%,100%{left:312px}0%,100%{top:-16px}
 
 ];
 let 颜色=0;

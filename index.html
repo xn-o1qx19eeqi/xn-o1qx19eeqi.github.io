@@ -464,7 +464,12 @@ function 加载(){
                     内容[2]=临时2[0];
                     for(let i=1;临时2.length>i;i++){
                         临时2[i]=临时2[i].split("]");
-                        if(临时2[i][0].indexOf(",")!=-1){ //代码
+                        if(临时2[i][0].indexOf(",,")!=-1){ //代码
+                            let 特殊代码=临时2[i][0].split(",,");
+                            if(特殊代码[0]=="a"){
+                                内容[2]+="<a onclick=\"document.getElementById('输入互动').value='"+特殊代码[2]+"';输入互动()\">"+特殊代码[1]+"</a>"
+                            }
+                        }if(临时2[i][0].indexOf(",")!=-1){
 
                         }else{
                             内容[2]+=" <a class='点' href='/"+临时2[i][0]+"' style='background-color:#"+临时2[i][0]+"'></a> ";
