@@ -12,7 +12,7 @@ BiaoTi: 小像素点
 <div id="style_root"></div><div id="style"></div>
 <div id="屋顶"></div><div id="房子"><div id="小窝"></div></div><div id="地板"></div><div id="实时"></div><br>
 颜色：<input type="text" placeholder="000000" autocomplete="off" id="输入颜色" onkeyup="输入颜色()"><input type="color" id="选择颜色" oninput="选择颜色()"><input type="button" value="查询" onclick="查询()"><input type="button" value="随机一只" onclick="随机一只()"><br><sup><span id="未被认养"></span></sup><br>
-互动<input type="checkbox" oninput="互动模式()">：<input type="text" placeholder="动作" autocomplete="off" id="输入互动"><input type="button" value="确定" onclick="输入互动()"><small>（<a href="/i/c#动作代码">动作指令有哪些？</a>）</small><br><span id="互动"></span><br>
+互动<input type="checkbox" id="互动模式" oninput="互动模式()">：<input type="text" placeholder="动作" autocomplete="off" id="输入互动"><input type="button" value="确定" onclick="输入互动()"><small>（<a href="/i/c#动作代码">动作指令有哪些？</a>）</small><br><span id="互动"></span><br>
 <br>
 
 换背景：<small>(在这里更换的背景只有自己能看到)</small><br>
@@ -172,9 +172,9 @@ let 缩=[
 "o／〈x〉正在发呆。",
 "o／〈x〉好像在思考什么。",
 "躺／〈x〉躺了一会儿。",
-"<a href='https://wj.qq.com/s2/12627596/b97f' target='_blank'>申请认养</a><small>（注意：仅周六可以申请）</small>",
-//https://wj.qq.com/s2/12608539/01b6
-//https://wj.qq.com/s2/12627596/b97f
+"<a href='https://wj.qq.com/s2/12660523/ee7d' target='_blank'>申请认养</a><small>（注意：仅周六可以申请）</small>",
+//https://wj.qq.com/s2/12660523/ee7d
+//https://wj.qq.com/s2/12660582/5c98
 "<a href='https://wj.qq.com/s2/10560058/b06e' target='_blank'>点击此处</a>填写像素点编号",
 ]
 let 日程={
@@ -269,8 +269,8 @@ let 日程={
     "玩电脑／〈x〉在网上冲浪。",
     "玩电脑／〈x〉在和朋友发信息。",
     "玩电脑／〈x〉在打游戏。",
-    "o／在偷懒。",
-    "出去／〈x〉去取了外卖。",
+    "o／〈x〉在偷懒。＼〈x〉在发呆。",
+    "出去／〈x〉去取了外卖。＼〈x〉去上了个厕所。",
     "喝／〈x〉喝了杯奶茶。",
     "滚来滚去／〈x〉不想工作。",
 ]],
@@ -279,7 +279,7 @@ let 日程={
     "跳跳／〈x〉跳了跳。",
     "滚来滚去／〈x〉滚来滚去。（这算运动嘛？）",
     "跑／〈x〉在跑步。",
-    "喝／〈x〉喝了瓶矿泉水。",
+    "喝／〈x〉喝了瓶矿泉水。＼〈x〉喝了瓶运动饮料。",
     "仰卧起坐／〈x〉在仰卧起坐。",
     "玩电脑／〈x〉在虚拟世界继续着运动。",
     "躺／〈x〉在梦中继续着运动。",
@@ -297,8 +297,7 @@ let 日程={
 ]],
 
 "梦世界":["〈x〉做了一个很长很长的梦。",[
-    "墓碑鞠躬／〈x〉发现了一个墓碑，上面刻着字“这里埋葬着章鱼哥的希望与梦想”。虽然不知道是谁的墓碑，〈x〉还是对着鞠了一躬。",
-    "墓碑鞠躬／〈x〉发现了一个墓碑，上面刻着字“一个自由的小精灵 多比长眠于此”。虽然不知道是谁的墓碑，〈x〉还是对着鞠了一躬。",
+    "墓碑鞠躬／〈x〉发现了一个墓碑，上面刻着字“这里埋葬着章鱼哥的希望与梦想”。虽然不知道是谁的墓碑，〈x〉还是对着鞠了一躬。＼〈x〉发现了一个墓碑，上面刻着字“一个自由的小精灵 多比长眠于此”。虽然不知道是谁的墓碑，〈x〉还是对着鞠了一躬。",
     "苦力怕／〈x〉听到身后传来“ssss……”的细微声响，回过头是一个绿色的怪物正闪着光，察觉到危险的〈x〉赶忙逃远了，费了好一番功夫才把它甩掉。",
     "无敌炉石／察觉到附近可能有危险，〈x〉使用了圣盾术，并掏出炉石传送到了安全的地方，〈x〉表示这叫“正当撤退”。",
 ]],
@@ -365,10 +364,6 @@ function 输入互动(){
         });
         地址=GetJson.responseText.split("／");
         if(地址[0].length<50){
-            if(地址[1].indexOf("＼")!=-1){
-                地址[1]=地址[1].split("＼");
-                地址[1]=地址[1][Math.floor(Math.random()*地址[1].length)];
-            }
             互动=地址[0]+"／"+地址[1];
             if(地址[2]&&地址[2]!=""){
                 let 临时2=地址[2];
@@ -395,7 +390,11 @@ function 输入互动(){
     }catch(e){
         notyf.alert("失败，代码有误或网络故障");
     }
-    if(互模==1){刷新();}
+    if(互模==1){
+        clearInterval(循环);
+        刷新();
+        循环=setInterval(function(){刷新()},26000);
+    }
 }
 
 if(直接互动){
@@ -580,9 +579,11 @@ function 加载(){
     console.log(o);
     o=io[o%io.length];
 
-    临时=日程[o][0];
-    let 替换=new RegExp('〈x〉', "g");
-    临时=临时.replace(替换, "<b>"+名字+"</b>");
+    临时=日程[o][0].replace(new RegExp('〈x〉',"g"),"<b>"+名字+"</b>");
+    if(临时.indexOf("＼")!=-1){
+        临时=临时.split("＼");
+        临时=临时[Math.floor(Math.random()*临时.length)];
+    }
     document.getElementById("地板").innerHTML=临时;
 
     dy="<table><tr>";
@@ -610,13 +611,17 @@ function 刷新(){
         // for(let i=0;互动.length>i;i++){
             let 临时2;
             if(动作[临时[0]]){
-                临时2=动作[临时[0]].split("，");
+                临时2=动作[临时[0]];
             }else{
                 console.log("BUG："+临时[0]);
                 notyf.alert("发现BUG：<br>【"+临时[0]+"】<br>请与我联系，非常感谢！");
-                临时2=动作["o"].split("，");
+                临时2=动作["o"];
             }
-            
+            if(临时2.indexOf("＼")!=-1){
+                临时2=临时2.split("＼");
+                临时2=临时2[Math.floor(Math.random()*临时2.length)];
+            }
+            临时2=临时2.split("，");
             if(临时[0].indexOf("_匀速")!=-1){dy+="#点点,.群演{animation-timing-function:linear}"}
             dy+="@keyframes "+临时[0]+"{"+临时2[0]+"}";
             let dy2="";
@@ -632,6 +637,9 @@ function 刷新(){
                         if(临时4[0][0]=="b"){for(let i4=0;临时4[0][3]>i4;i4++){dy+=(临时4[0][1]+(临时4[0][2]*i4))+"%,"}}
                         if(临时4[0][0]=="c"){
                             if(反色=="#000000"){dy+="#"+临时4[0][1]}else{dy+="#"+临时4[0][2]}
+                        }
+                        if(临时4[0][0]=="d"){
+                            dy+=临时4[0][Math.floor(Math.random()*(临时4[0].length-1))+1];
                         }
                         if(临时4[0][0]=="y"){dy+="/i/y/"}
                         dy+=临时4[1];
@@ -649,12 +657,16 @@ function 刷新(){
     if(临时[2]){if(主人!="无"&&主人!="（不可认养）"){临时[1]=临时[2]}}
     临时[1]=临时[1].replace(new RegExp('〈x〉', "g"), "<b>"+名字+"</b>");
     临时[1]=临时[1].replace(new RegExp('〈z〉', "g"), "<b>"+主人+"</b>");
+    if(临时[1].indexOf("＼")!=-1){
+        临时[1]=临时[1].split("＼");
+        临时[1]=临时[1][Math.floor(Math.random()*临时[1].length)];
+    }
     document.getElementById("实时").innerHTML=临时[1];
     document.getElementById("点点").style="animation-name:"+临时[0]+";";
 }
 
 if(号码){}else{号码="000000"}加载();刷新();
-window.setInterval(()=>{setTimeout(刷新, 0)}, 26000);
+let 循环=setInterval(function(){刷新()},26000);
 
 function 输入颜色(){
     临时=document.getElementById("输入颜色").value;
@@ -705,11 +717,21 @@ function 新互动(d){
     notyf.confirm("你的指令正在传递中……");
     if(d.indexOf("［")!=-1){d=d.split("［");d=d[Math.floor(Math.random()*d.length)]}
     互动=d;
-    if(互模==1){刷新();}
+    if(互模==1){
+        clearInterval(循环);
+        刷新();
+        循环=setInterval(function(){刷新()},26000);
+    }
 }
 
 function 互动模式(){
-    if(互模==0){互模=1;notyf.confirm("开启立即执行模式")}else{互模=0;notyf.confirm("关闭立即执行模式")}
+    if(互模==0){互模=1;notyf.confirm("开启立即执行模式");localStorage.setItem("互动模式", "1");
+    }else{互模=0;notyf.confirm("关闭立即执行模式");localStorage.removeItem("互动模式");}
+}
+
+if(localStorage.getItem("互动模式")){
+    document.getElementById("互动模式").checked="checked";
+    互模=1;
 }
 
 function 改url(){
@@ -717,8 +739,6 @@ function 改url(){
     history.replaceState(null,null, url);
     history.replaceState(null,null, url+"?t="+号码);
 }
-
-
 
 window.location.href='#limaoqiu.com';
 window.onload=function(){
