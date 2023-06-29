@@ -6,23 +6,23 @@ BeiJing_SJ: 0／0-01.png
 BiaoTi: 小像素点
 ---
 <style>#房子{width:400px;height:400px;overflow:hidden;background-color:var(--背景)}#小窝{position:relative;top:270px;left:191px}#点点,.群演{position:relative;width:10px;height:10px;top:0;left:0;animation-duration:20s;animation-delay:3s;background-color:var(--点点)}.群演{position:absolute;opacity:0}#地板{font-size:0.8em}
-@media screen and (max-width: 767px){
-#房子{margin:0 0 0 -3%;}
-}</style>
+@media screen and (max-width: 767px){#房子{margin:0 0 0 -3%}}</style>
 <div id="style_root"></div><div id="style"></div>
 <div id="屋顶"></div><div id="房子"><div id="小窝"></div></div><div id="地板"></div><div id="实时"></div><br>
+
+<div id="杂">
 颜色：<input type="text" placeholder="000000" autocomplete="off" id="输入颜色" onkeyup="输入颜色()"><input type="color" id="选择颜色" oninput="选择颜色()"><input type="button" value="查询" onclick="查询()"><input type="button" value="随机一只" onclick="随机一只()"><br><sup><span id="未被认养"></span></sup><br>
 互动<input type="checkbox" id="互动模式" oninput="互动模式()">：<input type="text" placeholder="动作" autocomplete="off" id="输入互动"><input type="button" value="确定" onclick="输入互动()"><small>（<a href="/i/c#动作代码">动作指令有哪些？</a>）</small><br><span id="互动"></span><br>
 <br>
 
-换背景：<small>(在这里更换的背景只有自己能看到)</small><br>
+换背景：<small>(在这里更换的背景只有自己能看到，可以<a href="https://wj.qq.com/s2/12671350/c9be">申请永久背景</a>)</small><br>
 <div id="选择背景"></div>
 <a onclick="document.getElementById('选择背景_多').style='';document.getElementById('选择背景_更').innerHTML=''" id="选择背景_更">更多</a>
 <div style="display:none;" id="选择背景_多"><input type="text" autocomplete="off" id="输入颜色_背景"><input type="color" id="选择颜色_背景" oninput="选择颜色_背景()"><input type="button" value="更换" onclick="新背景()"><small>（<a href="/i/c#更多背景">还有哪些背景？</a>）</small></div><br>
 <hr><div id="oo">
 
-<small>有一些改进的想法，需要你的投票：<a href="https://wj.qq.com/s2/11524389/a364/">填写问卷</a>（有什么建议也可以在这里留言）<br>
-QQ频道：<a href="https://pd.qq.com/s/6qkboum73">猫球频道</a>（闲聊、反馈）<br></small><br>
+<small><a href="https://wj.qq.com/s2/11524389/a364/">问卷调查</a>（有什么建议可以在这里留言，偶尔会征集改进意见）<br>
+<a href="https://pd.qq.com/s/6qkboum73">QQ频道</a>（闲聊、反馈）<br></small><br>
 <b>换字体</b>：<a onclick="改字体(0)">默认</a>、<a onclick="改字体('俐方体11号')">俐方体11号</a><br>
 <b>app</b><small>(Android)</small>：<a href="https://pan.baidu.com/s/1Ch4lNU8-jUf-MOlaOUFcoQ?pwd=maoq">百度云</a> <small>提取码：maoq （注意：只是网页套壳app，没有其他功能）</small><br>
 <span style="background-color:#E0E0E0;color:#E0E0E0;font-size:10px;">如果你看到了这行字，说明你的浏览器开启了“强制暗色模式”，会导致页面显示异常，建议关闭此模式。</span>
@@ -110,7 +110,8 @@ QQ频道：<a href="https://pd.qq.com/s/6qkboum73">猫球频道</a>（闲聊、�
 报名表和活动说明：<del><a href="https://wj.qq.com/s2/12622183/69ae">wj.qq.com/s2/12622183/69ae</a></del>（报名已结束）<br>
 活动宣传视频：<a href="https://www.bilibili.com/video/BV1WV4y1y7pU/">bilibili.com/video/BV1WV4y1y7pU</a><br>
 <b>初赛</b>：<a href="https://www.bilibili.com/video/BV1Uz4y1H7Zv/">bilibili.com/video/BV1Uz4y1H7Zv</a><br>
-<b>决赛</b>：<a href="https://www.bilibili.com/video/BV1uM4y1J7s7/">bilibili.com/video/BV1uM4y1J7s7</a>（将在2023年6月27日 20:00开播）<br>
+<b>决赛</b>：<a href="https://www.bilibili.com/video/BV1uM4y1J7s7/">bilibili.com/video/BV1uM4y1J7s7</a><br>
+<a href="/w/yundonghui/1">活动纪念页</a><br>
 <br>
 
 <!-- <br>
@@ -133,12 +134,13 @@ QQ频道：<a href="https://pd.qq.com/s/6qkboum73">猫球频道</a>（闲聊、�
     约稿 30
     素材 3
 -->
+</div>
 
 <script>
 // window.location.href='#limaoqiu.com';
-if(location.href.indexOf("http://")!=-1){window.location.href="https://"+location.href.split("http://")[1];}let LocString=String(window.document.location.href);function GetQueryString(name){let rs=new RegExp("(^|)"+name+"=([^&]*)(&|$)","gi").exec(LocString),tmp;if(tmp=rs){return decodeURI(tmp[2])}return ""}
-let 号码=GetQueryString("t").split("#")[0],直接互动=GetQueryString("h").split("#")[0],颜色="000000",今天,今日,背景,背景颜色,反色,o,临时,名字,主人,固定动作=0,特色动作,内容="",互动="",f={"年":new Date().getFullYear(),"月":new Date().getMonth()+1,"日":new Date().getDate()},互模=0,字母="0123456789ABCDEF",oo=encodeURI(document.getElementById("oo").innerHTML.replace(/[ \n\d]/g, "")).replace(/[^0-9A-Z%]/g, "").replace(/^%/g, "").split("%");
-if(号码==""&&localStorage.getItem("像素点")){号码=localStorage.getItem("像素点");}
+if(location.href.indexOf("http://")!=-1){window.location.href="https://"+location.href.split("http://")[1]}let LocString=String(window.document.location.href);function GetQueryString(name){let rs=new RegExp("(^|)"+name+"=([^&]*)(&|$)","gi").exec(LocString),tmp;if(tmp=rs){return decodeURI(tmp[2])}return ""}
+let 号码=GetQueryString("t").split("#")[0],直接互动=GetQueryString("h").split("#")[0],颜色="000000",今天,今日,背景,背景颜色,反色,o,临时,名字,主人,固定动作=0,特色动作,内容="",互动="",f={"年":new Date().getFullYear(),"月":new Date().getMonth()+1,"日":new Date().getDate()},互模=0,字母="0123456789ABCDEF",oo=encodeURI(document.getElementById("oo").innerHTML.replace(/[ \n\d]/g,"")).replace(/[^0-9A-Z%]/g,"").replace(/^%/g,"").split("%");
+if(号码==""&&localStorage.getItem("像素点")){号码=localStorage.getItem("像素点")}
 let 选择背景=["#000000","#FFFFFF","#E8F2E8","#474B5B","夜空.jpg"];
 let 月常=["o","休息日","玩闹","工作","运动"];
 let 月表=[
@@ -308,6 +310,10 @@ let 日程={
 let 节日={
 "6.1":["儿童节"],
 };
+let 彩蛋={
+// "0":["动作／文案"],
+// "12.25":[],
+}
 let 动作={
 "o":"0%{}",
 "bug":"0%{}",
@@ -407,6 +413,7 @@ if(直接互动){
 
 今日=(new Date().getMonth()+1)+"."+new Date().getDate();
 if(节日[今日]){今天=节日[今日]}else{今天=0}
+if(彩蛋["0"]){彩蛋=彩蛋["0"]}else if(彩蛋[今日]){彩蛋=彩蛋[今日]}else{彩蛋=[]}
 
 function 换背景(背景){
     if(背景[0]=="#"){
@@ -422,282 +429,261 @@ function 换背景(背景){
 }
 
 function 加载(){
-    颜色="",背景="",固定动作=0;
-    号码=号码.toUpperCase();
-    for(let i=0;6>i;i++){
-        if(字母.indexOf(号码[i])!=-1){
-            颜色+=号码[i];
-        }
-    }
+颜色="",背景="",固定动作=0;
+号码=号码.toUpperCase();
+for(let i=0;6>i;i++){if(字母.indexOf(号码[i])!=-1){颜色+=号码[i]}}
 
-    if(颜色.length!=6){颜色="000000"}else{localStorage.setItem("像素点",颜色)}
-    let dy="";
-    try{
-        let 地址="/i/x/"+颜色+".json";
-        let GetJson=$.ajax({
-            url:地址,
-            type:"GET",
-            dataType:"json",
-            async:false,
-            success:function (data) {
+if(颜色.length!=6){颜色="000000"}else{localStorage.setItem("像素点",颜色)}
+let dy="";
+try{
+    let 地址="/i/x/"+颜色+".json";
+    let GetJson=$.ajax({
+        url:地址,
+        type:"GET",
+        dataType:"json",
+        async:false,
+        success:function (data) {
+        }
+    });
+    内容=GetJson.responseText;
+    内容=内容.split("／");
+    if(内容[0].length<50){
+        if(内容[0]&&内容[0]!=""){名字=内容[0]}else{名字="小像素点"}
+        if(内容[1]&&内容[1]!=""){主人=内容[1]}else{主人="无"}
+        dy="<h2 style='display:inline;'>"+名字+"</h2>　<small>#"+颜色+" <a onclick=\"复制像素点()\">复制地址</a></small><br><small>认养人：</small>"+主人;
+        if(主人!="（不可认养）"){
+            let 打卡临时=0;
+            if(内容[7]&&内容[7]!=""&&Math.trunc((new Date().getTime()-new Date(内容[7]).getTime())/1000/60/60/24)>90){
+                dy+=" <small><a id=\"看望打卡\" onclick=\"看望打卡(0)\">打卡</a>";
+            }else{dy+=" <small><a id=\"看望打卡\" onclick=\"看望打卡(1)\">打卡</a>"}
             }
-        });
-        内容=GetJson.responseText;
-        内容=内容.split("／");
-        if(内容[0].length<50){
-            if(内容[0]&&内容[0]!=""){名字=内容[0]}else{名字="小像素点"}
-            if(内容[1]&&内容[1]!=""){主人=内容[1]}else{主人="无"}
-            dy="<h2 style='display:inline;'>"+名字+"</h2>　<small>#"+颜色+" <a onclick=\"复制像素点()\">复制地址</a></small><br><small>认养人：</small>"+主人;
-            if(主人!="（不可认养）"){
-                let 打卡临时=0;
-                if(内容[7]&&内容[7]!=""&&Math.trunc((new Date().getTime()-new Date(内容[7]).getTime())/1000/60/60/24)>90){
-                    dy+=" <small><a id=\"看望打卡\" onclick=\"看望打卡(0)\">打卡</a>";
-                }else{
-                    dy+=" <small><a id=\"看望打卡\" onclick=\"看望打卡(1)\">打卡</a>";
-                }
-                }
-            document.getElementById("未被认养").innerHTML='';
-            if(内容[2]&&内容[2]!=""){
-                if(内容[2].indexOf("〈放弃认养〉")!=-1){内容[2]=内容[2].replace(/〈放弃认养〉/g, "");固定动作="放弃认养";}
-                if(内容[2].indexOf("〈固定〉")!=-1){内容[2]=内容[2].replace(/〈固定〉/g, "");固定动作="固定";}
-                if(内容[2].indexOf("〈完全固定〉")!=-1){内容[2]=内容[2].replace(/〈完全固定〉/g, "");固定动作="完全固定";}
-                if(内容[2].indexOf("[")!=-1&&内容[2].indexOf("]")!=-1){
-                    let 临时2=内容[2].split("[");
-                    内容[2]=临时2[0];
-                    for(let i=1;临时2.length>i;i++){
-                        临时2[i]=临时2[i].split("]");
-                        if(临时2[i][0].indexOf(",,")!=-1){ //代码
-                            let 代码=临时2[i][0].split(",,");
-                            if(代码[0]=="a"){
-                                内容[2]+="<a onclick=\"document.getElementById('输入互动').value='"+代码[2]+"';输入互动()\">"+代码[1]+"</a>"
-                            }
-                        }if(临时2[i][0].indexOf(",")!=-1){
-                            let 代码=临时2[i][0].split(",");
-                            if(代码[0]=="a"){
-                                内容[2]+="<a href=\""+代码[2]+"\">"+代码[1]+"</a>";
-                            }
-                        }else if(临时2[i][0].length==1){
-                            if(临时2[i][0]=="n"){
-                                内容[2]+="<br>";
-                            }
-                        }else{
-                            内容[2]+=" <a class='点' href='/"+临时2[i][0]+"' style='background-color:#"+临时2[i][0]+"'></a> ";
+        document.getElementById("未被认养").innerHTML='';
+        if(内容[2]&&内容[2]!=""){
+            if(内容[2].indexOf("〈放弃认养〉")!=-1){内容[2]=内容[2].replace(/〈放弃认养〉/g,"");固定动作="放弃认养"}
+            if(内容[2].indexOf("〈固定〉")!=-1){内容[2]=内容[2].replace(/〈固定〉/g,"");固定动作="固定"}
+            if(内容[2].indexOf("〈完全固定〉")!=-1){内容[2]=内容[2].replace(/〈完全固定〉/g,"");固定动作="完全固定"}
+            if(内容[2].indexOf("[")!=-1&&内容[2].indexOf("]")!=-1){
+                let 临时2=内容[2].split("[");
+                内容[2]=临时2[0];
+                for(let i=1;临时2.length>i;i++){
+                    临时2[i]=临时2[i].split("]");
+                    if(临时2[i][0].indexOf(",,")!=-1){ //代码
+                        let 代码=临时2[i][0].split(",,");
+                        if(代码[0]=="a"){
+                            内容[2]+="<a onclick=\"document.getElementById('输入互动').value='"+代码[2]+"';输入互动()\">"+代码[1]+"</a>"
                         }
-                        内容[2]+=临时2[i][1];
-                    }
-                }
-                dy+="<blockquote>"+内容[2]+"</blockquote>";
-            }else{dy+="<br><br>"}
-            if(内容[3]&&内容[3]!=""){
-                背景=内容[3];
-                临时=背景.split(",");
-                for(let i=0;临时.length>i;i++){
-                    if (选择背景.indexOf(临时[i])!=-1){}else{
-                        选择背景[选择背景.length]=临时[i];
-                    }
-                }
-            }
-            if(内容[4]&&内容[4]!=""){
-                特色动作=[];
-                临时=内容[4].split(",");
-                for(let i=0;临时.length>i;i++){
-                    if(临时[i].indexOf("-")!=-1){
-                        let 临时2=临时[i].split("-");
-                        if(临时2[0]==今日){特色动作=["x"+颜色+临时2[1]];固定动作="完全固定";break}
-                    }else{特色动作[特色动作.length]="x"+颜色+临时[i]}
-                }
-            }else{特色动作=[]}
-            if(内容[5]&&内容[5]!=""){
-                临时=内容[5].split("［");
-                for(let i=0;临时.length>i;i++){
-                    let 临时2=临时[i].split("］");
-                    临时2[0]="x"+颜色+临时2[0];
-                    if(日程[临时2[0]]){}else{
-                        日程[临时2[0]]=[临时2[1],[]];
-                        for(let i2=2;临时2.length>i2;i2++){
-                            临时2[i2]="x"+颜色+临时2[i2];
-                            日程[临时2[0]][1][日程[临时2[0]][1].length]=临时2[i2].replace(/,/g, "／");
+                    }if(临时2[i][0].indexOf(",")!=-1){
+                        let 代码=临时2[i][0].split(",");
+                        if(代码[0]=="a"){
+                            内容[2]+="<a href=\""+代码[2]+"\">"+代码[1]+"</a>";
                         }
+                    }else if(临时2[i][0].length==1){
+                        if(临时2[i][0]=="n"){
+                            内容[2]+="<br>";
+                        }
+                    }else{
+                        内容[2]+=" <a class='点' href='/"+临时2[i][0]+"' style='background-color:#"+临时2[i][0]+"'></a> ";
+                    }
+                    内容[2]+=临时2[i][1];
+                }
+            }
+            dy+="<blockquote>"+内容[2]+"</blockquote>";
+        }else{dy+="<br><br>"}
+        if(内容[3]&&内容[3]!=""){
+            背景=内容[3];
+            临时=背景.split(",");
+            for(let i=0;临时.length>i;i++){
+                if(选择背景.indexOf(临时[i])!=-1){}else{
+                    选择背景[选择背景.length]=临时[i];
+                }
+            }
+        }
+        if(内容[4]&&内容[4]!=""){
+            特色动作=[];
+            临时=内容[4].split(",");
+            for(let i=0;临时.length>i;i++){
+                if(临时[i].indexOf("-")!=-1){
+                    let 临时2=临时[i].split("-");
+                    if(临时2[0]==今日){特色动作=["x"+颜色+临时2[1]];固定动作="完全固定";break}
+                }else{特色动作[特色动作.length]="x"+颜色+临时[i]}
+            }
+        }else{特色动作=[]}
+        if(内容[5]&&内容[5]!=""){
+            临时=内容[5].split("［");
+            for(let i=0;临时.length>i;i++){
+                let 临时2=临时[i].split("］");
+                临时2[0]="x"+颜色+临时2[0];
+                if(日程[临时2[0]]){}else{
+                    日程[临时2[0]]=[临时2[1],[]];
+                    for(let i2=2;临时2.length>i2;i2++){
+                        临时2[i2]="x"+颜色+临时2[i2];
+                        日程[临时2[0]][1][日程[临时2[0]][1].length]=临时2[i2].replace(/,/g,"／");
                     }
                 }
             }
-            if(内容[6]&&内容[6]!=""){
-                临时=内容[6].split("］");
-                for(let i=0;临时.length>i;i++){
-                    let 临时2=临时[i].split("［");
-                    临时2[0]="x"+颜色+临时2[0];
-                    if(动作[临时2[0]]){}else{
-                        动作[临时2[0]]=临时2[1];
-                    }
+        }
+        if(内容[6]&&内容[6]!=""){
+            临时=内容[6].split("］");
+            for(let i=0;临时.length>i;i++){
+                let 临时2=临时[i].split("［");
+                临时2[0]="x"+颜色+临时2[0];
+                if(动作[临时2[0]]){}else{
+                    动作[临时2[0]]=临时2[1];
                 }
             }
-            if(内容[7]&&内容[7]!=""){
-                临时=(365+90)-Math.trunc((new Date().getTime()-new Date(内容[7]).getTime())/1000/60/60/24);
-                if(临时<1){dy+="由于原认养人<small>（<b>"+主人+"</b>）</small><ruby><rb>超过一年</rb><rt>"+(临时*-1+(365+90))+"天</rt></ruby>没来看望<b>"+名字+"</b>，系统暂时收回认养资格，<b>"+名字+"</b>目前处于可以申请认养的状态，原认养人可以打卡恢复认养资格。";主人="无"}
-                else if(临时<100){dy+="<b>"+主人+"</b>很久没来看望<b>"+名字+"</b>了，请在"+临时+"天内打卡，以免因为冷落像素点过久而失去认养资格。"}
-            }
-            document.title=名字+" - 小像素点";
-        }else{
-            console.log("bug");
-            adddlert("bug");
         }
-    }catch(e){
-        dy="<h2 style='display:inline;'>"+颜色+"</h2> <small><a onclick=\"复制像素点()\">复制地址</a></small><br>还未被认养 <small>或者网站更新信息有延迟</small> "+缩[5]+"<br><br>";
-        document.getElementById("未被认养").innerHTML="这只小像素点可能还未被认养 你可以<a onclick=\"复制像素点()\">复制地址</a>并"+缩[5];
-        名字="小像素点";
-        主人="无";
-        特色动作=[];
-        document.title="#"+颜色+" - 小像素点";
+        if(内容[7]&&内容[7]!=""){
+            临时=(365+90)-Math.trunc((new Date().getTime()-new Date(内容[7]).getTime())/1000/60/60/24);
+            if(临时<1){dy+="由于原认养人<small>（<b>"+主人+"</b>）</small><ruby><rb>超过一年</rb><rt>"+(临时*-1+(365+90))+"天</rt></ruby>没来看望<b>"+名字+"</b>，系统暂时收回认养资格，<b>"+名字+"</b>目前处于可以申请认养的状态，原认养人可以打卡恢复认养资格。";主人="无"}
+            else if(临时<100){dy+="<b>"+主人+"</b>很久没来看望<b>"+名字+"</b>了，请在"+临时+"天内打卡，以免因为冷落像素点过久而失去认养资格。"}
+        }
+        document.title=名字+" - 小像素点";
+    }else{
+        console.log("bug");
+        adddlert("bug");
     }
+}catch(e){
+    dy="<h2 style='display:inline;'>"+颜色+"</h2> <small><a onclick=\"复制像素点()\">复制地址</a></small><br>还未被认养 <small>或者网站更新信息有延迟</small> "+缩[5]+"<br><br>";
+    document.getElementById("未被认养").innerHTML="这只小像素点可能还未被认养 你可以<a onclick=\"复制像素点()\">复制地址</a>并"+缩[5];
+    名字="小像素点";
+    主人="无";
+    特色动作=[];
+    document.title="#"+颜色+" - 小像素点";
+}
 
-    背景颜色="";
-    if(颜色[0]=="D"||颜色[0]=="E"||颜色[0]=="F"){
-        if(颜色[2]=="D"||颜色[2]=="E"||颜色[2]=="F"){
-            if(颜色[4]=="D"||颜色[4]=="E"||颜色[4]=="F"){
-                背景颜色="#000000";
-                反色="#FFFFFF";
-            }
+背景颜色="";
+if(颜色[0]=="D"||颜色[0]=="E"||颜色[0]=="F"){
+    if(颜色[2]=="D"||颜色[2]=="E"||颜色[2]=="F"){
+        if(颜色[4]=="D"||颜色[4]=="E"||颜色[4]=="F"){
+            背景颜色="#000000";
+            反色="#FFFFFF";
         }
     }
-    if(背景颜色==""){背景颜色="#FFFFFF";反色="#000000";}
-    if(背景==""){背景=背景颜色}
+}
+if(背景颜色==""){背景颜色="#FFFFFF";反色="#000000"}
+if(背景==""){背景=背景颜色}
 
-    背景=背景.split(",");
-    背景=背景[Math.floor(Math.random()*背景.length)];
-    document.getElementById("屋顶").innerHTML=dy;
-    document.getElementById("选择颜色").value="#"+颜色;
-    document.getElementById("输入颜色").placeholder=颜色;
+背景=背景.split(",");
+背景=背景[Math.floor(Math.random()*背景.length)];
+document.getElementById("屋顶").innerHTML=dy;
+document.getElementById("选择颜色").value="#"+颜色;
+document.getElementById("输入颜色").placeholder=颜色;
 
-    换背景(背景);
+换背景(背景);
 
-    o=new Date();
-    let io=月表[o.getMonth()].concat(月常,特色动作);
+o=new Date();
+let io=月表[o.getMonth()].concat(月常,特色动作);
 
-    if(固定动作=="放弃认养"){io=[固定动作]}
-    else if(固定动作=="完全固定"){io=特色动作}
-    else{
-        if(固定动作=="固定"){io=特色动作}
-        if(今天!=0){io=今天}
+if(固定动作=="放弃认养"){io=[固定动作]}
+else if(固定动作=="完全固定"){io=特色动作}
+else{
+    if(固定动作=="固定"){io=特色动作}
+    if(今天!=0){io=今天}
+}
+
+o=parseInt(oo[(parseInt(颜色,16)+o.getFullYear()+o.getMonth()+o.getDate())%oo.length],16);
+o=io[o%io.length];
+
+临时=日程[o][0].replace(new RegExp('〈x〉',"g"),"<b>"+名字+"</b>");
+if(临时.indexOf("＼")!=-1){
+    临时=临时.split("＼");
+    临时=临时[Math.floor(Math.random()*临时.length)];
+}
+document.getElementById("地板").innerHTML=临时;
+
+dy="<table><tr>";
+for(let i=0;选择背景.length>i;i++){
+    if(选择背景[i][0]=="#"){
+        临时="<td class='tubiao' onclick=\"换背景('"+选择背景[i]+"')\" style='background-color:"+选择背景[i]+"'>　</td>";
+    }else{
+        临时="<td class='tubiao' onclick=\"换背景('"+选择背景[i]+"')\" style='background-color:#ffffff;color:#4F4F4F'>"+选择背景[i].split(".")[0]+"</td>";
     }
-
-    o=parseInt(oo[(parseInt(颜色,16)+o.getFullYear()+o.getMonth()+o.getDate())%oo.length],16);
-    console.log("#"+颜色);
-    console.log(o);
-    o=io[o%io.length];
-
-    临时=日程[o][0].replace(new RegExp('〈x〉',"g"),"<b>"+名字+"</b>");
-    if(临时.indexOf("＼")!=-1){
-        临时=临时.split("＼");
-        临时=临时[Math.floor(Math.random()*临时.length)];
-    }
-    document.getElementById("地板").innerHTML=临时;
-
-    dy="<table><tr>";
-    for(let i=0;选择背景.length>i;i++){
-        if(选择背景[i][0]=="#"){
-            临时="<td class='tubiao' onclick=\"换背景('"+选择背景[i]+"')\" style='background-color:"+选择背景[i]+"'>　</td>";
-        }else{
-            临时="<td class='tubiao' onclick=\"换背景('"+选择背景[i]+"')\" style='background-color:#ffffff;color:#4F4F4F'>"+选择背景[i].split(".")[0]+"</td>";
-        }
-        if(i%5==0){dy+="</tr></table><table><tr>"+临时}else{dy+=临时}
-    }
-    dy+="</tr></table>";
-    dy=dy.replace(/<table><tr><\/tr><\/table>/g, "");
-    document.getElementById("选择背景").innerHTML=dy;
-    document.getElementById("实时").innerHTML="　";
-    document.getElementById("小窝").innerHTML="<div id='点点'></div>";
-    document.getElementById("style_root").innerHTML="<style>:root{--点点:#"+颜色+";--背景:"+背景颜色+";--反色:"+反色+"}</style>";
+    if(i%5==0){dy+="</tr></table><table><tr>"+临时}else{dy+=临时}
+}
+dy+="</tr></table>";
+dy=dy.replace(/<table><tr><\/tr><\/table>/g,"");
+document.getElementById("选择背景").innerHTML=dy;
+document.getElementById("实时").innerHTML="　";
+document.getElementById("小窝").innerHTML="<div id='点点'></div>";
+document.getElementById("style_root").innerHTML="<style>:root{--点点:#"+颜色+";--背景:"+背景颜色+";--反色:"+反色+"}</style>";
 }
 
 function 刷新(){
-    if(互动!=""){临时=互动;互动=日程[o][1].concat(互动.split("／")[0])}
-    else{互动=日程[o][1];临时=互动[Math.floor(Math.random()*互动.length)]}
-    临时=临时.split("／");
-    dy="<style>";
-        // for(let i=0;互动.length>i;i++){
-            let 临时2;
-            if(动作[临时[0]]){
-                临时2=动作[临时[0]];
-            }else{
-                console.log("BUG："+临时[0]);
-                notyf.alert("发现BUG：<br>【"+临时[0]+"】<br>请与我联系，非常感谢！");
-                临时2=动作["o"];
-            }
-            if(临时2.indexOf("＼")!=-1){
-                临时2=临时2.split("＼");
-                临时2=临时2[Math.floor(Math.random()*临时2.length)];
-            }
-            临时2=临时2.split("，");
-            if(临时[0].indexOf("_匀速")!=-1){dy+="#点点,.群演{animation-timing-function:linear}"}
-            dy+="@keyframes "+临时[0]+"{"+临时2[0]+"}";
-            let dy2="";
-            for(let i2=1;临时2.length>i2;i2++){
-                console.log("测试0")
-                dy+="@keyframes "+临时[0]+"_群演"+i2+"{";
-                if(临时2[i2].indexOf("({")!=-1){ //代码
-                    let 临时3=临时2[i2].split("({");
-                    dy+=临时3[0];
-                    let e="无";
-                    for(let i3=1;临时3.length>i3;i3++){
-                        let 临时4=临时3[i3].split("})");
-                        临时4[0]=临时4[0].split(",");
-                        if(临时4[0][0]=="a"){dy+="background-color:#00000000;background-blend-mode:lighten;background-size:cover;-webkit-mask-mode:luminance;mask-mode:luminance;background-image:url("+临时4[0][2]+"),linear-gradient("+临时4[0][1]+","+临时4[0][1]+");-webkit-mask-image:url("+临时4[0][2]+");mask-image:url("+临时4[0][2]+");"}
-                        if(临时4[0][0]=="b"){for(let i4=0;临时4[0][3]>i4;i4++){dy+=(临时4[0][1]+(临时4[0][2]*i4))+"%,"}}
-                        if(临时4[0][0]=="c"){
-                            console.log("测试d")
-                            if(反色=="#000000"){dy+=临时4[0][1]}else{dy+=临时4[0][2]}
-                        }
-                        if(临时4[0][0]=="d"){
-                            dy+=临时4[0][Math.floor(Math.random()*(临时4[0].length-1))+1];
-                        }
-                        if(临时4[0][0]=="e"){
-                            if(e=="无"){e=Math.floor(Math.random()*(临时4[0].length-1))+1;}
-                            dy+=临时4[0][e];
-                        }
-                        if(临时4[0][0]=="f"){//测试
-                            let i5=0;
-                            console.log("测试f")
-                            for(let i4=1;临时4[0].length>i4;i4+=3){
-                                if(!f[临时4[0][i4]]){
-                                    if(临时4[0][i4]=="周"){f["周"]=new Date().getDay()+1;}
-                                    if(临时4[0][i4]=="季"){
-                                        if(f["月"]==3||f["月"]==4||f["月"]==5){f["季"]="春";
-                                        }else if(f["月"]==6||f["月"]==7||f["月"]==8){f["季"]="夏";
-                                        }else if(f["月"]==9||f["月"]==10||f["月"]==11){f["季"]="秋";
-                                        }else{f["季"]="冬";}
-                                    }
-                                }
-                                if(临时4[0][i4+1]&&f[临时4[0][i4]]==临时4[0][i4+1]){
-                                    i5=1;
-                                    dy+=临时4[0][i4+2];
-                                    break;
-                                }
-                            }
-                            if(i5==0){
-                                dy+=临时4[0][临时4[0].length-1];
-                            }
-                        }
-                        dy+=临时4[1];
+if(互动!=""){临时=互动;互动=日程[o][1].concat(互动.split("／")[0])}
+else{互动=日程[o][1].concat(彩蛋);临时=互动[Math.floor(Math.random()*互动.length)]}
+
+临时=临时.split("／");
+dy="<style>";
+let 临时2;
+if(动作[临时[0]]){
+    临时2=动作[临时[0]];
+}else{
+    console.log("BUG："+临时[0]);
+    notyf.alert("发现BUG：<br>【"+临时[0]+"】<br>请与我联系，非常感谢！");
+    临时2=动作["o"];
+}
+if(临时2.indexOf("＼")!=-1){临时2=临时2.split("＼");临时2=临时2[Math.floor(Math.random()*临时2.length)]}
+临时2=临时2.split("，");
+if(临时[0].indexOf("_匀速")!=-1){dy+="#点点,.群演{animation-timing-function:linear}"}
+
+let dy2="";
+for(let i2=0;临时2.length>i2;i2++){
+    if(i2==0){dy+="@keyframes "+临时[0]+"{";
+    }else{dy+="@keyframes "+临时[0]+"_群演"+i2+"{"}
+if(临时2[i2].indexOf("({")!=-1){ //代码
+    let 临时3=临时2[i2].split("({");
+    dy+=临时3[0];
+    let e="无";
+    for(let i3=1;临时3.length>i3;i3++){
+        let 临时4=临时3[i3].split("})");
+        临时4[0]=临时4[0].split(",");
+        if(临时4[0][0]=="a"){dy+="background-color:#00000000;background-blend-mode:lighten;background-size:cover;-webkit-mask-mode:luminance;mask-mode:luminance;background-image:url("+临时4[0][2]+"),linear-gradient("+临时4[0][1]+","+临时4[0][1]+");-webkit-mask-image:url("+临时4[0][2]+");mask-image:url("+临时4[0][2]+");"}
+        if(临时4[0][0]=="b"){for(let i4=0;临时4[0][3]>i4;i4++){dy+=(临时4[0][1]+(临时4[0][2]*i4))+"%,"}}
+        if(临时4[0][0]=="c"){
+            if(反色=="#000000"){dy+=临时4[0][1]}else{dy+=临时4[0][2]}
+        }
+        if(临时4[0][0]=="d"){dy+=临时4[0][Math.floor(Math.random()*(临时4[0].length-1))+1]}
+        if(临时4[0][0]=="e"){if(e=="无"){e=Math.floor(Math.random()*(临时4[0].length-1))+1}dy+=临时4[0][e]}
+        if(临时4[0][0]=="f"){
+            let i5=0;
+            for(let i4=1;临时4[0].length>i4;i4+=3){
+                if(!f[临时4[0][i4]]){
+                    if(临时4[0][i4]=="周"){f["周"]=new Date().getDay()+1}
+                    if(临时4[0][i4]=="季"){
+                        if(f["月"]==3||f["月"]==4||f["月"]==5){f["季"]="春";
+                        }else if(f["月"]==6||f["月"]==7||f["月"]==8){f["季"]="夏";
+                        }else if(f["月"]==9||f["月"]==10||f["月"]==11){f["季"]="秋";
+                        }else{f["季"]="冬"}
                     }
                 }
-                else{dy+=临时2[i2]}
-                dy+="}";
-                dy2="<div class='群演' style='animation-name:"+临时[0]+"_群演"+i2+"'></div>"+dy2;
+                if(临时4[0][i4+1]&&f[临时4[0][i4]]==临时4[0][i4+1]){
+                    i5=1;
+                    dy+=临时4[0][i4+2];
+                    break;
+                }
             }
-            document.getElementById("小窝").innerHTML=dy2+"<div id='点点'></div>";
-        // }
-    dy+="</style>";
-    互动="";
-    document.getElementById("style").innerHTML=dy;
-    if(临时[2]){if(主人!="无"&&主人!="（不可认养）"){临时[1]=临时[2]}}
-    临时[1]=临时[1].replace(new RegExp('〈x〉', "g"), "<b>"+名字+"</b>");
-    临时[1]=临时[1].replace(new RegExp('〈z〉', "g"), "<b>"+主人+"</b>");
-    if(临时[1].indexOf("＼")!=-1){
-        临时[1]=临时[1].split("＼");
-        临时[1]=临时[1][Math.floor(Math.random()*临时[1].length)];
+            if(i5==0){dy+=临时4[0][临时4[0].length-1];}
+        }
+        dy+=临时4[1];
     }
-    document.getElementById("实时").innerHTML=临时[1];
-    document.getElementById("点点").style="animation-name:"+临时[0]+";";
+}
+else{dy+=临时2[i2]}
+    dy+="}";
+    dy2="<div class='群演' style='animation-name:"+临时[0]+"_群演"+i2+"'></div>"+dy2;
+}
+document.getElementById("小窝").innerHTML=dy2+"<div id='点点'></div>";
+dy+="</style>";
+互动="";
+document.getElementById("style").innerHTML=dy;
+if(临时[2]){if(主人!="无"&&主人!="（不可认养）"){临时[1]=临时[2]}}
+临时[1]=临时[1].replace(new RegExp('〈x〉',"g"),"<b>"+名字+"</b>");
+临时[1]=临时[1].replace(new RegExp('〈z〉',"g"),"<b>"+主人+"</b>");
+if(临时[1].indexOf("＼")!=-1){
+    临时[1]=临时[1].split("＼");
+    临时[1]=临时[1][Math.floor(Math.random()*临时[1].length)];
+}
+document.getElementById("实时").innerHTML=临时[1];
+document.getElementById("点点").style="animation-name:"+临时[0]+";";
 }
 
 if(号码){}else{号码="000000"}加载();刷新();
@@ -712,68 +698,45 @@ function 选择颜色(){document.getElementById("输入颜色").value=document.g
 function 查询(){
     输入颜色();
     号码=document.getElementById("选择颜色").value.split("#")[1];
-    let 判断查询=document.getElementById("输入颜色").value.replace(/#/g, "");
-    if(判断查询.length==6&&判断查询.toUpperCase().replace(/[0-9A-F]/g,"")==""){
-        notyf.confirm("编号正确")
-    }else if(判断查询==""){
-        notyf.confirm("当前编号："+号码)
-    }else{
-        notyf.alert("编号不正确")
-    }
+    let 判断查询=document.getElementById("输入颜色").value.replace(/#/g,"");
+    if(判断查询.length==6&&判断查询.toUpperCase().replace(/[0-9A-F]/g,"")==""){notyf.confirm("编号正确")
+    }else if(判断查询==""){notyf.confirm("当前编号："+号码)
+    }else{notyf.alert("编号不正确")}
     document.getElementById("输入颜色").value="";
     互动="";
-    改url();
-    加载();
+    改url();加载();
 }
 function 选择颜色_背景(){document.getElementById("输入颜色_背景").value=document.getElementById("选择颜色_背景").value}
-function 新背景(){
-    换背景(document.getElementById("输入颜色_背景").value);
-    document.getElementById("输入颜色_背景").value="";
-}
+function 新背景(){换背景(document.getElementById("输入颜色_背景").value);document.getElementById("输入颜色_背景").value="";}
 function 随机一只(){
-    临时="";
-    for(let i=0;6>i;i++){
-        临时+=字母[Math.floor(Math.random()*字母.length)];
-    }
-    号码=临时;
-    document.getElementById("选择颜色").value="#"+临时;
-    document.getElementById("输入颜色").value=临时;
-    互动="";
-    改url();
-    加载();
+临时="";
+for(let i=0;6>i;i++){临时+=字母[Math.floor(Math.random()*字母.length)];}
+号码=临时;
+document.getElementById("选择颜色").value="#"+临时;
+document.getElementById("输入颜色").value=临时;
+互动="";
+改url();加载();
 }
 function 复制像素点(){制="{{ site.mq_url }}/"+颜色;复()}
-
-function 看望打卡(o){
-    if(o==0){document.getElementById("看望打卡").innerHTML="<iframe src='/i/5/看望打卡?"+颜色+"' frameborder='0' width='50%' height='30px'></iframe>";}else{document.getElementById("看望打卡").innerHTML="<sup style='background-color:#01EC0C;color:#ffffff'>打卡成功</sup>";}
-}
-
+function 看望打卡(o){if(o==0){document.getElementById("看望打卡").innerHTML="<iframe src='/i/5/看望打卡?"+颜色+"' frameborder='0' width='50%' height='30px'></iframe>"}else{document.getElementById("看望打卡").innerHTML="<sup style='background-color:#01EC0C;color:#ffffff'>打卡成功</sup>"}}
+function 互动模式(){if(互模==0){互模=1;notyf.confirm("开启立即执行模式");localStorage.setItem("互动模式","1")}else{互模=0;notyf.confirm("关闭立即执行模式");localStorage.removeItem("互动模式")}}
 function 新互动(d){
-    notyf.confirm("你的指令正在传递中……");
-    if(d.indexOf("［")!=-1){d=d.split("［");d=d[Math.floor(Math.random()*d.length)]}
-    互动=d;
-    if(互模==1){
-        clearInterval(循环);
-        刷新();
-        循环=window.setInterval(()=>{setTimeout(刷新,0)},26000);
-    }
+notyf.confirm("你的指令正在传递中……");
+if(d.indexOf("［")!=-1){d=d.split("［");d=d[Math.floor(Math.random()*d.length)]}
+互动=d;
+if(互模==1){
+    clearInterval(循环);
+    刷新();
+    循环=window.setInterval(()=>{setTimeout(刷新,0)},26000);
 }
-
-function 互动模式(){
-    if(互模==0){互模=1;notyf.confirm("开启立即执行模式");localStorage.setItem("互动模式", "1");
-    }else{互模=0;notyf.confirm("关闭立即执行模式");localStorage.removeItem("互动模式");}
-}
-
-if(localStorage.getItem("互动模式")){
-    document.getElementById("互动模式").checked="checked";
-    互模=1;
 }
 
 function 改url(){
     let url=location.href.split("?")[0].split("#")[0].split(".cn")[0]+".cn/";
-    history.replaceState(null,null, url);
-    history.replaceState(null,null, url+号码);
+    history.replaceState(null,null,url);
+    history.replaceState(null,null,url+号码.toUpperCase());
 }
 
+if(localStorage.getItem("互动模式")){document.getElementById("互动模式").checked="checked";互模=1}
 改url();
 </script>
