@@ -18,6 +18,8 @@ let data=[
 
     //展示奖牌在/i/w/运动会/奖牌动作展示.html
 
+    "测试／0%{opacity:1;width:100px;height:100px;background-color:#({f,周,3,ff0000,0000ff})}",
+
     "hr／其他", //其他
     "跳／0%{top:0}2.5%{top:-100px}7.5%{top:0}",
     "跳跳／0%{top:0}1.5%{top:-100px}3%{top:0}4.5%{top:-100px}6%{top:0}",
@@ -86,6 +88,7 @@ let data=[
 
 ];
 let 颜色=0;
+let f={"年":new Date().getFullYear(),"月":new Date().getMonth()+1,"日":new Date().getDate()}
 let dy="<br>";
 for(let i=0;data.length>i;i++){
     let 临时=data[i].split("／");
@@ -120,6 +123,35 @@ function 动作(d){
             if(临时4[0][0]=="b"){if(临时4[0][4]){临时4[0][4]=临时4[0][4].split(".");}for(let i4=0;临时4[0][3]>i4;i4++){if(临时4[0][4]&&临时4[0][4].indexOf((i4+1).toString())!=-1){}else{dy+=(临时4[0][1]*1+(临时4[0][2]*i4))+"%,"}}}
             if(临时4[0][0]=="c"){
                 if(颜色==0){dy+=临时4[0][2];}else{dy+=临时4[0][1];}
+            }
+            if(临时4[0][0]=="d"){
+                dy+=临时4[0][Math.floor(Math.random()*(临时4[0].length-1))+1];
+            }
+            if(临时4[0][0]=="e"){
+                if(e=="无"){e=Math.floor(Math.random()*(临时4[0].length-1))+1;}
+                dy+=临时4[0][e];
+            }
+            if(临时4[0][0]=="f"){
+                let i5=0;
+                for(let i4=1;临时4[0].length>i4;i4+=3){
+                    if(!f[临时4[0][i4]]){
+                        if(临时4[0][i4]=="周"){f["周"]=new Date().getDay()+1;}
+                        if(临时4[0][i4]=="季"){
+                            if(f["月"]==3||f["月"]==4||f["月"]==5){f["季"]="春";
+                            }else if(f["月"]==6||f["月"]==7||f["月"]==8){f["季"]="夏";
+                            }else if(f["月"]==9||f["月"]==10||f["月"]==11){f["季"]="秋";
+                            }else{f["季"]="冬";}
+                        }
+                    }
+                    if(临时4[0][i4+1]&&f[临时4[0][i4]]==临时4[0][i4+1]){
+                        i5=1;
+                        dy+=临时4[0][i4+2];
+                        break;
+                    }
+                }
+                if(i5==0){
+                    dy+=临时4[0][临时4[0].length-1];
+                }
             }
             dy+=临时4[1];
         }
