@@ -466,12 +466,15 @@ function 加载(){
                     for(let i=1;临时2.length>i;i++){
                         临时2[i]=临时2[i].split("]");
                         if(临时2[i][0].indexOf(",,")!=-1){ //代码
-                            let 特殊代码=临时2[i][0].split(",,");
-                            if(特殊代码[0]=="a"){
-                                内容[2]+="<a onclick=\"document.getElementById('输入互动').value='"+特殊代码[2]+"';输入互动()\">"+特殊代码[1]+"</a>"
+                            let 代码=临时2[i][0].split(",,");
+                            if(代码[0]=="a"){
+                                内容[2]+="<a onclick=\"document.getElementById('输入互动').value='"+代码[2]+"';输入互动()\">"+代码[1]+"</a>"
                             }
                         }if(临时2[i][0].indexOf(",")!=-1){
-                            
+                            let 代码=临时2[i][0].split(",");
+                            if(代码[0]=="a"){
+                                内容[2]+="<a href=\""+代码[2]+"\">"+代码[1]+"</a>";
+                            }
                         }else if(临时2[i][0].length==1){
                             if(临时2[i][0]=="n"){
                                 内容[2]+="<br>";
@@ -737,7 +740,7 @@ if(localStorage.getItem("互动模式")){
 }
 
 function 改url(){
-    let url=location.href.split("?")[0].split("#")[0].replace(new RegExp(',',"g"),"");
+    let url=location.href.split("?")[0].split("#")[0];
     history.replaceState(null,null, url);
     history.replaceState(null,null, url+号码);
 }
