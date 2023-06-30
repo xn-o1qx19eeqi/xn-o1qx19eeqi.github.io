@@ -11,7 +11,7 @@ div0: 1
 <div id="style_root"></div><div id="style"></div>
 <div id="屋顶"></div><div id="房子"><div id="小窝"></div></div><div id="地板"></div><div id="实时"></div><br>
 
-<a onclick="简易模式(1)" id="简易模式" style="display:none;"><small>展开</small> <br><small style="color:var(--body-color)">通知：点击“打卡”会将当前小像素点设为默认，打开网页、进入小房间等都会自动选择。（注意：这个设置只是保存在浏览器缓存里，清除缓存将失去这条记录，请保存好你的小像素点编号）</small></a>
+<a onclick="简易模式(1)" id="简易模式" style="display:none;"><small>展开</small> <br><small style="color:var(--body-color)"></small></a>
 
 <div id="杂">
 颜色：<input type="text" placeholder="000000" autocomplete="off" id="输入颜色" onkeyup="输入颜色()"><input type="color" id="选择颜色" oninput="选择颜色()"><input type="button" value="查询" onclick="查询()"><input type="button" value="随机一只" onclick="随机一只()"><br><sup><span id="未被认养"></span></sup><br>
@@ -106,8 +106,9 @@ div0: 1
 同时我也注意到大家对小像素点的热情，会希望有一些围绕小像素点的其他玩法。<br>
 我会试着设计一些小活动、小游戏，或是找其他志同道合的朋友的作品“联动”一下，在不影响小像素点本质的前提下，拓展一些“周边玩法”。</div>
 <br>
-<b><a href="/w/zhengminghuodong">征名活动</a></b>：<a href="/111111">#111111</a>的征名已经结束，“黑曜石”以40票中选。<br>
+<b><a href="/w/zhengminghuodong">征名活动</a></b>：本期已结束。<br>
 <b><a href="/w/xiaofangjian">小房间</a></b>（测试中功能）：和小像素点聊聊天，虽然它可能不理解你的意思，但它会认真倾听。<br>
+<b>小游戏</b>：<a href="/w/duobiqiu">躲避球</a><br>
 
 <br>
 
@@ -431,17 +432,16 @@ if(节日[今日]){今天=节日[今日]}else{今天=0}
 if(彩蛋["o"]){彩蛋=彩蛋["o"]}else if(彩蛋[今日]){彩蛋=彩蛋[今日]}else if(彩蛋[new Date().getHours()]){彩蛋=彩蛋[new Date().getHours()]}else{彩蛋=[]}
 
 function 换背景(背景){
-    if(背景.indexOf(".")!=-1){
-        document.getElementById("房子").style="background-image:url(/i/y/"+背景+")";
-        document.getElementById("输入颜色_背景").placeholder=背景;
-    }else{
-        if(背景[0]!="#"){背景="#"+背景}
-        document.getElementById("房子").style="background-image:none";
-        背景颜色=背景;
-        document.getElementById("选择颜色_背景").value=背景颜色;
-        document.getElementById("输入颜色_背景").placeholder=背景颜色;
-    }
-
+if(背景.length==6&&背景.replace(/[0-9A-Fa-f]/g,"")==""){背景="#"+背景}
+if(背景[0]=="#"){
+    document.getElementById("房子").style="background-image:none";
+    背景颜色=背景;
+    document.getElementById("选择颜色_背景").value=背景颜色;
+    document.getElementById("输入颜色_背景").placeholder=背景颜色;
+}else{
+    document.getElementById("房子").style="background-image:url(/i/y/"+背景+")";
+    document.getElementById("输入颜色_背景").placeholder=背景;
+}
     document.getElementById("style_root").innerHTML="<style>:root{--点点:#"+颜色+";--背景:"+背景颜色+";--反色:"+反色+"}</style>";
 }
 
@@ -474,7 +474,7 @@ try{
                 dy+=" <small><a id=\"看望打卡\" onclick=\"看望打卡(0);\">打卡</a>";
             }else{dy+=" <small><a id=\"看望打卡\" onclick=\"看望打卡(1)\">打卡</a>"}
             }
-        document.getElementById("未被认养").innerHTML='通知：点击“打卡”会将当前小像素点设为默认，打开网页、进入小房间等都会自动选择。（注意：这个设置只是保存在浏览器缓存里，清除缓存将失去这条记录，请保存好你的小像素点编号）<br>';
+        document.getElementById("未被认养").innerHTML='';
         if(内容[2]&&内容[2]!=""){
             if(内容[2].indexOf("〈放弃认养〉")!=-1){内容[2]=内容[2].replace(/〈放弃认养〉/g,"");固定动作="放弃认养"}
             if(内容[2].indexOf("〈固定〉")!=-1){内容[2]=内容[2].replace(/〈固定〉/g,"");固定动作="固定"}
