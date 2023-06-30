@@ -14,7 +14,7 @@ div0: 1
 <a onclick="简易模式(1)" id="简易模式" style="display:none;"><small>展开</small> <br><small style="color:var(--body-color)">通知：点击“打卡”会将当前小像素点设为默认，打开网页、进入小房间等都会自动选择。（注意：这个设置只是保存在浏览器缓存里，清除缓存将失去这条记录，请保存好你的小像素点编号）</small></a>
 
 <div id="杂">
-颜色：<input type="text" placeholder="000000" autocomplete="off" id="输入颜色" onkeyup="输入颜色()"><input type="color" id="选择颜色" oninput="选择颜色()"><input type="button" value="查询" onclick="查询()"><input type="button" value="随机一只" onclick="随机一只()"><br><sup><span id="未被认养">通知：点击“打卡”会将当前小像素点设为默认，打开网页、进入小房间等都会自动选择。（注意：这个设置只是保存在浏览器缓存里，清除缓存将失去这条记录，请保存好你的小像素点编号）<br></span></sup><br>
+颜色：<input type="text" placeholder="000000" autocomplete="off" id="输入颜色" onkeyup="输入颜色()"><input type="color" id="选择颜色" oninput="选择颜色()"><input type="button" value="查询" onclick="查询()"><input type="button" value="随机一只" onclick="随机一只()"><br><sup><span id="未被认养"></span></sup><br>
 互动<input type="checkbox" id="互动模式" oninput="互动模式()">：<input type="text" placeholder="动作" autocomplete="off" id="输入互动"><input type="button" value="确定" onclick="输入互动()"><small>（<a href="/i/c#动作代码">动作指令有哪些？</a>）</small><br><span id="互动"></span><br>
 <br>
 
@@ -472,7 +472,7 @@ try{
                 dy+=" <small><a id=\"看望打卡\" onclick=\"看望打卡(0);\">打卡</a>";
             }else{dy+=" <small><a id=\"看望打卡\" onclick=\"看望打卡(1)\">打卡</a>"}
             }
-        document.getElementById("未被认养").innerHTML='';
+        document.getElementById("未被认养").innerHTML='通知：点击“打卡”会将当前小像素点设为默认，打开网页、进入小房间等都会自动选择。（注意：这个设置只是保存在浏览器缓存里，清除缓存将失去这条记录，请保存好你的小像素点编号）<br>';
         if(内容[2]&&内容[2]!=""){
             if(内容[2].indexOf("〈放弃认养〉")!=-1){内容[2]=内容[2].replace(/〈放弃认养〉/g,"");固定动作="放弃认养"}
             if(内容[2].indexOf("〈固定〉")!=-1){内容[2]=内容[2].replace(/〈固定〉/g,"");固定动作="固定"}
