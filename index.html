@@ -7,7 +7,7 @@ BiaoTi: 小像素点
 div0: 1
 ---
 <style>#房子{width:400px;height:400px;overflow:hidden;background-color:var(--背景)}#小窝{position:relative;top:270px;left:191px}#点点,.群演{position:relative;width:10px;height:10px;top:0;left:0;animation-duration:20s;animation-delay:3s;background-color:var(--点点)}.群演{position:absolute;opacity:0}#地板{font-size:0.8em}
-@media screen and (max-width: 767px){#房子{margin:0 0 0 -3%}}</style>
+@media screen and (max-width: 767px){#房子{margin:0 0 0 -3%;transform-origin:left center;transform:scale(0.85)}}</style>
 <div id="style_root"></div><div id="style"></div>
 <div id="屋顶"></div><div id="房子"><div id="小窝"></div></div><div id="地板"></div><div id="实时"></div><br>
 
@@ -31,7 +31,11 @@ div0: 1
 <small><a href="https://wj.qq.com/s2/11524389/a364/">问卷调查</a>（有什么建议可以在这里留言，偶尔会征集改进意见）<br>
 <a href="https://pd.qq.com/s/6qkboum73">QQ频道</a>（闲聊、反馈）<br></small>
 
-<span style="background-color:#E0E0E0;color:#E0E0E0;font-size:10px;">如果你看到了这行字，说明你的浏览器开启了“强制暗色模式”，会导致页面显示异常，建议关闭此模式。</span>
+<span style="background-color:#E0E0E0;color:#E0E0E0;font-size:10px;">如果你看到了这行字，说明你的浏览器开启了“强制暗色模式”，会导致页面显示异常，建议关闭此模式。</span><br>
+
+<a onclick="document.getElementById('疑问').style='';">我有疑问</a>
+
+<div id="疑问" style="display:none;">
 
 <a name="如何认养"></a><h3>如何认养？</h3>
 <ol>
@@ -94,7 +98,7 @@ div0: 1
 
 <a href="/i/e">更多问题</a>
 
-</div>
+</div></div>
 
 <hr>
 
