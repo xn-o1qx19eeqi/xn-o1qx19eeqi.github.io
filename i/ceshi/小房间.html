@@ -54,8 +54,10 @@ try{
     }
 }catch(e){}
 document.getElementById("style_root").innerHTML="<style>:root{--点点:#"+颜色+";--背景:"+背景+";--反色:"+反色+"}</style>";
+document.getElementById("屋顶").innerHTML="<h2>"+名字+"<small>的小房间</small></h2>";
 
 let 预设={
+    "开始":["o／来到〈x〉的小房间。"],
     "o":["o／〈x〉在认真聆听。"],
     "😃":["高兴跳跳／〈x〉跳了跳。"],
     "🙁":["凑近／〈x〉蹭了蹭你。＼〈x〉拍了拍你。"],
@@ -69,7 +71,7 @@ let 动作={
     "高兴跳跳":"0%{top:0}1%{top:-50px}2%{top:0}3%{top:-50px}4%{top:0}",
 }
 
-let 表情="o";
+let 表情="开始";
 
 function 发送(){
     document.getElementById("上一条").innerHTML=document.getElementById("聊天记录").innerHTML;
@@ -83,7 +85,7 @@ function 发送(){
 
     临时=临时[1].split("＼");
     临时=临时[Math.floor(Math.random()*临时.length)];
-    临时=临时.replace(new RegExp('〈x〉',"g"),名字);
+    临时=临时.replace(new RegExp('〈x〉',"g"),"<b>"+名字+"</b>");
     document.getElementById("实时").innerHTML=临时;
 
     dy="<style>";
@@ -152,4 +154,6 @@ function showkey() {
     }
 }
 document.onkeydown = showkey;
+
+发送();
 </script>
