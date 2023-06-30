@@ -1,0 +1,119 @@
+---
+layout: e0
+permalink: ceshi/duobiqiu
+BeiJing: 1-01.png
+BeiJing_SJ: 1-01.png
+BiaoTi: 小像素点
+title: 躲避球
+h1: 躲避球
+h2: 
+---
+<style>
+#canvas {
+    width: 600px;
+    height: 400px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    cursor: none;
+}
+</style>
+
+<canvas id="canvas"></canvas>
+
+<script>
+let 颜色=localStorage.getItem("像素点");
+if(!颜色){颜色="000000";}else{alert(颜色);}
+
+let 背景="#DDDDDD";
+let 反色="#333333";
+if(颜色[0]=="D"||颜色[0]=="E"||颜色[0]=="F"){
+    if(颜色[2]=="D"||颜色[2]=="E"||颜色[2]=="F"){
+        if(颜色[4]=="D"||颜色[4]=="E"||颜色[4]=="F"){
+            背景="#333333";
+            反色="#DDDDDD";
+        }
+    }
+}
+document.getElementById("canvas").style="background-color:"+背景+";border: 1px solid "+反色;
+
+var canvas = document.getElementById("canvas")
+    var ctx = canvas.getContext("2d")
+    var cRect = canvas.getBoundingClientRect()
+    var pixals = []
+    var run = true
+    canvas.width = 600
+    canvas.height = 400
+    var mouse = {
+        x: 0,
+        y: 0
+    }
+    window.addEventListener("mousemove", function (evt) {
+        var x = evt.clientX - cRect.left
+        var y = evt.clientY - cRect.top
+        if (x < 590 && x > 0 && y < 390 && y > 0) {
+            mouse.x = x
+            mouse.y = y
+        }
+    
+    })
+    function newpixal() {
+        pixals.push({
+            sx: 599,
+            sy: 399,
+            vx: (0.5 - Math.random()) * 2,
+            vy: (0.5 - Math.random()) * 2
+        })
+    }
+    function draw() {
+        if (run) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+            ctx.font = "20px sans-serif"
+            ctx.fillStyle = 反色
+            ctx.fillText(pixals.length, 5, 20)
+            ctx.fillStyle = "#"+颜色
+            ctx.beginPath()
+            ctx.fillRect(mouse.x, mouse.y, 10,10)
+            ctx.fill()
+            ctx.fillStyle = 反色
+            for (var i = 0; i < pixals.length; i++) {
+                pixal = pixals[i]
+                ctx.beginPath()
+                ctx.arc(pixal.sx, pixal.sy, 2, 0, 2 * Math.PI)
+                ctx.fill()
+                pixal.sx += pixal.vx
+                pixal.sy += pixal.vy
+                if (pixal.sx < 0 || pixal.sx > 600) {
+                    pixal.vx = -pixal.vx
+                }
+                if (pixal.sy < 0 || pixal.sy > 400) {
+                    pixal.vy = -pixal.vy
+                }
+                if (Math.abs(pixal.sx - mouse.x) < 7 && Math.abs(pixal.sy - mouse.y) < 7) {
+                    run = false
+                    ctx.fillText("游戏结束，共坚持了"+pixals.length+"秒", 5, 40)
+                    // var r = confirm("游戏结束，您一共坚持了" + pixals.length + "秒,\n 按[确定]重新开始。")
+                    // if (r) {
+                    //     pixals = []
+                    //     run = true
+                    // }
+                }
+            }
+        }
+    }
+
+    function 开始(){
+        newpixal()
+        setInterval(newpixal, 1000)
+        setInterval(draw, 1)
+    }
+
+    function 重新开始(){
+        pixals = []
+        run = true
+    }
+    </script>
+
+<a id="开始0" onclick="开始();document.getElementById('开始0').style='display:none;';document.getElementById('开始1').style='';">开始</a>
+<a id="开始1" style="display:none;" onclick="重新开始()">重新开始</a>
