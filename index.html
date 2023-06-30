@@ -7,7 +7,7 @@ BiaoTi: 小像素点
 div0: 1
 ---
 <style>#房子{width:400px;height:400px;overflow:hidden;background-color:var(--背景)}#小窝{position:relative;top:270px;left:191px}#点点,.群演{position:relative;width:10px;height:10px;top:0;left:0;animation-duration:20s;animation-delay:3s;background-color:var(--点点)}.群演{position:absolute;opacity:0}#地板{font-size:0.8em}
-@media screen and (max-width: 767px){#房子{margin:0 0 0 -3px;transform-origin:left center;transform:scale(0.9)}}</style>
+@media screen and (max-width: 767px){#房子{margin:0 0 0 -2.6%;transform-origin:left center;transform:scale(0.88)}}</style>
 <div id="style_root"></div><div id="style"></div>
 <div id="屋顶"></div><div id="房子"><div id="小窝"></div></div><div id="地板"></div><div id="实时"></div><br>
 
@@ -448,7 +448,7 @@ function 加载(){
 号码=号码.toUpperCase();
 for(let i=0;6>i;i++){if(字母.indexOf(号码[i])!=-1){颜色+=号码[i]}}
 
-if(颜色.length!=6){颜色="000000"}else{localStorage.setItem("像素点",颜色)}
+if(颜色.length!=6){颜色="000000"}
 let dy="";
 try{
     let 地址="/i/x/"+颜色+".json";
@@ -469,7 +469,7 @@ try{
         if(主人!="（不可认养）"){
             let 打卡临时=0;
             if(内容[7]&&内容[7]!=""&&Math.trunc((new Date().getTime()-new Date(内容[7]).getTime())/1000/60/60/24)>90){
-                dy+=" <small><a id=\"看望打卡\" onclick=\"看望打卡(0)\">打卡</a>";
+                dy+=" <small><a id=\"看望打卡\" onclick=\"看望打卡(0);\">打卡</a>";
             }else{dy+=" <small><a id=\"看望打卡\" onclick=\"看望打卡(1)\">打卡</a>"}
             }
         document.getElementById("未被认养").innerHTML='';
@@ -733,7 +733,7 @@ document.getElementById("输入颜色").value=临时;
 改url();加载();
 }
 function 复制像素点(){制="{{ site.mq_url }}/"+颜色;复()}
-function 看望打卡(o){if(o==0){document.getElementById("看望打卡").innerHTML="<iframe src='/i/5/看望打卡?"+颜色+"' frameborder='0' width='50%' height='30px'></iframe>"}else{document.getElementById("看望打卡").innerHTML="<sup style='background-color:#01EC0C;color:#ffffff'>打卡成功</sup>"}}
+function 看望打卡(o){localStorage.setItem("像素点",颜色);if(o==0){document.getElementById("看望打卡").innerHTML="<iframe src='/i/5/看望打卡?"+颜色+"' frameborder='0' width='50%' height='30px'></iframe>"}else{document.getElementById("看望打卡").innerHTML="<sup style='background-color:#01EC0C;color:#ffffff'>打卡成功</sup>"}}
 function 互动模式(){if(互模==0){互模=1;notyf.confirm("开启立即执行模式");localStorage.setItem("互动模式","1")}else{互模=0;notyf.confirm("关闭立即执行模式");localStorage.removeItem("互动模式")}}
 function 新互动(d){
 notyf.confirm("你的指令正在传递中……");
