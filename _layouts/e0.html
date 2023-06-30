@@ -130,7 +130,7 @@ layout: default
     <div style="position: absolute;top:40%;width:100%;"><h1 class="大标题"><span class="标题">加载中..</span></h1></div>
     <div class="左 导航"><a href="{{ site.mq }}">猫球博客</a> &nbsp;<a>/</a> &nbsp;<a href="{{ site.mq_cafe }}">猫.cafe</a> &nbsp;<a>/</a> &nbsp;<a href="/">像素点.cn</a></div>
     <div class="右 导航"><a></a></div>
-    <div style="position: absolute;top:85%;width:100%;text-align:center;" class="下箭头a"><span class="下箭头 cursor_pointer" onclick="window.location.href='#内容'"></span></div>
+    <div style="position: absolute;top:85%;width:100%;text-align:center;" class="下箭头a"><span class="下箭头 cursor_pointer" onclick="div0()"></span></div>
     <a style="position: absolute;top:100%;" name="内容"></a>
     <div id="div0" style="position: absolute;top:100%;width:100%;"><div class="内容0">
 
@@ -232,7 +232,11 @@ layout: default
             }
         }
 
-        document.getElementById('div0').scrollIntoView();
+        function div0(){
+            document.getElementById('div0').scrollIntoView();
+        }
+        {% if page.div0 %}div0(){% else %}{% endif %}
+        
     </script>
 
 </body>
