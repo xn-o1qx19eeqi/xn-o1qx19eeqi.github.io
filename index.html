@@ -431,15 +431,17 @@ if(节日[今日]){今天=节日[今日]}else{今天=0}
 if(彩蛋["o"]){彩蛋=彩蛋["o"]}else if(彩蛋[今日]){彩蛋=彩蛋[今日]}else if(彩蛋[new Date().getHours()]){彩蛋=彩蛋[new Date().getHours()]}else{彩蛋=[]}
 
 function 换背景(背景){
-    if(背景[0]=="#"){
+    if(背景.indexOf(".")!=-1){
+        document.getElementById("房子").style="background-image:url(/i/y/"+背景+")";
+        document.getElementById("输入颜色_背景").placeholder=背景;
+    }else{
+        if(背景[0]!="#"){背景="#"+背景}
         document.getElementById("房子").style="background-image:none";
         背景颜色=背景;
         document.getElementById("选择颜色_背景").value=背景颜色;
         document.getElementById("输入颜色_背景").placeholder=背景颜色;
-    }else{
-        document.getElementById("房子").style="background-image:url(/i/y/"+背景+")";
-        document.getElementById("输入颜色_背景").placeholder=背景;
     }
+
     document.getElementById("style_root").innerHTML="<style>:root{--点点:#"+颜色+";--背景:"+背景颜色+";--反色:"+反色+"}</style>";
 }
 

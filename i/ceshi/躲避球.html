@@ -12,9 +12,10 @@ permalink: ceshi/duobiqiu
     cursor: none;
 }
 </style>
-
+<div style="position:absolute;top:10%;left:10%">
 <a id="开始0" onclick="开始();document.getElementById('开始0').style='display:none;';document.getElementById('开始1').style='';">开始</a>
 <a id="开始1" style="display:none;" onclick="重新开始()">重新开始</a>
+</div>
 
 <canvas id="canvas"></canvas>
 
@@ -22,13 +23,13 @@ permalink: ceshi/duobiqiu
 let 颜色=localStorage.getItem("像素点");
 if(!颜色){颜色="000000";}
 
-let 背景="#DDDDDD";
-let 反色="#333333";
+let 背景="#EEEEEE";
+let 反色="#111111";
 if(颜色[0]=="D"||颜色[0]=="E"||颜色[0]=="F"){
     if(颜色[2]=="D"||颜色[2]=="E"||颜色[2]=="F"){
         if(颜色[4]=="D"||颜色[4]=="E"||颜色[4]=="F"){
-            背景="#333333";
-            反色="#DDDDDD";
+            背景="#111111";
+            反色="#EEEEEE";
         }
     }
 }
