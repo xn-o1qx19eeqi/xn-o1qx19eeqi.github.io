@@ -637,9 +637,13 @@ let 临时2;
 if(动作[临时[0]]){
     临时2=动作[临时[0]];
 }else{
-    console.log("BUG："+临时[0]);
-    notyf.alert("发现BUG：<br>【"+临时[0]+"】<br>请与我联系，非常感谢！");
-    临时2=动作["o"];
+    if(临时[0].length>7&&临时[0][0]=="x"&&临时[0].slice(1,6).replace(/[0-9A-F]/g,"")==""&&动作[临时[0].slice(7)]){
+        临时2=动作[临时[0].slice(7)];
+    }else{
+        console.log("BUG："+临时[0]);
+        notyf.alert("发现BUG：<br>【"+临时[0]+"】<br>请与我联系，非常感谢！");
+        临时2=动作["o"];
+    }
 }
 if(临时2.indexOf("＼")!=-1){临时2=临时2.split("＼");临时2=临时2[Math.floor(Math.random()*临时2.length)]}
 临时2=临时2.split("，");
