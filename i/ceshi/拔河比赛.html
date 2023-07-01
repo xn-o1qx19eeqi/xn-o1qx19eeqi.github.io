@@ -9,11 +9,11 @@ h1: 小像素点运动会
 h2: 
 ---
 
-
-
-
 <style>
-    /* body{position:absolute;left:10%;top:50%;image-rendering: optimizeSpeed;image-rendering: -moz-crisp-edges;image-rendering: -o-crisp-edges;image-rendering: -webkit-optimize-contrast;image-rendering: pixelated;-ms-interpolation-mode: nearest-neighbor} */
+
+    body{image-rendering: optimizeSpeed;image-rendering: -moz-crisp-edges;image-rendering: -o-crisp-edges;image-rendering: -webkit-optimize-contrast;image-rendering: pixelated;-ms-interpolation-mode: nearest-neighbor}
+
+    .内容0{width:100%;margin:0;}
 
     i{display:inline-block;width:10px;height:10px;margin:0;}
 
@@ -30,15 +30,15 @@ h2:
     .s6{background-color:#C77232;box-shadow:0 0 #C77232,10px 10px #C77232,-10px 0 #C77232;}
 
 
-    .a1{background-color:#ffff00;box-shadow:0 -20px 0 30px #ffff00;}
+    #a1{background-color:#ffff00;box-shadow:0 -20px 0 30px #ffff00;}
 
     /* .标线{position:relative;left:50%;background-color:#aaaaaa;} */
     .b1{background-color:#00000000;width:630px;}
     .b2{background-color:#aaaaaa;}
 
     @keyframes fire{
-        0%,100%{top:-82px;transform:scale(8);background-size:100% 100%;
-            background-image:url(data:image/gif;base64,R0lGODlhDgAWAKIEAK9IKOy1H//tVtFzLv///wAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh/wtYTVAgRGF0YVhNUDw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDcuMS1jMDAwIDc5LmRhYmFjYmIsIDIwMjEvMDQvMTQtMDA6Mzk6NDQgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6ZWUzMTk5ZWYtOWNhZS1jMDQ5LTliNzQtOTZlZDkyZTk2MTYxIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjg4MDM5QTk0MTgxMjExRUU4N0Q5QkFCRTRBQzlDRUQyIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjg4MDM5QTkzMTgxMjExRUU4N0Q5QkFCRTRBQzlDRUQyIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCAyMy4wIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjE3YTcwYjBlLWRhMjgtNGM0OC1hMzdjLTc2MWRjYzRjYWI0YiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDplZTMxOTllZi05Y2FlLWMwNDktOWI3NC05NmVkOTJlOTYxNjEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4B//79/Pv6+fj39vX08/Lx8O/u7ezr6uno5+bl5OPi4eDf3t3c29rZ2NfW1dTT0tHQz87NzMvKycjHxsXEw8LBwL++vby7urm4t7a1tLOysbCvrq2sq6qpqKempaSjoqGgn56dnJuamZiXlpWUk5KRkI+OjYyLiomIh4aFhIOCgYB/fn18e3p5eHd2dXRzcnFwb25tbGtqaWhnZmVkY2JhYF9eXVxbWllYV1ZVVFNSUVBPTk1MS0pJSEdGRURDQkFAPz49PDs6OTg3NjU0MzIxMC8uLSwrKikoJyYlJCMiISAfHh0cGxoZGBcWFRQTEhEQDw4NDAsKCQgHBgUEAwIBAAAh+QQJFAAEACwAAAAADgAWAAADTEi6OvwwykkXAPXiXNlw1AdGziB8JHgOmwd+1wPA8xUEzMUON3CPM9bthyLwAsIhrKEksjbHj2BKs8ymUyTLGsBSi0aTV/DDXMdkbQIAIfkECRQABAAsAAAAAA4AFgAAA0tIutz+DsBJ1agkXCzhpsNniUTYmGe5kWrgXh0zuO8AxMpd2zhxD4KgTcMAhIJCV8wIRM6IIWMAKdBAQ8/gTtV0OW2+GdV5y42FpgQAIfkEBRQABAAsAAAAAA4AFgAAA0lIutz+MKqxqJzgqtwAt46XBeQjkiTIjKjaDCQXidcwZDaYA3s+5UDfT0C0pUAAIhGV4iSXy2ZFQIoCJ1UlNWAj8AZaqwgWLlISADs=);
+        0%,100%{top:-92px;transform:scale(9);background-size:100% 100%;
+            background-image:url(data:image/gif;base64,R0lGODlhDgAWAKIEAL8+F/++DP/tVuRvGv///wAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh/wtYTVAgRGF0YVhNUDw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDcuMS1jMDAwIDc5LmRhYmFjYmIsIDIwMjEvMDQvMTQtMDA6Mzk6NDQgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCAyMy4wIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpFREVBQ0ZBNzE4MjMxMUVFQUI3MDk5M0ExNjE5MjY5MSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpFREVBQ0ZBODE4MjMxMUVFQUI3MDk5M0ExNjE5MjY5MSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkVERUFDRkE1MTgyMzExRUVBQjcwOTkzQTE2MTkyNjkxIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkVERUFDRkE2MTgyMzExRUVBQjcwOTkzQTE2MTkyNjkxIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Af/+/fz7+vn49/b19PPy8fDv7u3s6+rp6Ofm5eTj4uHg397d3Nva2djX1tXU09LR0M/OzczLysnIx8bFxMPCwcC/vr28u7q5uLe2tbSzsrGwr66trKuqqainpqWko6KhoJ+enZybmpmYl5aVlJOSkZCPjo2Mi4qJiIeGhYSDgoGAf359fHt6eXh3dnV0c3JxcG9ubWxramloZ2ZlZGNiYWBfXl1cW1pZWFdWVVRTUlFQT05NTEtKSUhHRkVEQ0JBQD8+PTw7Ojk4NzY1NDMyMTAvLi0sKyopKCcmJSQjIiEgHx4dHBsaGRgXFhUUExIREA8ODQwLCgkIBwYFBAMCAQAAIfkECRQABAAsAAAAAA4AFgAAA0xIujr8MMpJFwD14lzZcNQHRs4gfCR4DpsHftcDwPMVBMzFDjdwjzPW7Yci8ALCIayhJLI2x49gSrPMplMkyxrAUotGk1fww1zHZG0CACH5BAkUAAQALAAAAAAOABYAAANLSLrc/g7ASdWoJFws4abDZ4lE2JhnuZFq4F4dM7jvAMTKXds4cQ+CoE3DAISCQlfMCETOiCFjACnQQEPP4E7VdDltvhnVecuNhaYEACH5BAUUAAQALAAAAAAOABYAAANJSLrc/jCqsaic4KrcALeOlwXkI5IkyIyo2gwkF4nXMGQ2mAN7PuVA309AtKVAACIRleIkl8tmRUCKAidVJTVgI/AGWqsIFi5SEgA7);
         }
     }
     .f{position:absolute;
@@ -52,6 +52,8 @@ animation-duration: 20s;
 
 </style>
 
+<br><br><br><br><br><br><br><br><br><br>
+
 <div style="transform:scale(0.9);">
 
 
@@ -59,7 +61,7 @@ animation-duration: 20s;
 left:100px;
 ">
 
-    <i class="s1"></i><i class="s2"></i><i class="f"></i><i class="a1"></i><i class="s3"></i><i class="s2"></i><i class="f"></i><i class="a1"></i><i class="s3"></i><i class="s2"></i><i class="f"></i><i class="a1"></i><i class="s3"></i><i class="s2"></i><i class="f"></i><i class="a1"></i><i class="s3"></i><i class="s2"></i><i class="a1"></i><i class="s3"></i><i class="s4"></i><i class="s5"></i><i class="s4"></i><i class="s2"></i><i class="a1"></i><i class="s3"></i><i class="s2"></i><i class="a1"></i><i class="s3"></i><i class="s2"></i><i class="a1"></i><i class="s3"></i><i class="s2"></i><i class="a1"></i><i class="s3"></i><i class="s2"></i><i class="a1"></i><i class="s3"></i><i class="s6"></i>
+    <i class="s1"></i><i class="s2"></i><i class="f"></i><i id="a1"></i><i class="s3"></i><i class="s2"></i><i class="f"></i><i id="a1"></i><i class="s3"></i><i class="s2"></i><i class="f"></i><i id="a1"></i><i class="s3"></i><i class="s2"></i><i class="f"></i><i id="a1"></i><i class="s3"></i><i class="s2"></i><i class="f"></i><i id="a1"></i><i class="s3"></i><i class="s4"></i><i class="s5"></i><i class="s4"></i><i class="s2"></i><i class="f"></i><i id="a1"></i><i class="s3"></i><i class="s2"></i><i class="f"></i><i id="a1"></i><i class="s3"></i><i class="s2"></i><i class="f"></i><i id="a1"></i><i class="s3"></i><i class="s2"></i><i class="f"></i><i id="a1"></i><i class="s3"></i><i class="s2"></i><i class="f"></i><i id="a1"></i><i class="s3"></i><i class="s6"></i>
 
 </div>
 
