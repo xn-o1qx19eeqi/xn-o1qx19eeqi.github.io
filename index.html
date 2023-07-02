@@ -11,8 +11,8 @@ div0: 1
 <div id="style_root"></div><div id="style"></div>
 <div id="屋顶"></div><div id="房子"><div id="小窝"></div></div><div id="地板"></div><div id="实时"></div><br>
 
-颜色：<input type="text" placeholder="000000" autocomplete="off" id="输入颜色" onkeyup="输入颜色()"><input type="color" id="选择颜色" oninput="选择颜色()"><input type="button" value="查询" onclick="查询()"><input type="button" value="随机一只" onclick="随机一只()"><br><br>
-互动<input type="checkbox" id="互动模式" oninput="互动模式()">：<input type="text" placeholder="动作" autocomplete="off" id="输入互动"><input type="button" value="确定" onclick="输入互动()"><br><span id="互动"></span><br>
+颜色：<input type="text" class="xsan" placeholder="000000" autocomplete="off" id="输入颜色" onkeyup="输入颜色()"><input type="color" id="选择颜色" oninput="选择颜色()"><a class="xsan" onclick="查询()">查询</a><a class="xsan" onclick="随机一只()">随机一只</a><br><br>
+互动<input type="checkbox" id="互动模式" oninput="互动模式()">：<input type="text" class="xsan" placeholder="动作" autocomplete="off" id="输入互动"><a class="xsan" onclick="输入互动()">确定</a><br><span id="互动"></span><br>
 <br>
 
 <a onclick="简易模式(1)" id="简易模式" style="display:none;"><small>展开</small> <br><small style="color:var(--body-color)"></small></a>
@@ -473,10 +473,13 @@ try{
         if(内容[1]&&内容[1]!=""){主人=内容[1]}else{主人="无"}
         dy="<h2 style='display:inline;'>"+名字+"</h2>　<small>#"+颜色+" <a onclick=\"复制像素点()\">复制地址</a></small><br><small>认养人：</small>"+主人;
         if(主人!="（不可认养）"){
-            let 打卡临时=0;
+            let 打卡临时=localStorage.getItem("打卡"+颜色);
+            if(打卡临时&&打卡临时==今日){dy+="<sup style='background-color:#01EC0C;color:#ffffff'>打卡完成</sup>"}else{
+                打卡临时=0;
             if(内容[7]&&内容[7]!=""&&Math.trunc((new Date().getTime()-new Date(内容[7]).getTime())/1000/60/60/24)>90){
                 dy+=" <small><a id=\"看望打卡\" onclick=\"看望打卡(0);\">打卡</a>";
             }else{dy+=" <small><a id=\"看望打卡\" onclick=\"看望打卡(1)\">打卡</a>"}
+            }
             }
         if(内容[2]&&内容[2]!=""){
             if(内容[2].indexOf("〈放弃认养〉")!=-1){内容[2]=内容[2].replace(/〈放弃认养〉/g,"");固定动作="放弃认养"}
@@ -726,7 +729,7 @@ function 输入颜色(){
 function 选择颜色(){document.getElementById("输入颜色").value=document.getElementById("选择颜色").value.split("#")[1]}
 function 查询(){
     输入颜色();
-    号码=document.getElementById("选择颜色").value.split("#")[1];
+    号码=document.getElementById("选择颜色").value.split("#")[1].toUpperCase();
     let 判断查询=document.getElementById("输入颜色").value.replace(/#/g,"");
     if(判断查询.length==6&&判断查询.toUpperCase().replace(/[0-9A-F]/g,"")==""){notyf.confirm("编号正确")
     }else if(判断查询==""){notyf.confirm("当前编号："+号码)
@@ -747,7 +750,7 @@ document.getElementById("输入颜色").value=临时;
 改url();加载();
 }
 function 复制像素点(){制="{{ site.mq_url }}/"+颜色;复()}
-function 看望打卡(o){localStorage.setItem("像素点",颜色);if(o==0){document.getElementById("看望打卡").innerHTML="<iframe src='/i/5/看望打卡?"+颜色+"' frameborder='0' width='50%' height='30px'></iframe>"}else{document.getElementById("看望打卡").innerHTML="<sup style='background-color:#01EC0C;color:#ffffff'>打卡成功</sup>"}}
+function 看望打卡(o){localStorage.setItem("像素点",颜色);localStorage.setItem("打卡"+颜色,今日);if(o==0){document.getElementById("看望打卡").innerHTML="<iframe src='/i/5/看望打卡?"+颜色+"' frameborder='0' width='50%' height='30px'></iframe>"}else{document.getElementById("看望打卡").innerHTML="<sup style='background-color:#01EC0C;color:#ffffff'>打卡成功</sup>"}}
 function 互动模式(){if(互模==0){互模=1;notyf.confirm("开启立即执行模式");localStorage.setItem("互动模式","1")}else{互模=0;notyf.confirm("关闭立即执行模式");localStorage.removeItem("互动模式")}}
 function 新互动(d){
 notyf.confirm("你的指令正在传递中……");
