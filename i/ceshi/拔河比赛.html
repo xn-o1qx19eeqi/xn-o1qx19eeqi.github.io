@@ -51,6 +51,8 @@ animation-duration: 20s;
 #选手名单{font-size:2em;}
 #名单左{position:absolute;left:0}
 #名单右{position:absolute;right:0}
+
+.点点{display:inline-block;width:80px;height:80px;cursor:pointer;transition:all 0.3s;margin:.8px;}
 </style>
 
 <br><br><br><br><br><br><br><br><br><br>
@@ -68,6 +70,8 @@ animation-duration: 20s;
 </div>
 
 
+
+
 <script>
     let 流程=0,场次=0,循环,爆发,左右,比赛继续,每次;
 window.document.onkeydown = disableRefresh;
@@ -76,10 +80,21 @@ evt = (evt) ? evt : window.event
 if (evt.keyCode) {
 if(evt.keyCode == 65){
 if(流程==0){
-    预备();
+    if(场次>=选手.length){
+        结果();
+        console.log(获胜)
+    }else{
+        预备();
+    流程=1;
+    }
+
 }else if(流程==1){
     循环=window.setInterval(()=>{setTimeout(刷新,0)},800);
-}else if(流程==2){
+    流程=2;
+}else{
+    document.getElementById("体育馆").style="display:none;";
+    document.getElementById("赛场").style="left:0px";
+    流程=0;
     
 }
 }
@@ -89,9 +104,13 @@ if(流程==0){
     let 选手=[
         "000000.小黑点,FFFFFF.小白,9A339A.紫薯,123456.小彩虹,111111.黑曜石",
         "FEBCC0.小猪又,DF7460.小胡糊,92D1E2.小猫球,FFE1A1.小二扯,C77232.测试员",
+        "fff000.小黑点2,000FFF.小白,9A339A.紫薯,123456.小彩虹,111111.黑曜石",
+        "FEBCC0.小猪又2,DF7460.小胡糊,92D1E2.小猫球,FFE1A1.小二扯,C77232.测试员",
+        "f00000.小黑点3,F0FFFF.小白,9A339A.紫薯,123456.小彩虹,111111.黑曜石",
+        "FEBCC0.小猪又3,DF7460.小胡糊,92D1E2.小猫球,FFE1A1.小二扯,C77232.测试员",
     ];
 
-    
+    let 获胜=[];
 
     function 预备(){
         document.getElementById("体育馆").style="";
@@ -106,11 +125,11 @@ if(流程==0){
         document.getElementById("选手名单").innerHTML=dy+"</span>";
         document.getElementById("名单右").style="";
         document.getElementById("名单左").style="";
-        流程=1;
         爆发=[0,0,0,0,0,0,0,0,0,0];
         左右=0;
         比赛继续=0;
         每次=10;
+        场次+=2;
     }
     function 刷新(){
         if(比赛继续==0){
@@ -129,7 +148,6 @@ if(流程==0){
             if(爆发[i]>0){
                 爆发[i]-=1;
                 if(i<5){左右-=每次}else{左右+=每次}
-                console.log(i)
                 document.getElementById("a"+i).innerHTML="<i class='f'></i>";
             }else{
                 document.getElementById("a"+i).innerHTML="";
@@ -153,16 +171,33 @@ if(流程==0){
     }
 
         if(左右>90){
+            if(比赛继续==0){获胜[获胜.length]=选手[场次-1];}
             document.getElementById("名单右").style="background-color:#FFA800";
             比赛继续+=1;
+            
         }
         if(左右<-90){
+            if(比赛继续==0){获胜[获胜.length]=选手[场次-2];}
             document.getElementById("名单左").style="background-color:#FFA800";
             比赛继续+=1;
+            
         }
-
     }
 
+
+    function 结果(){
+        let dy="恭喜获胜：<br><br>";
+        for(let i=0;获胜.length>i;i++){
+            let 临时=获胜[i].split(",");
+            for(let ii=0;临时.length>ii;ii++){
+                let 临时2=临时[ii].split(".");
+                dy+="<a class='点点' style='background-color:#"+临时2[0]+"'></a>"+临时2[1]+"　";
+            }
+            dy+="<br><br>";
+        }
+        document.getElementById("体育馆").style="font-size:3em;";
+        document.getElementById("体育馆").innerHTML=dy;
+    }
     
 
 </script>
