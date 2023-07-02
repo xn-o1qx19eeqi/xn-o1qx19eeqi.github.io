@@ -7,12 +7,13 @@ BiaoTi: 小像素点
 div0: 1
 ---
 <style>#房子{width:400px;height:400px;overflow:hidden;background-color:var(--背景)}#小窝{position:relative;top:270px;left:191px}#点点,.群演{position:relative;width:10px;height:10px;top:0;left:0;animation-duration:20s;animation-delay:3s;background-color:var(--点点)}.群演{position:absolute;opacity:0}#地板{font-size:0.8em}
-@media screen and (max-width: 767px){#房子{margin:0 0 0 -2.6%;transform-origin:left center;transform:scale(0.88)}}</style>
+br.sj{display:none}
+@media screen and (max-width: 767px){#房子{margin:0 0 0 -2.6%;transform-origin:left center;transform:scale(0.88)}br.sj{display:inline}}</style>
 <div id="style_root"></div><div id="style"></div>
 <div id="屋顶"></div><div id="房子"><div id="小窝"></div></div><div id="地板"></div><div id="实时"></div><br>
 
-颜色：<input type="text" class="xsan" placeholder="000000" autocomplete="off" id="输入颜色" onkeyup="输入颜色()"><input type="color" id="选择颜色" oninput="选择颜色()"><a class="xsan" onclick="查询()">查询</a><a class="xsan" onclick="随机一只()">随机一只</a><br><br>
-互动<input type="checkbox" id="互动模式" oninput="互动模式()">：<input type="text" class="xsan" placeholder="动作" autocomplete="off" id="输入互动"><a class="xsan" onclick="输入互动()">确定</a><br><span id="互动"></span><br>
+颜色：<input type="text" class="xsan" placeholder="000000" autocomplete="off" id="输入颜色" onkeyup="输入颜色()"><br class="sj"><br class="sj"><input type="color" id="选择颜色" oninput="选择颜色()"><a class="xsan" onclick="查询()">查询</a><a class="xsan" onclick="随机一只()">随机一只</a><br><br>
+互动<input type="checkbox" id="互动模式" oninput="互动模式()">：<input type="text" class="xsan" placeholder="动作" autocomplete="off" id="输入互动"><br class="sj"><br class="sj"><a class="xsan" onclick="输入互动()">确定</a><br><span id="互动"></span><br>
 <br>
 
 <a onclick="简易模式(1)" id="简易模式" style="display:none;"><small>展开</small> <br><small style="color:var(--body-color)"></small></a>
@@ -20,10 +21,10 @@ div0: 1
 
 <div id="杂">
 
-换背景：<small>(在这里更换的背景只有自己能看到，<a href="https://wj.qq.com/s2/12671350/c9be">点击此处</a>申请更改永久背景)</small><br>
+换背景：<small>(在这里更换的背景只有自己能看到)</small><br>
 <div id="选择背景"></div>
 <a onclick="document.getElementById('选择背景_多').style='';document.getElementById('选择背景_更').innerHTML=''" id="选择背景_更">更多</a>
-<div style="display:none;" id="选择背景_多"><input type="text" autocomplete="off" id="输入颜色_背景"><input type="color" id="选择颜色_背景" oninput="选择颜色_背景()"><input type="button" value="更换" onclick="新背景()"><small>（<a href="/i/c#更多背景">还有哪些背景？</a>）</small></div><br>
+<div style="display:none;" id="选择背景_多"><input type="text" autocomplete="off" id="输入颜色_背景"><input type="color" id="选择颜色_背景" oninput="选择颜色_背景()"><input type="button" value="更换" onclick="新背景()"><small>（<a href="/i/c#更多背景">还有哪些背景？</a>　<a href="https://wj.qq.com/s2/12671350/c9be">申请永久背景</a>）</small></div><br>
 <br>
 <a onclick="简易模式(0)">轻巧模式</a><br>
 <hr><div id="oo">
@@ -31,7 +32,8 @@ div0: 1
 <b>app</b><small>(Android)</small>：<a href="https://pan.baidu.com/s/1Ch4lNU8-jUf-MOlaOUFcoQ?pwd=maoq">百度云</a> <small>提取码：maoq （注意：只是网页套壳app，没有其他功能）</small><br>
 <br>
 
-<a onclick="document.getElementById('疑问').style='';document.getElementById('疑问').scrollIntoView();">常见问题</a>　<a href="https://wj.qq.com/s2/11013288/5bdc">修改信息/放弃认养</a>　<a href="/i/b#申请进度">申请结果查询</a><br>
+<a onclick="document.getElementById('疑问').style='';document.getElementById('疑问').scrollIntoView();">常见问题</a><br>
+<a href="https://wj.qq.com/s2/11013288/5bdc">修改信息/放弃认养</a>　<a href="/i/b#申请进度">申请结果查询</a><br>
 <a href="/i/c#动作代码">更多动作指令</a>　<a href="/i/c#留言代码">留言代码</a><br>
 
 <br>
@@ -148,7 +150,6 @@ div0: 1
 </div>
 
 <script>
-// if(location.href.indexOf("http://")!=-1){window.location.href="https://"+location.href.split("http://")[1]}
 let LocString=String(window.document.location.href);function GetQueryString(name){let rs=new RegExp("(^|)"+name+"=([^&]*)(&|$)","gi").exec(LocString),tmp;if(tmp=rs){return decodeURI(tmp[2])}return ""}
 let 号码=GetQueryString("t").split("#")[0],直接互动=GetQueryString("h").split("#")[0],颜色="000000",今天,今日,背景,背景颜色,反色,o,临时,名字,主人,固定动作=0,特色动作,内容="",互动="",f={"年":new Date().getFullYear(),"月":new Date().getMonth()+1,"日":new Date().getDate()},互模=0,字母="0123456789ABCDEF",oo=encodeURI(document.getElementById("oo").innerHTML.replace(/[ \n\d]/g,"")).replace(/[^0-9A-Z%]/g,"").replace(/^%/g,"").split("%");
 if(号码==""&&localStorage.getItem("像素点")){号码=localStorage.getItem("像素点")}

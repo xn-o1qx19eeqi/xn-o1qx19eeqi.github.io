@@ -29,9 +29,6 @@ h2:
     /*绳子最右头*/
     .s6{background-color:#C77232;box-shadow:0 0 #C77232,10px 10px #C77232,-10px 0 #C77232;}
 
-
-    #a1{background-color:#ffff00;box-shadow:0 -20px 0 30px #ffff00;}
-
     /* .标线{position:relative;left:50%;background-color:#aaaaaa;} */
     .b1{background-color:#00000000;width:630px;}
     .b2{background-color:#aaaaaa;}
@@ -49,27 +46,123 @@ h2:
 animation-duration: 20s;
         animation-name:fire;
 }
-
+#体育馆{transform:scale(0.8);}
+#赛场{position:relative;}
+#选手名单{font-size:2em;}
+#名单左{position:absolute;left:0}
+#名单右{position:absolute;right:0}
 </style>
 
 <br><br><br><br><br><br><br><br><br><br>
 
-<div style="transform:scale(0.9);">
-
-
-<div id="赛场" style="position:relative;
-left:100px;
-">
-
-    <i class="s1"></i><i class="s2"></i><i class="f"></i><i id="a1"></i><i class="s3"></i><i class="s2"></i><i class="f"></i><i id="a1"></i><i class="s3"></i><i class="s2"></i><i class="f"></i><i id="a1"></i><i class="s3"></i><i class="s2"></i><i class="f"></i><i id="a1"></i><i class="s3"></i><i class="s2"></i><i class="f"></i><i id="a1"></i><i class="s3"></i><i class="s4"></i><i class="s5"></i><i class="s4"></i><i class="s2"></i><i class="f"></i><i id="a1"></i><i class="s3"></i><i class="s2"></i><i class="f"></i><i id="a1"></i><i class="s3"></i><i class="s2"></i><i class="f"></i><i id="a1"></i><i class="s3"></i><i class="s2"></i><i class="f"></i><i id="a1"></i><i class="s3"></i><i class="s2"></i><i class="f"></i><i id="a1"></i><i class="s3"></i><i class="s6"></i>
-
+<div id="体育馆" style="display:none;">
+<div id="赛场"><!--left:100px;-->
+    <i class="s1"></i><i class="s2"></i><i id="a0"></i><i class="s3"></i><i class="s2"></i><i id="a1"></i><i class="s3"></i><i class="s2"></i><i id="a2"></i><i class="s3"></i><i class="s2"></i><i id="a3"></i><i class="s3"></i><i class="s2"></i><i id="a4"></i><i class="s3"></i><i class="s4"></i><i class="s5"></i><i class="s4"></i><i class="s2"></i><i id="a5"></i><i class="s3"></i><i class="s2"></i><i id="a6"></i><i class="s3"></i><i class="s2"></i><i id="a7"></i><i class="s3"></i><i class="s2"></i><i id="a8"></i><i class="s3"></i><i class="s2"></i><i id="a9"></i><i class="s3"></i><i class="s6"></i>
 </div>
-
 <br>
+<i class="b1"></i><i class="b2"></i><br>
 
-<i class="b1"></i><i class="b2"></i>
+<br><br>
 
-    <!-- <i class="f"></i> -->
-
-
+<div id="选手名单"></div>
 </div>
+
+
+<script>
+    let 流程=0,场次=0,循环,爆发,左右,比赛继续,每次;
+window.document.onkeydown = disableRefresh;
+function disableRefresh(evt){
+evt = (evt) ? evt : window.event
+if (evt.keyCode) {
+if(evt.keyCode == 65){
+if(流程==0){
+    预备();
+}else if(流程==1){
+    循环=window.setInterval(()=>{setTimeout(刷新,0)},800);
+}else if(流程==2){
+    
+}
+}
+}
+}
+
+    let 选手=[
+        "000000.小黑点,FFFFFF.小白,9A339A.紫薯,123456.小彩虹,111111.黑曜石",
+        "FEBCC0.小猪又,DF7460.小胡糊,92D1E2.小猫球,FFE1A1.小二扯,C77232.测试员",
+    ];
+
+    
+
+    function 预备(){
+        document.getElementById("体育馆").style="";
+        let dy="<span id='名单左'>";
+        let 临时=(选手[场次]+","+选手[场次+1]).split(",");
+        for(let i=0;临时.length>i;i++){
+            let 临时2=临时[i].split(".");
+            document.getElementById("a"+i).style="background-color:#"+临时2[0]+";box-shadow:0 -20px 0 30px #"+临时2[0]+";";
+            if(i==5){dy+="</span><span id='名单右'>"}
+            dy+=临时2[1]+"　";
+        }
+        document.getElementById("选手名单").innerHTML=dy+"</span>";
+        document.getElementById("名单右").style="";
+        document.getElementById("名单左").style="";
+        流程=1;
+        爆发=[0,0,0,0,0,0,0,0,0,0];
+        左右=0;
+        比赛继续=0;
+        每次=10;
+    }
+    function 刷新(){
+        if(比赛继续==0){
+        for(let i=0;爆发.length>i;i++){
+            let o=Math.floor(Math.random()*10);
+            if(爆发[i]==0){ //如果没爆发 有50%几率 获得2回合
+                if(o>5){爆发[i]=2}
+            }else if(爆发[i]==1){ //如果还剩1回合爆发 有70%几率 获得1回合
+                if(o>3){爆发[i]+=1}
+            }else if(爆发[i]<3){ //如果还剩3回合爆发 有20%几率 获得1回合
+                if(o>8){爆发[i]+=1}
+            }else{ //如果多于3回合爆发 有50%几率 减少2回合
+                if(o>5){爆发[i]-=2;每次+=1;
+                }
+            }
+            if(爆发[i]>0){
+                爆发[i]-=1;
+                if(i<5){左右-=每次}else{左右+=每次}
+                console.log(i)
+                document.getElementById("a"+i).innerHTML="<i class='f'></i>";
+            }else{
+                document.getElementById("a"+i).innerHTML="";
+            }
+        }
+        document.getElementById("赛场").style="left:"+左右+"px";
+    }else{
+        if(比赛继续>2){
+            clearInterval(循环);
+            document.getElementById("a0").innerHTML="";
+            document.getElementById("a1").innerHTML="";
+            document.getElementById("a2").innerHTML="";
+            document.getElementById("a3").innerHTML="";
+            document.getElementById("a4").innerHTML="";
+            document.getElementById("a5").innerHTML="";
+            document.getElementById("a6").innerHTML="";
+            document.getElementById("a7").innerHTML="";
+            document.getElementById("a8").innerHTML="";
+            document.getElementById("a9").innerHTML="";
+        }
+    }
+
+        if(左右>90){
+            document.getElementById("名单右").style="background-color:#FFA800";
+            比赛继续+=1;
+        }
+        if(左右<-90){
+            document.getElementById("名单左").style="background-color:#FFA800";
+            比赛继续+=1;
+        }
+
+    }
+
+    
+
+</script>
