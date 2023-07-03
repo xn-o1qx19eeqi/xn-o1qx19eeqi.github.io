@@ -8,9 +8,7 @@ title: 小像素点运动会
 h1: 小像素点运动会
 h2: 
 ---
-
 <style>
-
     body{image-rendering: optimizeSpeed;image-rendering: -moz-crisp-edges;image-rendering: -o-crisp-edges;image-rendering: -webkit-optimize-contrast;image-rendering: pixelated;-ms-interpolation-mode: nearest-neighbor}
 
     .内容0{width:100%;margin:0;}
@@ -69,11 +67,8 @@ animation-duration: 20s;
 <div id="选手名单"></div>
 </div>
 
-
-
-
 <script>
-    let 流程=0,场次=0,循环,爆发,左右,比赛继续,每次;
+let 流程=0,场次=0,循环,爆发,左右,比赛继续,每次;
 window.document.onkeydown = disableRefresh;
 function disableRefresh(evt){
 evt = (evt) ? evt : window.event
@@ -95,7 +90,6 @@ if(流程==0){
     document.getElementById("体育馆").style="display:none;";
     document.getElementById("赛场").style="left:0px";
     流程=0;
-    
 }
 }
 }

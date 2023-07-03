@@ -1,6 +1,6 @@
 ---
 layout: e0
-permalink: index.html
+permalink: ceshi
 BeiJing: 0／0-01.png
 BeiJing_SJ: 0／0-01.png
 BiaoTi: 小像素点
@@ -9,7 +9,7 @@ div0: 1
 <style>#房子{width:400px;height:400px;overflow:hidden;background-color:var(--背景)}#小窝{position:relative;top:270px;left:191px}#点点,.群演{position:relative;width:10px;height:10px;top:0;left:0;animation-duration:20s;animation-delay:3s;background-color:var(--点点)}.群演{position:absolute;opacity:0}#地板{font-size:0.8em}
 br.sj{display:none}
 @media screen and (max-width: 767px){#房子{margin:0 0 0 -2.6%;transform-origin:left center;transform:scale(0.88)}br.sj{display:inline}}</style>
-<div id="style_root"></div><div id="style"></div>
+<style id="style_root"></style><style id="style"></style>
 <div id="屋顶"></div><div id="房子"><div id="小窝"></div></div><div id="地板"></div><div id="实时"></div><br>
 
 颜色：<input type="text" class="xsan" placeholder="000000" autocomplete="off" id="输入颜色" onkeyup="输入颜色()"><br class="sj"><br class="sj"><input type="color" id="选择颜色" oninput="选择颜色()"><a class="xsan" onclick="查询()">查询</a><a class="xsan" onclick="随机一只()">随机一只</a><br><br>
@@ -447,7 +447,7 @@ if(背景[0]=="#"){
     document.getElementById("房子").style="background-image:url(/i/y/"+背景+")";
     document.getElementById("输入颜色_背景").placeholder=背景;
 }
-    document.getElementById("style_root").innerHTML="<style>:root{--点点:#"+颜色+";--背景:"+背景颜色+";--反色:"+反色+"}</style>";
+    document.getElementById("style_root").innerHTML=":root{--点点:#"+颜色+";--背景:"+背景颜色+";--反色:"+反色+"}";
 }
 
 function 加载(){
@@ -636,7 +636,7 @@ dy=dy.replace(/<table><tr><\/tr><\/table>/g,"");
 document.getElementById("选择背景").innerHTML=dy;
 document.getElementById("实时").innerHTML="　";
 document.getElementById("小窝").innerHTML="<div id='点点'></div>";
-document.getElementById("style_root").innerHTML="<style>:root{--点点:#"+颜色+";--背景:"+背景颜色+";--反色:"+反色+"}</style>";
+document.getElementById("style_root").innerHTML=":root{--点点:#"+颜色+";--背景:"+背景颜色+";--反色:"+反色+"}";
 }
 
 function 刷新(){
@@ -644,7 +644,7 @@ if(互动!=""){临时=互动;互动=日程[o][1].concat(互动.split("／")[0])}
 else{互动=日程[o][1].concat(彩蛋);临时=互动[Math.floor(Math.random()*互动.length)]}
 
 临时=临时.split("／");
-dy="<style>";
+dy="";
 let 临时2;
 if(动作[临时[0]]){
     临时2=动作[临时[0]];
@@ -705,7 +705,6 @@ else{dy+=临时2[i2]}
     dy2="<div class='群演' style='animation-name:"+临时[0]+"_群演"+i2+"'></div>"+dy2;
 }
 document.getElementById("小窝").innerHTML=dy2+"<div id='点点'></div>";
-dy+="</style>";
 互动="";
 document.getElementById("style").innerHTML=dy;
 if(临时[2]){if(主人!="无"&&主人!="（不可认养）"){临时[1]=临时[2]}}
