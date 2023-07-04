@@ -393,6 +393,7 @@ let 判;function 断(){
             if(!f[a]){
                 if(a=="周"){f["周"]=new Date().getDay()+1}
                 if(a=="季"){
+                    console.log(f["月"])
                     if(f["月"]==3||f["月"]==4||f["月"]==5){f["季"]="春";
                     }else if(f["月"]==6||f["月"]==7||f["月"]==8){f["季"]="夏";
                     }else if(f["月"]==9||f["月"]==10||f["月"]==11){f["季"]="秋";
@@ -401,7 +402,9 @@ let 判;function 断(){
             }
             a=f[a];
         }
+        console.log(a,b,c)
         if(b=="="&&a==c||b==">"&&a>c||b=="<"&&a<c||b=="!"&&a!=c){
+            console.log(判[i][1])
             判=判[i][1];o=1;break;
         }
     }
