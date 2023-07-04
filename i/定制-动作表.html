@@ -89,7 +89,6 @@ let data=[
 
 ];
 let 颜色=0;
-let f={"年":new Date().getFullYear(),"月":new Date().getMonth()+1,"日":new Date().getDate()}
 let dy="<br>";
 for(let i=0;data.length>i;i++){
     let 临时=data[i].split("／");
@@ -102,6 +101,34 @@ for(let i=0;data.length>i;i++){
     }
 }
 document.getElementById("index").innerHTML = dy+"<br><br><br>";
+
+let 判;function 断(){
+    判=判.split("||");
+    let o=0;
+    for(let i=0;判.length>i;i++){
+        判[i]=判[i].split("|");
+        let a=判[i][0];
+        let b=a.replace(new RegExp('[^\>\<\=\!]',"g"),"");
+        a=a.split(b);
+        let c=a[1];
+        a=a[0];
+        if(a[0]=="."){
+            a=a.slice(1);
+            if(a=="年"){a=new Date().getFullYear()}
+            if(a=="月"){a=new Date().getMonth()+1}
+            if(a=="日"){a=new Date().getDate()}
+            if(a=="时"){a=new Date().getHours()}
+            if(a=="时段"){a=new Date().getHours();if(a<6){a="凌晨"}else if(a<11){a="上午"}else if(a<13){a="中午"}else if(a<18){a="下午"}else if(a<22){a="晚上"}else{a="半夜"}}
+            if(a=="分"){a=new Date().getMinutes()}
+            if(a=="周"){a=new Date().getDay()+1}
+            if(a=="季"){a=new Date().getMonth()+1;if(a==3||a==4||a==5){a="春"}else if(a==6||a==7||a==8){a="夏"}else if(a==9||a==10||a==11){a="秋"}else{a="冬"}}
+        }
+        if(b=="="&&a==c||b==">"&&a>c||b=="<"&&a<c||b=="!"&&a!=c){
+            判=判[i][1];o=1;break;
+        }
+    }
+    if(o==0){判=判[判.length-1];if(判.indexOf("|")!=-1){判=""}}
+}
 
 function 动作(d){
     let 临时=data[d].split("／");
@@ -133,26 +160,7 @@ function 动作(d){
                 dy+=临时4[0][e];
             }
             if(临时4[0][0]=="f"){
-                let i5=0;
-                for(let i4=1;临时4[0].length>i4;i4+=3){
-                    if(!f[临时4[0][i4]]){
-                        if(临时4[0][i4]=="周"){f["周"]=new Date().getDay()+1;}
-                        if(临时4[0][i4]=="季"){
-                            if(f["月"]==3||f["月"]==4||f["月"]==5){f["季"]="春";
-                            }else if(f["月"]==6||f["月"]==7||f["月"]==8){f["季"]="夏";
-                            }else if(f["月"]==9||f["月"]==10||f["月"]==11){f["季"]="秋";
-                            }else{f["季"]="冬";}
-                        }
-                    }
-                    if(临时4[0][i4+1]&&f[临时4[0][i4]]==临时4[0][i4+1]){
-                        i5=1;
-                        dy+=临时4[0][i4+2];
-                        break;
-                    }
-                }
-                if(i5==0){
-                    dy+=临时4[0][临时4[0].length-1];
-                }
+               判=临时4[0][1];断();dy+=判;
             }
             dy+=临时4[1];
         }

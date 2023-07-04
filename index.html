@@ -148,7 +148,7 @@ br.sj{display:none}
 
 <script>
 let LocString=String(window.document.location.href);function GetQueryString(name){let rs=new RegExp("(^|)"+name+"=([^&]*)(&|$)","gi").exec(LocString),tmp;if(tmp=rs){return decodeURI(tmp[2])}return ""}
-let 号码=GetQueryString("t").split("#")[0],直接互动=GetQueryString("h").split("#")[0],颜色="000000",今天,今日,背景,背景颜色,反色,o,临时,名字,主人,固定动作=0,特色动作,内容="",互动="",f={"年":new Date().getFullYear(),"月":new Date().getMonth()+1,"日":new Date().getDate()},互模=0,字母="0123456789ABCDEF",oo=encodeURI(document.getElementById("oo").innerHTML.replace(/[ \n\d]/g,"")).replace(/[^0-9A-Z%]/g,"").replace(/^%/g,"").split("%");
+let 号码=GetQueryString("t").split("#")[0],直接互动=GetQueryString("h").split("#")[0],颜色="000000",今天,今日,背景,背景颜色,反色,o,临时,名字,主人,固定动作=0,特色动作,内容="",互动="",互模=0,字母="0123456789ABCDEF",oo=encodeURI(document.getElementById("oo").innerHTML.replace(/[ \n\d]/g,"")).replace(/[^0-9A-Z%]/g,"").replace(/^%/g,"").split("%");
 if(号码==""&&localStorage.getItem("像素点")){号码=localStorage.getItem("像素点")}
 let 选择背景=["#000000","#FFFFFF","#E8F2E8","#474B5B","夜空.jpg"];
 let 月常=["o","休息日","玩闹","工作","运动"];
@@ -390,21 +390,16 @@ let 判;function 断(){
         a=a[0];
         if(a[0]=="."){
             a=a.slice(1);
-            if(!f[a]){
-                if(a=="周"){f["周"]=new Date().getDay()+1}
-                if(a=="季"){
-                    console.log(f["月"])
-                    if(f["月"]==3||f["月"]==4||f["月"]==5){f["季"]="春";
-                    }else if(f["月"]==6||f["月"]==7||f["月"]==8){f["季"]="夏";
-                    }else if(f["月"]==9||f["月"]==10||f["月"]==11){f["季"]="秋";
-                    }else{f["季"]="冬"}
-                }
-            }
-            if(!f[a]){console.log("“断”bug："+a);a=0}else{a=f[a];}
+            if(a=="年"){a=new Date().getFullYear()}
+            if(a=="月"){a=new Date().getMonth()+1}
+            if(a=="日"){a=new Date().getDate()}
+            if(a=="时"){a=new Date().getHours()}
+            if(a=="时段"){a=new Date().getHours();if(a<6){a="凌晨"}else if(a<11){a="上午"}else if(a<13){a="中午"}else if(a<18){a="下午"}else if(a<22){a="晚上"}else{a="半夜"}}
+            if(a=="分"){a=new Date().getMinutes()}
+            if(a=="周"){a=new Date().getDay()+1}
+            if(a=="季"){a=new Date().getMonth()+1;if(a==3||a==4||a==5){a="春"}else if(a==6||a==7||a==8){a="夏"}else if(a==9||a==10||a==11){a="秋"}else{a="冬"}}
         }
-        console.log(a,b,c)
         if(b=="="&&a==c||b==">"&&a>c||b=="<"&&a<c||b=="!"&&a!=c){
-            console.log(判[i][1])
             判=判[i][1];o=1;break;
         }
     }
@@ -539,9 +534,10 @@ try{
                             内容[2]+="<span id='代码k"+i+"' onclick=\"document.getElementById('代码k"+i+"').innerHTML='"+代码[1]+"';\"><a>更多</a></span>";
                         }
                     }else if(临时2[i][0].length==1){
-                        if(临时2[i][0]=="n"){
-                            内容[2]+="<br>";
-                        }
+                        if(临时2[i][0]=="n"){内容[2]+="<br>"}
+                        if(临时2[i][0]=="0"){内容[2]+="</blockquote>"}
+                        if(临时2[i][0]=="1"){内容[2]+="<span id='代码k"+i+"' onclick=\"document.getElementById('代码k"+i+"').innerHTML='"}
+                        if(临时2[i][0]=="2"){内容[2]+="';\"><a>更多</a></span>"}
                     }else{
                         内容[2]+=" <a class='点' href='/"+临时2[i][0]+"' style='background-color:#"+临时2[i][0]+"'></a> ";
                     }
@@ -651,6 +647,15 @@ if(临时.indexOf("＼")!=-1){
     临时=临时.split("＼");
     临时=临时[Math.floor(Math.random()*临时.length)];
 }
+if(临时.indexOf("({f,")!=-1){
+    let 临时2=临时.split("({f,");
+    临时=临时2[0];
+    for(let i=1;临时2.length>i;i++){
+        临时2[i]=临时2[i].split("})");
+        判=临时2[i][0];断();
+        临时+=判+临时2[i][1];
+    }
+}
 document.getElementById("地板").innerHTML=临时;
 
 dy="<table><tr>";
@@ -725,6 +730,15 @@ if(临时[2]){if(主人!="无"&&主人!="（不可认养）"){临时[1]=临时[2
 if(临时[1].indexOf("＼")!=-1){
     临时[1]=临时[1].split("＼");
     临时[1]=临时[1][Math.floor(Math.random()*临时[1].length)];
+}
+if(临时[1].indexOf("({f,")!=-1){
+let 临时3=临时[1].split("({f,");
+    临时[1]=临时3[0];
+    for(let i=1;临时3.length>i;i++){
+        临时3[i]=临时3[i].split("})");
+        判=临时3[i][0];断();
+        临时[1]+=判+临时3[i][1];
+    }
 }
 document.getElementById("实时").innerHTML=临时[1];
 document.getElementById("点点").style="animation-name:"+临时[0]+";";
