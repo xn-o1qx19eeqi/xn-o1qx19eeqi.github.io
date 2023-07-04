@@ -385,7 +385,7 @@ let 判;function 断(){
         判[i]=判[i].split("|");
         let a=判[i][0];
         let b=a.replace(new RegExp('[^\>\<\=\!]',"g"),"");
-        a=a.split("b");
+        a=a.split(b);
         let c=a[1];
         a=a[0];
         if(a[0]=="."){
@@ -400,7 +400,7 @@ let 判;function 断(){
                     }else{f["季"]="冬"}
                 }
             }
-            a=f[a];
+            if(!f[a]){console.log("“断”bug："+a);a=0}else{a=f[a];}
         }
         console.log(a,b,c)
         if(b=="="&&a==c||b==">"&&a>c||b=="<"&&a<c||b=="!"&&a!=c){
