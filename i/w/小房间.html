@@ -6,13 +6,15 @@ BeiJing_SJ: 0／0-01.png
 BiaoTi: 小像素点
 div0: 1
 ---
-<style>#房子{width:400px;height:400px;overflow:hidden;background-color:var(--背景)}#小窝{position:relative;top:270px;left:191px}#点点,.群演{position:relative;width:10px;height:10px;top:0;left:0;animation-duration:20s;animation-delay:3s;background-color:var(--点点)}.群演{position:absolute;opacity:0}#上一条{font-size:0.8em;color:#aaaaaa;}@media screen and (max-width: 767px){#房子{margin: 0 0 0 -3%}}#实时{font-size:0.8em;}</style>
-<div id="style_root"></div><div id="style"></div>
+<style>#房子{width:400px;height:400px;overflow:hidden;background-color:var(--背景)}#小窝{position:relative;top:270px;left:191px}#点点,.群演{position:relative;width:10px;height:10px;top:0;left:0;animation-duration:20s;animation-delay:3s;background-color:var(--点点)}.群演{position:absolute;opacity:0}#上一条{font-size:0.8em;color:#aaaaaa;}@media screen and (max-width: 767px){#房子{margin: 0 0 0 -3%}}#实时{font-size:0.8em;}br.sj{display:none}
+@media screen and (max-width: 767px){#房子{margin:0 0 0 -2.6%;transform-origin:left center;transform:scale(0.88)}br.sj{display:inline}}
+</style>
+<style id="style_root"></style><style id="style"></style>
 <div id="屋顶"></div><div id="房子"><div id="小窝"><div id='点点'></div></div></div><div id="实时"></div><br>
 <div id="上一条"></div><div id="聊天记录"></div><br>
 
-<input type="text" placeholder="你要说的话" autocomplete="off" id="输入" style="width:500px;font-size:1.2em;">
-<button onclick="发送()">发送</button><br>
+<input class="xsan" type="text" placeholder="你要说的话" autocomplete="off" id="输入" style="width:500px;font-size:1.2em;"><br class="sj">
+<a class="xsan" onclick="发送()">发送</a><br>
 表情 :<span style="font-size:2em;">
 <a onclick="选择('😃')">😃</a>
 <a onclick="选择('🙁')">🙁</a>
@@ -53,14 +55,25 @@ try{
         adddlert("bug");
     }
 }catch(e){}
-document.getElementById("style_root").innerHTML="<style>:root{--点点:#"+颜色+";--背景:"+背景+";--反色:"+反色+"}</style>";
+document.getElementById("style_root").innerHTML=":root{--点点:#"+颜色+";--背景:"+背景+";--反色:"+反色+"}";
 document.getElementById("屋顶").innerHTML="<h2>"+名字+"<small>的小房间</small></h2>";
 
 let 预设={
     "开始":["o／来到〈x〉的小房间。"],
-    "o":["o／〈x〉在认真聆听。"],
+    "o":[
+        "o／〈x〉在认真聆听。",
+        "o／〈x〉在认真聆听。",
+        "o／〈x〉在认真聆听。",
+        "o／〈x〉在认真聆听。",
+        "o／〈x〉在认真聆听。",
+        "o／〈x〉在认真聆听。",
+        "o／〈x〉觉得你的声音很好听。",
+        "小跳两下／〈x〉跳了两下，表示自己还在。＼〈x〉跳了两下，示意它在认真听。",
+        "歪头／〈x〉歪了歪头。",
+    ],
+        
     "😃":["高兴跳跳／〈x〉跳了跳。"],
-    "🙁":["凑近／〈x〉蹭了蹭你。＼〈x〉拍了拍你。"],
+    "🙁":["凑近／〈x〉蹭了蹭你。＼〈x〉拍了拍你。＼〈x〉给了你一把薯片。"],
     "🎂":["蛋糕／〈x〉拿来了一个蛋糕。"],
 }
 
@@ -69,6 +82,8 @@ let 动作={
     "凑近":"0%{}1%,3%,5%,11.5%,13%,26.5%,29.5%,32.5%{top:-8px}2%,4%,6%,11%,12.5%,15%,25%,28%,31%,34%{top:0}9%,25%{transform:scale(4.0)rotate(0deg)rotateY(0deg)}27.5%{transform:scale(4.0)rotate(0deg)rotateY(180deg)}34%{transform:scale(1.0)rotate(0deg)rotateY(180deg)}36.5%{transform:scale(1.0)rotate(0deg)rotateY(0deg)}",
     "蛋糕":"0%,33%{left:0}10%,13%{left:300px}0%,33%,35%,37%{top:0}34%,36%{top:-20px}，0%,100%{top:-5px;width:30px;height:15px}0%,13%{left:315px}33%,100%{left:15px}0%,50%{opacity:1}60%{opacity:0}，0%,100%{top:-15px;width:20px;height:10px}0%,13%{left:320px}33%,100%{left:20px}0%,50%{opacity:1}60%{opacity:0}，0%,100%{top:-22px;width:4px;height:10px}0%,13%{left:323px}33%,100%{left:23px}0%,50%{opacity:1}60%{opacity:0}，0%,100%{top:-22px;width:4px;height:10px}0%,13%{left:332px}33%,100%{left:32px}0%,50%{opacity:1}60%{opacity:0}",
     "高兴跳跳":"0%{top:0}1%{top:-50px}2%{top:0}3%{top:-50px}4%{top:0}",
+    "小跳两下":"0%{top:0}1%{top:-20px}2%{top:0}3%{top:-20px}4%{top:0}",
+    "歪头":"0%,3%,20%{transform:rotate(0deg)}6%,14%{transform:rotate(20deg)}",
 }
 
 let 表情="开始";
@@ -88,7 +103,7 @@ function 发送(){
     临时=临时.replace(new RegExp('〈x〉',"g"),"<b>"+名字+"</b>");
     document.getElementById("实时").innerHTML=临时;
 
-    dy="<style>";
+    dy="";
 
 let dy2="";
 for(let i2=0;临时2.length>i2;i2++){
@@ -136,7 +151,6 @@ else{dy+=临时2[i2]}
     dy2="<div class='群演' style='animation-name:"+表情+"_群演"+i2+"'></div>"+dy2;
 }
 document.getElementById("小窝").innerHTML=dy2+"<div id='点点'></div>";
-dy+="</style>";
 document.getElementById("style").innerHTML=dy;
 document.getElementById("点点").style="animation-name:"+表情+";";
 表情="o";

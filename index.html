@@ -16,10 +16,10 @@ br.sj{display:none}
 <label for="互动模式">指令</label><input type="checkbox" id="互动模式" oninput="互动模式()">：<input type="text" class="xsan" placeholder="动作指令" autocomplete="off" id="输入互动"><br class="sj"><br class="sj"><a class="xsan" onclick="输入互动()">发送</a><br><span id="互动"></span><br>
 <br>
 
-<a onclick="简易模式(1)" id="简易模式" style="display:none;"><small>展开</small> <br><small style="color:var(--body-color)"></small></a>
+<a onclick="简易模式(1)" id="简易模式"><small>展开</small> <br><small style="color:var(--body-color)"></small></a>
 
 
-<div id="杂">
+<div id="杂" style="display:none;">
 
 换背景：<small>(在这里更换的背景只有自己能看到)</small><br>
 <div id="选择背景"></div>
@@ -230,6 +230,7 @@ let 日程={
     "玩电脑／〈x〉玩了会儿游戏。",
 
     "随机来访／有小像素点来拜访〈x〉了。",
+    "出去／〈x〉出去串门了。",
     "凑近／〈x〉凑近屏幕，想看看你还在吗。",
     "玩电脑／〈x〉在写日记。",
     "看电视／〈x〉在看小像素点运动会。",
@@ -792,16 +793,16 @@ function 简易模式(o){
     if(o==0){
         document.getElementById("杂").style="display:none;";
         document.getElementById("简易模式").style="";
-        localStorage.setItem("简易模式","1")
+        localStorage.removeItem("简易模式");
     }else{
         document.getElementById("杂").style="";
         document.getElementById("简易模式").style="display:none;";
-        localStorage.removeItem("简易模式");
+        localStorage.setItem("简易模式","1")
     }
 }
 if(localStorage.getItem("简易模式")){
-    document.getElementById("杂").style="display:none;";
-    document.getElementById("简易模式").style="";
+    document.getElementById("杂").style="";
+    document.getElementById("简易模式").style="display:none;";
 }
 function 改url(){
     let url=location.href.split("?")[0].split("#")[0].split(".cn")[0]+".cn/";
