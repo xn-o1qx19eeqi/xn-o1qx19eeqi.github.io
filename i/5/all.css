@@ -38,7 +38,7 @@ table.tm tr td,table.tm tr{background-color: transparent !important;}
 .x_table{border-spacing:2px;border-collapse:separate;box-shadow:initial;line-height:initial;}.x_table tr{background:initial;}.x_table td,th{padding:1px 1px;}
 
 .点{display:inline-block;width:10px;height:10px;cursor:pointer;transition:all 0.3s;margin:.8px;}.点:hover{transform:scale(1.6)}
-.xsan{background-color:#00000000 !important;color:#ffffff;position:relative;top:-6px;margin:0 10px;padding:4px 6px;box-shadow:4px 0 #ffffff,0 4px #ffffff,-4px 0 #ffffff,0 -4px #ffffff,8px 4px #bbbbbb,4px 8px #bbbbbb}
+.xsan{background-color:#00000040 !important;color:#ffffff;position:relative;top:-6px;margin:0 10px;padding:4px 6px;box-shadow:4px 0 #ffffff,0 4px #ffffff,-4px 0 #ffffff,0 -4px #ffffff,8px 4px #bbbbbb,4px 8px #bbbbbb}
 .xsan:active,.xsan:focus{left:4px;top:0;box-shadow:4px 0 #ffffff,0 4px #ffffff,-4px 0 #ffffff,0 -4px #ffffff}
 
 .bukexuanzhong,button,.anniu,#right_anchor,#right_anchor2,.nav_drop,#nav,.qbt,.biaotib,br{user-select: none;-moz-user-select: none;-webkit-user-select: none;-ms-user-select: none;}
