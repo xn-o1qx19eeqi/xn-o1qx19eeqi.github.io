@@ -52,12 +52,13 @@ h2: <a href="/">返回</a>
 
 <a name="更多背景"></a><h2>更多背景</h2>
 除了选择颜色作为纯色背景以外，还可以换成内置的图片背景，需要输入图片的文件名，比如“夜空.jpg”。<br>
+<small>（注意：其中 草方块.png 随时可能被删除）</small><br>
 已有的背景图片：<br>
 
 <div id="更多_背景"></div>
 
 <script>
-  let 更多背景=["夜空.jpg","幻想空间.jpg","像素星球.gif","200321.jpg"];
+  let 更多背景=["夜空.jpg","幻想空间.jpg","像素星球.gif","草方块.png","200321.jpg"];
   let dy="<table class='tm'>";
   for(let i=0;更多背景.length>i;i++){
     dy+="<tr><td>"+更多背景[i]+"</td><td><img id=\"a"+i+"\"><a id=\"b"+i+"\" onclick=\"document.getElementById('b"+i+"').innerHTML='';document.getElementById('a"+i+"').src='/i/y/"+更多背景[i]+"';document.getElementById('a"+i+"').style='width:100px';\">预览</a></td></tr>";
