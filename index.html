@@ -12,8 +12,10 @@ br.sj{display:none}
 <style id="style_root"></style><style id="style"></style>
 <div id="屋顶"></div><div id="房子"><div id="小窝"></div></div><div id="地板"></div><div id="实时"></div><br>
 
+<div id="杂2">
 颜色：<input type="text" class="xsan" placeholder="000000" autocomplete="off" id="输入颜色" onkeyup="输入颜色()"><br class="sj"><br class="sj"><input type="color" id="选择颜色" oninput="选择颜色()"><a class="xsan" onclick="查询()">确定</a><a class="xsan" onclick="随机一只()">随机一只</a><br><br>
 <label for="互动模式">指令</label><input type="checkbox" id="互动模式" oninput="互动模式()">：<input type="text" class="xsan" placeholder="动作指令" autocomplete="off" id="输入互动"><br class="sj"><br class="sj"><a class="xsan" onclick="输入互动()">发送</a><br><span id="互动"></span><br>
+</div>
 <br>
 
 <a onclick="简易模式(1)" id="简易模式"><small>展开</small></a>
@@ -25,7 +27,7 @@ br.sj{display:none}
 <a onclick="document.getElementById('选择背景_多').style='';document.getElementById('选择背景_更').innerHTML=''" id="选择背景_更">更多</a>
 <div style="display:none;" id="选择背景_多"><input type="text" autocomplete="off" id="输入颜色_背景"><input type="color" id="选择颜色_背景" oninput="选择颜色_背景()"><input type="button" value="更换" onclick="新背景()"><small>（<a href="/i/c#更多背景">还有哪些背景？</a>　<a href="https://wj.qq.com/s2/12671350/c9be">申请永久背景</a>）</small></div><br>
 <br>
-<a onclick="简易模式(0)"><small>收起</small></a><br>
+<small><a onclick="简易模式(0)">收起</a>　<a onclick="简易模式(2)">专注模式</a></small><br>
 <hr><div id="oo">
 <b>换字体</b>：<a onclick="改字体(0)">默认</a>、<a onclick="改字体('俐方体11号')">俐方体11号</a><br>
 <b>app</b><small>(Android)</small>：<a href="https://pan.baidu.com/s/1Ch4lNU8-jUf-MOlaOUFcoQ?pwd=maoq">百度云</a> <small>提取码：maoq （只是网页套壳app，没有其他功能）</small><br>
@@ -803,18 +805,26 @@ if(互模==1){
 function 简易模式(o){
     if(o==0){
         document.getElementById("杂").style="display:none;";
+        document.getElementById("杂2").style="";
         document.getElementById("简易模式").style="";
-        localStorage.removeItem("简易模式");
-    }else{
+        localStorage.setItem("简易模式","0")
+    }
+    if(o==1){
         document.getElementById("杂").style="";
+        document.getElementById("杂2").style="";
         document.getElementById("简易模式").style="display:none;";
         localStorage.setItem("简易模式","1")
     }
+    if(o==2){
+        document.getElementById("杂").style="display:none;";
+        document.getElementById("杂2").style="display:none;";
+        document.getElementById("简易模式").style="";
+        localStorage.setItem("简易模式","2")
+    }
 }
-if(localStorage.getItem("简易模式")){
-    document.getElementById("杂").style="";
-    document.getElementById("简易模式").style="display:none;";
-}
+if(!localStorage.getItem("简易模式")){localStorage.setItem("简易模式","0")}
+简易模式(localStorage.getItem("简易模式"));
+
 function 改url(){
     let url=location.href.split("?")[0].split("#")[0].split(".cn")[0]+".cn/";
     history.replaceState(null,null,url);

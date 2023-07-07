@@ -828,7 +828,7 @@ if(!localStorage.getItem("简易模式")){localStorage.setItem("简易模式","0
 function 改url(){
     let url=location.href.split("?")[0].split("#")[0].split(".cn")[0]+".cn/";
     history.replaceState(null,null,url);
-    history.replaceState(null,null,url+号码.toUpperCase());
+    history.replaceState(null,null,号码.toUpperCase());
 }
 
 if(localStorage.getItem("互动模式")){document.getElementById("互动模式").checked="checked";互模=1}
