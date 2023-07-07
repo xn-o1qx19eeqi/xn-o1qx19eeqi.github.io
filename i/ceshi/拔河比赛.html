@@ -47,8 +47,8 @@ animation-duration: 20s;
 #体育馆{transform:scale(0.8);}
 #赛场{position:relative;}
 #选手名单{font-size:2em;}
-#名单左{position:absolute;left:0}
-#名单右{position:absolute;right:0}
+/* #名单左{position:absolute;left:0} */
+/* #名单右{position:absolute;right:0} */
 
 .点点{display:inline-block;width:80px;height:80px;cursor:pointer;transition:all 0.3s;margin:.8px;}
 </style>
@@ -114,11 +114,11 @@ if(流程==0){
         ","+
         (选手[场次+1].split(",").slice(0,5).join(",")))
         .split(",");
-        let dy="<span id='名单左'>"+队伍1+"：";
+        let dy="<span id='名单左'>"+队伍1+"（左）　";
         for(let i=0;临时.length>i;i++){
             let 临时2=临时[i].split(".");
             document.getElementById("a"+i).style="background-color:#"+临时2[0]+";box-shadow:0 -20px 0 30px #"+临时2[0]+";";
-            if(i==5){dy+="</span><span id='名单右'>"+队伍2+"："}
+            if(i==5){dy+="</span><br><br><span id='名单右'>"+队伍2+"（右）　"}
             dy+=临时2[1]+"　";
         }
         document.getElementById("选手名单").innerHTML=dy+"</span>";

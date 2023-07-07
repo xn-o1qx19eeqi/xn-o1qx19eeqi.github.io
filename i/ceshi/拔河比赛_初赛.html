@@ -42,7 +42,7 @@ h2:
     /* animation-name:比赛; */
 }
 /*每秒30px 3秒90px*/
-#选手名单{position:relative;top:300px;text-align:center;}
+#选手名单{position:relative;top:150px;}
 
 /* @keyframes 比赛{0%{left:385px;}
 10%{left:390px}
@@ -120,13 +120,13 @@ function 准备(){
     (选手[场次+1].split(",").slice(0,5).join(",")))
     .split(",");
 
-    let dy="<span id='名单左'>"+队伍1+"："
+    let dy=队伍1+"<span id='左'>（左）　"
     let sdy="#选手{box-shadow:"
     for(let i=0;临时.length>i;i++){
         let 临时2=临时[i].split(".");
         if(i!=0){sdy+=","}
         sdy+=备场[i]+"px 0 #"+临时2[0];
-        if(i==5){dy+="</span><span id='名单右'> VS　"+队伍2+"："}
+        if(i==5){dy+="</span><br><br><span id='右'>"+队伍2+"（右）　"}
         dy+=临时2[1]+"　"
     }
     document.getElementById("选手名单").innerHTML=dy+"</span>";
@@ -158,9 +158,9 @@ function 刷新(){
 
     if(当前>430||当前<340){
         if(当前>430){获胜[获胜.length]=选手[场次-1]
-            document.getElementById("名单右").style="background-color:#FFA800";}
+            document.getElementById("右").style="background-color:#FFA800";}
         else{获胜[获胜.length]=选手[场次-2]
-            document.getElementById("名单左").style="background-color:#FFA800";}
+            document.getElementById("左").style="background-color:#FFA800";}
         clearInterval(循环);
     console.log(获胜)}
 }
