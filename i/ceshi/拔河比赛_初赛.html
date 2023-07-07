@@ -75,7 +75,7 @@ h2:
 
 <script>
 
-let 上一回合,当前,循环,力量,队伍1,队伍2;
+let 上一回合,当前,循环,力量,队伍1,队伍2,第=1;
 let 场次=0,流程=0;
 
 window.document.onkeydown = disableRefresh;
@@ -120,7 +120,7 @@ function 准备(){
     (选手[场次+1].split(",").slice(0,5).join(",")))
     .split(",");
 
-    let dy=队伍1+"<span id='左'>（左）　"
+    let dy="第"+第+"场<br><br><span id='左'>"+队伍1+"（左）　"
     let sdy="#选手{box-shadow:"
     for(let i=0;临时.length>i;i++){
         let 临时2=临时[i].split(".");
