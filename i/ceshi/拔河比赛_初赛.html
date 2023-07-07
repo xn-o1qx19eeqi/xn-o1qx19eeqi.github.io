@@ -1,0 +1,189 @@
+---
+layout: e0
+permalink: i/ceshi/c2
+BeiJing: 1-01.png
+BeiJing_SJ: 1-01.png
+BiaoTi: 小像素点
+title: 小像素点运动会
+h1: 小像素点运动会
+h2: 
+---
+<style>
+#赛场{width:800px;height:300px;
+/* background-color:#c3ffb9; */
+
+}
+#选手{
+    width:40px;height:40px;background-color:#00000000;
+}
+#中线{
+    position:relative;
+    left:15px;top:-10px;
+    width:10px;height:10px;background-color:#ff0000;
+    box-shadow:0 -10px #ff0000;
+}
+#绳子{
+    position:relative;left:-300px;top:-30px;
+    width:600px;height:10px;
+    background-color:#C77232;
+    z-index:-1;
+}
+#标点{
+    position:absolute;left:400px;top:200px;
+    width:10px;height:10px;background-color:#AAAAAA;
+}
+#比赛中{
+    position:absolute;top:150px;
+    /* animation:1;animation-timing-function:linear;animation-fill-mode:forwards;
+    animation-duration:4s; */
+    /* left:385px; */
+    /* left:340px; */
+    /* left:430px; */
+    /* animation-name:比赛; */
+}
+/*每秒30px 3秒90px*/
+#选手名单{position:relative;top:300px;text-align:center;}
+
+/* @keyframes 比赛{0%{left:385px;}
+10%{left:390px}
+20%{left:400px}
+30%{left:390px}
+40%{left:380px}
+50%{left:370px}
+60%{left:360px}
+70%{left:350px}
+80%{left:360px}
+90%{left:350px}
+100%{left:340px}
+
+} */
+.点点{display:inline-block;width:40px;height:40px;cursor:pointer;transition:all 0.3s;margin:.8px;}
+</style>
+<style id="sdy"></style>
+
+<div id="赛场" style="display:none;">
+    <div id="比赛中">
+        <div id="选手"></div>
+        <div id="中线"></div>
+        <div id="绳子"></div>
+    </div>
+    <div id="标点"></div>
+    <div id="选手名单"></div>
+</div>
+
+<div id="结果"></div>
+
+<script>
+
+let 上一回合,当前,循环,力量,队伍1,队伍2;
+let 场次=0,流程=0;
+
+window.document.onkeydown = disableRefresh;
+function disableRefresh(evt){
+evt = (evt) ? evt : window.event
+if (evt.keyCode) {
+if(evt.keyCode == 65){
+if(流程==0){
+    if(场次>=选手.length){
+        结果();
+        console.log(获胜)
+    }else{
+        准备();
+    流程=1;
+    }
+
+}else if(流程==1){
+    循环=window.setInterval(()=>{setTimeout(刷新,0)},500);
+    流程=0;
+}
+}
+}
+}
+
+let 选手=[
+        "000000.小黑点,FFFFFF.小白,9A339A.紫薯,123456.小彩虹,111111.黑曜石,队伍名",
+        "FEBCC0.小猪又,DF7460.小胡糊,92D1E2.小猫球,FFE1A1.小二扯,C77232.测试员,队伍名",
+        "fff000.小黑点2,000FFF.小白,9A339A.紫薯,123456.小彩虹,111111.黑曜石,队伍名",
+        "FEBCC0.小猪又2,DF7460.小胡糊,92D1E2.小猫球,FFE1A1.小二扯,C77232.测试员,队伍名",
+        "f00000.小黑点3,F0FFFF.小白,9A339A.紫薯,123456.小彩虹,111111.黑曜石,队伍名",
+        "FEBCC0.小猪又3,DF7460.小胡糊,92D1E2.小猫球,FFE1A1.小二扯,C77232.测试员,队伍名",
+    ];
+let 获胜=[]
+
+let 备场=[-300,-240,-180,-120,-60,60,120,180,240,300]
+
+function 准备(){
+    队伍1=选手[场次].split(",")[5]
+    队伍2=选手[场次+1].split(",")[5]
+    let 临时=((选手[场次].split(",").slice(0,5).join(","))+
+    ","+
+    (选手[场次+1].split(",").slice(0,5).join(",")))
+    .split(",");
+
+    let dy="<span id='名单左'>"+队伍1+"："
+    let sdy="#选手{box-shadow:"
+    for(let i=0;临时.length>i;i++){
+        let 临时2=临时[i].split(".");
+        if(i!=0){sdy+=","}
+        sdy+=备场[i]+"px 0 #"+临时2[0];
+        if(i==5){dy+="</span><span id='名单右'> VS　"+队伍2+"："}
+        dy+=临时2[1]+"　"
+    }
+    document.getElementById("选手名单").innerHTML=dy+"</span>";
+    document.getElementById("sdy").innerHTML=sdy;
+    上一回合=0,当前=385;
+    document.getElementById("比赛中").style="left:"+当前+"px";
+    document.getElementById("赛场").style="";
+    力量=5;
+    场次+=2;
+}
+
+
+
+
+function 刷新(){
+    let 随机;
+    if(上一回合==0){
+        随机=Math.floor(Math.random()*2)+1;
+        //12
+    }else{
+        随机=Math.floor(Math.random()*5);
+        //0123
+        if(随机>2){随机=上一回合}
+    }
+    if(随机==1){当前-=力量;}else if(随机==2){当前+=力量}
+    if(随机!=0){力量+=1;}
+    上一回合=随机;
+    document.getElementById("比赛中").style="left:"+当前+"px";
+
+    if(当前>430||当前<340){
+        if(当前>430){获胜[获胜.length]=选手[场次-1]
+            document.getElementById("名单右").style="background-color:#FFA800";}
+        else{获胜[获胜.length]=选手[场次-2]
+            document.getElementById("名单左").style="background-color:#FFA800";}
+        clearInterval(循环);
+    console.log(获胜)}
+}
+
+
+function 结果(){
+    document.getElementById("赛场").style="display:none;";
+    let dy="恭喜获胜：<br><br>";
+        for(let i=0;获胜.length>i;i++){
+            let 临时=获胜[i].split(",");
+            dy+=临时[5]+"：　"
+            for(let ii=0;5>ii;ii++){
+
+                let 临时2=临时[ii].split(".");
+                dy+="<a class='点点' style='background-color:#"+临时2[0]+"'></a>"+临时2[1]+"　";
+
+            }
+            dy+="<br><br>";
+        }
+        document.getElementById("结果").style="font-size:1.3em;";
+        document.getElementById("结果").innerHTML=dy;
+}
+
+</script>
+
+

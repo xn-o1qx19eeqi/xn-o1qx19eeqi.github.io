@@ -68,7 +68,7 @@ animation-duration: 20s;
 </div>
 
 <script>
-let 流程=0,场次=0,循环,爆发,左右,比赛继续,每次;
+let 流程=0,场次=0,循环,爆发,左右,比赛继续,每次,队伍1,队伍2;
 window.document.onkeydown = disableRefresh;
 function disableRefresh(evt){
 evt = (evt) ? evt : window.event
@@ -96,24 +96,29 @@ if(流程==0){
 }
 
     let 选手=[
-        "000000.小黑点,FFFFFF.小白,9A339A.紫薯,123456.小彩虹,111111.黑曜石",
-        "FEBCC0.小猪又,DF7460.小胡糊,92D1E2.小猫球,FFE1A1.小二扯,C77232.测试员",
-        "fff000.小黑点2,000FFF.小白,9A339A.紫薯,123456.小彩虹,111111.黑曜石",
-        "FEBCC0.小猪又2,DF7460.小胡糊,92D1E2.小猫球,FFE1A1.小二扯,C77232.测试员",
-        "f00000.小黑点3,F0FFFF.小白,9A339A.紫薯,123456.小彩虹,111111.黑曜石",
-        "FEBCC0.小猪又3,DF7460.小胡糊,92D1E2.小猫球,FFE1A1.小二扯,C77232.测试员",
+        "000000.小黑点,FFFFFF.小白,9A339A.紫薯,123456.小彩虹,111111.黑曜石,队伍名",
+        "FEBCC0.小猪又,DF7460.小胡糊,92D1E2.小猫球,FFE1A1.小二扯,C77232.测试员,队伍名",
+        "fff000.小黑点2,000FFF.小白,9A339A.紫薯,123456.小彩虹,111111.黑曜石,队伍名",
+        "FEBCC0.小猪又2,DF7460.小胡糊,92D1E2.小猫球,FFE1A1.小二扯,C77232.测试员,队伍名",
+        "f00000.小黑点3,F0FFFF.小白,9A339A.紫薯,123456.小彩虹,111111.黑曜石,队伍名",
+        "FEBCC0.小猪又3,DF7460.小胡糊,92D1E2.小猫球,FFE1A1.小二扯,C77232.测试员,队伍名",
     ];
 
     let 获胜=[];
 
     function 预备(){
         document.getElementById("体育馆").style="";
-        let dy="<span id='名单左'>";
-        let 临时=(选手[场次]+","+选手[场次+1]).split(",");
+        队伍1=选手[场次].split(",")[5]
+        队伍2=选手[场次+1].split(",")[5]
+        let 临时=((选手[场次].split(",").slice(0,5).join(","))+
+        ","+
+        (选手[场次+1].split(",").slice(0,5).join(",")))
+        .split(",");
+        let dy="<span id='名单左'>"+队伍1+"：";
         for(let i=0;临时.length>i;i++){
             let 临时2=临时[i].split(".");
             document.getElementById("a"+i).style="background-color:#"+临时2[0]+";box-shadow:0 -20px 0 30px #"+临时2[0]+";";
-            if(i==5){dy+="</span><span id='名单右'>"}
+            if(i==5){dy+="</span><span id='名单右'>"+队伍2+"："}
             dy+=临时2[1]+"　";
         }
         document.getElementById("选手名单").innerHTML=dy+"</span>";
@@ -183,7 +188,8 @@ if(流程==0){
         let dy="恭喜获胜：<br><br>";
         for(let i=0;获胜.length>i;i++){
             let 临时=获胜[i].split(",");
-            for(let ii=0;临时.length>ii;ii++){
+            dy+=临时[5]+"：　"
+            for(let ii=0;4>ii;ii++){
                 let 临时2=临时[ii].split(".");
                 dy+="<a class='点点' style='background-color:#"+临时2[0]+"'></a>"+临时2[1]+"　";
             }
