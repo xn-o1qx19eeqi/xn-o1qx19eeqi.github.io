@@ -550,8 +550,8 @@ try{
                     }else if(临时2[i][0].length==1){
                         if(临时2[i][0]=="n"){内容[2]+="<br>"}
                         if(临时2[i][0]=="0"){内容[2]+="</blockquote>"}
-                        if(临时2[i][0]=="1"){内容[2]+="<span id='代码k"+i+"' onclick=\"document.getElementById('代码k"+i+"').innerHTML='"}
-                        if(临时2[i][0]=="2"){内容[2]+="';\"><a>更多</a></span>"}
+                        if(临时2[i][0]=="1"){内容[2]+="<a id='代码k"+i+"' onclick=\"document.getElementById('代码k"+i+"').style='display:none;';document.getElementById('代码ka"+i+"').style=''\">更多</a></span><span id='代码ka"+i+"' style='display:none'>"}
+                        if(临时2[i][0]=="2"){内容[2]+="</span>"}
                     }else{
                         内容[2]+=" <a class='点' href='/"+临时2[i][0]+"' style='background-color:#"+临时2[i][0]+"'></a> ";
                     }
