@@ -658,8 +658,8 @@ if(临时.indexOf("＼")!=-1){
     临时=临时.split("＼");
     临时=临时[Math.floor(Math.random()*临时.length)];
 }
-if(临时.indexOf("({f,")!=-1){
-    let 临时2=临时.split("({f,");
+if(临时.indexOf("({f_")!=-1){
+    let 临时2=临时.split("({f_");
     临时=临时2[0];
     for(let i=1;临时2.length>i;i++){
         临时2[i]=临时2[i].split("})");
@@ -742,8 +742,8 @@ if(临时[1].indexOf("＼")!=-1){
     临时[1]=临时[1].split("＼");
     临时[1]=临时[1][Math.floor(Math.random()*临时[1].length)];
 }
-if(临时[1].indexOf("({f,")!=-1){
-let 临时3=临时[1].split("({f,");
+if(临时[1].indexOf("({f_")!=-1){
+let 临时3=临时[1].split("({f_");
     临时[1]=临时3[0];
     for(let i=1;临时3.length>i;i++){
         临时3[i]=临时3[i].split("})");
