@@ -15,7 +15,7 @@ h2: <a href="/">返回</a>
 <br>由25只最早的小像素点组成了英文单词“pixel<small>(像素)</small>”，延续了主页面对小像素点简约到极致的风格。<br>
 <a onclick="document.getElementById('a').style='display:none';document.getElementById('b').style='';document.getElementById('myLove').style='display:none';document.getElementById('xxsd').style=''" id="a">切换为黑色版本</a><a onclick="document.getElementById('b').style='display:none';document.getElementById('a').style='';document.getElementById('xxsd').style='display:none';document.getElementById('myLove').style=''" id="b" style="display:none;">切换为彩色版本</a><br>
 <br><hr>
-<a name="申请进度"></a><h2 style="display:inline;">申请结果</h2>（2023年7月8日 21:00 之前的所有申请已经全部处理完毕）<br>
+<a name="申请进度"></a><h2 style="display:inline;">申请结果</h2>（2023年7月9日 10:00 之前的所有申请已经全部处理完毕）<br>
 申请修改信息、活动报名、改背景的未通过记录请<a href="/i/b2">点击此处</a>。<br>
 <input type="text" id="搜索_输入" placeholder="输入像素点的编号" autocomplete="off"> <a onclick="搜索_确认(document.getElementById('搜索_输入').value)">搜索</a><br>
 <input type="radio" oninput="搜索_选项(0)" id="搜索0" checked><label for="搜索0">编号</label>
@@ -12536,6 +12536,17 @@ let 原因={
     "c":"命名或留言含有不适宜内容或特殊字符",
     "d":"编号不正确",
     "e":"因严重违规，申请人IP地址被拉黑",
+}
+if(window.location.href.indexOf("?sj,")!=-1){
+    let 串门=window.location.href.split("?sj,")[1].split(",");
+    if(串门.length>1){
+        window.location.href="/?t="+申请["通过"][Math.floor(Math.random()*申请["通过"].length)][0]+"&h=sjcm/"+串门[0]+"_"+串门[1]
+    }else{
+        window.location.href="/?t="+申请["通过"][Math.floor(Math.random()*申请["通过"].length)][0]
+    }
+
+    if(localStorage.getItem("像素点")){串门=localStorage.getItem("像素点")}
+    
 }
 function 搜索_选项(o){
     if(o==搜索[3]){}else{

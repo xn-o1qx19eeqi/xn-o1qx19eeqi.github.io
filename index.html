@@ -14,7 +14,7 @@ br.sj{display:none}
 
 <div id="杂2">
 颜色：<input type="text" class="xsan" placeholder="000000" autocomplete="off" id="输入颜色" onkeyup="输入颜色()"><br class="sj"><br class="sj"><input type="color" id="选择颜色" oninput="选择颜色()"><a class="xsan" onclick="查询()">确定</a><a class="xsan" onclick="随机一只()">随机一只</a><br><br>
-<label for="互动模式">指令</label><input type="checkbox" id="互动模式" oninput="互动模式()">：<input type="text" class="xsan" placeholder="动作指令" autocomplete="off" id="输入互动"><br class="sj"><br class="sj"><a class="xsan" onclick="输入互动()">发送</a><br><span id="互动"></span><br>
+<label for="互动模式">指令</label><input type="checkbox" id="互动模式" oninput="互动模式()">：<input type="text" class="xsan" placeholder="动作指令" autocomplete="off" id="输入互动"><br class="sj"><br class="sj"><a class="xsan" onclick="输入互动()">发送</a><br><span id="互动"></span><a onclick="随机串门()">　</a><br>
 </div>
 <br>
 
@@ -830,4 +830,6 @@ function 改url(){
 
 if(localStorage.getItem("互动模式")){document.getElementById("互动模式").checked="checked";互模=1}
 改url();
+
+function 随机串门(){window.location.href="/b?sj,"+号码+","+名字+","}
 </script>
