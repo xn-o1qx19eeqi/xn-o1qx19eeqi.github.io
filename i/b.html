@@ -12537,16 +12537,18 @@ let 原因={
     "d":"编号不正确",
     "e":"因严重违规，申请人IP地址被拉黑",
 }
-if(window.location.href.indexOf("?sj,")!=-1){
-    let 串门=window.location.href.split("?sj,")[1].split(",");
-    if(串门.length>1){
-        window.location.href="/?t="+申请["通过"][Math.floor(Math.random()*申请["通过"].length)][0]+"&h=sjcm/"+串门[0]+"_"+串门[1]
+if(window.location.href.indexOf("?sj")!=-1){
+    let 串门=window.location.href.split("?sj")[1];
+    let 随机=Math.floor(Math.random()*申请["通过"].length);
+    if(串门[0]==","){
+        串门=串门.split(",");
+        if(申请["通过"][随机][0]==串门[1]){
+            if(随机==0){随机=申请["通过"].length}else{随机-=1}
+        }
+        window.location.href="/?t="+申请["通过"][随机][0]+"&h=sjcm/"+串门[1]+"_"+串门[2]
     }else{
-        window.location.href="/?t="+申请["通过"][Math.floor(Math.random()*申请["通过"].length)][0]
+        window.location.href="/?t="+申请["通过"][随机][0]
     }
-
-    if(localStorage.getItem("像素点")){串门=localStorage.getItem("像素点")}
-    
 }
 function 搜索_选项(o){
     if(o==搜索[3]){}else{
