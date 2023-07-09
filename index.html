@@ -787,7 +787,7 @@ document.getElementById("输入颜色").value=临时;
 改url();加载();
 }
 function 复制像素点(){制="{{ site.mq_url }}/"+颜色;复()}
-function 看望打卡(o){localStorage.setItem("像素点",颜色);notyf.confirm("已设置为默认像素点");localStorage.setItem("打卡"+颜色,今日);if(o==0){document.getElementById("看望打卡").innerHTML="<iframe src='/i/5/看望打卡?"+颜色+"' frameborder='0' width='50%' height='30px'></iframe>"}else{document.getElementById("看望打卡").innerHTML="<sup style='background-color:#01EC0C;color:#ffffff'>打卡成功</sup>"}}
+function 看望打卡(o){localStorage.setItem("像素点",颜色);localStorage.setItem("像素点名字",名字);notyf.confirm("已设置为默认像素点");localStorage.setItem("打卡"+颜色,今日);if(o==0){document.getElementById("看望打卡").innerHTML="<iframe src='/i/5/看望打卡?"+颜色+"' frameborder='0' width='50%' height='30px'></iframe>"}else{document.getElementById("看望打卡").innerHTML="<sup style='background-color:#01EC0C;color:#ffffff'>打卡成功</sup>"}}
 function 互动模式(){if(互模==0){互模=1;notyf.confirm("开启立即执行模式");localStorage.setItem("互动模式","1")}else{互模=0;notyf.confirm("关闭立即执行模式");localStorage.removeItem("互动模式")}}
 function 新互动(d){
 notyf.confirm("你的指令正在传递中……");
@@ -822,14 +822,17 @@ function 简易模式(o){
 if(!localStorage.getItem("简易模式")){localStorage.setItem("简易模式","0")}
 简易模式(localStorage.getItem("简易模式"));
 
+function 随机串门(){window.location.href="/i/b?sj,"+localStorage.getItem("像素点")+","+localStorage.getItem("像素点名字")+","}
+
+if(localStorage.getItem("互动模式")){document.getElementById("互动模式").checked="checked";互模=1}
+if(!localStorage.getItem("像素点")){localStorage.setItem("像素点",颜色);localStorage.setItem("像素点名字",名字)}
+if(!localStorage.getItem("像素点名字")){if(localStorage.getItem("像素点")==颜色){localStorage.setItem("像素点名字",名字)}else{localStorage.setItem("像素点名字","小像素点")}}
+
 function 改url(){
     let url=location.href.split("?")[0].split("#")[0].split(".cn")[0]+".cn/";
     history.replaceState(null,null,url);
     history.replaceState(null,null,url+号码.toUpperCase());
-}
+}改url();
 
-if(localStorage.getItem("互动模式")){document.getElementById("互动模式").checked="checked";互模=1}
-改url();
 
-function 随机串门(){window.location.href="/i/b?sj,"+号码+","+名字+","}
 </script>
