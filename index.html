@@ -417,7 +417,7 @@ let 判;function 断(){
     if(o==0){判=判[判.length-1];if(判.indexOf("|")!=-1){判=""}}
 }
 
-function 输入互动(){
+function 输入互动(o){
     try{
         临时=document.getElementById("输入互动").value.split("/");
         let 地址="/i/z/"+临时[0]+".json";
@@ -448,7 +448,7 @@ function 输入互动(){
                 }
             }
             if(地址[3]){if(地址[3].indexOf(颜色)!=-1){}else{互动="";notyf.alert("你使用的指令不属于这只小像素点")}}
-            if(互动==""){}
+            if(互动==""||o){}
             else{notyf.confirm("你的指令正在传递中……")}
         }else{
             console.log("bug");
@@ -466,7 +466,7 @@ function 输入互动(){
 
 if(直接互动){
     document.getElementById("输入互动").value=直接互动;
-    输入互动();
+    输入互动(1);
 }
 
 今日=(new Date().getMonth()+1)+"."+new Date().getDate();
