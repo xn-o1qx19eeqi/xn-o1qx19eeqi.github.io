@@ -14,7 +14,7 @@ br.sj{display:none}
 
 <div id="杂2">
 颜色：<input type="text" class="xsan" placeholder="000000" autocomplete="off" id="输入颜色" onkeyup="输入颜色()"><br class="sj"><br class="sj"><input type="color" id="选择颜色" oninput="选择颜色()"><a class="xsan" onclick="查询()">确定</a><a class="xsan" onclick="随机一只()">随机一只</a><br><br>
-<label for="互动模式">指令</label><input type="checkbox" id="互动模式" oninput="互动模式()">：<input type="text" class="xsan" placeholder="动作指令" autocomplete="off" id="输入互动"><br class="sj"><br class="sj"><a class="xsan" onclick="输入互动()">发送</a><br><span id="互动"></span><a onclick="随机串门()">　</a><br>
+<label for="互动模式">指令</label><input type="checkbox" id="互动模式" oninput="互动模式()">：<input type="text" class="xsan" placeholder="动作指令" autocomplete="off" id="输入互动"><br class="sj"><br class="sj"><a class="xsan" onclick="输入互动()">发送</a><br><span id="互动"></span><a onclick="随机串门()">随机串门</a><br>
 </div>
 <br>
 
@@ -34,8 +34,8 @@ br.sj{display:none}
 <br>
 
 <a onclick="document.getElementById('疑问').style='';document.getElementById('疑问').scrollIntoView();">常见问题</a><br>
-<a href="https://wj.qq.com/s2/11013288/5bdc">修改信息/放弃认养</a>　<a href="/i/b#申请进度">认养申请查询</a>　<a href="/i/e#问卷答复">问卷答复</a><br>
-<a href="/i/c#动作代码">更多动作指令</a>　<a href="/i/c#留言代码">留言代码</a><br>
+<a href="https://wj.qq.com/s2/11013288/5bdc">修改信息/放弃认养</a>　<a href="/i/b#申请进度">申请结果查询</a>　<a href="/i/e#问卷答复">问卷答复</a><br>
+<a href="/i/c#动作代码">更多动作指令</a>　<a href="/i/c#留言代码">留言代码</a>　<a href="/i/b?sj">随机拜访</a><br>
 
 <br>
 <small><a href="https://wj.qq.com/s2/11524389/a364/">问卷调查</a>（有什么建议可以在这里留言，偶尔会征集改进意见）<br>
@@ -512,7 +512,7 @@ try{
         dy="<h2 style='display:inline;'>"+名字+"</h2>　<small>#"+颜色+" <a onclick=\"复制像素点()\">复制地址</a></small><br><small>认养人：</small>"+主人;
         if(主人!="（不可认养）"){
             let 打卡临时=localStorage.getItem("打卡"+颜色);
-            if(打卡临时&&打卡临时==今日){dy+=" <sup style='background-color:#01EC0C;color:#ffffff'>已打卡</sup>"}else{
+            if(打卡临时&&打卡临时==今日){dy+=" <sup id=\"看望打卡\" onclick=\"看望打卡(1)\" style='background-color:#01EC0C;color:#ffffff'>已打卡</sup>"}else{
                 打卡临时=0;
             if(内容[7]&&内容[7]!=""&&Math.trunc((new Date().getTime()-new Date(内容[7]).getTime())/1000/60/60/24)>90){
                 dy+=" <small><a id=\"看望打卡\" onclick=\"看望打卡(0);\">打卡</a>";
@@ -787,7 +787,7 @@ document.getElementById("输入颜色").value=临时;
 改url();加载();
 }
 function 复制像素点(){制="{{ site.mq_url }}/"+颜色;复()}
-function 看望打卡(o){localStorage.setItem("像素点",颜色);localStorage.setItem("打卡"+颜色,今日);if(o==0){document.getElementById("看望打卡").innerHTML="<iframe src='/i/5/看望打卡?"+颜色+"' frameborder='0' width='50%' height='30px'></iframe>"}else{document.getElementById("看望打卡").innerHTML="<sup style='background-color:#01EC0C;color:#ffffff'>打卡成功</sup>"}}
+function 看望打卡(o){localStorage.setItem("像素点",颜色);notyf.confirm("已设置为默认像素点");localStorage.setItem("打卡"+颜色,今日);if(o==0){document.getElementById("看望打卡").innerHTML="<iframe src='/i/5/看望打卡?"+颜色+"' frameborder='0' width='50%' height='30px'></iframe>"}else{document.getElementById("看望打卡").innerHTML="<sup style='background-color:#01EC0C;color:#ffffff'>打卡成功</sup>"}}
 function 互动模式(){if(互模==0){互模=1;notyf.confirm("开启立即执行模式");localStorage.setItem("互动模式","1")}else{互模=0;notyf.confirm("关闭立即执行模式");localStorage.removeItem("互动模式")}}
 function 新互动(d){
 notyf.confirm("你的指令正在传递中……");
