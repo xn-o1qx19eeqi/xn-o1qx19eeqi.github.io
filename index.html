@@ -14,7 +14,7 @@ br.sj{display:none}
 
 <div id="杂2">
 颜色：<input type="text" class="xsan" placeholder="000000" autocomplete="off" id="输入颜色" onkeyup="输入颜色()"><br class="sj"><br class="sj"><input type="color" id="选择颜色" oninput="选择颜色()"><a class="xsan" onclick="查询()">确定</a><a class="xsan" onclick="随机一只()">随机一只</a><br><br>
-<label for="互动模式">指令</label><input type="checkbox" id="互动模式" oninput="互动模式()">：<input type="text" class="xsan" placeholder="动作指令" autocomplete="off" id="输入互动"><br class="sj"><br class="sj"><a class="xsan" onclick="输入互动()">发送</a><br><span id="互动"></span><a onclick="随机串门()">随机串门</a><br>
+<label for="互动模式">指令</label><input type="checkbox" id="互动模式" oninput="互动模式()">：<input type="text" class="xsan" placeholder="动作指令" autocomplete="off" id="输入互动"><br class="sj"><br class="sj"><a class="xsan" onclick="输入互动()">发送</a><br><span id="互动"></span><a onclick="随机串门(1)">随机串门</a>(<a onclick="随机串门(0)">当前</a>)<br>
 </div>
 <br>
 
@@ -140,7 +140,7 @@ QQ群：<a href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=JfeLyFtcYH8y0gN-3okJ6
 <a href="/i/b#logo">logo</a><br>
 <a href="/i/c#更新日志">更新日志</a><br>
 <a href="/i/c#感谢">感谢</a><br>
-<a href="{{ site.mq }}/donate">打赏</a>（<ruby><rb>761.64/166</rb><rt>已收打赏/成本</rt></ruby>）<small>打赏时记得留言是给小像素点的</small><br>
+<a href="{{ site.mq }}/donate">打赏</a>（<ruby><rb>782.71/166</rb><rt>已收打赏/成本</rt></ruby>）<small>打赏时记得留言是给小像素点的</small><br>
 <a href="{{ site.mq }}/maoqiu">关于猫球</a><br>
 
 <br>
@@ -822,7 +822,10 @@ function 简易模式(o){
 if(!localStorage.getItem("简易模式")){localStorage.setItem("简易模式","0")}
 简易模式(localStorage.getItem("简易模式"));
 
-function 随机串门(){window.location.href="/i/b?sj,"+localStorage.getItem("像素点")+","+localStorage.getItem("像素点名字")+","}
+function 随机串门(o){
+    if(o==0){window.location.href="/i/b?sj,"+颜色+","+名字+","
+    }else{window.location.href="/i/b?sj,"+localStorage.getItem("像素点")+","+localStorage.getItem("像素点名字")+","} 
+}
 
 if(localStorage.getItem("互动模式")){document.getElementById("互动模式").checked="checked";互模=1}
 if(!localStorage.getItem("像素点")){localStorage.setItem("像素点",颜色);localStorage.setItem("像素点名字",名字)}
