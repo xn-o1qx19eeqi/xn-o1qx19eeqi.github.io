@@ -14,7 +14,7 @@ br.sj{display:none}
 
 <div id="杂2">
 颜色：<input type="text" class="xsan" placeholder="000000" autocomplete="off" id="输入颜色" onkeyup="输入颜色()"><br class="sj"><br class="sj"><input type="color" id="选择颜色" oninput="选择颜色()"><a class="xsan" onclick="查询()">确定</a><a class="xsan" onclick="随机一只()">随机一只</a><br><br>
-<label for="互动模式">指令</label><input type="checkbox" id="互动模式" oninput="互动模式()">：<input type="text" class="xsan" placeholder="动作指令" autocomplete="off" id="输入互动"><br class="sj"><br class="sj"><a class="xsan" onclick="输入互动()">发送</a><br><span id="互动"></span><a onclick="随机串门(1)">随机串门</a>(<a onclick="随机串门(0)">当前</a>)<br>
+<label for="互动模式">指令</label><input type="checkbox" id="互动模式" oninput="{if(互模==0){互模=1;notyf.confirm('开启立即执行模式');localStorage.setItem('互动模式','1')}else{互模=0;notyf.confirm('关闭立即执行模式');localStorage.removeItem('互动模式')}}">：<input type="text" class="xsan" placeholder="动作指令" autocomplete="off" id="输入互动"><br class="sj"><br class="sj"><a class="xsan" onclick="输入互动()">发送</a><br><span id="互动"></span><a onclick="window.location.href='/i/b?sj,'+localStorage.getItem('像素点')+','+localStorage.getItem('像素点名字')+','">随机串门</a>(<a onclick="window.location.href='/i/b?sj,'+颜色+','+名字+','">当前</a>)<br>
 </div>
 <br>
 
@@ -190,7 +190,7 @@ let 缩=[
 "o／〈x〉正在发呆。",
 "o／〈x〉好像在思考什么。",
 "躺／〈x〉躺了一会儿。",
-"<a href='https://wj.qq.com/s2/12660523/ee7d' target='_blank' onclick=\"{if(new Date().getDay()!==6){notyf.alert('今天不是周六')};return false}}\">申请认养</a><small>（仅周六可以申请）</small>",
+"<a href='https://wj.qq.com/s2/12660523/ee7d' target='_blank' onclick=\"{if(new Date().getDay()!==6){notyf.alert('今天不是周六')};return false}\">申请认养</a><small>（仅周六可以申请）</small>",
 "<a href='https://wj.qq.com/s2/10560058/b06e' target='_blank'>点击此处</a>填写像素点编号",
 ]
 let 日程={
@@ -788,7 +788,6 @@ document.getElementById("输入颜色").value=临时;
 }
 function 复制像素点(){制="{{ site.mq_url }}/"+颜色;复()}
 function 看望打卡(o){localStorage.setItem("像素点",颜色);localStorage.setItem("像素点名字",名字);notyf.confirm("已设置为默认像素点");localStorage.setItem("打卡"+颜色,今日);if(o==0){document.getElementById("看望打卡").innerHTML="<iframe src='/i/5/看望打卡?"+颜色+"' frameborder='0' width='50%' height='30px'></iframe>"}else{document.getElementById("看望打卡").innerHTML="<sup style='background-color:#01EC0C;color:#ffffff'>打卡成功</sup>"}}
-function 互动模式(){if(互模==0){互模=1;notyf.confirm("开启立即执行模式");localStorage.setItem("互动模式","1")}else{互模=0;notyf.confirm("关闭立即执行模式");localStorage.removeItem("互动模式")}}
 function 新互动(d){
 notyf.confirm("你的指令正在传递中……");
 if(d.indexOf("［")!=-1){d=d.split("［");d=d[Math.floor(Math.random()*d.length)]}
@@ -821,11 +820,6 @@ function 简易模式(o){
 }
 if(!localStorage.getItem("简易模式")){localStorage.setItem("简易模式","0")}
 简易模式(localStorage.getItem("简易模式"));
-
-function 随机串门(o){
-    if(o==0){window.location.href="/i/b?sj,"+颜色+","+名字+","
-    }else{window.location.href="/i/b?sj,"+localStorage.getItem("像素点")+","+localStorage.getItem("像素点名字")+","} 
-}
 
 if(localStorage.getItem("互动模式")){document.getElementById("互动模式").checked="checked";互模=1}
 if(!localStorage.getItem("像素点")){localStorage.setItem("像素点",颜色);localStorage.setItem("像素点名字",名字)}
