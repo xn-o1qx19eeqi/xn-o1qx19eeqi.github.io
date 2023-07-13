@@ -30,8 +30,14 @@ div0: 1
 
     @keyframes 水花{0%,85%,100%{opacity:0}95%{opacity:1}0%,90%{top:150px}100%{top:140px}}
 
+    #按钮1{display:inline;font-size:1.2em;}
+    #按钮2{display:none;}
+
     @media screen and (max-width: 767px){
-        #地图{margin:0 0 0 -2.6%;transform-origin:left bottom;transform:scale(0.44)}}
+        #地图{margin:0 0 0 -2.6%;transform-origin:left bottom;transform:scale(0.44)}
+        #按钮1{display:none;}
+        #按钮2{display:inline;font-size:1.2em;}
+    }
 </style>
 
 <div id="地图">
@@ -54,10 +60,10 @@ div0: 1
     <a onclick="挖山()" class="提示" data-msg="快捷键：2">挖山</a>　
     <a onclick="打开()" class="提示" data-msg="快捷键：3">打开</a>
 </div>
-<div id="按钮2" style="display:none;">
-    <a>丢掉</a>　
-    <a>挖山</a>　
-    <a>打开</a>
+<div id="按钮2">
+    <a onclick="丢掉()">丢掉</a>　
+    <a onclick="挖山()">挖山</a>　
+    <a onclick="打开()">打开</a>
 </div>
 
 <br>
