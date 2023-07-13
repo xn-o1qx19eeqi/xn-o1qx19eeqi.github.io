@@ -6,9 +6,6 @@ BeiJing_SJ: 0／0-01.png
 BiaoTi: 愚公移山
 div0: 1
 ---
-
-
-
 <style id="style">
     #地图{position:relative}
     #点点{position:absolute;width:35px;height:35px;top:123px;
@@ -73,16 +70,20 @@ div0: 1
 
 <br>
 
-<a id="设置0" onclick="document.getElementById('设置0').style='display:none';document.getElementById('设置1').style='';">设置</a>
-<a id="设置1" onclick="document.getElementById('设置1').style='display:none';document.getElementById('设置2').style='';" style="display:none;">清空缓存</a>
-<span id="设置2" style="display:none;">确定要清空缓存？ <a onclick="清空缓存()">确定</a> <a onclick="document.getElementById('设置2').style='display:none';document.getElementById('设置0').style='';">取消</a></span>
+<small>
+    <a id="设置0" onclick="document.getElementById('设置0').style='display:none';document.getElementById('设置1').style='';">设置</a>
+    <span id="设置1" style="display:none;">
+        <a onclick="document.getElementById('设置1').style='display:none';document.getElementById('设置2').style='';">清空缓存</a>
+    </span>
+    <span id="设置2" style="display:none;">确定要清空缓存？ <a onclick="清空缓存()">确定</a> <a onclick="document.getElementById('设置2').style='display:none';document.getElementById('设置0').style='';">取消</a></span>
+</small>
 
 <script>
     let 宝物=[
         "土地公公的拐杖","沉香的开山斧","二郎神的开山斧","补天石","精卫的羽毛","人参果",
         "霸王龙化石","菊石化石","梁龙化石","三叶虫化石","始祖鸟化石","三角龙化石","翼龙化石","长毛象化石","剑齿虎化石","剑龙化石","奇虾化石","琥珀",
         "红宝石","蓝宝石","紫宝石","绿宝石","钻石","珍珠",
-        "紫葫芦","挂坠盒","小曼德拉草","玉玺","龙珠",
+        "紫葫芦","挂坠盒","小曼德拉草","玉玺","龙珠","叼着钻石的小鼹鼠","金镐","再生手环","地瓜","82年的雪碧","彩蛋",
     ]
 
     let 名字=localStorage.getItem("像素点名字");
@@ -96,17 +97,24 @@ div0: 1
         "精卫的羽毛":"精卫的羽毛，用于对"+名字+"辛苦填海表达感谢。",
         "人参果":"孙悟空偷摘人参果，刚摘下来就掉进地里不见了，现在被"+名字+"挖了出来。",
         "琥珀":"一种树脂化石，里面还封着一只虫子。",
-        "蓝宝石":"水属性伤害+10",
-        "红宝石":"火属性伤害+10",
+        "蓝宝石":"法力值+10",
+        "红宝石":"生命值+10",
         "紫宝石":"雷属性伤害+10",
-        "绿宝石":"毒属性伤害+10",
+        "绿宝石":"传说将三颗颜色一样的宝石摆在一起，它们就会忽然碎掉。",
         "钻石":"可以用来切玻璃。",
-        "紫葫芦":名字+"仿佛听到有人在喊“爷爷”。",
+        "紫葫芦":"仿佛听到有人在喊“爷爷”。",
         "珍珠":"曾经有人买下了它，但只拿走了包装用的木盒。",
         "挂坠盒":"里面有一封写给“黑魔王”的信，偷看别人的信不太好，于是"+名字+"没有继续读下去。",
         "小曼德拉草":"它还在睡觉。",
         "玉玺":"雕刻着神龙的玉，不知道有什么用。",
         "龙珠":"橙黄色的球，里面还有一颗五角星。",
+        "叼着钻石的小鼹鼠":"最老练的矿工也可能不小心抓到小鼹鼠。",
+        "金镐":"虽然不太坚固，但它的挖掘速度是最快的！",
+        "地瓜":"出身于人参田的快乐的地瓜。",
+        "彩蛋":"一颗彩色的蛋。",
+        "Error":"undefined 烫烫烫烫屯屯屯 锟斤拷 404 ...",
+
+        
     }
 
     let dy=""
@@ -179,8 +187,10 @@ div0: 1
             物品[1]=物品[1]*1+1;
             localStorage.setItem("愚公移山"+编号,物品.join(","))
             document.getElementById("已挖").innerHTML=物品[1];
-            if(物品[1]>((宝物.length*20)+(物品[0]*5))&&宝物.length>(物品.length-2)){随机数=5}
+            if(物品[1]>((宝物.length*20)+(物品[0]*5))&&宝物.length>(物品.length-2)){if(随机数>3){随机数-=1}}
+            else if(随机数<9){随机数+=1}
             if(随机数>10){随机数-=1}
+            if(随机数>100){物品[物品.length]="Error";随机数=10}
         }
     }
 
@@ -226,4 +236,3 @@ div0: 1
 
     document.getElementById('点点').addEventListener('animationend',function(){动画=1});
 </script>
-
