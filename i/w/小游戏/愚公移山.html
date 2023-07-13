@@ -3,25 +3,227 @@ layout: e0
 permalink: w/yugongyishan
 BeiJing: 0／0-01.png
 BeiJing_SJ: 0／0-01.png
-BiaoTi: 小像素点
-title: 小像素点
-h1: 小像素点
-h2: <a href="/">返回</a>
+BiaoTi: 愚公移山
+div0: 1
 ---
 
-<style>
-    /* img{image-rendering: optimizeSpeed;image-rendering: -moz-crisp-edges;image-rendering: -o-crisp-edges;image-rendering: -webkit-optimize-contrast;image-rendering: pixelated;-ms-interpolation-mode: nearest-neighbor;} */
 
 
+<style id="style">
+    #地图{position:relative}
+    #点点{position:absolute;width:35px;height:35px;top:123px;
+        box-shadow:4px 4px #353540,-4px 4px #353540,4px -4px #353540,-4px -4px #353540;
+        left:100px;
+        animation:1;animation-fill-mode:forwards;animation-duration:1.6s;
+    }
+    #物品{position:absolute;transform:scale(4.5);top:75px;opacity:0;
+        animation:1;animation-fill-mode:forwards;animation-duration:1.6s;
+    }
+    #水花{position:absolute;transform:scale(4.5);left:40px;opacity:0;
+        animation:1;animation-fill-mode:forwards;animation-duration:1.6s;
+    }
 
+    #空箱子,#已挖,#物品栏{font-weight:bold}
 
-    #点点{position:absolute;width:35px;height:35px;background-color:#ff0000;left:382px;top:123px}
+    @keyframes 挖山{0%{left:100px}80%,100%{left:620px}}
+    @keyframes 挖山_{0%,80%{opacity:0}80%{left:700px}100%{left:631px}90%,100%{opacity:1}}
+
+    @keyframes 丢掉{0%{left:620px}80%,100%{left:100px}}
+    @keyframes 丢掉_{0%{left:631px}0%,80%{opacity:1}80%{left:110px}90%,100%{opacity:0;left:80px}}
+
+    @keyframes 水花{0%,85%,100%{opacity:0}95%{opacity:1}0%,90%{top:150px}100%{top:140px}}
 </style>
 
 <div id="地图">
 
 <div id="点点"></div>
-<img width="800px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAAA3BAMAAACoZViVAAAAKlBMVEWLkVBcaZ81NUC/uLSRjY0AAABgSz12n6a9o1FzW0JNPzjt5NrutVHjk0cFfmk8AAABo0lEQVRYw+2XsWrDQAyGQ4bsnbIG+TDpGnlrp8uN7dg9ZBC0W6a+Qp6g4BfoUOji1WP7CKXPU8kxqHbAOGdrCPgfbCVw/nyS/sOa3dR6hfXMQgpIrQG3xgD7FK2P1W9DgP5nAliaAzRF11rkyQc2PoBKhj5I8P6rLAx94MLDd/CGPnD0+UvesMiO3qkFmINoLB+4D1YTAIh4V6wG+UCbxxG9kG/VnVWuhqUokWcUHQBcDfNBkj/neSFBYG16AmYXAjYSAKsDcLEP5gCyNCFWNyDSB4AlVDvI37p3ABBX5IQ7sA9AGjXGB7J6Ux9BdcBqAMAhK+NGjfIBr/ZyC48/4RSw/P8iJVkQcRWiUuT4cXoE6VGhAEQFRPgAQgA9ITRQAFaELWLaBvRuUzWwBm0AMiDKB08sTb0GvQDH/gCopIFqv0WpMl/TqCILQO8aKOD0+nw9A6R2gKX6YCxA1tzBYTlmirbIck3AQX0wGOCxAvhuH8QDnJcdZABkMx8QQBCltLOZDxa0d+K91O7jl0BEdvPBgkS7aT6Y5uSrLPI0J08+iNUf7BDdPfTc9oAAAAAASUVORK5CYII=">
+<img id="物品">
+<img id="水花" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAADAQMAAABh+Fe7AAAABlBMVEUAAAB2n6Y8dz0lAAAAAXRSTlMAQObYZgAAAA5JREFUCNdjaGDwYAgAAAOuARnFD69/AAAAAElFTkSuQmCC">
 
+<img width="800px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAAA3BAMAAACoZViVAAAAHlBMVEWLkVBcaZ+/uLQ1NUCRjY12n6a9o1FgSz3t5NpzW0LH+MUjAAAA+UlEQVRYw+2XsQqDMBRFBYfOHfyBi0PH4AsG18Rf6C90FjLkA7r42c3DQgadineQ5g4BF4/c50Ffc//mKWPDSAE4NmAiA/gVja9GQwRs1zRARweUiq465OpB9eCPPGhFQ/RAADzehufBgJz1ACBnAmCOPGADGi6gowPOrUiEO2R9UUkeiEVOj9VwPGiHftYAhlNRCxQAwQMFKMEDjuBBAWAP6AgAhgfRQ6ecT8cZctweP587gGMDphMBWhOvIo8cOzuGBwoI0NhA8iDa4LUikcTxIInMGpcWjge3FG2+f3C8j34STeL9F92SZqn7Qd0PLjnkuidXD37NB3EjdcqpRT2EAAAAAElFTkSuQmCC">
 </div>
+
+<br>
+
+<div id="提示">　</div>
+
+<br>
+
+<div id="按钮1">
+    <a onclick="丢掉()" class="提示" data-msg="快捷键：1">丢掉</a>　
+    <a onclick="挖山()" class="提示" data-msg="快捷键：2">挖山</a>　
+    <a onclick="打开()" class="提示" data-msg="快捷键：3">打开</a>
+</div>
+<div id="按钮2" style="display:none;">
+    <a>丢掉</a>　
+    <a>挖山</a>　
+    <a>打开</a>
+</div>
+
+<br>
+
+已挖：<span id="已挖"></span>次　空箱子：<span id="空箱子"></span>个<br>
+物品栏：<span id="物品栏"></span><br>
+
+<br>
+
+<small>2015年10月，我曾做过这样一个游戏：«猫球讲故事：愚公移山»，你可以不停挖山，但没有结局，也没有任何剧情，没什么意义，只是一个“世界上最无聊的游戏”。<br>
+现在我把它复刻了出来，增加了一些随机宝物，不过依然没什么意义。<br>
+</small><br>
+
+<br>
+
+<a id="设置0" onclick="document.getElementById('设置0').style='display:none';document.getElementById('设置1').style='';">设置</a>
+<a id="设置1" onclick="document.getElementById('设置1').style='display:none';document.getElementById('设置2').style='';" style="display:none;">清空缓存</a>
+<span id="设置2" style="display:none;">确定要清空缓存？ <a onclick="清空缓存()">确定</a> <a onclick="document.getElementById('设置2').style='display:none';document.getElementById('设置0').style='';">取消</a></span>
+
+<script>
+    let 宝物=[
+        "土地公公的拐杖","沉香的开山斧","二郎神的开山斧","补天石","精卫的羽毛","人参果",
+        "霸王龙化石","菊石化石","梁龙化石","三叶虫化石","始祖鸟化石","三角龙化石","翼龙化石","长毛象化石","剑齿虎化石","剑龙化石","奇虾化石","琥珀",
+        "红宝石","蓝宝石","紫宝石","绿宝石","钻石","珍珠",
+        "紫葫芦","挂坠盒","小曼德拉草","玉玺","龙珠",
+    ]
+
+    let 名字=localStorage.getItem("像素点名字");
+    if(!名字){名字="小像素点"}
+
+    let 百科={
+        "土地公公的拐杖":"土地公公的拐杖，被"+名字+"点挖了出来。",
+        "沉香的开山斧":"当年沉香劈山救母留下的斧子。",
+        "二郎神的开山斧":"当年二郎神劈山救母留下的斧子。",
+        "补天石":"女娲用来补天的石头，其中没有用完的一枚。",
+        "精卫的羽毛":"精卫的羽毛，用于对"+名字+"辛苦填海表达感谢。",
+        "人参果":"孙悟空偷摘人参果，刚摘下来就掉进地里不见了，现在被"+名字+"挖了出来。",
+        "琥珀":"一种树脂化石，里面还封着一只虫子。",
+        "蓝宝石":"水属性伤害+10",
+        "红宝石":"火属性伤害+10",
+        "紫宝石":"雷属性伤害+10",
+        "绿宝石":"毒属性伤害+10",
+        "钻石":"可以用来切玻璃。",
+        "紫葫芦":名字+"仿佛听到有人在喊“爷爷”。",
+        "珍珠":"曾经有人买下了它，但只拿走了包装用的木盒。",
+        "挂坠盒":"里面有一封写给“黑魔王”的信，偷看别人的信不太好，于是"+名字+"没有继续读下去。",
+        "小曼德拉草":"它还在睡觉。",
+        "玉玺":"雕刻着神龙的玉，不知道有什么用。",
+        "龙珠":"橙黄色的球，里面还有一颗五角星。",
+    }
+
+    let dy=""
+
+    let 编号=localStorage.getItem("像素点");
+    if(!编号){编号="000000"}
+    document.getElementById("style").append("#点点{background-color:#"+编号+"}");
+    let 物品=localStorage.getItem("愚公移山"+编号);
+    if(!物品){物品=[0,0]}else{
+        物品=物品.split(",")
+        物品[0]=物品[0]*1
+        物品[1]=物品[1]*1
+
+        for(let i=2;物品.length>i;i++){
+            if(百科[物品[i]]){
+                dy+="　<span class='提示' data-msg='"+百科[物品[i]]+"'>"+物品[i].split("_")[0]+"</span>"
+            }else{
+                dy+="　"+物品[i].split("_")[0]
+            }
+        }
+        document.getElementById("物品栏").innerHTML=dy;
+    }
+    document.getElementById("空箱子").innerHTML=物品[0];
+    document.getElementById("已挖").innerHTML=物品[1];
+    
+    function 清空缓存(){
+        localStorage.removeItem("愚公移山"+编号);location.replace(location.href);
+    }
+
+    let 状态=0;
+    //0 啥都没有
+    //1 拿着石头
+    //2 拿着宝箱
+    //3 拿着空宝箱
+
+    let 动画=1;
+    let 随机数=10;
+
+    function 随机(){
+        if(物品[1]>0&&Math.floor(Math.random()*随机数)==0){
+            状态=2;
+            document.getElementById("物品").src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAUBAMAAABL3sEiAAAAHlBMVEUAAAA1NUBzW0K/uLSRjY1gSz1NPzjt5Nrjk0futVGdMyhPAAAAAXRSTlMAQObYZgAAAEpJREFUCNdjIB4IggGDsLGxcXkhg7BSkJISlDJkEA4FAiClpKSqhKCMLScbGzKIuHi0uDgyiIRmtIYCqTQgAPFCw0A8FyBwhBoNADXsEdaXpkpqAAAAAElFTkSuQmCC";
+        }else{
+            状态=1;
+            document.getElementById("物品").src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAUBAMAAABCNWFYAAAAD1BMVEUAAAA1NUC/uLSRjY3t5No/pn54AAAAAXRSTlMAQObYZgAAAC9JREFUCNdjIB0wCgoKMAgquQgyCCmpOAIJJUUGYSUlQwZhY2NDBkFjY0GIEjgAAG5UA7mNcqygAAAAAElFTkSuQmCC";
+        }
+    }
+
+    function 丢掉(){
+        if(状态==0){
+            document.getElementById("提示").innerHTML="没啥可扔的东西。";
+        }else if(动画==1){动画=0;
+            document.getElementById("提示").innerHTML="　";
+            document.getElementById("点点").style="animation-name:丢掉";
+            document.getElementById("物品").style="animation-name:丢掉_";
+            document.getElementById("水花").style="animation-name:水花";
+            状态=0;
+        }
+    }
+
+    function 挖山(){
+        if(状态!=0){
+            document.getElementById("提示").innerHTML="手里拿着东西，不能挖山。";
+        }else if(动画==1){动画=0;
+            document.getElementById("提示").innerHTML="　";
+            随机();
+            document.getElementById("点点").style="animation-name:挖山";
+            document.getElementById("物品").style="animation-name:挖山_";
+            document.getElementById("水花").style="";
+            物品[1]=物品[1]*1+1;
+            localStorage.setItem("愚公移山"+编号,物品.join(","))
+            document.getElementById("已挖").innerHTML=物品[1];
+            if(物品[1]>((宝物.length*20)+(物品[0]*5))&&宝物.length>(物品.length-2)){随机数=5}
+            if(随机数>10){随机数-=1}
+        }
+    }
+
+    function 打开(){
+        if(状态==2){
+            let 获得=宝物[Math.floor(Math.random()*宝物.length)]
+            if(物品.indexOf(获得)!=-1){
+                物品[0]=物品[0]*1+1;
+                document.getElementById("空箱子").innerHTML=物品[0];
+                document.getElementById("提示").innerHTML="获得<b>空箱子</b>";
+            }else{
+                物品[物品.length]=获得;
+                if(百科[获得]){
+                    document.getElementById("提示").innerHTML="获得<b>"+获得.split("_")[0]+"</b>："+百科[获得];
+                    dy+="　<span class='提示' data-msg='"+百科[获得]+"'>"+获得.split("_")[0]+"</span>"
+                }else{
+                    document.getElementById("提示").innerHTML="获得<b>"+获得.split("_")[0]+"</b>";
+                    dy+="　"+获得.split("_")[0]
+                }
+                document.getElementById("物品栏").innerHTML=dy;
+            }
+
+            localStorage.setItem("愚公移山"+编号,物品.join(","))
+            状态=3;
+            document.getElementById("物品").src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAUBAMAAABL3sEiAAAAGFBMVEU1NUCRjY1gSz2/uLRNPzjutVHt5Nrjk0cGzkVfAAAAQ0lEQVQI12OAAmZj0+C0BAZGQdFAQQEGRiX3IiUQ5aQEolyAAMRTUlGCU8yCQGDAwAzSjIsyBgIDoJlAgN0wmBwEAACD2AudxuVVzwAAAABJRU5ErkJggg=="
+        }else{
+            随机数+=3;
+            if(状态==0){document.getElementById("提示").innerHTML="没有东西可开。"}
+            if(状态==1){document.getElementById("提示").innerHTML="石头太坚硬了，打不开。";}
+            if(状态==3){document.getElementById("提示").innerHTML="宝箱已经打开过了。";}
+        }
+    }
+
+    window.document.onkeydown = disableRefresh;
+    function disableRefresh(evt){
+    evt=(evt)?evt:window.event
+    if(evt.keyCode&&动画==1){
+    if(evt.keyCode==49||evt.keyCode==97){丢掉()}
+    if(evt.keyCode==50||evt.keyCode==98){挖山()}
+    if(evt.keyCode==51||evt.keyCode==99){打开()}
+    }
+    }
+
+    document.getElementById('点点').addEventListener('animationend',function(){动画=1});
+</script>
 
