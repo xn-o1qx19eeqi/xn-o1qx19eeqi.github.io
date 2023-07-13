@@ -843,6 +843,7 @@ if(localStorage.getItem("互动模式")){document.getElementById("互动模式")
 if(!localStorage.getItem("像素点")){localStorage.setItem("像素点",颜色);localStorage.setItem("像素点名字",名字)}
 if(!localStorage.getItem("像素点名字")){if(localStorage.getItem("像素点")==颜色){localStorage.setItem("像素点名字",名字)}else{localStorage.setItem("像素点名字","小像素点")}}
 console.log(背景)
+console.log(背景颜色)
 
 function 改url(){
     let url=location.href.split("?")[0].split("#")[0].split(".cn")[0]+".cn/";
