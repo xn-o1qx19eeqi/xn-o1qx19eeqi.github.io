@@ -840,10 +840,10 @@ function 随机串门(o){
 }
 
 if(localStorage.getItem("互动模式")){document.getElementById("互动模式").checked="checked";互模=1}
-if(!localStorage.getItem("像素点")){localStorage.setItem("像素点",颜色);localStorage.setItem("像素点名字",名字)}
-if(!localStorage.getItem("像素点名字")){if(localStorage.getItem("像素点")==颜色){localStorage.setItem("像素点名字",名字)}else{localStorage.setItem("像素点名字","小像素点")}}
-console.log(背景)
-console.log(背景颜色)
+if(!localStorage.getItem("像素点")){localStorage.setItem("像素点",颜色)}
+if(localStorage.getItem("像素点")==颜色){localStorage.setItem("像素点名字",名字);localStorage.setItem("像素点背景",背景颜色)}
+if(!localStorage.getItem("像素点名字")){localStorage.setItem("像素点名字","小像素点")}
+if(!localStorage.getItem("像素点背景")){localStorage.setItem("像素点背景","#EEEEEE")}
 
 function 改url(){
     let url=location.href.split("?")[0].split("#")[0].split(".cn")[0]+".cn/";
