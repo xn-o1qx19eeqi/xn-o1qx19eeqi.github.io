@@ -7,7 +7,7 @@ BiaoTi: 愚公移山
 div0: 1
 ---
 <style id="style">
-    #地图{position:relative}
+    #地图{position:relative;transform-origin:left bottom;}
     #点点{position:absolute;width:35px;height:35px;top:123px;
         box-shadow:4px 4px #353540,-4px 4px #353540,4px -4px #353540,-4px -4px #353540;
         left:100px;
@@ -34,7 +34,7 @@ div0: 1
     #按钮2{display:none;}
 
     @media screen and (max-width: 767px){
-        #地图{margin:0 0 0 -2.6%;transform-origin:left bottom;transform:scale(0.44)}
+        #地图{margin:0 0 0 -2.6%;transform:scale(0.44)}
         #按钮1{display:none;}
         #按钮2{display:inline;font-size:1.2em;}
     }
@@ -79,12 +79,20 @@ div0: 1
 
 <br>
 
+
+
+
 <small>
     <a id="设置0" onclick="document.getElementById('设置0').style='display:none';document.getElementById('设置1').style='';">设置</a>
+
     <span id="设置1" style="display:none;">
-        <a onclick="document.getElementById('设置1').style='display:none';document.getElementById('设置2').style='';">清空缓存</a>
+        <a onclick="取消()">取消</a><br><br>
+        调整地图大小：<input type="range" id="调整大小" onclick="调整大小()"> <a onclick="调整大小(0)">恢复默认</a><br><br>
+        <a onclick="清除多余的Error();取消()">清除多余的Error</a><br><br>
+        <a onclick="document.getElementById('设置1').style='display:none';document.getElementById('设置2').style='';">清空缓存</a><br><br>
     </span>
-    <span id="设置2" style="display:none;">确定要清空缓存？ <a onclick="清空缓存()">确定</a> <a onclick="document.getElementById('设置2').style='display:none';document.getElementById('设置0').style='';">取消</a></span>
+
+    <span id="设置2" style="display:none;">确定要清空缓存？　<a onclick="清空缓存()">确定</a>　<a onclick="取消()">取消</a></span>
 </small>
 
 <script>
@@ -92,7 +100,7 @@ div0: 1
         "土地公公的拐杖","沉香的开山斧","二郎神的开山斧","补天石","精卫的羽毛","人参果",
         "霸王龙化石","菊石化石","梁龙化石","三叶虫化石","始祖鸟化石","三角龙化石","翼龙化石","长毛象化石","剑齿虎化石","剑龙化石","奇虾化石","琥珀",
         "红宝石","蓝宝石","紫宝石","绿宝石","钻石","珍珠",
-        "紫葫芦","挂坠盒","小曼德拉草","玉玺","龙珠","叼着钻石的小鼹鼠","金镐","再生手环","地瓜","82年的雪碧","彩蛋",
+        "紫葫芦","挂坠盒","小曼德拉草","玉玺","龙珠","叼着钻石的小鼹鼠","金镐","再生手环","地瓜","82年的雪碧","彩蛋","金石头和银石头",
     ]
 
     let 名字=localStorage.getItem("像素点名字");
@@ -120,13 +128,22 @@ div0: 1
         "叼着钻石的小鼹鼠":"最老练的矿工也可能不小心抓到小鼹鼠。",
         "金镐":"虽然不太坚固，但它的挖掘速度是最快的！",
         "地瓜":"出身于人参田的快乐的地瓜。",
-        "彩蛋":"一颗彩色的蛋。",
+        "彩蛋":"一枚彩色的蛋。",
         "Error":"undefined 烫烫烫烫屯屯屯 锟斤拷 404 ...",
-
-        
+        "金箱子和银箱子":"河神收到了"+名字+"送的许多宝箱，将金箱子和银箱子作为回礼送给了"+名字+"。",
+        "金石头和银石头":"河神给诚实的"+名字+"的奖励。",
     }
 
     let dy=""
+
+    function 打印(o){
+        if(百科[o]){
+            dy+="　<span class='提示' data-msg='"+百科[o]+"'>"+o.split("_")[0]+"</span>"
+        }else{
+            dy+="　"+o.split("_")[0]
+        }
+        document.getElementById("物品栏").innerHTML=dy;
+    }
 
     let 编号=localStorage.getItem("像素点");
     if(!编号){编号="000000"}
@@ -136,22 +153,10 @@ div0: 1
         物品=物品.split(",")
         物品[0]=物品[0]*1
         物品[1]=物品[1]*1
-
-        for(let i=2;物品.length>i;i++){
-            if(百科[物品[i]]){
-                dy+="　<span class='提示' data-msg='"+百科[物品[i]]+"'>"+物品[i].split("_")[0]+"</span>"
-            }else{
-                dy+="　"+物品[i].split("_")[0]
-            }
-        }
-        document.getElementById("物品栏").innerHTML=dy;
+        for(let i=2;物品.length>i;i++){打印(物品[i])}
     }
     document.getElementById("空箱子").innerHTML=物品[0];
     document.getElementById("已挖").innerHTML=物品[1];
-    
-    function 清空缓存(){
-        localStorage.removeItem("愚公移山"+编号);location.replace(location.href);
-    }
 
     let 状态=0;
     //0 啥都没有
@@ -161,6 +166,7 @@ div0: 1
 
     let 动画=1;
     let 随机数=10;
+    let 扔宝箱=0;
 
     function 随机(){
         if(物品[1]>0&&Math.floor(Math.random()*随机数)==0){
@@ -177,6 +183,7 @@ div0: 1
             document.getElementById("提示").innerHTML="没啥可扔的东西。";
         }else if(动画==1){动画=0;
             document.getElementById("提示").innerHTML="　";
+            if(状态==2){扔宝箱+=1;if(扔宝箱>5&&物品.indexOf("金箱子和银箱子")==-1){物品[物品.length]="金箱子和银箱子";打印('金箱子和银箱子')}}
             document.getElementById("点点").style="animation-name:丢掉";
             document.getElementById("物品").style="animation-name:丢掉_";
             document.getElementById("水花").style="animation-name:水花";
@@ -199,7 +206,6 @@ div0: 1
             if(物品[1]>((宝物.length*20)+(物品[0]*5))&&宝物.length>(物品.length-2)){if(随机数>3){随机数-=1}}
             else if(随机数<9){随机数+=1}
             if(随机数>10){随机数-=1}
-            if(随机数>100){物品[物品.length]="Error";随机数=10}
         }
     }
 
@@ -212,14 +218,12 @@ div0: 1
                 document.getElementById("提示").innerHTML="获得<b>空箱子</b>";
             }else{
                 物品[物品.length]=获得;
+                打印(获得);
                 if(百科[获得]){
                     document.getElementById("提示").innerHTML="获得<b>"+获得.split("_")[0]+"</b>："+百科[获得];
-                    dy+="　<span class='提示' data-msg='"+百科[获得]+"'>"+获得.split("_")[0]+"</span>"
                 }else{
                     document.getElementById("提示").innerHTML="获得<b>"+获得.split("_")[0]+"</b>";
-                    dy+="　"+获得.split("_")[0]
                 }
-                document.getElementById("物品栏").innerHTML=dy;
             }
 
             localStorage.setItem("愚公移山"+编号,物品.join(","))
@@ -227,6 +231,7 @@ div0: 1
             document.getElementById("物品").src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAUBAMAAABL3sEiAAAAGFBMVEU1NUCRjY1gSz2/uLRNPzjutVHt5Nrjk0cGzkVfAAAAQ0lEQVQI12OAAmZj0+C0BAZGQdFAQQEGRiX3IiUQ5aQEolyAAMRTUlGCU8yCQGDAwAzSjIsyBgIDoJlAgN0wmBwEAACD2AudxuVVzwAAAABJRU5ErkJggg=="
         }else{
             随机数+=3;
+            if(随机数>100){物品[物品.length]="Error";打印('Error');随机数=10}
             if(状态==0){document.getElementById("提示").innerHTML="没有东西可开。"}
             if(状态==1){document.getElementById("提示").innerHTML="石头太坚硬了，打不开。";}
             if(状态==3){document.getElementById("提示").innerHTML="宝箱已经打开过了。";}
@@ -244,4 +249,41 @@ div0: 1
     }
 
     document.getElementById('点点').addEventListener('animationend',function(){动画=1});
+
+
+    function 取消(){
+        document.getElementById('设置0').style='';
+        document.getElementById('设置1').style='display:none';
+        document.getElementById('设置2').style='display:none';
+    }
+
+    function 清空缓存(){
+        localStorage.removeItem("愚公移山"+编号);location.replace(location.href);
+    }
+
+    function 清除多余的Error(){
+        if(物品.indexOf("Error")!=-1){
+            物品=物品.join(",").replace(new RegExp(',Error',"g"),"")+",Error";
+            localStorage.setItem("愚公移山"+编号,物品)
+            location.replace(location.href)
+        }else{
+            try{notyf.alert("没有Error");}catch(e){alert("没有Error");}
+        }
+    }
+
+    function 调整大小(o){
+        if(o==0){
+            document.getElementById("地图").style="";
+            document.getElementById("调整大小").value=50;
+            localStorage.removeItem("愚公移山大小");
+        }else{
+            let l=document.getElementById("调整大小").value*2/100;
+            document.getElementById("地图").style="transform:scale("+l+")";
+            localStorage.setItem("愚公移山大小",l)
+        }
+    }
+    if(localStorage.getItem("愚公移山大小")){
+        document.getElementById("地图").style="transform:scale("+localStorage.getItem("愚公移山大小")+")";
+    }
+
 </script>
