@@ -76,7 +76,7 @@ div0: 1
 
     <span id="设置1" style="display:none;">
         <a onclick="取消()">取消</a><br>
-        调整地图大小：<input type="range" id="调整大小" onclick="调整大小()"> <a onclick="调整大小(0)">恢复默认</a><br>
+        调整地图大小：<input type="range" id="调整大小" onchange="调整大小()"> <a onclick="调整大小()">确定</a> <a onclick="地图恢复默认()">恢复默认</a><br>
         <a onclick="清除多余的Error();取消()">清除多余的Error</a><br>
         <a onclick="document.getElementById('设置1').style='display:none';document.getElementById('设置2').style='';">清空缓存</a><br>
     </span>
@@ -265,16 +265,15 @@ div0: 1
         }
     }
 
-    function 调整大小(o){
-        if(o==0){
-            document.getElementById("地图").style="";
+    function 调整大小(){
+        let l=document.getElementById("调整大小").value*2/100;
+        document.getElementById("地图").style="transform:scale("+l+")";
+        localStorage.setItem("愚公移山大小",l)
+    }
+    function 地图恢复默认(){
+        document.getElementById("地图").style="";
             document.getElementById("调整大小").value=50;
             localStorage.removeItem("愚公移山大小");
-        }else{
-            let l=document.getElementById("调整大小").value*2/100;
-            document.getElementById("地图").style="transform:scale("+l+")";
-            localStorage.setItem("愚公移山大小",l)
-        }
     }
     if(localStorage.getItem("愚公移山大小")){
         document.getElementById("地图").style="transform:scale("+localStorage.getItem("愚公移山大小")+")";
