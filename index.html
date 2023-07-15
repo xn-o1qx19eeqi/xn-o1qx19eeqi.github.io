@@ -394,7 +394,7 @@ let 默认互动=[
     ["敲屏幕","凑近／〈x〉听到声音，凑近屏幕看了看。"],
     ["晚安","凑近／〈x〉也悄悄跟你说了声晚安，祝你做个好梦。"],
 ];
-dy="";
+let dy="";
 for(let i=0;默认互动.length>i;i++){
     dy+="<a onclick=\"新互动('"+默认互动[i][1]+"')\">"+默认互动[i][0]+"</a> &nbsp;";
 }
@@ -505,7 +505,7 @@ function 加载(){
 for(let i=0;6>i;i++){if(字母.indexOf(号码[i])!=-1){颜色+=号码[i]}}
 
 if(颜色.length!=6){颜色="000000"}
-let dy="";
+dy="";
 try{
     let 地址="/i/x/"+颜色+".json";
     let GetJson=$.ajax({
@@ -523,13 +523,19 @@ try{
         if(内容[1]&&内容[1]!=""){主人=内容[1]}else{主人="无"}
         dy="<h2 style='display:inline;'>"+名字+"</h2>　<small>#"+颜色+" <a onclick=\"复制像素点()\">复制地址</a></small><br><small>认养人：</small>"+主人;
         if(主人!="（不可认养）"){
+            dy+=" <sup id=\"看望打卡\">"
             let 打卡临时=localStorage.getItem("打卡"+颜色);
-            if(打卡临时&&打卡临时==今日){dy+=" <sup id=\"看望打卡\" onclick=\"看望打卡(1)\" style='background-color:#01EC0C;color:#ffffff'>已打卡</sup>"}else{
-                打卡临时=0;
-            if(内容[7]&&内容[7]!=""&&Math.trunc((new Date().getTime()-new Date(内容[7]).getTime())/1000/60/60/24)>90){
-                dy+=" <small><a id=\"看望打卡\" onclick=\"看望打卡(0);\">打卡</a>";
-            }else{dy+=" <small><a id=\"看望打卡\" onclick=\"看望打卡(1)\">打卡</a>"}
+            if(打卡临时&&打卡临时==今日){dy+="<span style='background-color:#01EC0C;color:#ffffff'>已打卡</span>"
+            if(!localStorage.getItem("像素点")||localStorage.getItem("像素点")!=颜色){
+                dy+=" <a id=\"设为默认\" onclick=\"设为默认()\">设为默认</a>"
             }
+            }else{
+                打卡临时=0;
+                if(内容[7]&&内容[7]!=""&&Math.trunc((new Date().getTime()-new Date(内容[7]).getTime())/1000/60/60/24)>90){
+                    dy+="<a onclick=\"看望打卡(0);\">打卡</a>";
+                }else{dy+="<a onclick=\"看望打卡(1)\">打卡</a>"}
+                }
+                dy+="</sup>"
             }
         if(内容[2]&&内容[2]!=""){
             if(内容[2].indexOf("〈放弃认养〉")!=-1){内容[2]=内容[2].replace(/〈放弃认养〉/g,"");固定动作="放弃认养"}
@@ -799,7 +805,18 @@ document.getElementById("输入颜色").value=临时;
 改url();加载();
 }
 function 复制像素点(){制="{{ site.mq_url }}/"+颜色;复()}
-function 看望打卡(o){localStorage.setItem("像素点",颜色);localStorage.setItem("像素点名字",名字);notyf.confirm("已设置为默认像素点");localStorage.setItem("打卡"+颜色,今日);if(o==0){document.getElementById("看望打卡").innerHTML="<iframe src='/i/5/看望打卡?"+颜色+"' frameborder='0' width='50%' height='30px'></iframe>"}else{document.getElementById("看望打卡").innerHTML="<sup style='background-color:#01EC0C;color:#ffffff'>打卡成功</sup>"}}
+function 看望打卡(o){
+    let dy2="";
+    localStorage.setItem("打卡"+颜色,今日);
+    if(o==0){dy2="<iframe src='/i/5/看望打卡?"+颜色+"' frameborder='0' width='50%' height='30px'></iframe>"}
+    else{dy2="<span style='background-color:#01EC0C;color:#ffffff'>打卡成功</span>"}
+    if(!localStorage.getItem("像素点")||localStorage.getItem("像素点")!=颜色){dy2+=" <a id=\"设为默认\" onclick=\"设为默认()\">设为默认</a>"}
+    document.getElementById("看望打卡").innerHTML=dy2;
+}
+function 设为默认(){
+    localStorage.setItem("像素点名字",名字);notyf.confirm("已设置为默认像素点");
+    document.getElementById("设为默认").innerHTML="";
+}
 function 互动模式(){if(互模==0){互模=1;notyf.confirm("开启立即执行模式");localStorage.setItem("互动模式","1")}else{互模=0;notyf.confirm("关闭立即执行模式");localStorage.removeItem("互动模式")}}
 function 新互动(d){
 notyf.confirm("你的指令正在传递中……");
