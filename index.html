@@ -153,7 +153,7 @@ QQ群：<a href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=JfeLyFtcYH8y0gN-3okJ6
 <a href="/i/b#logo">logo</a><br>
 <a href="/i/c#更新日志">更新日志</a><br>
 <a href="/i/c#感谢">感谢</a><br>
-<a href="{{ site.mq }}/donate">打赏</a>（<ruby><rb>847/382.6</rb><rt>已收打赏/成本</rt></ruby>）<small>打赏时记得留言是给小像素点的</small><br>
+<a href="{{ site.mq }}/donate">打赏</a>（<ruby><rb>847/390.7</rb><rt>已收打赏/成本</rt></ruby>）<small>打赏时记得留言是给小像素点的</small><br>
 <a href="{{ site.mq }}/maoqiu">关于猫球</a><br>
 
 <br>
@@ -162,7 +162,7 @@ QQ群：<a href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=JfeLyFtcYH8y0gN-3okJ6
     服务器 0/年 //要不要租个服务器呢？ //算了算了
     素材 82
     人工 213.6 //从2023年7月15日开始 每条审核0.1元
-    // 
+    // (     ) /10
 -->
 </div>
 
@@ -309,6 +309,8 @@ let 日程={
     "喝／〈x〉喝了杯奶茶。",
     "滚来滚去／〈x〉不想工作。",
 ]],
+
+"工作_21":"休息日","工作_22":"休息日","工作_23":"休息日","工作_0":"休息日","工作_1":"休息日","工作_2":"休息日","工作_3":"休息日","工作_4":"休息日","工作_5":"休息日","工作_6":"休息日","工作_7":"休息日","工作_8":"休息日",
 
 "运动":["为了身体健康，〈x〉决定今天要做运动。",[
     "跳跳／〈x〉跳了跳。",
@@ -485,7 +487,6 @@ if(直接互动){
 
 今日=(new Date().getMonth()+1)+"."+new Date().getDate();
 if(节日[今日]){今天=节日[今日]}else{今天=0}
-if(彩蛋["o"]){彩蛋=彩蛋["o"]}else if(彩蛋[今日]){彩蛋=彩蛋[今日]}else if(彩蛋[new Date().getHours()]){彩蛋=彩蛋[new Date().getHours()]}else{彩蛋=[]}
 
 function 换背景(背景){
 if(背景.length==6&&背景.replace(/[0-9A-Fa-f]/g,"")==""){背景="#"+背景}
@@ -708,8 +709,14 @@ document.getElementById("style_root").innerHTML=":root{--点点:#"+颜色+";--�
 }
 
 function 刷新(){
+
 if(互动!=""){临时=互动;互动=日程[o][1].concat(互动.split("／")[0])}
-else{互动=日程[o][1].concat(日程[o][1]).concat(日程[o][1]).concat(日程[o][1]).concat(日程[o][1]).concat(彩蛋);临时=互动[Math.floor(Math.random()*互动.length)]}
+else{
+    let 蛋;if(彩蛋["o"]){蛋=彩蛋["o"]}else if(彩蛋[今日]){蛋=彩蛋[今日]}else if(彩蛋[new Date().getHours()]){蛋=彩蛋[new Date().getHours()]}else{蛋=[]}
+    if(日程[o+"_"+new Date().getHours()]){互动=日程[日程[o+"_"+new Date().getHours()]][1]}else{互动=日程[o][1]}
+    互动=互动.concat(互动).concat(互动).concat(互动).concat(互动).concat(蛋);
+    临时=互动[Math.floor(Math.random()*互动.length)]
+}
 
 临时=临时.split("／");
 dy="";
