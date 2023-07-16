@@ -20,6 +20,9 @@ div0: 1
         animation:1;animation-fill-mode:forwards;animation-duration:1.6s;
     }
 
+    #大海{position:absolute;width:80px;height:229px;}
+    #高山{position:absolute;left:650px;width:110px;height:229px;}
+
     #空箱子,#已挖,#物品栏{font-weight:bold}
 
     @keyframes 挖山{0%{left:100px}80%,100%{left:620px}}
@@ -42,14 +45,17 @@ div0: 1
 
 <div id="地图">
 
+<div id="大海" onclick="丢掉()"></div>
+<div id="高山" onclick="挖山()"></div>
+
 <div id="点点"></div>
-<img id="物品">
+<img id="物品" onclick="打开()">
 <img id="水花" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAADAQMAAABh+Fe7AAAABlBMVEUAAAB2n6Y8dz0lAAAAAXRSTlMAQObYZgAAAA5JREFUCNdjaGDwYAgAAAOuARnFD69/AAAAAElFTkSuQmCC">
 
 <img width="800px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAAA3BAMAAACoZViVAAAAHlBMVEWLkVBcaZ+/uLQ1NUCRjY12n6a9o1FgSz3t5NpzW0LH+MUjAAAA+UlEQVRYw+2XsQqDMBRFBYfOHfyBi0PH4AsG18Rf6C90FjLkA7r42c3DQgadineQ5g4BF4/c50Ffc//mKWPDSAE4NmAiA/gVja9GQwRs1zRARweUiq465OpB9eCPPGhFQ/RAADzehufBgJz1ACBnAmCOPGADGi6gowPOrUiEO2R9UUkeiEVOj9VwPGiHftYAhlNRCxQAwQMFKMEDjuBBAWAP6AgAhgfRQ6ecT8cZctweP587gGMDphMBWhOvIo8cOzuGBwoI0NhA8iDa4LUikcTxIInMGpcWjge3FG2+f3C8j34STeL9F92SZqn7Qd0PLjnkuidXD37NB3EjdcqpRT2EAAAAAElFTkSuQmCC">
 </div>
 
-<div id="提示">　</div>
+<div id="提示">（<small>山、大海、宝箱可以直接点击；键盘可以使用快捷键；设置里可以改地图大小、清除多余Error</small>）</div>
 
 <br>
 
@@ -88,8 +94,17 @@ div0: 1
 
 <hr>
 
-<small>2015年10月，我曾做过这样一个游戏：«猫球讲故事：愚公移山»，你可以不停挖山，但没有结局，也没有任何剧情，没什么意义，只是一个“世界上最无聊的游戏”。<br>
+<small>
+<b>简介</b>：<br>    
+2015年10月，我曾做过这样一个游戏：«猫球讲故事：愚公移山»，你可以不停挖山，但没有结局，也没有任何剧情，没什么意义，只是一个“世界上最无聊的游戏”。<br>
 现在我把它复刻了出来，增加了一些随机宝物，不过依然没什么意义。<br>
+<br>
+
+<b>更新日志</b>：<br>
+2023.7.16：画面上的山、大海、宝箱可以点击了<br>
+2023.7.14：地图大小可调节<br>
+2023.7.13：«愚公移山»上线<br>
+<br>
 </small>
 
 <script>
