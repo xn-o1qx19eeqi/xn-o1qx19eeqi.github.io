@@ -148,10 +148,11 @@ layout: default
         let 打印背景图片="";
         if(document.body.clientWidth<768){
             打印背景图片="{% if page.BeiJing_SJ %}{{ page.BeiJing_SJ }}{% else %}0{% endif %}";
+            打印背景图片="{% if page.BeiJing_SJ == 0 %}0／0-01.png{% else %}{{ page.BeiJing_SJ }}{% endif %}";
             if(typeof(替换背景图片_sj)!="undefined"){if(替换背景图片_sj!=""){打印背景图片=替换背景图片_sj;}}
             背景图片地址+="sj/";
         }else{
-            打印背景图片="{% if page.BeiJing %}{{ page.BeiJing }}{% else %}0{% endif %}";
+            打印背景图片="{% if page.BeiJing == 0 %}0／0-01.png{% else %}{{ page.BeiJing }}{% endif %}";
             if(typeof(替换背景图片)!="undefined"){if(替换背景图片!=""){打印背景图片=替换背景图片;}}
         }
         打印背景图片=打印背景图片.split("／");
