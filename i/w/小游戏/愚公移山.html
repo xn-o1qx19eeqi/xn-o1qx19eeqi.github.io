@@ -6,6 +6,8 @@ BeiJing_SJ: 0／0-01.png
 BiaoTi: 愚公移山
 div0: 1
 ---
+<script src="/i/5/mq-wzjm.js"></script>
+
 <style id="style">
     #地图{position:relative;transform-origin:left bottom;}
     #点点{position:absolute;width:35px;height:35px;top:123px;
@@ -73,11 +75,21 @@ div0: 1
 <br>
 
 已挖：<span id="已挖"></span>次　空箱子：<span id="空箱子"></span>个<br>
-物品栏：<span id="物品栏"></span><br>
+物品栏<sub>(<span id="已获得"></span>)</sub>：<span id="物品栏"></span><br>
 
 <br><br><br><br>
 
 <small>
+    <a id="存档0" onclick="document.getElementById('存档1').style='';document.getElementById('存档0').style='display:none;';">导入、导出存档</a>
+    <div id="存档1" style="display:none;">
+        <a onclick="document.getElementById('存档0').style='';document.getElementById('存档1').style='display:none;';">取消</a>　（存档功能不保证安全，慎用）<br>
+        导入：<input type="file" id="onloadFile"><br>
+        <button onclick='tableToExcel()'>导出</button><br>
+        <div id="存档2"></div>
+    </div>
+
+    <br><br>
+
     <a id="设置0" onclick="document.getElementById('设置0').style='display:none';document.getElementById('设置1').style='';">设置</a>
 
     <span id="设置1" style="display:none;">
@@ -104,15 +116,16 @@ div0: 1
 2023.7.16：画面上的山、大海、宝箱可以点击了<br>
 2023.7.14：地图大小可调节<br>
 2023.7.13：«愚公移山»上线<br>
+2023.7.19：增加存档功能<br>
 <br>
 </small>
 
 <script>
     let 宝物=[
         "土地公公的拐杖","沉香的开山斧","二郎神的开山斧","补天石","精卫的羽毛","人参果",
-        "霸王龙化石","菊石化石","梁龙化石","三叶虫化石","始祖鸟化石","三角龙化石","翼龙化石","长毛象化石","剑齿虎化石","剑龙化石","奇虾化石","琥珀",
+        "霸王龙化石","菊石化石","梁龙化石","三叶虫化石","始祖鸟化石","三角龙化石","翼龙化石","长毛象化石","剑齿虎化石","剑龙化石","奇虾化石","哥布林化石","独角兽化石","琥珀",
         "红宝石","蓝宝石","紫宝石","绿宝石","钻石","珍珠",
-        "紫葫芦","挂坠盒","小曼德拉草","玉玺","龙珠","叼着钻石的小鼹鼠","金镐","再生手环","地瓜","82年的雪碧","彩蛋","金石头和银石头",
+        "紫葫芦","挂坠盒","小曼德拉草","玉玺","龙珠","叼着钻石的小鼹鼠","金镐","再生手环","地瓜","82年的雪碧","彩蛋","金石头和银石头","断掉的剑尖","陨石","核子可乐的瓶盖","一瓶陈年达拉然红葡萄酒","豌豆","幸运硬币","月岩","一把金钥匙",
     ]
 
     let 名字=localStorage.getItem("像素点名字");
@@ -125,8 +138,10 @@ div0: 1
         "补天石":"女娲用来补天的石头，其中没有用完的一枚。",
         "精卫的羽毛":"精卫的羽毛，用于对"+名字+"辛苦填海表达感谢。",
         "人参果":"孙悟空偷摘人参果，刚摘下来就掉进地里不见了，现在被"+名字+"挖了出来。",
-        "琥珀":"一种树脂化石，里面还封着一只虫子。",
-        "绿宝石":"传说将三颗颜色一样的宝石摆在一起，它们就会忽然碎掉。",
+        "琥珀":"一种树脂化石，里面还封着一只吸饱血的蚊子。",
+        "蓝宝石":"传说将三颗颜色一样的宝石摆在一起，它们就会忽然碎掉。",
+        "绿宝石":"一种稀有的宝石，可以用来换一个面包。",
+        "红宝石":"不知道为什么，只要藏在衣服里就能增加生命值。",
         "钻石":"可以用来切玻璃。",
         "紫葫芦":"仿佛听到有人在喊“爷爷”。",
         "珍珠":"曾经有人买下了它，但只拿走了包装用的木盒。",
@@ -141,6 +156,18 @@ div0: 1
         "Error":"undefined 烫烫烫烫屯屯屯 锟斤拷 404 ...",
         "金箱子和银箱子":"河神收到了"+名字+"送的许多宝箱，将金箱子和银箱子作为回礼送给了"+名字+"。",
         "金石头和银石头":"河神给诚实的"+名字+"的奖励。",
+        "断掉的剑尖":"曾经插在石头里的宝剑，也许是拔的太用力了。",
+        "陨石":"停止了思考的陨石，从另一颗星球远道而来。",
+        "核子可乐的瓶盖":"亮闪闪的金属瓶盖，"+名字+"突发奇想，说不定可以拿来当钱用。",
+        "一瓶陈年达拉然红葡萄酒":"埋了很久，以至于黄铜标签融进酒里，使酒变成了绿色。",
+        "豌豆":"曾经被放在公主的床垫下面，后来被一个小男孩种下，现在被"+名字+"挖了出来。",
+        "霸王龙化石":"扔骨头就可以驯服它。",
+        "梁龙化石":"一只喜欢摇滚的恐龙。",
+        "幸运硬币":"泛着绿光。",
+        "月岩":"那块石头来自月亮。",
+        "一把金钥匙":"很珍贵，通常是一次性的。",
+        "菊石化石":"可以被复活为菊石兽。",
+        "三叶虫化石":"因为太怕痛就全点防御力了。",
     }
 
     let dy=""
@@ -151,6 +178,7 @@ div0: 1
         }else{
             dy+="　"+o.split("_")[0]
         }
+        document.getElementById("已获得").innerHTML=物品.length-2;
         document.getElementById("物品栏").innerHTML=dy;
     }
 
@@ -294,4 +322,62 @@ div0: 1
         document.getElementById("地图").style="transform:scale("+localStorage.getItem("愚公移山大小")+")";
     }
 
+    let wzjm_密码="yugongyishan";
+    let xx=[];
+    let 存档;
+    const input = document.getElementById('onloadFile')
+
+    input.addEventListener('change', e => {
+        const reader = new FileReader();
+        const file = e.target.files[0]; 
+        console.log(file.name)
+        reader.readAsText(input.files[0], 'utf8')
+        reader.onload = e => {
+            const xxx = e.target.result;
+            wzjm_输入=e.target.result;
+            try{
+                wzjm_解密();
+                let 临时2=wzjm_输入.split("／");
+                let 临时=临时2[0].split(",")
+                if(临时[0]>-1&&临时[1]&&临时[1]>-1&&临时2[1]){
+                    if(临时2[1]!=编号){
+                        document.getElementById("存档2").innerHTML="这条存档属于"+临时2[1]+"，当前这只小像素点是"+编号+"，无法使用这条存档。"
+                    }else{
+                        存档=临时;
+                        临时="空箱子："+存档[0]+"　已挖："+存档[1]+"　物品栏："+存档.slice(2).join("　");
+                        document.getElementById("存档2").innerHTML="确定导入存档？　<a onclick='导入存档()'>确定</a><br>"+临时;
+                    }
+
+                }else{
+                    notyf.alert("存档错误");
+                }
+            }
+            catch(e){
+                notyf.alert("存档导入失败");
+            }
+        }
+    })
+
+    function 导入存档(){
+        localStorage.setItem("愚公移山"+编号,存档);
+        location.replace(location.href);
+    }
+
+    const tableToExcel = () => {
+        try{
+            const jsonData = xx
+            wzjm_输入=物品+"／"+编号;
+            wzjm_加密();
+            let str = wzjm_输入;
+            const uri = 'data:text/plain;charset=utf-8,\ufeff' + encodeURIComponent(str);
+            const link = document.createElement("a");
+            link.href = uri;
+            link.download = "愚公移山_"+new Date().getTime();
+            link.click();
+        }
+        catch(e){
+            notyf.alert("导出失败");
+        }
+
+    }
 </script>
