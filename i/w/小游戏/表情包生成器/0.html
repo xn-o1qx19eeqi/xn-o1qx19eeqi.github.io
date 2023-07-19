@@ -32,6 +32,9 @@ div0: 1
         background-color:#000000;z-index:499;
     }
 
+    .imgbi{opacity:0.8;transition:all 0.3s;position:relative;}
+    .imgbi:hover{opacity:1.0;transform:scale(1.2);z-index:10;}
+
 </style>
 
 <!-- 保存图片：<a onclick="saveCertificateBook(0.4)">小图</a>　<a onclick="saveCertificateBook(1)">普通</a>　<a onclick="saveCertificateBook(10)">大图</a><br> -->
@@ -79,7 +82,7 @@ let 列表=[
 
 let d=""
 for(let i=0;列表.length>i;i++){
-    d+="<img src='"+urll+列表[i]+".png' onclick=\"加载('"+列表[i]+"')\">"
+    d+="<img src='"+urll+列表[i]+".png' class='imgbi' onclick=\"加载('"+列表[i]+"')\">"
 }
 document.getElementById("列表").innerHTML=d;
 
