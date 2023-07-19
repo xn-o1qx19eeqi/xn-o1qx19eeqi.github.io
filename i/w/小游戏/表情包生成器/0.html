@@ -32,7 +32,9 @@ div0: 1
 
 保存图片：<a onclick="saveCertificateBook(0.4)">小图</a>　<a onclick="saveCertificateBook(1)">普通</a>　<a onclick="saveCertificateBook(10)">大图</a><br>
 
+<div id="打印">
 <div id="房间"></div>
+</div>
 
 <br>
 
@@ -85,11 +87,15 @@ function 打印(o){
         }else{
             let 临时;if(素材[i][1]=="1"){临时=默认}else{临时=素材[i][1]}
             dy+="<div style=\"background-blend-mode:lighten;background-size:cover;-webkit-mask-mode:luminance;mask-mode:luminance;background-image:url('"+素材[i][2]+"'),linear-gradient(#"+临时+",#"+临时+");-webkit-mask-image:url('"+素材[i][2]+"');mask-image:url('"+素材[i][2]+"');\"></div>";
-            if(o!=1){dy2+="<div onclick=\"改素材("+i+")\"><img src='"+素材[i][2]+"'><span>"+素材[i][0]+"</span></div>　"}
         }
     }
     document.getElementById("房间").innerHTML=dy;
-    if(o!=1){document.getElementById("部件").innerHTML=dy2;}
+    if(o!=1){
+        for(let i=素材.length;i>0;i--){
+            dy2+="<div onclick=\"改素材("+i+")\"><img src='"+素材[i][2]+"'><span>"+素材[i][0]+"</span></div>　"
+        }
+        document.getElementById("部件").innerHTML=dy2;
+    }
 }
 
 function 加载(){
@@ -123,8 +129,8 @@ function 加载(){
 
 function saveCertificateBook(o){
     var date = new Date();
-    const canvasID = document.getElementById("房间");
-    const rect=document.getElementById("房间").getBoundingClientRect()
+    const canvasID = document.getElementById("打印");
+    const rect=document.getElementById("打印").getBoundingClientRect()
     // 生成图片并上传到数据库保存
     html2canvas(canvasID, {
     scale: o, // 数值越大生成的图片越清晰
