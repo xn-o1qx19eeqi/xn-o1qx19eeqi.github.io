@@ -1,0 +1,170 @@
+---
+layout: e0
+permalink: 表情包生成器
+BeiJing: 1-01.png
+BeiJing_SJ: 1-01.png
+BiaoTi: 小像素点
+title: 表情包生成器
+h1: 表情包生成器
+h2: 
+div0: 1
+---
+
+<script src="/i/5/new_html2canvas.js"></script>
+
+
+<style>
+    br.sj{display:none}
+    @media screen and (max-width: 767px){#房子{margin:0 0 0 -2.6%;transform-origin:left center;transform:scale(0.88)}br.sj{display:inline}}
+
+    #房间{
+        position:relative;
+        width:400px;height:400px;
+        box-shadow: 0 0 10px 0 #00000030;
+    }
+
+    #房间 div{position:absolute;width:400px;height:400px}
+    #部件 div{display:inline-block;box-shadow: 0 0 4px 0 #00000030;padding:10px;background-color:#ffffff;}
+    #部件 div img{width:100px;height:100px;}
+    /* #部件 span{position:relative;left:-80px;bottom:-20px;} */
+
+</style>
+
+保存图片：<a onclick="saveCertificateBook(0.4)">小图</a>　<a onclick="saveCertificateBook(1)">普通</a>　<a onclick="saveCertificateBook(10)">大图</a><br>
+
+<div id="房间"></div>
+
+<br>
+
+<div id="改素材" style="display:none;">
+正在修改<b id="要修改的是"></b>的颜色。<br>
+<input type="text" class="xsan" autocomplete="off" id="输入颜色"><br class="sj"><br class="sj"><input type="color" id="选择颜色" oninput="document.getElementById('输入颜色').value=document.getElementById('选择颜色').value"><a class="xsan" type="button" onclick="换颜色()">更换</a><br><br></div>
+
+<div id="部件"></div>
+
+
+<br>
+
+<input type="text" class="xsan" placeholder="模板名" autocomplete="off" id="输入"> <a class="xsan" onclick="加载()">确定</a>
+
+
+
+
+<script>
+
+let 素材;
+let 默认=localStorage.getItem("像素点");
+if(!默认){默认="000000"}
+let 当前;
+
+/*
+素材名＼默认颜色＼图片
+／素材2
+*/
+
+function 改素材(o){
+    当前=o;
+    document.getElementById("改素材").style="";
+    document.getElementById("要修改的是").innerHTML=素材[o][0];
+}
+
+function 换颜色(){
+    let 临时=document.getElementById("输入颜色").value;
+    if(临时.indexOf("#")!=-1){临时=临时.replace(new RegExp('#',"g"),"")}
+    document.getElementById("选择颜色").value="#"+临时;
+    素材[当前][1]=临时;
+    打印(1)
+}
+
+function 打印(o){
+    let dy=""
+    let dy2=""
+    for(let i=0;素材.length>i;i++){
+        if(素材[i][1]=="0"){
+            dy+="<div style=\"background-image:url('"+素材[i][2]+"');\"></div>"
+        }else{
+            let 临时;if(素材[i][1]=="1"){临时=默认}else{临时=素材[i][1]}
+            dy+="<div style=\"background-blend-mode:lighten;background-size:cover;-webkit-mask-mode:luminance;mask-mode:luminance;background-image:url('"+素材[i][2]+"'),linear-gradient(#"+临时+",#"+临时+");-webkit-mask-image:url('"+素材[i][2]+"');mask-image:url('"+素材[i][2]+"');\"></div>";
+            if(o!=1){dy2+="<div onclick=\"改素材("+i+")\"><img src='"+素材[i][2]+"'><span>"+素材[i][0]+"</span></div>　"}
+        }
+    }
+    document.getElementById("房间").innerHTML=dy;
+    if(o!=1){document.getElementById("部件").innerHTML=dy2;}
+}
+
+function 加载(){
+    document.getElementById("改素材").style="display:none;";
+    try{
+        let 地址="/i/w/小游戏/表情包生成器/"+document.getElementById("输入").value+".json";
+        let GetJson=$.ajax({
+            url:地址,
+            type:"GET",
+            dataType:"json",
+            async:false,
+            success:function (data) {
+            }
+        });
+        地址=GetJson.responseText.split("／");
+        if(地址[0].indexOf("＼")!=-1&&地址[0].split("＼")[0].length<50){
+            素材=[]
+            for(let i=0;地址.length>i;i++){
+                素材[素材.length]=地址[i].split("＼")
+            }
+            打印();
+        }else{
+            console.log("bug");
+            adddlert("bug");
+        }
+    }catch(e){
+        notyf.alert("失败，代码有误或网络故障");
+    }
+}
+
+
+function saveCertificateBook(o){
+    var date = new Date();
+    const canvasID = document.getElementById("房间");
+    const rect=document.getElementById("房间").getBoundingClientRect()
+    // 生成图片并上传到数据库保存
+    html2canvas(canvasID, {
+    scale: o, // 数值越大生成的图片越清晰
+    useCORS: true,
+    allowTaint: true,
+    y: 0, // 滚动条高度修复
+    x: 0,
+    allowTaint: true, //开启跨域
+    useCORS: true,
+    scrollX: 0,
+    scrollY: rect.top, // 关键代码
+    height: rect.height, // 加高度，避免截取不全
+    }).then((canvas) => {
+            let dataURL = canvas.toDataURL("image/png"); // 拿到数据流     
+            var aLink = document.createElement("a"); // 创建一个a标签
+            var blob = base64ToBlob(dataURL);
+            var event = document.createEvent("HTMLEvents");
+            event.initEvent("click", true, true);
+            aLink.download = date.getTime() + "." + blob.type.split("/")[1]; // 使用时间戳给文件命名
+            aLink.href = URL.createObjectURL(blob);
+            aLink.click();
+    })
+}
+
+    // base64转Blob对象
+    function   base64ToBlob(code) {
+        var parts = code.split(";base64,");
+        var contentType = parts[0].split(":")[1];
+        var raw = window.atob(parts[1]);
+        var rawLength = raw.length;
+        var uint8Array = new Uint8Array(rawLength);
+        for (var i = 0; i < rawLength; i++) {
+            uint8Array[i] = raw.charCodeAt(i);
+        }
+        return new Blob([uint8Array], {type: contentType});
+    }
+
+    if(window.location.href.indexOf("?")!=-1){
+        document.getElementById("输入").value=decodeURI(window.location.href.split("?")[1]);
+        加载()
+    }
+
+</script>
