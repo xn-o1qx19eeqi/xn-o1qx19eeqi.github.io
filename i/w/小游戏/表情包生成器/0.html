@@ -1,8 +1,8 @@
 ---
 layout: e0
 permalink: 表情包生成器
-BeiJing: 1-01.png
-BeiJing_SJ: 1-01.png
+BeiJing: 0
+BeiJing_SJ: 0
 BiaoTi: 小像素点
 title: 表情包生成器
 h1: 表情包生成器
@@ -92,7 +92,7 @@ function 打印(o){
     document.getElementById("房间").innerHTML=dy;
     if(o!=1){
         for(let i=素材.length;i>0;i--){
-            dy2+="<div onclick=\"改素材("+i+")\"><img src='"+素材[i][2]+"'><span>"+素材[i][0]+"</span></div>　"
+            if(素材[i][1]!="0"){dy2+="<div onclick=\"改素材("+i+")\"><img src='"+素材[i][2]+"'><span>"+素材[i][0]+"</span></div>　"}
         }
         document.getElementById("部件").innerHTML=dy2;
     }
@@ -116,7 +116,7 @@ function 加载(){
             for(let i=0;地址.length>i;i++){
                 素材[素材.length]=地址[i].split("＼")
             }
-            打印();
+            打印(0);
         }else{
             console.log("bug");
             adddlert("bug");
