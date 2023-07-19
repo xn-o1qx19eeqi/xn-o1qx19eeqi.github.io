@@ -82,7 +82,7 @@ div0: 1
 <small>
     <a id="存档0" onclick="document.getElementById('存档1').style='';document.getElementById('存档0').style='display:none;';">导入、导出存档</a>
     <div id="存档1" style="display:none;">
-        <a onclick="document.getElementById('存档0').style='';document.getElementById('存档1').style='display:none;';">取消</a><br>
+        <a onclick="document.getElementById('存档0').style='';document.getElementById('存档1').style='display:none;';">取消</a>　（存档功能不保证安全，慎用）<br>
         导入：<input type="file" id="onloadFile"><br>
         <button onclick='tableToExcel()'>导出</button><br>
         <div id="存档2"></div>
@@ -321,11 +321,17 @@ div0: 1
             wzjm_输入=e.target.result;
             try{
                 wzjm_解密();
-                let 临时=wzjm_输入.split(",")
-                if(临时[0]>-1&&临时[1]&&临时[1]>-1){
-                    存档=临时;
-                    临时="空箱子："+存档[0]+"　已挖："+存档[1]+"　物品栏："+存档.slice(2).join("　");
-                    document.getElementById("存档2").innerHTML="确定导入存档？　<a onclick='导入存档()'>确定</a><br>"+临时;
+                let 临时2=wzjm_输入.split("／");
+                let 临时=临时2[0].split(",")
+                if(临时[0]>-1&&临时[1]&&临时[1]>-1&&临时2[1]){
+                    if(临时2[1]!=编号){
+                        document.getElementById("存档2").innerHTML="这条存档属于"+临时2[1]+"，当前这只小像素点是"+编号+"，无法使用这条存档。"
+                    }else{
+                        存档=临时;
+                        临时="空箱子："+存档[0]+"　已挖："+存档[1]+"　物品栏："+存档.slice(2).join("　");
+                        document.getElementById("存档2").innerHTML="确定导入存档？　<a onclick='导入存档()'>确定</a><br>"+临时;
+                    }
+
                 }else{
                     notyf.alert("存档错误");
                 }
@@ -337,13 +343,13 @@ div0: 1
     })
 
     function 导入存档(){
-        localStorage.setItem("愚公移山"+编号,存档);
+        localStorage.setItem("愚公移山"+编号,存档.split("／")[0]);
         location.replace(location.href);
     }
 
     const tableToExcel = () => {
         const jsonData = xx
-        wzjm_输入=物品;
+        wzjm_输入=物品+"／"+编号;
         wzjm_加密();
         let str = wzjm_输入;
         const uri = 'data:text/plain;charset=utf-8,\ufeff' + encodeURIComponent(str);
