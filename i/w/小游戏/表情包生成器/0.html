@@ -81,7 +81,9 @@ function 换颜色(){
 function 打印(o){
     let dy=""
     let dy2=""
+    console.log("[1]")
     for(let i=0;素材.length>i;i++){
+        console.log(i)
         if(素材[i][1]=="0"){
             dy+="<div style=\"background-image:url('"+素材[i][2]+"');\"></div>"
         }else{
@@ -89,11 +91,15 @@ function 打印(o){
             dy+="<div style=\"background-blend-mode:lighten;background-size:cover;-webkit-mask-mode:luminance;mask-mode:luminance;background-image:url('"+素材[i][2]+"'),linear-gradient(#"+临时+",#"+临时+");-webkit-mask-image:url('"+素材[i][2]+"');mask-image:url('"+素材[i][2]+"');\"></div>";
         }
     }
+    console.log(dy)
     document.getElementById("房间").innerHTML=dy;
     if(o!=1){
+        console.log("[2]")
         for(let i=素材.length;i>0;i--){
+            console.log(i)
             if(素材[i][1]!="0"){dy2+="<div onclick=\"改素材("+i+")\"><img src='"+素材[i][2]+"'><span>"+素材[i][0]+"</span></div>　"}
         }
+        console.log(dy2)
         document.getElementById("部件").innerHTML=dy2;
     }
 }
