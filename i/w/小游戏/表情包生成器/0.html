@@ -137,7 +137,7 @@ function 加载(){
 
 function 调整大小(){
     let l=document.getElementById("调整大小").value*2/100;
-    document.getElementById("房间").style="transform:scale("+l+")";
+    document.getElementById("房间").style="transform:scale("+l+");width:"+(l*400)+"px;height:"+(l*400)+"px;";
 }
 function 恢复默认(){
     document.getElementById("房间").style="";
