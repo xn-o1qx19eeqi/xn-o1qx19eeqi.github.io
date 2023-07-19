@@ -9,8 +9,7 @@ h1: 表情包生成器
 h2: 
 div0: 1
 ---
-<script src="/i/5/new_html2canvas.js"></script>
-
+<!-- <script src="/i/5/new_html2canvas.js"></script> -->
 
 <style>
     br.sj{display:none}
@@ -20,6 +19,7 @@ div0: 1
         position:relative;
         width:400px;height:400px;
         box-shadow: 0 0 10px 0 #00000030;
+        z-index:500;
     }
 
     #房间 div{position:absolute;width:400px;height:400px}
@@ -27,9 +27,19 @@ div0: 1
     #部件 div img{width:100px;height:100px;}
     #部件 div span{color:#555555;}
 
+    #黑幕{
+        position:absolute;top:0;left:0;width:100%;height:100%;
+        background-color:#000000;z-index:499;
+    }
+
 </style>
 
-保存图片：<a onclick="saveCertificateBook(0.4)">小图</a>　<a onclick="saveCertificateBook(1)">普通</a>　<a onclick="saveCertificateBook(10)">大图</a><br>
+<!-- 保存图片：<a onclick="saveCertificateBook(0.4)">小图</a>　<a onclick="saveCertificateBook(1)">普通</a>　<a onclick="saveCertificateBook(10)">大图</a><br> -->
+调整大小：<input type="range" id="调整大小" onchange="调整大小()"> <a onclick="调整大小()">确定</a> <a onclick="恢复默认()">恢复默认</a><br>
+<a onclick="document.getElementById('黑幕').style='';">关灯</a><br>
+<br>
+
+<div id="黑幕" onclick="document.getElementById('黑幕').style='display:none;';" style="display:none;"></div>
 
 <div id="打印">
 <div id="房间"></div>
@@ -38,15 +48,15 @@ div0: 1
 <br>
 
 <div id="改素材" style="display:none;">
-正在修改<b id="要修改的是"></b>的颜色。<br>
-<input type="text" class="xsan" autocomplete="off" id="输入颜色"><br class="sj"><br class="sj"><input type="color" id="选择颜色" oninput="document.getElementById('输入颜色').value=document.getElementById('选择颜色').value"><a class="xsan" type="button" onclick="换颜色()">更换</a><br><br></div>
+正在修改<b id="要修改的是"></b>的颜色。<br><br class="sj">
+<input type="text" class="xsan" autocomplete="off" id="输入颜色"><input type="color" id="选择颜色" oninput="document.getElementById('输入颜色').value=document.getElementById('选择颜色').value"><a class="xsan" type="button" onclick="换颜色()">更换</a><br><br></div>
 
 <div id="部件"></div>
 
 
 <br>
 
-<input type="text" class="xsan" placeholder="模板名" autocomplete="off" id="输入"> <a class="xsan" onclick="加载()">确定</a>
+<input type="text" class="xsan" placeholder="模板名" autocomplete="off" id="输入"> <a class="xsan" onclick="加载()">导入</a>
 
 
 
@@ -125,47 +135,56 @@ function 加载(){
     }
 }
 
-
-function saveCertificateBook(o){
-    var date = new Date();
-    const canvasID = document.getElementById("打印");
-    const rect=document.getElementById("打印").getBoundingClientRect()
-    // 生成图片并上传到数据库保存
-    html2canvas(canvasID, {
-    scale: o, // 数值越大生成的图片越清晰
-    useCORS: true,
-    allowTaint: true,
-    y: 0, // 滚动条高度修复
-    x: 0,
-    allowTaint: true, //开启跨域
-    useCORS: true,
-    scrollX: 0,
-    scrollY: rect.top, // 关键代码
-    height: rect.height, // 加高度，避免截取不全
-    }).then((canvas) => {
-            let dataURL = canvas.toDataURL("image/png"); // 拿到数据流     
-            var aLink = document.createElement("a"); // 创建一个a标签
-            var blob = base64ToBlob(dataURL);
-            var event = document.createEvent("HTMLEvents");
-            event.initEvent("click", true, true);
-            aLink.download = date.getTime() + "." + blob.type.split("/")[1]; // 使用时间戳给文件命名
-            aLink.href = URL.createObjectURL(blob);
-            aLink.click();
-    })
+function 调整大小(){
+    let l=document.getElementById("调整大小").value*2/100;
+    document.getElementById("房间").style="transform:scale("+l+")";
+}
+function 恢复默认(){
+    document.getElementById("房间").style="";
+    document.getElementById("调整大小").value=50;
 }
 
-    // base64转Blob对象
-    function   base64ToBlob(code) {
-        var parts = code.split(";base64,");
-        var contentType = parts[0].split(":")[1];
-        var raw = window.atob(parts[1]);
-        var rawLength = raw.length;
-        var uint8Array = new Uint8Array(rawLength);
-        for (var i = 0; i < rawLength; i++) {
-            uint8Array[i] = raw.charCodeAt(i);
-        }
-        return new Blob([uint8Array], {type: contentType});
-    }
+
+// function saveCertificateBook(o){
+//     var date = new Date();
+//     const canvasID = document.getElementById("打印");
+//     const rect=document.getElementById("打印").getBoundingClientRect()
+//     // 生成图片并上传到数据库保存
+//     html2canvas(canvasID, {
+//     scale: o, // 数值越大生成的图片越清晰
+//     useCORS: true,
+//     allowTaint: true,
+//     y: 0, // 滚动条高度修复
+//     x: 0,
+//     allowTaint: true, //开启跨域
+//     useCORS: true,
+//     scrollX: 0,
+//     scrollY: rect.top, // 关键代码
+//     height: rect.height, // 加高度，避免截取不全
+//     }).then((canvas) => {
+//             let dataURL = canvas.toDataURL("image/png"); // 拿到数据流     
+//             var aLink = document.createElement("a"); // 创建一个a标签
+//             var blob = base64ToBlob(dataURL);
+//             var event = document.createEvent("HTMLEvents");
+//             event.initEvent("click", true, true);
+//             aLink.download = date.getTime() + "." + blob.type.split("/")[1]; // 使用时间戳给文件命名
+//             aLink.href = URL.createObjectURL(blob);
+//             aLink.click();
+//     })
+// }
+
+//     // base64转Blob对象
+//     function   base64ToBlob(code) {
+//         var parts = code.split(";base64,");
+//         var contentType = parts[0].split(":")[1];
+//         var raw = window.atob(parts[1]);
+//         var rawLength = raw.length;
+//         var uint8Array = new Uint8Array(rawLength);
+//         for (var i = 0; i < rawLength; i++) {
+//             uint8Array[i] = raw.charCodeAt(i);
+//         }
+//         return new Blob([uint8Array], {type: contentType});
+//     }
 
     if(window.location.href.indexOf("?")!=-1){
         document.getElementById("输入").value=decodeURI(window.location.href.split("?")[1]);
