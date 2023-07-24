@@ -200,6 +200,7 @@ div0: 1
     //1 拿着石头
     //2 拿着宝箱
     //3 拿着空宝箱
+    //4 扔东西
 
     let 动画=1;
     let 随机数=10;
@@ -221,11 +222,13 @@ div0: 1
         if(状态==0){
             document.getElementById("提示").innerHTML="没啥可扔的东西。";
         }else if(动画==1){动画=0;
-            if(状态==2){扔宝箱+=1;if(扔宝箱>5&&物品.indexOf("金箱子和银箱子")==-1){物品[物品.length]="金箱子和银箱子";x+=1;打印('金箱子和银箱子')}}
+            if(状态==2){扔宝箱+=1;
+                document.getElementById("提示").innerHTML="这是"+名字+"最近丢掉的第"+扔宝箱+"个宝箱。";
+                if(扔宝箱>5&&物品.indexOf("金箱子和银箱子")==-1){物品[物品.length]="金箱子和银箱子";x+=1;打印('金箱子和银箱子')}}
             document.getElementById("点点").style="animation-name:丢掉";
             document.getElementById("物品").style="animation-name:丢掉_";
             document.getElementById("水花").style="animation-name:水花";
-            状态=0;
+            状态=4;
         }
     }
 
@@ -285,7 +288,9 @@ div0: 1
     }
     }
 
-    document.getElementById('点点').addEventListener('animationend',function(){动画=1;document.getElementById("提示").innerHTML="　";});
+    document.getElementById('点点').addEventListener('animationend',function(){动画=1;
+        if(状态==4){状态=0}else{document.getElementById("提示").innerHTML="　"}
+    });
 
 
     function 取消(){
