@@ -169,7 +169,7 @@ layout: default
         if(打印背景图片[0]=="2"||打印背景图片[0]=="3"){
             背景图片颜色+="body,.内容背景{background-position:bottom;}";
         }
-        if (打印背景图片.indexOf(".") != -1){}else{打印背景图片+=".jpg";}
+        if(打印背景图片.indexOf(".") != -1){}else{打印背景图片+=".jpg";}
         document.getElementById("打印背景图片").innerHTML = 背景图片颜色+"body{background-image: url('"+背景图片地址+打印背景图片+"');}.内容背景{background-image: url('"+背景图片地址+打印背景图片+"');}";
 
         const 标题文字 = "{% if page.BiaoTi %}{{ page.BiaoTi }}{% else %}欢迎光临。／虽然这里也没什么东西...{% endif %}／".split("／");
