@@ -790,11 +790,12 @@ function 查询(){
     号码=document.getElementById("选择颜色").value.split("#")[1].toUpperCase();
     let 判断查询=document.getElementById("输入颜色").value.replace(/#/g,"");
     if(判断查询.length==6&&判断查询.toUpperCase().replace(/[0-9A-F]/g,"")==""){notyf.confirm("编号正确")
+    window.location.href="/"+号码;
     }else if(判断查询==""){notyf.confirm("当前编号："+号码)
     }else{notyf.alert("编号不正确")}
-    document.getElementById("输入颜色").value="";
-    互动="";
-    改url();加载();
+    // document.getElementById("输入颜色").value="";
+    // 互动="";
+    // 改url();加载();
 }
 function 选择颜色_背景(){document.getElementById("输入颜色_背景").value=document.getElementById("选择颜色_背景").value}
 function 新背景(){换背景(document.getElementById("输入颜色_背景").value);document.getElementById("输入颜色_背景").value="";}
@@ -802,10 +803,11 @@ function 随机一只(){
 临时="";
 for(let i=0;6>i;i++){临时+=字母[Math.floor(Math.random()*字母.length)];}
 号码=临时;
-document.getElementById("选择颜色").value="#"+临时;
-document.getElementById("输入颜色").value=临时;
-互动="";
-改url();加载();
+window.location.href="/"+号码;
+// document.getElementById("选择颜色").value="#"+临时;
+// document.getElementById("输入颜色").value=临时;
+// 互动="";
+// 改url();加载();
 }
 function 复制像素点(){制="{{ site.mq_url }}/"+颜色;复()}
 function 看望打卡(o){
