@@ -13,7 +13,7 @@ h2: <a onclick="window.location.href='javascript:history.go(-1)';">返回</a>
 <script>
 let LocString=String(window.document.location.href);function GetQueryString(name){let rs=new RegExp("(^|)"+name+"=([^&]*)(&|$)","gi").exec(LocString),tmp;if(tmp=rs){return decodeURI(tmp[2])}return ""}
 let 链接=GetQueryString("target");
-if(链接[0]=="/"){
+if(链接[0]=="/"||链接.length==6){
     window.location.href=链接;
 }else{
     document.getElementById("链接").innerHTML=链接+"　<a onclick='访问()'>访问</a>";
