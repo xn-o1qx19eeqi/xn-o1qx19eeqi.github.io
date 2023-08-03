@@ -147,7 +147,7 @@ QQ群：<a href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=JfeLyFtcYH8y0gN-3okJ6
 <a href="/b#logo">logo</a><br>
 <a href="/c#更新日志">更新日志</a><br>
 <a href="/c#感谢">感谢</a><br>
-<a href="{{ site.mq }}/donate">打赏</a>（<ruby><rb>925.87/587.5</rb><rt>已收打赏/成本</rt></ruby>）<small>打赏时记得留言是给小像素点的</small><br>
+<a href="{{ site.mq }}/donate">打赏</a>（<ruby><rb>925.87/626</rb><rt>已收打赏/成本</rt></ruby>）<small>打赏时记得留言是给小像素点的</small><br>
 <a href="{{ site.mq }}/maoqiu">关于猫球</a><br>
 
 </div>
@@ -155,8 +155,8 @@ QQ群：<a href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=JfeLyFtcYH8y0gN-3okJ6
     域名 39/年 //2023年已记
     服务器 0/年 //要不要租个服务器呢？ //算了算了
     素材 82
-    人工 213.6 //从2023年7月15日开始 每条审核0.1元 较复杂操作0.5元
-    // ( (      )*0.5 + (  45   )*0.1 ) /10
+    人工 //从2023年7月15日开始 审核0.1元 复杂操作0.5元
+    // ( (      )*0.5 + (     )*0.1 ) /10
 -->
 
 <script>
@@ -551,7 +551,7 @@ try{
                     }else if(临时2[i][0].indexOf(",")!=-1){
                         let 代码=临时2[i][0].split(",");
                         if(代码[0]=="a"){
-                            内容[2]+="<a href=\""+代码[2]+"\">"+代码[1]+"</a>";
+                            内容[2]+="<a href=\"/a?target="+代码[2]+"\">"+代码[1]+"</a>";
                         }
                         if(代码[0]=="f"){
                             内容[2]+="<sub>(复制:)</sub><a onclick=\"复(制='"+代码[1]+"')\">"+代码[1]+"</a>";

@@ -1,0 +1,27 @@
+---
+layout: o1
+permalink: a
+BiaoTi: 跳转中
+h1: 跳转中
+h2: <a href="/">返回</a>
+---
+<div id="站外" style="display:none;">
+    您即将离开像素点.cn，请注意您的账号和财产安全。<br>
+    <span id="链接"></span><br>
+    <a onclick="访问()">访问</a>
+</div>
+
+<script>
+let LocString=String(window.document.location.href);function GetQueryString(name){let rs=new RegExp("(^|)"+name+"=([^&]*)(&|$)","gi").exec(LocString),tmp;if(tmp=rs){return decodeURI(tmp[2])}return ""}
+let 链接=GetQueryString("target");
+if(链接[0]=="/"){
+    window.location.href=链接;
+}else{
+    document.getElementById("h1").innerHTML="即将离开像素点.cn";
+    document.getElementById("链接").innerHTML=链接;
+    document.getElementById("站外").style="";
+}
+function 访问(){
+    window.location.href=链接;
+}
+</script>
