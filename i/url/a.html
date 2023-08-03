@@ -2,13 +2,12 @@
 layout: o1
 permalink: a
 BiaoTi: 跳转中
-h1: 跳转中
+h1: 中转站
 h2: <a href="/">返回</a>
 ---
 <div id="站外" style="display:none;">
-    您即将离开像素点.cn，请注意您的账号和财产安全。<br>
-    <span id="链接"></span><br>
-    <a onclick="访问()">访问</a>
+    你点击了一个站外链接，继续访问将离开<a href="/">像素点.cn</a>，请注意保护好你的个人隐私和财产安全。<br>
+    <blockquote id="链接"></blockquote>
 </div>
 
 <script>
@@ -17,8 +16,7 @@ let 链接=GetQueryString("target");
 if(链接[0]=="/"){
     window.location.href=链接;
 }else{
-    document.getElementById("h1").innerHTML="即将离开像素点.cn";
-    document.getElementById("链接").innerHTML=链接;
+    document.getElementById("链接").innerHTML=链接+" <a onclick='访问()'>继续访问</a>";
     document.getElementById("站外").style="";
 }
 function 访问(){
