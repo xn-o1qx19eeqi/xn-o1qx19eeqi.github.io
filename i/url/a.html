@@ -3,7 +3,7 @@ layout: o1
 permalink: a
 BiaoTi: 跳转中
 h1: 中转站
-h2: <a href="/">返回</a>
+h2: <a onclick="window.location.href='javascript:history.go(-1)';">返回</a>
 ---
 <div id="站外" style="display:none;">
     你点击了一个站外链接，继续访问将离开<a href="/">像素点.cn</a>，请注意保护好你的个人隐私和财产安全。<br>
@@ -16,7 +16,7 @@ let 链接=GetQueryString("target");
 if(链接[0]=="/"){
     window.location.href=链接;
 }else{
-    document.getElementById("链接").innerHTML=链接+" <a onclick='访问()'>继续访问</a>";
+    document.getElementById("链接").innerHTML=链接+"　<a onclick='访问()'>访问</a>";
     document.getElementById("站外").style="";
 }
 function 访问(){
