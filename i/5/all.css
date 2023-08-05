@@ -42,6 +42,7 @@ table.tm tr td,table.tm tr{background-color: transparent !important;}
 .xsan:active,.xsan:focus{left:4px;top:0;box-shadow:4px 0 #ffffff,0 4px #ffffff,-4px 0 #ffffff,0 -4px #ffffff}
 
 .bukexuanzhong,button,.anniu,#right_anchor,#right_anchor2,.nav_drop,#nav,.qbt,.biaotib,br{user-select: none;-moz-user-select: none;-webkit-user-select: none;-ms-user-select: none;}
+.kexuanzhong{user-select:text;-moz-user-select:text;-webkit-user-select:text;-ms-user-select:text;}
 [target="_blank"].dk:after{content:" ◥";top:-.5em;position:relative;font-size:75%;line-height:0;vertical-align:baseline;}
 .yincang{display:none;}
 .cursor_pointer{cursor:pointer;}
