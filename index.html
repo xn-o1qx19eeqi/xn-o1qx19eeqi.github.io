@@ -540,6 +540,15 @@ try{
             if(内容[2].indexOf("〈放弃认养〉")!=-1){内容[2]=内容[2].replace(/〈放弃认养〉/g,"");固定动作="放弃认养"}
             if(内容[2].indexOf("〈固定〉")!=-1){内容[2]=内容[2].replace(/〈固定〉/g,"");固定动作="固定"}
             if(内容[2].indexOf("〈完全固定〉")!=-1){内容[2]=内容[2].replace(/〈完全固定〉/g,"");固定动作="完全固定"}
+            if(内容[2].indexOf("〈随〉")!=-1){
+                let 临时2=内容[2].split("〈随〉");
+                内容[2]=临时2[0];
+                临时2=临时2[1].split("〈机〉");
+                let 临时3=临时2[0].split("〈〉");
+                内容[2]+=临时3[Math.floor(Math.random()*临时3.length)];
+                内容[2]+=" <a id='代码sj' onclick=\"document.getElementById('代码sj').style='display:none;';document.getElementById('代码sja').style=''\">显示全部</a><div id='代码sja' style='display:none'>"+临时3.join("<br>")+"</div>";
+                内容[2]+=临时2[1];
+            }
             if(内容[2].indexOf("[")!=-1&&内容[2].indexOf("]")!=-1){
                 let 临时2=内容[2].split("[");
                 内容[2]=临时2[0];
@@ -564,7 +573,7 @@ try{
                     }else if(临时2[i][0].length==1){
                         if(临时2[i][0]=="n"){内容[2]+="<br>"}
                         if(临时2[i][0]=="0"){内容[2]+="</blockquote>"}
-                        if(临时2[i][0]=="1"){内容[2]+="<a id='代码k"+i+"' onclick=\"document.getElementById('代码k"+i+"').style='display:none;';document.getElementById('代码ka"+i+"').style=''\">更多</a></span><span id='代码ka"+i+"' style='display:none'>"}
+                        if(临时2[i][0]=="1"){内容[2]+="<a id='代码k"+i+"' onclick=\"document.getElementById('代码k"+i+"').style='display:none;';document.getElementById('代码ka"+i+"').style=''\">更多</a><span id='代码ka"+i+"' style='display:none'>"}
                         if(临时2[i][0]=="2"){内容[2]+="</span>"}
                     }else{
                         内容[2]+=" <a class='点' href='/"+临时2[i][0]+"' style='background-color:#"+临时2[i][0]+"'></a> ";
