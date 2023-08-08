@@ -1,6 +1,6 @@
 ---
 layout: e0
-permalink: index.html
+permalink: ceshi
 BeiJing: 0
 BeiJing_SJ: 0
 BiaoTi: 小像素点
@@ -540,6 +540,13 @@ try{
             if(内容[2].indexOf("〈放弃认养〉")!=-1){内容[2]=内容[2].replace(/〈放弃认养〉/g,"");固定动作="放弃认养"}
             if(内容[2].indexOf("〈固定〉")!=-1){内容[2]=内容[2].replace(/〈固定〉/g,"");固定动作="固定"}
             if(内容[2].indexOf("〈完全固定〉")!=-1){内容[2]=内容[2].replace(/〈完全固定〉/g,"");固定动作="完全固定"}
+            if(内容[2].indexOf("〈随〉")!=-1){
+                let 临时2=内容[2].split("〈随〉");
+                内容[2]=临时2[0];
+                临时2=临时2[1].split("〈机〉");
+                let 临时3=临时2[0].split("／");
+                内容[2]+=临时3[Math.floor(Math.random()*临时3.length)]+临时2[1];
+            }
             if(内容[2].indexOf("[")!=-1&&内容[2].indexOf("]")!=-1){
                 let 临时2=内容[2].split("[");
                 内容[2]=临时2[0];
