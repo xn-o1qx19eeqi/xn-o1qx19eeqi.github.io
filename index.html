@@ -545,7 +545,7 @@ try{
                 内容[2]=临时2[0];
                 临时2=临时2[1].split("〈机〉");
                 let 临时3=临时2[0].split("〈〉");
-                内容[2]+="<span id='代码js'>"+临时3[Math.floor(Math.random()*临时3.length)]+" <a onclick=\"document.getElementById('代码sj').style='display:none;';document.getElementById('代码sja').style=''\">显示全部</a></span><div id='代码sja' style='display:none'>"+临时3.join("<br>")+"</div>"+临时2[1];
+                内容[2]+="<span id='代码sj'>"+临时3[Math.floor(Math.random()*临时3.length)]+"<br><a onclick=\"document.getElementById('代码sj').style='display:none;';document.getElementById('代码sja').style=''\"><small>显示全部</small></a></span><div id='代码sja' style='display:none'>"+临时3.join("<br>")+"</div>"+临时2[1];
             }
             if(内容[2].indexOf("[")!=-1&&内容[2].indexOf("]")!=-1){
                 let 临时2=内容[2].split("[");
