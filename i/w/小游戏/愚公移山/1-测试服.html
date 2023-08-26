@@ -20,9 +20,9 @@ div0: 1
     #物品{transform:scale(4.5);top:75px;opacity:0;}
     #水花{transform:scale(4.5);left:40px;opacity:0;}
 
-    #点点,#物品,#水花,#配饰{position:absolute;animation:1;animation-fill-mode:forwards;animation-duration:1.6s;}
+    #点点,#物品,#水花,.配饰{position:absolute;animation:1;animation-fill-mode:forwards;animation-duration:1.6s;}
 
-    #配饰{top:123px;left:100px;transform:translate(-53px,-70px)}
+    .配饰{top:123px;left:100px;transform:translate(-53px,-70px)}
 
     #大海{position:absolute;width:80px;height:229px;}
     #高山{position:absolute;left:650px;width:110px;height:229px;}
@@ -53,9 +53,10 @@ div0: 1
 <div id="大海" onclick="丢掉()"></div>
 <div id="高山" onclick="挖山()"></div>
 
-<img id="配饰">
+<img class="配饰" id="后">
 <div id="点点"></div>
 <img id="物品" onclick="打开()">
+<img class="配饰" id="前">
 
 <img id="水花" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAADAQMAAABh+Fe7AAAABlBMVEUAAAB2n6Y8dz0lAAAAAXRSTlMAQObYZgAAAA5JREFUCNdjaGDwYAgAAAOuARnFD69/AAAAAElFTkSuQmCC">
 
@@ -180,12 +181,12 @@ div0: 1
         // "":"",
     }
 
-    let 配饰=[ //数字越大几率越低 1为100%
-        [1,"1-模板"],
+    let 配饰=[ //数字越大几率越低 1为100% //0前 1后 2都有 _前 _后
+        [1,"抹茶蛋糕",0],
     ];
     let 配={
-        // "12-25":[[1,"圣诞帽"],[2,"圣诞树"]],
-        // "22":[[3,"黑猫耳"]],
+        // "12-25":[[1,"圣诞帽",1],[2,"圣诞树",1]],
+        // "22":[[3,"黑猫耳",0]],
     }
 
     let 饰=new Date().getDate();
@@ -193,7 +194,10 @@ div0: 1
     饰=(new Date().getMonth()+1)+"-"+new Date().getDate();
     if(配[饰]){配饰=配[饰]}
     饰=配饰[Math.floor(Math.random()*配饰.length)];
-    if(Math.floor(Math.random()*饰[0])==0){document.getElementById("配饰").src="/i/w/小游戏/愚公移山/"+饰[1]+".png";}
+    if(Math.floor(Math.random()*饰[0])==0){
+        if(饰[2]!=1){document.getElementById("前").src="/i/w/小游戏/愚公移山/"+饰[1]+"_前.png";}
+        if(饰[2]!=0){document.getElementById("后").src="/i/w/小游戏/愚公移山/"+饰[1]+"_后.png";}
+    }
 
 
     let dy=""
