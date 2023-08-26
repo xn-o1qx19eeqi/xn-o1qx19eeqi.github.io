@@ -256,7 +256,8 @@ div0: 1
                 document.getElementById("提示").innerHTML="这是"+名字+"最近丢掉的第"+扔宝箱+"个宝箱。";
                 if(扔宝箱>5&&物品.indexOf("金箱子和银箱子")==-1){物品[物品.length]="金箱子和银箱子";x+=1;打印('金箱子和银箱子')}}
             document.getElementById("点点").style="animation-name:丢掉";
-            document.getElementById("配饰").style="animation-name:丢掉";
+            document.getElementById("前").style="animation-name:丢掉";
+            document.getElementById("后").style="animation-name:丢掉";
             document.getElementById("物品").style="animation-name:丢掉_";
             document.getElementById("水花").style="animation-name:水花";
             状态=4;
@@ -269,7 +270,8 @@ div0: 1
         }else if(动画==1){动画=0;
             随机();
             document.getElementById("点点").style="animation-name:挖山";
-            document.getElementById("配饰").style="animation-name:挖山";
+            document.getElementById("前").style="animation-name:挖山";
+            document.getElementById("后").style="animation-name:挖山";
             document.getElementById("物品").style="animation-name:挖山_";
             document.getElementById("水花").style="";
             物品[1]=物品[1]*1+1;
