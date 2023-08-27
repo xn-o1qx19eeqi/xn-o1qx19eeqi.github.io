@@ -195,9 +195,9 @@ div0: 1
 
     function 换配饰(o){
         if(o[2]!=1){document.getElementById("前").src="/i/w/小游戏/愚公移山/"+o[1]+"_前.png"}
-        else{document.getElementById("前").src=""}
+        else{document.getElementById("前").removeAttribute("src")}
         if(o[2]!=0){document.getElementById("后").src="/i/w/小游戏/愚公移山/"+o[1]+"_后.png"}
-        else{document.getElementById("后").src=""}
+        else{document.getElementById("后").removeAttribute("src")}
         document.getElementById("配饰偏移").innerHTML="#物品{top:"+(75+o[3])+"px}";
     }
 
