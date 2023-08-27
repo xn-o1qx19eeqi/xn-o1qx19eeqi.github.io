@@ -17,8 +17,8 @@ div0: 1
     #点点{width:35px;height:35px;top:123px;
         box-shadow:4px 4px #353540,-4px 4px #353540,4px -4px #353540,-4px -4px #353540;
         left:100px;}
-    #物品{transform:scale(4.5);top:75px;opacity:0;}
     #水花{transform:scale(4.5);left:40px;opacity:0;}
+    #物品{transform:scale(4.5);top:75px;opacity:0;}
 
     #点点,#物品,#水花,.配饰{position:absolute;animation:1;animation-fill-mode:forwards;animation-duration:1.6s;}
 
@@ -45,8 +45,9 @@ div0: 1
         #按钮1{display:none;}
         #按钮2{display:inline;font-size:1.2em;}
     }
-
 </style>
+
+<style id="配饰偏移"></style>
 
 <div id="地图">
 
@@ -181,8 +182,10 @@ div0: 1
         // "":"",
     }
 
-    let 配饰=[ //数字越大几率越低 1为100% //0前 1后 2都有 _前 _后
-        [1,"抹茶蛋糕",1],
+    let 配饰=[
+    //分母 , 文件 , 前后方式 , 偏移top
+    //数字越大几率越低 1为100% //0前 1后 2都有 _前 _后
+        [1,"抹茶蛋糕",1,-50],
     ];
     let 配={
         // "12-25":[[1,"圣诞帽",1],[2,"圣诞树",1]],
@@ -197,6 +200,7 @@ div0: 1
     if(Math.floor(Math.random()*饰[0])==0){
         if(饰[2]!=1){document.getElementById("前").src="/i/w/小游戏/愚公移山/"+饰[1]+"_前.png";}
         if(饰[2]!=0){document.getElementById("后").src="/i/w/小游戏/愚公移山/"+饰[1]+"_后.png";}
+        document.getElementById("配饰偏移").innerHTML="#物品{top:"+(75+饰[3])+"px}";
     }
 
 
