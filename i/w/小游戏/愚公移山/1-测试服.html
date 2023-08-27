@@ -55,7 +55,7 @@ div0: 1
 <div id="高山" onclick="挖山()"></div>
 
 <img class="配饰" id="后">
-<div id="点点"></div>
+<div id="点点" onclick="换配饰(0,0,3,0)"></div>
 <img id="物品" onclick="打开()">
 <img class="配饰" id="前">
 
@@ -191,12 +191,13 @@ div0: 1
         // "12-25":[[1,"圣诞帽",1,0],[2,"圣诞树",1,0]],
         // "22":[[3,"黑猫耳",0,0]],
         // "名字":[1,"名字",0,0],
+        "月岩":[1,"抹茶蛋糕",1,-49],
     }
 
     function 换配饰(o){
-        if(o[2]!=1){document.getElementById("前").src="/i/w/小游戏/愚公移山/"+o[1]+"_前.png"}
+        if(o[2]==0||o[2]==2){document.getElementById("前").src="/i/w/小游戏/愚公移山/"+o[1]+"_前.png"}
         else{document.getElementById("前").removeAttribute("src")}
-        if(o[2]!=0){document.getElementById("后").src="/i/w/小游戏/愚公移山/"+o[1]+"_后.png"}
+        if(o[2]==1||o[2]==2){document.getElementById("后").src="/i/w/小游戏/愚公移山/"+o[1]+"_后.png"}
         else{document.getElementById("后").removeAttribute("src")}
         document.getElementById("配饰偏移").innerHTML="#物品{top:"+(75+o[3])+"px}";
     }
@@ -337,7 +338,6 @@ div0: 1
         if(状态==4){状态=0}else{document.getElementById("提示").innerHTML="　"}
     });
 
-
     function 取消(){
         document.getElementById('设置0').style='';
         document.getElementById('设置1').style='display:none';
@@ -365,8 +365,8 @@ div0: 1
     }
     function 地图恢复默认(){
         document.getElementById("地图").style="";
-            document.getElementById("调整大小").value=50;
-            localStorage.removeItem("愚公移山大小");
+        document.getElementById("调整大小").value=50;
+        localStorage.removeItem("愚公移山大小");
     }
     if(localStorage.getItem("愚公移山大小")){
         document.getElementById("地图").style="transform:scale("+localStorage.getItem("愚公移山大小")+")";
