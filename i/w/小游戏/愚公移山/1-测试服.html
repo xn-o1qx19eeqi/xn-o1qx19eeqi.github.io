@@ -191,7 +191,7 @@ div0: 1
         // "12-25":[[1,"圣诞帽",1,0],[2,"圣诞树",1,0]],
         // "22":[[3,"黑猫耳",0,0]],
         // "名字":[1,"名字",0,0],
-        "月岩":[1,"抹茶蛋糕",1,-49],
+        "龙珠":[1,"抹茶蛋糕",1,-49],
     }
 
     function 换配饰(o){
@@ -213,13 +213,14 @@ div0: 1
 
     function 打印(o){
         dy+="　";
-        if(配[o]){dy+="<a onclick=\"换配饰(配[o])\">"}
+        if(配[o]){dy+="<a onclick=\"换配饰(配['"+o+"'])\">"}
+            
         if(百科[o]){
             dy+="<span class='提示' data-msg='"+百科[o]+"'>"+o.split("_")[0]+"</span>"
         }else{
             dy+=o.split("_")[0]
         }
-        if(配饰[o]){dy+="</a>"}
+        if(配[o]){dy+="</a>"}
         document.getElementById("已获得").innerHTML=物品.length-2;
         document.getElementById("物品栏").innerHTML=dy;
     }
