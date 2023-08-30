@@ -199,8 +199,8 @@ div0: 1
 
         // [1,"抹茶蛋糕",1,-49],
         // [1,"抹茶蛋糕",0,,1],
-        [1,"猫耳",2,2],
-        [1,"柴犬.gif",0,2],
+        [1,"猫耳",2,,2],
+        [1,"柴犬.gif",0,,2],
     ];
     let 配={ //日期 时间 可写多个随机其一
         // "12-25":[[1,"圣诞帽",1],[2,"圣诞树",1]],
@@ -220,7 +220,7 @@ div0: 1
     function 换配饰(o){
         let 临时=o[1];
         console.log(o)
-        if(临时.indexOf(".")!=-1){临时=临时.split(".");o[1]=临时[0]}else{临时="png"}
+        if(临时.indexOf(".")!=-1){临时=临时.split(".");o[1]=临时[0];临时=临时[1]}else{临时="png"}
         if(o[2]==0||o[2]==2){document.getElementById("前").src="/i/w/小游戏/愚公移山/"+o[1]+"_前."+临时}
         else{document.getElementById("前").removeAttribute("src")}
         if(o[2]==1||o[2]==2){document.getElementById("后").src="/i/w/小游戏/愚公移山/"+o[1]+"_后."+临时}
