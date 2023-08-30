@@ -8,26 +8,24 @@ div0: 1
 ---
 <script src="/i/5/mq-wzjm.js"></script>
 
-<style>
-    img{image-rendering: optimizeSpeed;image-rendering: -moz-crisp-edges;image-rendering: -o-crisp-edges;image-rendering: -webkit-optimize-contrast;image-rendering: pixelated;-ms-interpolation-mode: nearest-neighbor;}
-</style>
-
 <style id="style">
     #地图{position:relative;transform-origin:left bottom;}
-    #点点{width:35px;height:35px;top:123px;
+    #点点{position:absolute;width:35px;height:35px;top:123px;
         box-shadow:4px 4px #353540,-4px 4px #353540,4px -4px #353540,-4px -4px #353540;
-        left:100px;}
-    #水花{transform:scale(4.5);left:40px;opacity:0;}
-    #物品{transform:scale(4.5);top:75px;opacity:0;}
-
-    #点点,#物品,#水花,.配饰{position:absolute;animation:1;animation-fill-mode:forwards;animation-duration:1.6s;}
-
-    .配饰{top:123px;left:100px;transform:translate(-53px,-70px);pointer-events:none}
+        left:100px;
+        animation:1;animation-fill-mode:forwards;animation-duration:1.6s;
+    }
+    #物品{position:absolute;transform:scale(4.5);top:75px;opacity:0;
+        animation:1;animation-fill-mode:forwards;animation-duration:1.6s;
+    }
+    #水花{position:absolute;transform:scale(4.5);left:40px;opacity:0;
+        animation:1;animation-fill-mode:forwards;animation-duration:1.6s;
+    }
 
     #大海{position:absolute;width:80px;height:229px;}
     #高山{position:absolute;left:650px;width:110px;height:229px;}
 
-    #空箱子,#已挖,#物品栏{font-weight:bold;}
+    #空箱子,#已挖,#物品栏{font-weight:bold}
 
     @keyframes 挖山{0%{left:100px}80%,100%{left:620px}}
     @keyframes 挖山_{0%,80%{opacity:0}80%{left:700px}100%{left:631px}90%,100%{opacity:1}}
@@ -47,19 +45,13 @@ div0: 1
     }
 </style>
 
-<style id="配饰偏"></style>
-<style id="配饰移"></style>
-
 <div id="地图">
 
 <div id="大海" onclick="丢掉()"></div>
 <div id="高山" onclick="挖山()"></div>
 
-<img class="配饰" id="后">
-<div id="点点" onclick="换配饰([0,'无',3,0])"></div>
+<div id="点点"></div>
 <img id="物品" onclick="打开()">
-<img class="配饰" id="前">
-
 <img id="水花" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAADAQMAAABh+Fe7AAAABlBMVEUAAAB2n6Y8dz0lAAAAAXRSTlMAQObYZgAAAA5JREFUCNdjaGDwYAgAAAOuARnFD69/AAAAAElFTkSuQmCC">
 
 <img width="800px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAAA3BAMAAACoZViVAAAAHlBMVEWLkVBcaZ+/uLQ1NUCRjY12n6a9o1FgSz3t5NpzW0LH+MUjAAAA+UlEQVRYw+2XsQqDMBRFBYfOHfyBi0PH4AsG18Rf6C90FjLkA7r42c3DQgadineQ5g4BF4/c50Ffc//mKWPDSAE4NmAiA/gVja9GQwRs1zRARweUiq465OpB9eCPPGhFQ/RAADzehufBgJz1ACBnAmCOPGADGi6gowPOrUiEO2R9UUkeiEVOj9VwPGiHftYAhlNRCxQAwQMFKMEDjuBBAWAP6AgAhgfRQ6ecT8cZctweP587gGMDphMBWhOvIo8cOzuGBwoI0NhA8iDa4LUikcTxIInMGpcWjge3FG2+f3C8j34STeL9F92SZqn7Qd0PLjnkuidXD37NB3EjdcqpRT2EAAAAAElFTkSuQmCC">
@@ -121,22 +113,14 @@ div0: 1
 <br>
 
 <b>更新日志</b>：<br>
-2023.8.27：增加配饰功能<br>
-2023.7.19：增加存档功能<br>
 2023.7.16：画面上的山、大海、宝箱可以点击了<br>
 2023.7.14：地图大小可调节<br>
 2023.7.13：«愚公移山»上线<br>
+2023.7.19：增加存档功能<br>
 <br>
 </small>
 
 <script>
-    let 状态=0;
-    //0 啥都没有
-    //1 拿着石头
-    //2 拿着宝箱
-    //3 拿着空宝箱
-    //4 扔东西
-
     let 宝物=[
         "土地公公的拐杖","沉香的开山斧","二郎神的开山斧","补天石","精卫的羽毛","人参果",
         "霸王龙化石","菊石化石","梁龙化石","三叶虫化石","始祖鸟化石","三角龙化石","翼龙化石","长毛象化石","剑齿虎化石","剑龙化石","奇虾化石","哥布林化石","独角兽化石","琥珀",
@@ -190,70 +174,14 @@ div0: 1
         // "":"",
     }
 
-    let 配饰=[
-    //分母 , 文件 , 前后方式 , 物品偏移top , 配饰是否偏移和翻转（可留空）
-    //数字越大几率越低 1为100%
-    //0前 1后 2都有 _前 _后
-    //文件 文件名要加_前或_后 在这里记录不用 如果不是.png要写上后缀名
-    //配饰偏转 0不偏不转 1只偏不转 2不偏只转 3又偏又转
-
-    [3,"抹茶蛋糕",1,-49],
-    [5,"帽帽",0,,3],
-    [5,"老三",0,,3],
-    [5,"墨镜",0,,2],
-    [10,"蝴蝶结",0,,2],
-    [5,"兔兔",1,,2],
-    [100,"iwanna.gif",1,,2],
-    [5,"猫耳",1,,2],
-    [3,"柴犬.gif",1,,2],
-
-    ];
-    let 配={ //日期 时间 可写多个随机其一
-        // "12-25":[[1,"圣诞帽",1],[2,"圣诞树",1]],
-        // "22":[[3,"黑猫耳"]],
-        // "名字":[1,"名字"],
-
-        "龙珠":[1,"龙珠",0,,2],
-    }
-    let 偏移=0;
-    function 配饰偏移(o){
-        let 临时=-70;
-        if(状态!=0&&偏移==1||状态!=0&&偏移==3){临时=-105}
-        临时="transform:translate(-53px,"+临时+"px)"
-        if(o&&偏移==2||o&&偏移==3){临时+="rotateY(180deg)"}
-        document.getElementById("配饰移").innerHTML=".配饰{"+临时+"}";
-    }
-    function 换配饰(o){
-        let 临时=o[1];
-        if(临时.indexOf(".")!=-1){临时=临时.split(".");o[1]=临时[0];临时=临时[1]}else{临时="png"}
-        if(o[2]==0||o[2]==2){document.getElementById("前").src="/i/w/小游戏/愚公移山/"+o[1]+"_前."+临时}
-        else{document.getElementById("前").removeAttribute("src")}
-        if(o[2]==1||o[2]==2){document.getElementById("后").src="/i/w/小游戏/愚公移山/"+o[1]+"_后."+临时}
-        else{document.getElementById("后").removeAttribute("src")}
-        if(!o[3]){o[3]=0}
-        document.getElementById("配饰偏").innerHTML="#物品{top:"+(75+o[3]*1)+"px}";
-        if(o[4]){偏移=o[4];配饰偏移()}else{偏移=0}
-    }
-
-    let 饰=new Date().getDate();
-    if(配[饰]){配饰=配[饰]}
-    饰=(new Date().getMonth()+1)+"-"+new Date().getDate();
-    if(配[饰]){配饰=配[饰]}
-    饰=配饰[Math.floor(Math.random()*配饰.length)];
-    if(Math.floor(Math.random()*饰[0])==0){换配饰(饰)}
-
     let dy=""
 
     function 打印(o){
-        dy+="　";
-        if(配[o]){dy+="<a onclick=\"换配饰(配['"+o+"'])\">"}
-            
         if(百科[o]){
-            dy+="<span class='提示' data-msg='"+百科[o]+"'>"+o.split("_")[0]+"</span>"
+            dy+="　<span class='提示' data-msg='"+百科[o]+"'>"+o.split("_")[0]+"</span>"
         }else{
-            dy+=o.split("_")[0]
+            dy+="　"+o.split("_")[0]
         }
-        if(配[o]){dy+="</a>"}
         document.getElementById("已获得").innerHTML=物品.length-2;
         document.getElementById("物品栏").innerHTML=dy;
     }
@@ -270,6 +198,13 @@ div0: 1
     }
     document.getElementById("空箱子").innerHTML=物品[0];
     document.getElementById("已挖").innerHTML=物品[1];
+
+    let 状态=0;
+    //0 啥都没有
+    //1 拿着石头
+    //2 拿着宝箱
+    //3 拿着空宝箱
+    //4 扔东西
 
     let 动画=1;
     let 随机数=10;
@@ -295,8 +230,6 @@ div0: 1
                 document.getElementById("提示").innerHTML="这是"+名字+"最近丢掉的第"+扔宝箱+"个宝箱。";
                 if(扔宝箱>5&&物品.indexOf("金箱子和银箱子")==-1){物品[物品.length]="金箱子和银箱子";x+=1;打印('金箱子和银箱子')}}
             document.getElementById("点点").style="animation-name:丢掉";
-            document.getElementById("前").style="animation-name:丢掉";
-            document.getElementById("后").style="animation-name:丢掉";
             document.getElementById("物品").style="animation-name:丢掉_";
             document.getElementById("水花").style="animation-name:水花";
             状态=4;
@@ -304,14 +237,11 @@ div0: 1
     }
 
     function 挖山(){
-        配饰偏移(1);
         if(状态!=0){
             document.getElementById("提示").innerHTML="手里拿着东西，不能挖山。";
         }else if(动画==1){动画=0;
             随机();
             document.getElementById("点点").style="animation-name:挖山";
-            document.getElementById("前").style="animation-name:挖山";
-            document.getElementById("后").style="animation-name:挖山";
             document.getElementById("物品").style="animation-name:挖山_";
             document.getElementById("水花").style="";
             物品[1]=物品[1]*1+1;
@@ -364,8 +294,8 @@ div0: 1
 
     document.getElementById('点点').addEventListener('animationend',function(){动画=1;
         if(状态==4){状态=0}else{document.getElementById("提示").innerHTML="　"}
-        配饰偏移()
     });
+
 
     function 取消(){
         document.getElementById('设置0').style='';
@@ -394,8 +324,8 @@ div0: 1
     }
     function 地图恢复默认(){
         document.getElementById("地图").style="";
-        document.getElementById("调整大小").value=50;
-        localStorage.removeItem("愚公移山大小");
+            document.getElementById("调整大小").value=50;
+            localStorage.removeItem("愚公移山大小");
     }
     if(localStorage.getItem("愚公移山大小")){
         document.getElementById("地图").style="transform:scale("+localStorage.getItem("愚公移山大小")+")";
