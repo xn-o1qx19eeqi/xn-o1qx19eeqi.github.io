@@ -204,7 +204,7 @@ div0: 1
     //配饰偏转 0不偏不转 1只偏不转 2不偏只转 3又偏又转
 
     // [1,"测试无脸男.gif",0,-54,2],
-    // [1,"测试吃豆人.gif",0,-65,1],
+    // [1,"测试吃豆人.gif",0,,1],
     // [1,"测试吃豆人幽灵.gif",0,,2],
     // [1,"测试生日帽",0,,1],
     // [1,"",],
@@ -292,7 +292,7 @@ div0: 1
     document.getElementById("已挖").innerHTML=物品[1];
 
     let 动画=1;
-    let 随机数=2;
+    let 随机数=4;
     let 扔宝箱=0;
     let x=2;
     if(物品.indexOf("Error")!=-1){x+=1}if(物品.indexOf("金箱子和银箱子")!=-1){x+=1}
@@ -352,7 +352,6 @@ div0: 1
                 document.getElementById("提示").innerHTML="获得<b>空箱子</b>";
             }else{
                 物品[物品.length]=获得;
-                打印(获得);
                 if(百科[获得]){
                     document.getElementById("提示").innerHTML="获得<b>"+获得.split("_")[0]+"</b>："+百科[获得];
                 }else{
