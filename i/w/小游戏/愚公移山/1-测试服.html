@@ -195,7 +195,7 @@ div0: 1
     //数字越大几率越低 1为100% //0前 1后 2都有 _前 _后
     //文件 文件名要加_前或_后 在这里记录不用 如果不是.png要写上后缀名
         [1,"抹茶蛋糕",1,-49],
-        [1,"抹茶蛋糕",1,,1],
+        [1,"抹茶蛋糕",0,,1],
         [1,"猫耳",0],
     ];
     let 配={ //日期 时间 可写多个随机其一
@@ -206,12 +206,12 @@ div0: 1
         // "龙珠":[1,"抹茶蛋糕",1,-49],
     }
     let 偏移=0;
-    function 配饰偏移(){
-        let 临时;
-        if(状态==0){临时=-70}
-        if(状态==1){临时=-106}
-        if(状态==2){临时=-122}
-        document.getElementById("配饰移").innerHTML=".配饰{transform:translate(-53px,"+临时+"px)}";
+    function 配饰偏移(o){
+        let 临时=-70;
+        if(偏移==1&&状态!=0){临时=-105}
+        临时="transform:translate(-53px,"+临时+"px)"
+        if(o){临时+="rotateY(180deg)"}
+        document.getElementById("配饰移").innerHTML=".配饰{"+临时+"}";
     }
     function 换配饰(o){
         let 临时=o[1];
@@ -295,6 +295,7 @@ div0: 1
     }
 
     function 挖山(){
+        配饰偏移(1);
         if(状态!=0){
             document.getElementById("提示").innerHTML="手里拿着东西，不能挖山。";
         }else if(动画==1){动画=0;
@@ -354,7 +355,7 @@ div0: 1
 
     document.getElementById('点点').addEventListener('animationend',function(){动画=1;
         if(状态==4){状态=0}else{document.getElementById("提示").innerHTML="　"}
-        if(偏移==1){配饰偏移()}
+        配饰偏移()
     });
 
     function 取消(){
