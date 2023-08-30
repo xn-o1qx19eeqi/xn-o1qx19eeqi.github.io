@@ -233,7 +233,7 @@ div0: 1
         if(o[4]){偏移=o[4];配饰偏移()}else{偏移=0}
     }
     if(location.href.indexOf("?ceshi=")!=-1){
-        let 临时=location.href.indexOf("?ceshi=")[1].split(",");
+        let 临时=location.href.split("?ceshi=")[1].split(",");
         临时[1]=decodeURI(临时[1].replace(new RegExp('%22',"g"),""));
         换配饰(临时)
     }
