@@ -47,7 +47,8 @@ div0: 1
     }
 </style>
 
-<style id="配饰偏移"></style>
+<style id="配饰偏"></style>
+<style id="配饰移"></style>
 
 <div id="地图">
 
@@ -55,7 +56,7 @@ div0: 1
 <div id="高山" onclick="挖山()"></div>
 
 <img class="配饰" id="后">
-<div id="点点" onclick="换配饰(0,'无',3,0)"></div>
+<div id="点点" onclick="换配饰([0,'无',3,0])"></div>
 <img id="物品" onclick="打开()">
 <img class="配饰" id="前">
 
@@ -129,6 +130,13 @@ div0: 1
 </small>
 
 <script>
+    let 状态=0;
+    //0 啥都没有
+    //1 拿着石头
+    //2 拿着宝箱
+    //3 拿着空宝箱
+    //4 扔东西
+
     let 宝物=[
         "土地公公的拐杖","沉香的开山斧","二郎神的开山斧","补天石","精卫的羽毛","人参果",
         "霸王龙化石","菊石化石","梁龙化石","三叶虫化石","始祖鸟化石","三角龙化石","翼龙化石","长毛象化石","剑齿虎化石","剑龙化石","奇虾化石","哥布林化石","独角兽化石","琥珀",
@@ -183,10 +191,11 @@ div0: 1
     }
 
     let 配饰=[
-    //分母 , 文件 , 前后方式 , 物品偏移top , 配饰偏移top （偏移可留空）
+    //分母 , 文件 , 前后方式 , 物品偏移top , 配饰是否随物品偏移 （偏移可留空）
     //数字越大几率越低 1为100% //0前 1后 2都有 _前 _后
     //文件 文件名要加_前或_后 在这里记录不用 如果不是.png要写上后缀名
-        [2,"抹茶蛋糕",1,-49,-80],
+        [1,"抹茶蛋糕",1,-49],
+        [1,"抹茶蛋糕",1,,1], //+16=石头 -28=打开的宝箱
     ];
     let 配={ //日期 时间 可写多个随机其一
         // "12-25":[[1,"圣诞帽",1],[2,"圣诞树",1]],
@@ -195,17 +204,25 @@ div0: 1
 
         // "龙珠":[1,"抹茶蛋糕",1,-49],
     }
-
+    let 偏移=0;
+    function 配饰偏移(){
+        let 临时;
+        if(状态==0){临时=-70}
+        if(状态==1){临时=-106}
+        if(状态==2){临时=-122}
+        document.getElementById("配饰移").innerHTML=".配饰{transform:translate(-53px,"+临时+"px)}";
+    }
     function 换配饰(o){
-        let 临时=o[1];if(临时.indexOf(".")!=-1){临时=临时.split(".");o[1]=临时[0]}else{临时="png"}
+        let 临时=o[1];
+        console.log(o)
+        if(临时.indexOf(".")!=-1){临时=临时.split(".");o[1]=临时[0]}else{临时="png"}
         if(o[2]==0||o[2]==2){document.getElementById("前").src="/i/w/小游戏/愚公移山/"+o[1]+"_前."+临时}
         else{document.getElementById("前").removeAttribute("src")}
         if(o[2]==1||o[2]==2){document.getElementById("后").src="/i/w/小游戏/愚公移山/"+o[1]+"_后."+临时}
         else{document.getElementById("后").removeAttribute("src")}
-        if(!o[3]){o[3]=0}if(!o[4]){o[4]=0}
-        document.getElementById("配饰偏移").innerHTML=
-        "#物品{top:"+(75+o[3])+"px}"+
-        ".配饰{transform:translate(-53px,"+(-70+o[4])+"px)}"
+        if(!o[3]){o[3]=0}
+        document.getElementById("配饰偏").innerHTML="#物品{top:"+(75+o[3])+"px}";
+        if(o[4]&&o[4]==1){偏移=1;配饰偏移()}else{偏移=0}
     }
 
     let 饰=new Date().getDate();
@@ -243,13 +260,6 @@ div0: 1
     }
     document.getElementById("空箱子").innerHTML=物品[0];
     document.getElementById("已挖").innerHTML=物品[1];
-
-    let 状态=0;
-    //0 啥都没有
-    //1 拿着石头
-    //2 拿着宝箱
-    //3 拿着空宝箱
-    //4 扔东西
 
     let 动画=1;
     let 随机数=10;
@@ -343,6 +353,7 @@ div0: 1
 
     document.getElementById('点点').addEventListener('animationend',function(){动画=1;
         if(状态==4){状态=0}else{document.getElementById("提示").innerHTML="　"}
+        if(偏移==1){配饰偏移()}
     });
 
     function 取消(){
