@@ -229,11 +229,13 @@ div0: 1
         if(o[2]==1||o[2]==2){document.getElementById("后").src="/i/w/小游戏/愚公移山/"+o[1]+"_后."+临时}
         else{document.getElementById("后").removeAttribute("src")}
         if(!o[3]){o[3]=0}
-        document.getElementById("配饰偏").innerHTML="#物品{top:"+(75+o[3])+"px}";
+        document.getElementById("配饰偏").innerHTML="#物品{top:"+(75+o[3]*1)+"px}";
         if(o[4]){偏移=o[4];配饰偏移()}else{偏移=0}
     }
     if(location.href.indexOf("?ceshi=")!=-1){
-        换配饰(location.href.split("?ceshi=")[1])
+        let 临时=location.href.indexOf("?ceshi=").split(",");
+        临时[1]=decodeURI(临时[1].replace(new RegExp('%22',"g"),""));
+        换配饰(临时)
     }
 
     let 饰=new Date().getDate();
