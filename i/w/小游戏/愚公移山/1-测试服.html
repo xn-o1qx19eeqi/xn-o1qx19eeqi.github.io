@@ -185,6 +185,7 @@ div0: 1
     let 配饰=[
     //分母 , 文件 , 前后方式 , 物品偏移top , 配饰偏移top （偏移可留空）
     //数字越大几率越低 1为100% //0前 1后 2都有 _前 _后
+    //文件 文件名要加_前或_后 在这里记录不用 如果不是.png要写上后缀名
         [2,"抹茶蛋糕",1,-49,-80],
     ];
     let 配={ //日期 时间 可写多个随机其一
@@ -204,7 +205,7 @@ div0: 1
         if(!o[3]){o[3]=0}if(!o[4]){o[4]=0}
         document.getElementById("配饰偏移").innerHTML=
         "#物品{top:"+(75+o[3])+"px}"+
-        ".配饰{top:"+(123+o[4])+"px;transform:translate("+(-53+o[4])+"px,-70px)}"
+        ".配饰{transform:translate(-53px,"+(-70+o[4])+"px)}"
     }
 
     let 饰=new Date().getDate();
