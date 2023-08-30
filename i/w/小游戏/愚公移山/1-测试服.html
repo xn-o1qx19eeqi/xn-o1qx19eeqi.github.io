@@ -197,6 +197,7 @@ div0: 1
     //文件 文件名要加_前或_后 在这里记录不用 如果不是.png要写上后缀名
     //配饰偏转 0不偏不转 1只偏不转 2不偏只转 3又偏又转
 
+    //测试中
         [1,"抹茶蛋糕",1,-49],
         [1,"抹茶蛋糕",1,,1],
         [1,"猫耳",1,,2],
@@ -204,6 +205,12 @@ div0: 1
         [1,"帽帽",0,,3],
         [1,"老三",0,,3],
         [1,"墨镜",0,,2],
+        [1,"测试iwanna",0,,2],
+        [1,"测试蝴蝶结",0,,2],
+        [1,"测试老三",0,,3],
+        [1,"测试猫耳",1,,2],
+        [1,"测试兔兔",1,,2],
+        // [1,"",],
     ];
     let 配={ //日期 时间 可写多个随机其一
         // "12-25":[[1,"圣诞帽",1],[2,"圣诞树",1]],
@@ -232,11 +239,6 @@ div0: 1
         document.getElementById("配饰偏").innerHTML="#物品{top:"+(75+o[3]*1)+"px}";
         if(o[4]){偏移=o[4];配饰偏移()}else{偏移=0}
     }
-    if(location.href.indexOf("?ceshi=")!=-1){
-        let 临时=location.href.split("?ceshi=")[1].split(",");
-        临时[1]=decodeURI(临时[1].replace(new RegExp('%22',"g"),""));
-        换配饰(临时)
-    }
 
     let 饰=new Date().getDate();
     if(配[饰]){配饰=配[饰]}
@@ -244,6 +246,12 @@ div0: 1
     if(配[饰]){配饰=配[饰]}
     饰=配饰[Math.floor(Math.random()*配饰.length)];
     if(Math.floor(Math.random()*饰[0])==0){换配饰(饰)}
+
+    if(location.href.indexOf("?ceshi=")!=-1){
+        let 临时=location.href.split("?ceshi=")[1].split(",");
+        临时[1]=decodeURI(临时[1].replace(new RegExp('%22',"g"),""));
+        换配饰(临时)
+    }
 
     let dy=""
 
