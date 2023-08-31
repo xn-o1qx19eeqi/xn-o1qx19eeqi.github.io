@@ -65,7 +65,7 @@ div0: 1
 <img width="800px" id="场景">
 </div>
 
-<div id="提示">（<small>山、大海、宝箱可以直接点击；键盘可以使用快捷键；设置里可以改地图大小、清除多余Error、开启关闭配饰功能；点击像素点随机更换配饰</small>）</div>
+<div id="提示">（<small>山、大海、宝箱可以直接点击；键盘可以使用快捷键；设置里可以改地图大小、清除多余Error、开启关闭配饰功能；点击像素点刷新配饰</small>）</div>
 
 <br>
 
@@ -287,6 +287,11 @@ let 装扮={//场景 石头 箱子 打开的箱子 文件名_0 文件名_1 写0�
         document.getElementById("配饰移").innerHTML=".配饰{"+临时+"}";
     }
     function 换配饰(o){
+        if(o==0){
+            document.getElementById("前").removeAttribute("src")
+            document.getElementById("后").removeAttribute("src")
+            return;
+        }
         if(localStorage.getItem("愚公移山配饰")){try{notyf.alert("配饰功能已关闭，请在设置中开启。");}catch(e){alert("配饰功能已关闭，请在设置中开启。");}return;}
         let 临时=o[1];
         if(临时.indexOf(".")!=-1){临时=临时.split(".");o[1]=临时[0];临时=临时[1]}else{临时="png"}
@@ -307,12 +312,18 @@ let 装扮={//场景 石头 箱子 打开的箱子 文件名_0 文件名_1 写0�
         else if(!o&&配[日]){临时=配[日]}
         else{临时=配饰}
         饰=临时[Math.floor(Math.random()*临时.length)];
-        if(Math.floor(Math.random()*饰[0])==0){换配饰(饰)}else{换配饰([0,'无',3,0])}
+        if(Math.floor(Math.random()*饰[0])==0){
+            if(o){try{notyf.confirm("切换中")}catch(e){alert("切换中");}}
+            换配饰(饰)
+        }else{
+            if(o){try{notyf.alert("没有随机到配饰");}catch(e){alert("没有随机到配饰");}}
+            换配饰(0)
+        }
     }
     if(!localStorage.getItem("愚公移山配饰")){随机配饰()}
     function 开关配饰(){
         if(localStorage.getItem("愚公移山配饰")){localStorage.removeItem("愚公移山配饰");try{notyf.confirm("开启配饰功能")}catch(e){alert("开启配饰功能");}
-        }else{localStorage.setItem("愚公移山配饰",1);换配饰([0,'无',3,0]);try{notyf.alert("关闭配饰功能");}catch(e){alert("关闭配饰功能");}}
+        }else{localStorage.setItem("愚公移山配饰",1);换配饰(0);try{notyf.alert("关闭配饰功能");}catch(e){alert("关闭配饰功能");}}
     }
 
 
