@@ -65,7 +65,7 @@ div0: 1
 <img width="800px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAAA3BAMAAACoZViVAAAAHlBMVEWLkVBcaZ+/uLQ1NUCRjY12n6a9o1FgSz3t5NpzW0LH+MUjAAAA+UlEQVRYw+2XsQqDMBRFBYfOHfyBi0PH4AsG18Rf6C90FjLkA7r42c3DQgadineQ5g4BF4/c50Ffc//mKWPDSAE4NmAiA/gVja9GQwRs1zRARweUiq465OpB9eCPPGhFQ/RAADzehufBgJz1ACBnAmCOPGADGi6gowPOrUiEO2R9UUkeiEVOj9VwPGiHftYAhlNRCxQAwQMFKMEDjuBBAWAP6AgAhgfRQ6ecT8cZctweP587gGMDphMBWhOvIo8cOzuGBwoI0NhA8iDa4LUikcTxIInMGpcWjge3FG2+f3C8j34STeL9F92SZqn7Qd0PLjnkuidXD37NB3EjdcqpRT2EAAAAAElFTkSuQmCC">
 </div>
 
-<div id="提示">（<small>山、大海、宝箱可以直接点击；键盘可以使用快捷键；设置里可以改地图大小、清除多余Error；点击像素点开启/关闭配饰</small>）</div>
+<div id="提示">（<small>山、大海、宝箱可以直接点击；键盘可以使用快捷键；设置里可以改地图大小、清除多余Error；点击像素点开启/关闭配饰功能</small>）</div>
 
 <br>
 
@@ -253,7 +253,9 @@ let 配={
         document.getElementById("配饰移").innerHTML=".配饰{"+临时+"}";
     }
     function 换配饰(o){
-        let 临时=o[1];
+        let 临时=localStorage.getItem("愚公移山配饰");
+        if(临时){try{notyf.alert("配饰功能未开启，请点击像素点开启配饰功能。");}catch(e){alert("配饰功能未开启，请点击像素点开启配饰功能。");}return;}
+        临时=o[1];
         if(临时.indexOf(".")!=-1){临时=临时.split(".");o[1]=临时[0];临时=临时[1]}else{临时="png"}
         if(o[2]==0||o[2]==2){document.getElementById("前").src="/i/w/小游戏/愚公移山/"+o[1]+"."+临时}
         else{document.getElementById("前").removeAttribute("src")}
@@ -263,26 +265,29 @@ let 配={
         document.getElementById("配饰偏").innerHTML="#物品{top:"+(75+o[3]*1)+"px}";
         if(o[4]){偏移=o[4];配饰偏移()}else{偏移=0}
     }
-    let 饰=localStorage.getItem("愚公移山配饰");
+    let 饰;
     function 随机配饰(o){
         if(o){
             饰=localStorage.getItem("愚公移山配饰")
             if(饰){localStorage.removeItem("愚公移山配饰");try{notyf.confirm("开启配饰功能")}catch(e){alert("开启配饰功能");}}
-            else{localStorage.setItem("愚公移山配饰",1);
+            else{
                 换配饰([0,'无',3,0]);
+                localStorage.setItem("愚公移山配饰",1);
                 try{notyf.alert("关闭配饰功能");}catch(e){alert("关闭配饰功能");}
                 return;
             }
         }
-        饰=new Date().getDate();
-        if(配[饰]){if(Math.floor(Math.random()*2)!=0){配饰=配[饰]}}
-        饰=(new Date().getMonth()+1)+"-"+new Date().getDate();
-        if(配[饰]){if(Math.floor(Math.random()*2)!=0){配饰=配[饰]}}
-        饰=配饰[Math.floor(Math.random()*配饰.length)];
+
+        let 时=new Date().getDate();
+        let 日=(new Date().getMonth()+1)+"-"+new Date().getDate();
+        let 临时;
+        if(配[时]&&Math.floor(Math.random()*2)!=0){临时=配[时]}
+        else if(配[日]&&Math.floor(Math.random()*2)!=0){临时=配[日]}
+        else{临时=配饰}
+        饰=临时[Math.floor(Math.random()*临时.length)];
         if(Math.floor(Math.random()*饰[0])==0){换配饰(饰)}
     }
-    if(!饰){随机配饰()}
-
+    if(!localStorage.getItem("愚公移山配饰")){随机配饰()}
 
     let dy=""
 
