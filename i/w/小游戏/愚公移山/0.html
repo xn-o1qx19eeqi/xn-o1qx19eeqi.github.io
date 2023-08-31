@@ -65,7 +65,7 @@ div0: 1
 <img width="800px" id="场景">
 </div>
 
-<div id="提示">（<small>山、大海、宝箱可以直接点击；键盘可以使用快捷键；设置里可以改地图大小、清除多余Error；点击像素点开启/关闭配饰功能</small>）</div>
+<div id="提示">（<small>山、大海、宝箱可以直接点击；键盘可以使用快捷键；设置里可以改地图大小、清除多余Error、开启关闭配饰功能；点击像素点刷新配饰</small>）</div>
 
 <br>
 
@@ -103,6 +103,7 @@ div0: 1
     <span id="设置1" style="display:none;">
         <a onclick="取消()">取消</a><br>
         调整地图大小：<input type="range" id="调整大小" onchange="调整大小()"> <a onclick="调整大小()">确定</a> <a onclick="地图恢复默认()">恢复默认</a><br>
+        <a onclick="开关配饰()">开启/关闭配饰功能</a><br>
         <a onclick="清除多余的Error();取消()">清除多余的Error</a><br>
         <a onclick="document.getElementById('设置1').style='display:none';document.getElementById('设置2').style='';">清空缓存</a><br>
     </span>
@@ -273,9 +274,9 @@ let 配={
 
     // "5-17":彩蛋["我的世界"],
 }
-let 装扮={//场景 石头 箱子 打开的箱子 文件名_0 文件名_1 写0为不变
-    // "5-17":["我的世界"],
-    "我的世界":["png","png","png","png"],
+let 装扮={// 文件夹_0场景 文件夹_1石头 2箱子 3打开的箱子
+    "5-17":["我的世界"], //随机一个
+    "我的世界":["png","png","png","png"], //0为没有
 }
     let 偏移=0;
     function 配饰偏移(o){
@@ -286,9 +287,13 @@ let 装扮={//场景 石头 箱子 打开的箱子 文件名_0 文件名_1 写0�
         document.getElementById("配饰移").innerHTML=".配饰{"+临时+"}";
     }
     function 换配饰(o){
-        let 临时=localStorage.getItem("愚公移山配饰");
-        if(临时){try{notyf.alert("配饰功能已关闭，请点击像素点开启。");}catch(e){alert("配饰功能已关闭，请点击像素点开启。");}return;}
-        临时=o[1];
+        if(o==0){
+            document.getElementById("前").removeAttribute("src")
+            document.getElementById("后").removeAttribute("src")
+            return;
+        }
+        if(localStorage.getItem("愚公移山配饰")){notyf.alert("配饰功能已关闭，请在设置中开启。");return;}
+        let 临时=o[1];
         if(临时.indexOf(".")!=-1){临时=临时.split(".");o[1]=临时[0];临时=临时[1]}else{临时="png"}
         if(o[2]==0||o[2]==2){document.getElementById("前").src="/i/w/小游戏/愚公移山/"+o[1]+"."+临时}
         else{document.getElementById("前").removeAttribute("src")}
@@ -302,25 +307,25 @@ let 装扮={//场景 石头 箱子 打开的箱子 文件名_0 文件名_1 写0�
     let 时=new Date().getDate();
     let 日=(new Date().getMonth()+1)+"-"+new Date().getDate();
     function 随机配饰(o){
-        if(o){
-            饰=localStorage.getItem("愚公移山配饰")
-            if(饰){localStorage.removeItem("愚公移山配饰");try{notyf.confirm("开启配饰功能")}catch(e){alert("开启配饰功能");}}
-            else{
-                换配饰([0,'无',3,0]);
-                localStorage.setItem("愚公移山配饰",1);
-                try{notyf.alert("关闭配饰功能");}catch(e){alert("关闭配饰功能");}
-                return;
-            }
-        }
-
+        if(o&&localStorage.getItem("愚公移山配饰")){notyf.alert("配饰功能已关闭，请在设置中开启。");return;}
         let 临时;
-        if(配[时]&&Math.floor(Math.random()*3)==0){临时=配[时]}
-        else if(配[日]&&Math.floor(Math.random()*3)==0){临时=配[日]}
+        if(!o&&配[时]){临时=配[时]}
+        else if(!o&&配[日]){临时=配[日]}
         else{临时=配饰}
         饰=临时[Math.floor(Math.random()*临时.length)];
-        if(Math.floor(Math.random()*饰[0])==0){换配饰(饰)}
+        if(Math.floor(Math.random()*饰[0])==0){
+            if(o){notyf.confirm("切换中");}
+            换配饰(饰)
+        }else{
+            if(o){notyf.alert("没有随机到配饰");}
+            换配饰(0)
+        }
     }
     if(!localStorage.getItem("愚公移山配饰")){随机配饰()}
+    function 开关配饰(){
+        if(localStorage.getItem("愚公移山配饰")){localStorage.removeItem("愚公移山配饰");notyf.confirm("开启配饰功能")
+        }else{localStorage.setItem("愚公移山配饰",1);换配饰(0);notyf.alert("关闭配饰功能")}
+    }
 
 
     装扮["0"]="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAAA3BAMAAACoZViVAAAAHlBMVEWLkVBcaZ+/uLQ1NUCRjY12n6a9o1FgSz3t5NpzW0LH+MUjAAAA+UlEQVRYw+2XsQqDMBRFBYfOHfyBi0PH4AsG18Rf6C90FjLkA7r42c3DQgadineQ5g4BF4/c50Ffc//mKWPDSAE4NmAiA/gVja9GQwRs1zRARweUiq465OpB9eCPPGhFQ/RAADzehufBgJz1ACBnAmCOPGADGi6gowPOrUiEO2R9UUkeiEVOj9VwPGiHftYAhlNRCxQAwQMFKMEDjuBBAWAP6AgAhgfRQ6ecT8cZctweP587gGMDphMBWhOvIo8cOzuGBwoI0NhA8iDa4LUikcTxIInMGpcWjge3FG2+f3C8j34STeL9F92SZqn7Qd0PLjnkuidXD37NB3EjdcqpRT2EAAAAAElFTkSuQmCC";
@@ -481,7 +486,7 @@ let 装扮={//场景 石头 箱子 打开的箱子 文件名_0 文件名_1 写0�
             localStorage.setItem("愚公移山"+编号,物品)
             location.replace(location.href)
         }else{
-            try{notyf.alert("没有Error");}catch(e){alert("没有Error");}
+            notyf.alert("没有Error")
         }
     }
 
