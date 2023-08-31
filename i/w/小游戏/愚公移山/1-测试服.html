@@ -200,12 +200,11 @@ div0: 1
     //配饰偏转 0不偏不转 1只偏不转 2不偏只转 3又偏又转
 
 
-    // [1,"测试姜饼人",0,,2],
-    // [1,"测试圣诞帽",0,,3],
+    // [1,"测试姜饼人",0,,1],
     // [1,"",],
 
     //可以✔
-    // [1,"TobyFox",0,,2],
+
 
 
     ];
@@ -331,7 +330,6 @@ div0: 1
             document.getElementById("物品").style="animation-name:挖山_";
             document.getElementById("水花").style="";
             物品[1]=物品[1]*1+1;
-            localStorage.setItem("愚公移山"+编号,物品.join(","))
             document.getElementById("已挖").innerHTML=物品[1];
             if(物品[1]>((宝物.length*20)+(物品[0]*4))&&宝物.length>(物品.length-x)){if(随机数>3){随机数-=1}}
             else if(随机数<9){随机数+=1}
@@ -355,7 +353,6 @@ div0: 1
                 }
             }
 
-            localStorage.setItem("愚公移山"+编号,物品.join(","))
             状态=3;
             document.getElementById("物品").src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAUBAMAAABL3sEiAAAAGFBMVEU1NUCRjY1gSz2/uLRNPzjutVHt5Nrjk0cGzkVfAAAAQ0lEQVQI12OAAmZj0+C0BAZGQdFAQQEGRiX3IiUQ5aQEolyAAMRTUlGCU8yCQGDAwAzSjIsyBgIDoJlAgN0wmBwEAACD2AudxuVVzwAAAABJRU5ErkJggg=="
         }else{
