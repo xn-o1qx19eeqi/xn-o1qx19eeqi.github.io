@@ -275,7 +275,8 @@ let 配={
     // "5-17":彩蛋["我的世界"],
 }
 let 装扮={//场景 石头 箱子 打开的箱子 文件名_0 文件名_1 写0为不变
-    // "5-17":["我的世界"],
+    "5-17":["我的世界"],
+    "8-31":["我的世界"],
     "我的世界":["png","png","png","png"],
 }
     let 偏移=0;
@@ -292,7 +293,7 @@ let 装扮={//场景 石头 箱子 打开的箱子 文件名_0 文件名_1 写0�
             document.getElementById("后").removeAttribute("src")
             return;
         }
-        if(localStorage.getItem("愚公移山配饰")){try{notyf.alert("配饰功能已关闭，请在设置中开启。");}catch(e){alert("配饰功能已关闭，请在设置中开启。");}return;}
+        if(localStorage.getItem("愚公移山配饰")){notyf.alert("配饰功能已关闭，请在设置中开启。");return;}
         let 临时=o[1];
         if(临时.indexOf(".")!=-1){临时=临时.split(".");o[1]=临时[0];临时=临时[1]}else{临时="png"}
         if(o[2]==0||o[2]==2){document.getElementById("前").src="/i/w/小游戏/愚公移山/"+o[1]+"."+临时}
@@ -307,23 +308,24 @@ let 装扮={//场景 石头 箱子 打开的箱子 文件名_0 文件名_1 写0�
     let 时=new Date().getDate();
     let 日=(new Date().getMonth()+1)+"-"+new Date().getDate();
     function 随机配饰(o){
+        if(o&&localStorage.getItem("愚公移山配饰")){notyf.alert("配饰功能已关闭，请在设置中开启。");return;}
         let 临时;
         if(!o&&配[时]){临时=配[时]}
         else if(!o&&配[日]){临时=配[日]}
         else{临时=配饰}
         饰=临时[Math.floor(Math.random()*临时.length)];
         if(Math.floor(Math.random()*饰[0])==0){
-            if(o){try{notyf.confirm("切换中")}catch(e){alert("切换中");}}
+            if(o){notyf.confirm("切换中");}
             换配饰(饰)
         }else{
-            if(o){try{notyf.alert("没有随机到配饰");}catch(e){alert("没有随机到配饰");}}
+            if(o){notyf.alert("没有随机到配饰");}
             换配饰(0)
         }
     }
     if(!localStorage.getItem("愚公移山配饰")){随机配饰()}
     function 开关配饰(){
-        if(localStorage.getItem("愚公移山配饰")){localStorage.removeItem("愚公移山配饰");try{notyf.confirm("开启配饰功能")}catch(e){alert("开启配饰功能");}
-        }else{localStorage.setItem("愚公移山配饰",1);换配饰(0);try{notyf.alert("关闭配饰功能");}catch(e){alert("关闭配饰功能");}}
+        if(localStorage.getItem("愚公移山配饰")){localStorage.removeItem("愚公移山配饰");notyf.confirm("开启配饰功能")
+        }else{localStorage.setItem("愚公移山配饰",1);换配饰(0);notyf.alert("关闭配饰功能")}
     }
 
 
@@ -485,7 +487,7 @@ let 装扮={//场景 石头 箱子 打开的箱子 文件名_0 文件名_1 写0�
             localStorage.setItem("愚公移山"+编号,物品)
             location.replace(location.href)
         }else{
-            try{notyf.alert("没有Error");}catch(e){alert("没有Error");}
+            notyf.alert("没有Error")
         }
     }
 
