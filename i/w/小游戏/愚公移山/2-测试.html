@@ -62,7 +62,7 @@ div0: 1
 
 <img id="水花" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAADAQMAAABh+Fe7AAAABlBMVEUAAAB2n6Y8dz0lAAAAAXRSTlMAQObYZgAAAA5JREFUCNdjaGDwYAgAAAOuARnFD69/AAAAAElFTkSuQmCC">
 
-<img width="800px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAAA3BAMAAACoZViVAAAAHlBMVEWLkVBcaZ+/uLQ1NUCRjY12n6a9o1FgSz3t5NpzW0LH+MUjAAAA+UlEQVRYw+2XsQqDMBRFBYfOHfyBi0PH4AsG18Rf6C90FjLkA7r42c3DQgadineQ5g4BF4/c50Ffc//mKWPDSAE4NmAiA/gVja9GQwRs1zRARweUiq465OpB9eCPPGhFQ/RAADzehufBgJz1ACBnAmCOPGADGi6gowPOrUiEO2R9UUkeiEVOj9VwPGiHftYAhlNRCxQAwQMFKMEDjuBBAWAP6AgAhgfRQ6ecT8cZctweP587gGMDphMBWhOvIo8cOzuGBwoI0NhA8iDa4LUikcTxIInMGpcWjge3FG2+f3C8j34STeL9F92SZqn7Qd0PLjnkuidXD37NB3EjdcqpRT2EAAAAAElFTkSuQmCC">
+<img width="800px" id="场景">
 </div>
 
 <div id="提示">（<small>山、大海、宝箱可以直接点击；键盘可以使用快捷键；设置里可以改地图大小、清除多余Error；点击像素点开启/关闭配饰功能</small>）</div>
@@ -244,6 +244,11 @@ let 配={
     "地瓜":[1,"快乐地瓜",0,,1],
     "紫葫芦":[1,"葫芦",1],
 }
+let 装扮={//场景 石头 箱子 打开的箱子 文件名_0 文件名_1 写0为不变
+    "8-31":["我的世界"],
+    // "5-17":["我的世界"],
+    "我的世界":["png","png","png","png"],
+}
     let 偏移=0;
     function 配饰偏移(o){
         let 临时=-70;
@@ -254,7 +259,7 @@ let 配={
     }
     function 换配饰(o){
         let 临时=localStorage.getItem("愚公移山配饰");
-        if(临时){try{notyf.alert("配饰功能未开启，请点击像素点开启配饰功能。");}catch(e){alert("配饰功能未开启，请点击像素点开启配饰功能。");}return;}
+        if(临时){try{notyf.alert("配饰功能已关闭，请点击像素点开启。");}catch(e){alert("配饰功能已关闭，请点击像素点开启。");}return;}
         临时=o[1];
         if(临时.indexOf(".")!=-1){临时=临时.split(".");o[1]=临时[0];临时=临时[1]}else{临时="png"}
         if(o[2]==0||o[2]==2){document.getElementById("前").src="/i/w/小游戏/愚公移山/"+o[1]+"."+临时}
@@ -266,6 +271,8 @@ let 配={
         if(o[4]){偏移=o[4];配饰偏移()}else{偏移=0}
     }
     let 饰;
+    let 时=new Date().getDate();
+    let 日=(new Date().getMonth()+1)+"-"+new Date().getDate();
     function 随机配饰(o){
         if(o){
             饰=localStorage.getItem("愚公移山配饰")
@@ -278,8 +285,6 @@ let 配={
             }
         }
 
-        let 时=new Date().getDate();
-        let 日=(new Date().getMonth()+1)+"-"+new Date().getDate();
         let 临时;
         if(配[时]&&Math.floor(Math.random()*2)!=0){临时=配[时]}
         else if(配[日]&&Math.floor(Math.random()*2)!=0){临时=配[日]}
@@ -289,7 +294,25 @@ let 配={
     }
     if(!localStorage.getItem("愚公移山配饰")){随机配饰()}
 
+
+    装扮["0"]="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAAA3BAMAAACoZViVAAAAHlBMVEWLkVBcaZ+/uLQ1NUCRjY12n6a9o1FgSz3t5NpzW0LH+MUjAAAA+UlEQVRYw+2XsQqDMBRFBYfOHfyBi0PH4AsG18Rf6C90FjLkA7r42c3DQgadineQ5g4BF4/c50Ffc//mKWPDSAE4NmAiA/gVja9GQwRs1zRARweUiq465OpB9eCPPGhFQ/RAADzehufBgJz1ACBnAmCOPGADGi6gowPOrUiEO2R9UUkeiEVOj9VwPGiHftYAhlNRCxQAwQMFKMEDjuBBAWAP6AgAhgfRQ6ecT8cZctweP587gGMDphMBWhOvIo8cOzuGBwoI0NhA8iDa4LUikcTxIInMGpcWjge3FG2+f3C8j34STeL9F92SZqn7Qd0PLjnkuidXD37NB3EjdcqpRT2EAAAAAElFTkSuQmCC";
+    装扮["1"]="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAUBAMAAABCNWFYAAAAD1BMVEUAAAA1NUC/uLSRjY3t5No/pn54AAAAAXRSTlMAQObYZgAAAC9JREFUCNdjIB0wCgoKMAgquQgyCCmpOAIJJUUGYSUlQwZhY2NDBkFjY0GIEjgAAG5UA7mNcqygAAAAAElFTkSuQmCC";
+    装扮["2"]="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAUBAMAAABL3sEiAAAAHlBMVEUAAAA1NUBzW0K/uLSRjY1gSz1NPzjt5Nrjk0futVGdMyhPAAAAAXRSTlMAQObYZgAAAEpJREFUCNdjIB4IggGDsLGxcXkhg7BSkJISlDJkEA4FAiClpKSqhKCMLScbGzKIuHi0uDgyiIRmtIYCqTQgAPFCw0A8FyBwhBoNADXsEdaXpkpqAAAAAElFTkSuQmCC";
+    装扮["3"]="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAUBAMAAABL3sEiAAAAGFBMVEU1NUCRjY1gSz2/uLRNPzjutVHt5Nrjk0cGzkVfAAAAQ0lEQVQI12OAAmZj0+C0BAZGQdFAQQEGRiX3IiUQ5aQEolyAAMRTUlGCU8yCQGDAwAzSjIsyBgIDoJlAgN0wmBwEAACD2AudxuVVzwAAAABJRU5ErkJggg==";
+
+    if(装扮[日]){
+        let 临时=装扮[日];
+        临时=临时[Math.floor(Math.random()*临时.length)];
+        let 临时2=装扮[临时];
+        for(let i=0;临时2.length>i;i++){
+            if(临时2[i]!=0){
+                装扮[i]="/i/w/小游戏/愚公移山/"+临时+"_"+i+"."+临时2[i];
+            }
+        }
+    }
+
     let dy=""
+    document.getElementById("场景").src=装扮["0"]
 
     function 打印(o){
         dy+="　";
@@ -327,10 +350,10 @@ let 配={
     function 随机(){
         if(物品[1]>0&&Math.floor(Math.random()*随机数)==0){
             状态=2;
-            document.getElementById("物品").src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAUBAMAAABL3sEiAAAAHlBMVEUAAAA1NUBzW0K/uLSRjY1gSz1NPzjt5Nrjk0futVGdMyhPAAAAAXRSTlMAQObYZgAAAEpJREFUCNdjIB4IggGDsLGxcXkhg7BSkJISlDJkEA4FAiClpKSqhKCMLScbGzKIuHi0uDgyiIRmtIYCqTQgAPFCw0A8FyBwhBoNADXsEdaXpkpqAAAAAElFTkSuQmCC";
+            document.getElementById("物品").src=装扮["2"];
         }else{
             状态=1;
-            document.getElementById("物品").src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAUBAMAAABCNWFYAAAAD1BMVEUAAAA1NUC/uLSRjY3t5No/pn54AAAAAXRSTlMAQObYZgAAAC9JREFUCNdjIB0wCgoKMAgquQgyCCmpOAIJJUUGYSUlQwZhY2NDBkFjY0GIEjgAAG5UA7mNcqygAAAAAElFTkSuQmCC";
+            document.getElementById("物品").src=装扮["1"];
         }
     }
 
@@ -389,7 +412,7 @@ let 配={
 
             localStorage.setItem("愚公移山"+编号,物品.join(","))
             状态=3;
-            document.getElementById("物品").src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAUBAMAAABL3sEiAAAAGFBMVEU1NUCRjY1gSz2/uLRNPzjutVHt5Nrjk0cGzkVfAAAAQ0lEQVQI12OAAmZj0+C0BAZGQdFAQQEGRiX3IiUQ5aQEolyAAMRTUlGCU8yCQGDAwAzSjIsyBgIDoJlAgN0wmBwEAACD2AudxuVVzwAAAABJRU5ErkJggg=="
+            document.getElementById("物品").src=装扮["3"]
         }else{
             随机数+=3;
             if(随机数>100){物品[物品.length]="Error";打印('Error');随机数=10}
