@@ -56,7 +56,7 @@ div0: 1
 <div id="高山" onclick="挖山()"></div>
 
 <img class="配饰" id="后">
-<div id="点点" onclick="随机配饰()"></div>
+<div id="点点" onclick="随机配饰(1)"></div>
 <img id="物品" onclick="打开()">
 <img class="配饰" id="前">
 
@@ -302,10 +302,10 @@ let 装扮={//场景 石头 箱子 打开的箱子 文件名_0 文件名_1 写0�
     let 饰;
     let 时=new Date().getDate();
     let 日=(new Date().getMonth()+1)+"-"+new Date().getDate();
-    function 随机配饰(){
+    function 随机配饰(o){
         let 临时;
-        if(配[时]&&Math.floor(Math.random()*3)==0){临时=配[时]}
-        else if(配[日]&&Math.floor(Math.random()*3)==0){临时=配[日]}
+        if(!o&&配[时]){临时=配[时]}
+        else if(!o&&配[日]){临时=配[日]}
         else{临时=配饰}
         饰=临时[Math.floor(Math.random()*临时.length)];
         if(Math.floor(Math.random()*饰[0])==0){换配饰(饰)}
