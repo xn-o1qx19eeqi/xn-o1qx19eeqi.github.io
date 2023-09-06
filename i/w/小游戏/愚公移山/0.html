@@ -334,6 +334,7 @@ let 装扮={// 文件夹_0场景 文件夹_1石头 2箱子 3打开的箱子
     装扮["3"]="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAUBAMAAABL3sEiAAAAGFBMVEU1NUCRjY1gSz2/uLRNPzjutVHt5Nrjk0cGzkVfAAAAQ0lEQVQI12OAAmZj0+C0BAZGQdFAQQEGRiX3IiUQ5aQEolyAAMRTUlGCU8yCQGDAwAzSjIsyBgIDoJlAgN0wmBwEAACD2AudxuVVzwAAAABJRU5ErkJggg==";
 
     if(装扮[日]){
+        document.getElementById("场景").src=装扮["0"]
         let 临时=装扮[日];
         临时=临时[Math.floor(Math.random()*临时.length)];
         let 临时2=装扮[临时];
@@ -343,9 +344,9 @@ let 装扮={// 文件夹_0场景 文件夹_1石头 2箱子 3打开的箱子
             }
         }
     }
+    document.getElementById("场景").src=装扮["0"]
 
     let dy=""
-    document.getElementById("场景").src=装扮["0"]
 
     function 打印(o){
         dy+="　";
