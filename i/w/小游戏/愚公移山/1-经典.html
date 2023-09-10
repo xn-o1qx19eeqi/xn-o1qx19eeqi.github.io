@@ -1,0 +1,162 @@
+---
+layout: e0
+permalink: 愚公移山/经典
+BeiJing: 0／0-01.png
+BeiJing_SJ: 0／0-01.png
+BiaoTi: 愚公移山
+div0: 1
+---
+<style>
+    img{image-rendering: optimizeSpeed;image-rendering: -moz-crisp-edges;image-rendering: -o-crisp-edges;image-rendering: -webkit-optimize-contrast;image-rendering: pixelated;-ms-interpolation-mode: nearest-neighbor;}
+</style>
+
+<style id="style">
+    #地图{position:relative;transform-origin:left bottom;}
+    #点点{width:35px;height:35px;top:123px;
+        box-shadow:4px 4px #353540,-4px 4px #353540,4px -4px #353540,-4px -4px #353540;
+        left:100px;}
+    #水花{transform:scale(4.5);left:40px;opacity:0;}
+    #物品{transform:scale(4.5);top:75px;opacity:0;}
+
+    #点点,#物品,#水花,.配饰{position:absolute;animation:1;animation-fill-mode:forwards;animation-duration:1.6s;}
+
+    .配饰{top:123px;left:100px;transform:translate(-53px,-70px);pointer-events:none}
+
+    #大海{position:absolute;width:80px;height:229px;}
+    #高山{position:absolute;left:650px;width:110px;height:229px;}
+
+    #空箱子,#已挖,#物品栏{font-weight:bold;}
+
+    @keyframes 挖山{0%{left:100px}80%,100%{left:620px}}
+    @keyframes 挖山_{0%,80%{opacity:0}80%{left:700px}100%{left:631px}90%,100%{opacity:1}}
+
+    @keyframes 丢掉{0%{left:620px}80%,100%{left:100px}}
+    @keyframes 丢掉_{0%{left:631px}0%,80%{opacity:1}80%{left:110px}90%,100%{opacity:0;left:80px}}
+
+    @keyframes 水花{0%,85%,100%{opacity:0}95%{opacity:1}0%,90%{top:150px}100%{top:140px}}
+
+    #按钮1{display:inline;font-size:1.2em;}
+    #按钮2{display:none;}
+
+    @media screen and (max-width: 767px){
+        #地图{margin:0 0 0 -2.6%;transform:scale(0.44)}
+        #按钮1{display:none;}
+        #按钮2{display:inline;font-size:1.2em;}
+    }
+</style>
+
+<style id="配饰偏"></style>
+<style id="配饰移"></style>
+
+<div id="地图">
+
+<div id="大海" onclick="丢掉()"></div>
+<div id="高山" onclick="挖山()"></div>
+
+<img class="配饰" id="后">
+<div id="点点" onclick="随机配饰(1)"></div>
+<img id="物品" onclick="打开()">
+<img class="配饰" id="前">
+
+<img id="水花" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAADAQMAAABh+Fe7AAAABlBMVEUAAAB2n6Y8dz0lAAAAAXRSTlMAQObYZgAAAA5JREFUCNdjaGDwYAgAAAOuARnFD69/AAAAAElFTkSuQmCC">
+
+<img width="800px" id="场景">
+</div>
+
+<div id="提示">（<small>这里是经典版愚公移山，只有挖山和丢掉，不会有宝箱和其他任何东西。<a href="/愚公移山">返回新版</a></small>）</div>
+
+<br>
+
+<div id="按钮1">
+    <a onclick="丢掉()" class="提示" data-msg="快捷键：1">丢掉</a>　
+    <a onclick="挖山()" class="提示" data-msg="快捷键：2">挖山</a>
+</div>
+<div id="按钮2">
+    <a onclick="丢掉()">丢掉</a>　
+    <a onclick="挖山()">挖山</a>
+</div>
+
+<br>
+
+已挖：<span id="已挖"></span>次<br>
+
+<br><br><br><br>
+
+<script>
+let 状态=0;
+//0 啥都没有
+//1 拿着石头
+//2 拿着宝箱
+//3 拿着空宝箱
+//4 扔东西
+
+let 名字=localStorage.getItem("像素点名字");
+if(!名字){名字="小像素点"}
+
+    let 装扮={
+        "0":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAAA3BAMAAACoZViVAAAAHlBMVEWLkVBcaZ+/uLQ1NUCRjY12n6a9o1FgSz3t5NpzW0LH+MUjAAAA+UlEQVRYw+2XsQqDMBRFBYfOHfyBi0PH4AsG18Rf6C90FjLkA7r42c3DQgadineQ5g4BF4/c50Ffc//mKWPDSAE4NmAiA/gVja9GQwRs1zRARweUiq465OpB9eCPPGhFQ/RAADzehufBgJz1ACBnAmCOPGADGi6gowPOrUiEO2R9UUkeiEVOj9VwPGiHftYAhlNRCxQAwQMFKMEDjuBBAWAP6AgAhgfRQ6ecT8cZctweP587gGMDphMBWhOvIo8cOzuGBwoI0NhA8iDa4LUikcTxIInMGpcWjge3FG2+f3C8j34STeL9F92SZqn7Qd0PLjnkuidXD37NB3EjdcqpRT2EAAAAAElFTkSuQmCC",
+        "1":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAUBAMAAABCNWFYAAAAD1BMVEUAAAA1NUC/uLSRjY3t5No/pn54AAAAAXRSTlMAQObYZgAAAC9JREFUCNdjIB0wCgoKMAgquQgyCCmpOAIJJUUGYSUlQwZhY2NDBkFjY0GIEjgAAG5UA7mNcqygAAAAAElFTkSuQmCC",
+        "2":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAUBAMAAABL3sEiAAAAHlBMVEUAAAA1NUBzW0K/uLSRjY1gSz1NPzjt5Nrjk0futVGdMyhPAAAAAXRSTlMAQObYZgAAAEpJREFUCNdjIB4IggGDsLGxcXkhg7BSkJISlDJkEA4FAiClpKSqhKCMLScbGzKIuHi0uDgyiIRmtIYCqTQgAPFCw0A8FyBwhBoNADXsEdaXpkpqAAAAAElFTkSuQmCC",
+        "3":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAUBAMAAABL3sEiAAAAGFBMVEU1NUCRjY1gSz2/uLRNPzjutVHt5Nrjk0cGzkVfAAAAQ0lEQVQI12OAAmZj0+C0BAZGQdFAQQEGRiX3IiUQ5aQEolyAAMRTUlGCU8yCQGDAwAzSjIsyBgIDoJlAgN0wmBwEAACD2AudxuVVzwAAAABJRU5ErkJggg=="
+    }
+
+    document.getElementById("场景").src=装扮["0"]
+
+    let dy=""
+
+    let 编号=localStorage.getItem("像素点");
+    if(!编号){编号="000000"}
+    document.getElementById("style").append("#点点{background-color:#"+编号+"}");
+    let 物品=localStorage.getItem("愚公移山"+编号);
+    if(!物品){物品=[0,0]}else{
+        物品=物品.split(",")
+        物品[0]=物品[0]*1
+        物品[1]=物品[1]*1
+    }
+    document.getElementById("已挖").innerHTML=物品[1];
+
+    let 动画=1;
+
+    function 丢掉(){
+        if(状态==0){
+            document.getElementById("提示").innerHTML="没啥可扔的东西。";
+        }else if(动画==1){动画=0;
+            document.getElementById("点点").style="animation-name:丢掉";
+            document.getElementById("前").style="animation-name:丢掉";
+            document.getElementById("后").style="animation-name:丢掉";
+            document.getElementById("物品").style="animation-name:丢掉_";
+            document.getElementById("水花").style="animation-name:水花";
+            状态=4;
+        }
+    }
+
+    function 挖山(){
+        if(状态!=0){
+            document.getElementById("提示").innerHTML="手里拿着东西，不能挖山。";
+        }else if(动画==1){动画=0;
+            document.getElementById("点点").style="animation-name:挖山";
+            document.getElementById("前").style="animation-name:挖山";
+            document.getElementById("后").style="animation-name:挖山";
+            document.getElementById("物品").style="animation-name:挖山_";
+            document.getElementById("水花").style="";
+            物品[1]=物品[1]*1+1;
+            localStorage.setItem("愚公移山"+编号,物品.join(","))
+            document.getElementById("已挖").innerHTML=物品[1];
+            状态=1;
+            document.getElementById("物品").src=装扮["1"];
+        }
+    }
+
+    window.document.onkeydown = disableRefresh;
+    function disableRefresh(evt){
+    evt=(evt)?evt:window.event
+    if(evt.keyCode&&动画==1){
+    if(evt.keyCode==49||evt.keyCode==97){丢掉()}
+    if(evt.keyCode==50||evt.keyCode==98){挖山()}
+    }
+    }
+
+    document.getElementById('点点').addEventListener('animationend',function(){动画=1;
+        if(状态==4){状态=0}else{document.getElementById("提示").innerHTML="　"}
+    });
+</script>
