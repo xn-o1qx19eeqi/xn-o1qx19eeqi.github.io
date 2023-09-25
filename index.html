@@ -511,7 +511,7 @@ try{
     if(内容[0].length<50){
         if(内容[0]&&内容[0]!=""){名字=内容[0]}else{名字="小像素点"}
         if(内容[1]&&内容[1]!=""){主人=内容[1]}else{主人="无"}
-        dy="<h2 style='display:inline'>"+名字+"</h2>　<small>#"+颜色+" <a onclick=\"复制像素点()\">复制地址</a>　<a onclick='公告()' id='公告' style='display:none'>公告</a></small><br><small>认养人：</small>"+主人;
+        dy="<h2 style='display:inline'>"+名字+"</h2>　<small>#"+颜色+" <a onclick=\"复制像素点()\">复制地址</a>　<a onclick='公告()' id='公告' style='display:none'>新公告</a></small><br><small>认养人：</small>"+主人;
         if(主人!="（不可认养）"){
             dy+=" <sup id=\"看望打卡\">"
             let 打卡临时=localStorage.getItem("打卡"+颜色);
@@ -875,7 +875,7 @@ function 改url(){
 }改url();
 
 let 公=localStorage.getItem("公告");
-let 告=20230924;
+let 告=20230924;//在公告目录里加个链接
 if(!公||公<告){document.getElementById("公告").style=""}
 function 公告(){localStorage.setItem("公告",告);window.location.href="/g";}
 
