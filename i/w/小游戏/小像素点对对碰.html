@@ -1,0 +1,283 @@
+---
+layout: e0
+permalink: 小像素点对对碰
+BeiJing: 0
+BeiJing_SJ: 0
+BiaoTi: 小像素点对对碰
+div0: 1
+---
+<style>
+    img{image-rendering: optimizeSpeed;image-rendering: -moz-crisp-edges;image-rendering: -o-crisp-edges;image-rendering: -webkit-optimize-contrast;image-rendering: pixelated;-ms-interpolation-mode: nearest-neighbor;}
+</style>
+
+<style id="style">
+    #地图{position:relative;transform-origin:left bottom;}
+    #点点{top:123px;left:240px;}
+    #点点2{top:123px;left:520px;}
+
+    #点点,#点点2{
+        position:absolute;animation:1;animation-fill-mode:forwards;animation-duration:1.6s;
+        width:35px;height:35px;box-shadow:4px 4px #353540,-4px 4px #353540,4px -4px #353540,-4px -4px #353540;
+    }
+
+    #行动{animation:1;animation-fill-mode:forwards;}
+
+    @keyframes A00{0%,100%{top:123px}50%{top:140px}}
+    @keyframes B00{0%,100%{top:123px}50%{top:140px}}
+    @keyframes A01{0%,100%{top:123px}50%{top:140px}}
+    @keyframes B01{0%{left:520px}70%{left:600px}100%{left:520px}}
+    @keyframes A02{0%,100%{top:123px}50%{top:140px}}
+    @keyframes B02{0%,100%{top:123px}40%{top:50px}}
+    @keyframes A03{0%,100%{top:123px}50%{top:140px}0%,30%,80%,100%{left:240px}50%{left:220px;}}
+    @keyframes B03{0%{left:520px}40%{left:240px}100%{left:520px}}
+
+    @keyframes A10{0%{left:240px}70%{left:160px}100%{left:240px}}
+    @keyframes B10{0%,100%{top:123px}50%{top:140px}}
+    @keyframes A11{0%{left:240px}70%{left:160px}100%{left:240px}}
+    @keyframes B11{0%{left:520px}70%{left:600px}100%{left:520px}}
+    @keyframes A12{0%{left:240px}70%{left:160px}100%{left:240px}}
+    @keyframes B12{0%,100%{top:123px}40%{top:50px}}
+    @keyframes A13{0%{left:240px}70%{left:160px}100%{left:240px}}
+    @keyframes B13{0%{left:520px}40%{left:240px}100%{left:520px}}
+
+    @keyframes A20{0%,100%{top:123px}40%{top:50px}}
+    @keyframes B20{0%,100%{top:123px}50%{top:140px}}
+    @keyframes A21{0%,100%{top:123px}40%{top:50px}}
+    @keyframes B21{0%{left:520px}70%{left:600px}100%{left:520px}}
+    @keyframes A22{0%,100%{top:123px}40%{top:50px}}
+    @keyframes B22{0%,100%{top:123px}40%{top:50px}}
+    @keyframes A23{0%,50%,100%{top:123px}40%{top:50px}}
+    @keyframes B23{0%{left:520px}40%{left:240px}60%{left:270px}100%{left:520px}}
+
+    @keyframes A30{0%{left:240px}40%{left:520px}100%{left:240px}}
+    @keyframes B30{0%,100%{top:123px}50%{top:140px;}0%,30%,80%,100%{left:520px;}50%{left:540px;}}
+    @keyframes A31{0%{left:240px}40%{left:520px}100%{left:240px}}
+    @keyframes B31{0%{left:520px}70%{left:600px}100%{left:520px}}
+    @keyframes A32{0%{left:240px}40%{left:520px}60%{left:490px}100%{left:240px}}
+    @keyframes B32{0%,50%,100%{top:123px}40%{top:50px;}}
+    @keyframes A33{0%{left:240px}20%{left:360px}100%{left:240px}}
+    @keyframes B33{0%{left:520px}20%{left:400px}100%{left:520px}}
+
+    @keyframes C{0%,100%{}}
+
+    #状态栏{font-size:1.2em;font-weight:bold;}
+    #A生命有,#B生命有,#A能量有,#B能量有{box-shadow:4px 4px #353540,-4px 4px #353540,4px -4px #353540,-4px -4px #353540;}
+    .生命条{background-color:#54ff60;}
+    .能量条{background-color:#428aff;}
+
+    @media screen and (max-width: 767px){
+        #地图{margin:0 0 0 -2.6%;transform:scale(0.44)}
+    }
+</style>
+
+<div id="地图">
+
+<div id="大海"></div>
+<div id="高山"></div>
+
+<div id="点点"></div>
+<div id="点点2"></div>
+
+<div id="行动"></div>
+
+<img width="800px" id="场景" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAAA3BAMAAACoZViVAAAAHlBMVEWLkVBcaZ+/uLQ1NUCRjY12n6a9o1FgSz3t5NpzW0LH+MUjAAAA+UlEQVRYw+2XsQqDMBRFBYfOHfyBi0PH4AsG18Rf6C90FjLkA7r42c3DQgadineQ5g4BF4/c50Ffc//mKWPDSAE4NmAiA/gVja9GQwRs1zRARweUiq465OpB9eCPPGhFQ/RAADzehufBgJz1ACBnAmCOPGADGi6gowPOrUiEO2R9UUkeiEVOj9VwPGiHftYAhlNRCxQAwQMFKMEDjuBBAWAP6AgAhgfRQ6ecT8cZctweP587gGMDphMBWhOvIo8cOzuGBwoI0NhA8iDa4LUikcTxIInMGpcWjge3FG2+f3C8j34STeL9F92SZqn7Qd0PLjnkuidXD37NB3EjdcqpRT2EAAAAAElFTkSuQmCC">
+</div>
+
+<div id="状态栏">
+生命：<span id="A生命有" class="生命条"></span><span id="A生命无"></span>　|　<span id="B生命无"></span><span id="B生命有" class="生命条"></span><br>
+能量：<span id="A能量有" class="能量条"></span><span id="A能量无"></span>　　　　　|　　　　　<span id="B能量无"></span><span id="B能量有" class="能量条"></span><br>
+<div id="结果"><div id="玩家A">当前是本地双人对战模式 <a onclick="练习模式()">切换为练习模式</a></div><div id="玩家B"></div></div>
+</div>
+
+<br><br><br><br>
+
+<hr>
+
+<small>
+<b>简介</b>：<br>    
+本地双人对战小游戏，本质上类似“石头剪刀布”，非常简单。<br>
+<br>
+<b>玩家A</b>：A后退，W跳跃，S休息，D攻击<br>
+<b>玩家B</b>：←攻击，↑跳跃，→后退，↓休息<br>
+<br>
+<b>休息</b>（能量+2） | <b>攻击</b>（能量-1） | <b>跳跃</b>（能量-2） | <b>后退</b>（能量-1）<br>
+<b>攻击 > 休息</b>（生命-2） | <b>跳跃 > 攻击</b>（生命-2） | <b>攻击 × 攻击</b>（双方生命-1）<br>
+<b>后退</b>下一回合的<b>攻击</b>造成伤害固定为4<br>
+<br>
+
+<b>更新日志</b>：<br>
+2023.10.19：代码写完<br>
+<br>
+</small>
+
+<script>
+let 动画=1,执行=1,pvp=1,名字=localStorage.getItem("像素点名字"),编号=localStorage.getItem("像素点");
+if(!名字){名字="小像素点"}if(!编号){编号="000000"}
+let 玩家B=[
+"000000","FFFFFF","FFA800","123456","99FE00","233333"
+];
+玩家B=玩家B[Math.floor(Math.random()*玩家B.length)]
+document.getElementById("style").append("#点点{background-color:#"+编号+"}#点点2{background-color:#"+玩家B+"}");
+let A生命=5,A能量=3,A蓄力=0;
+let B生命=5,B能量=3,B蓄力=0;
+
+let 代码={
+    "生命5":["　　　　　　　　　　",""],
+    "生命4":["　　　　　　　　","　　"],
+    "生命3":["　　　　　　","　　　　"],
+    "生命2":["　　　　","　　　　　　"],
+    "生命1":["　　","　　　　　　　　"],
+    "生命0":["","　　　　　　　　　　"],
+    "能量3":["　　　　　　",""],
+    "能量2":["　　　　","　　"],
+    "能量1":["　　","　　　　"],
+    "能量0":["","　　　　　　"],
+
+    "0":"休息",
+    "1":"后退",
+    "2":"跳跃",
+    "3":"攻击",
+
+    "00":"0.4",
+    "01":"0.4",
+    "02":"0.4",
+    "03":"0.4",
+    "10":"0.4",
+    "11":"0.4",
+    "12":"0.4",
+    "13":"0.4",
+    "20":"0.4",
+    "21":"0.4",
+    "22":"0.4",
+    "23":"0.8",
+    "30":"0.4",
+    "31":"0.4",
+    "32":"0.8",
+    "33":"0.2",
+}
+
+    let o="",k="";
+
+    function 行动(){
+        if(动画!=1){return;}
+        动画=0;
+        k+="",o+="";
+
+        if(o==3&&k==3){//攻击x攻击 蓄力/没蓄力
+            if(A蓄力==1){B生命-=4}else{B生命-=1}
+            if(B蓄力==1){A生命-=4}else{A生命-=1}
+        }else if(o==3&&k==0){B生命-=2//攻击x休息
+        }else if(o==0&&k==3){A生命-=2//休息x攻击
+        }else if(o==3&&k==2){A生命-=2//攻击x跳跃
+        }else if(o==2&&k==3){B生命-=2//跳跃x攻击
+        }
+
+        document.getElementById("玩家A").innerHTML=代码[o]+"×"+代码[k];
+        document.getElementById("玩家B").innerHTML="";
+
+        A蓄力=0;B蓄力=0;
+        if(o==0){A能量+=2}if(o==1){A能量-=1;A蓄力=1}if(o==2){A能量-=2}if(o==3){A能量-=1}
+        if(k==0){B能量+=2}if(k==1){B能量-=1;B蓄力=1}if(k==2){B能量-=2}if(k==3){B能量-=1}
+        if(A能量>3){A能量=3}
+        if(B能量>3){B能量=3}
+        if(A生命<0){A生命=0}
+        if(B生命<0){B生命=0}
+
+        document.getElementById("点点").style="animation-name:A"+o+k;
+        document.getElementById("点点2").style="animation-name:B"+o+k;
+        document.getElementById("行动").style="animation-duration:"+代码[o+k]+"s;animation-name:C";
+        document.getElementById('行动').addEventListener('animationend',function(){结算()});
+
+        o="",k=""
+    }
+
+    function 结算(){
+        执行=0;
+        document.getElementById("玩家B").innerHTML="<a onclick='再来一局()'>再来一局</a>";
+        if(A生命>0&&B生命<1){//A胜
+            document.getElementById("玩家A").innerHTML="恭喜玩家A获胜";
+        }else if(A生命<1&&B生命>0){//B胜
+            document.getElementById("玩家A").innerHTML="恭喜玩家B获胜";
+        }else if(A生命<1&&B生命<1){//平局
+            document.getElementById("玩家A").innerHTML="平局";
+        }else{
+            执行=1;
+            document.getElementById("玩家B").innerHTML="";
+        }
+        // }else{
+            document.getElementById("A生命有").innerHTML=代码["生命"+A生命][0];
+            document.getElementById("A生命无").innerHTML=代码["生命"+A生命][1];
+            document.getElementById("B生命有").innerHTML=代码["生命"+B生命][0];
+            document.getElementById("B生命无").innerHTML=代码["生命"+B生命][1];
+            document.getElementById("A能量有").innerHTML=代码["能量"+A能量][0];
+            document.getElementById("A能量无").innerHTML=代码["能量"+A能量][1];
+            document.getElementById("B能量有").innerHTML=代码["能量"+B能量][0];
+            document.getElementById("B能量无").innerHTML=代码["能量"+B能量][1];
+        // }
+    }
+
+    结算()
+
+    function 练习模式(){
+        pvp=0;document.getElementById("玩家A").innerHTML="当前为练习模式";
+    }
+
+    function 再来一局(){
+        A生命=5,B生命=5,A能量=3,B能量=3,执行=1;
+        结算()
+    }
+
+    window.document.onkeydown=disableRefresh;
+    function disableRefresh(evt){
+    evt=(evt)?evt:window.event
+    if(evt.keyCode){
+        if(evt.keyCode==38||evt.keyCode==40){event.preventDefault();}
+        if(执行==1){
+            if(evt.keyCode==83){o='0'}
+            if(evt.keyCode==65){o='1'}
+            if(evt.keyCode==87){o='2'}
+            if(evt.keyCode==68){o='3'}
+
+            if(pvp==1){
+                if(evt.keyCode==40){k='0'}
+                if(evt.keyCode==39){k='1'}
+                if(evt.keyCode==38){k='2'}
+                if(evt.keyCode==37){k='3'}
+            }else{//PVE
+
+/*
+    "0":"休息",
+    "1":"后退",
+    "2":"跳跃",
+    "3":"攻击",
+*/
+                if(B能量<1){k=0}
+                else if(B蓄力==1&&B能量>1){k=3}
+                else if(A蓄力==1&&B能量>1){k=1}
+                else if(B能量>2){k=Math.floor(Math.random()*3)+1}
+                else{k=Math.floor(Math.random()*4)}
+                if(k==2&&B能量<2){k=0}
+                k+="";
+            }
+
+            if(o=='2'&&A能量<2||o!=""&&o!='0'&&A能量<1){o="";document.getElementById("玩家A").innerHTML="玩家A的能量不够";}
+            if(k=='2'&&B能量<2||k!=""&&k!='0'&&B能量<1){k="";document.getElementById("玩家B").innerHTML="玩家B的能量不够";}
+
+            if(o!=""&&k!=""){
+                行动()
+            }else if(o!=""){
+                document.getElementById("玩家A").innerHTML="玩家A准备好了";
+            }else if(k!=""){
+                document.getElementById("玩家B").innerHTML="玩家B准备好了";
+            }
+        }
+    }
+    }
+
+    document.getElementById('点点').addEventListener('animationend',function(){
+        动画=1;
+        document.getElementById("点点").style="";
+        document.getElementById("点点2").style="";
+        document.getElementById("行动").style="";
+        });
+</script>
