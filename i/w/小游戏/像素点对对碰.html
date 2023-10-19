@@ -1,9 +1,9 @@
 ---
 layout: e0
-permalink: 小像素点对对碰
+permalink: 像素点对对碰
 BeiJing: 0
 BeiJing_SJ: 0
-BiaoTi: 小像素点对对碰
+BiaoTi: 像素点对对碰
 div0: 1
 ---
 <style>
@@ -252,8 +252,9 @@ let 代码={
     "3":"攻击",
 */
                 if(B能量<1){k=0}
-                else if(B蓄力==1&&B能量>1){k=3}
-                else if(A蓄力==1&&B能量>1){k=1}
+                else if(A能量<1&&B能量>0||B蓄力==1&&B能量>0){k=3}
+                else if(A蓄力==1&&B能量>1){k=2}
+                else if(A蓄力==1&&B能量>0){k=1}
                 else if(B能量>2){k=Math.floor(Math.random()*3)+1}
                 else{k=Math.floor(Math.random()*4)}
                 if(k==2&&B能量<2){k=0}
