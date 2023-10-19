@@ -61,13 +61,17 @@ div0: 1
     @keyframes C{0%,100%{}}
 
     #状态栏{font-size:1.2em;font-weight:bold;}
+    #按钮{display:none;}
     #A生命有,#B生命有,#A能量有,#B能量有{box-shadow:4px 4px #353540,-4px 4px #353540,4px -4px #353540,-4px -4px #353540;}
     .生命条{background-color:#54ff60;}
     .能量条{background-color:#428aff;}
 
-    @media screen and (max-width: 767px){
+    @media screen and (max-width:767px){
         #地图{margin:0 0 0 -2.6%;transform:scale(0.44)}
+        #状态栏{font-size:10px}
+        #按钮{display:inline;}
     }
+   
 </style>
 
 <div id="地图">
@@ -87,6 +91,22 @@ div0: 1
 生命：<span id="A生命有" class="生命条"></span><span id="A生命无"></span>　|　<span id="B生命无"></span><span id="B生命有" class="生命条"></span><br>
 能量：<span id="A能量有" class="能量条"></span><span id="A能量无"></span>　　　　　|　　　　　<span id="B能量无"></span><span id="B能量有" class="能量条"></span><br>
 <div id="结果"><div id="玩家A">当前是本地双人对战模式 <a onclick="练习模式()">切换为练习模式</a></div><div id="玩家B"></div></div>
+</div>
+
+<div id="按钮">
+    <br>
+    <b>玩家A</b>：
+    <a onclick="o='1',按钮()">后退</a>　
+    <a onclick="o='2',按钮()">跳跃</a>　
+    <a onclick="o='0',按钮()">休息</a>　
+    <a onclick="o='3',按钮()">攻击</a><br>
+    <div id="按钮B"><br>
+        <b>玩家B</b>：
+        <a onclick="k='1',按钮()">后退</a>　
+        <a onclick="k='2',按钮()">跳跃</a>　
+        <a onclick="k='0',按钮()">休息</a>　
+        <a onclick="k='3',按钮()">攻击</a>　
+    </div>
 </div>
 
 <br><br><br><br>
@@ -220,11 +240,37 @@ let 代码={
 
     function 练习模式(){
         pvp=0;document.getElementById("玩家A").innerHTML="当前为练习模式";
+        document.getElementById("按钮B").innerHTML="";
     }
 
     function 再来一局(){
         A生命=5,B生命=5,A能量=3,B能量=3,执行=1;
         结算()
+    }
+
+    function 按钮(){
+        if(执行==1){
+            if(pvp==0){
+                if(B能量<1){k=0}
+                else if(A能量<1&&B能量>0||B蓄力==1&&B能量>0){k=3}
+                else if(A蓄力==1&&B能量>1){k=2}
+                else if(A蓄力==1&&B能量>0){k=1}
+                else if(B能量>2){k=Math.floor(Math.random()*3)+1}
+                else{k=Math.floor(Math.random()*4)}
+                if(k==2&&B能量<2){k=0}
+                k+="";
+            }
+            if(o=='2'&&A能量<2||o!=""&&o!='0'&&A能量<1){o="";document.getElementById("玩家A").innerHTML="玩家A的能量不够";}
+            if(k=='2'&&B能量<2||k!=""&&k!='0'&&B能量<1){k="";document.getElementById("玩家B").innerHTML="玩家B的能量不够";}
+
+            if(o!=""&&k!=""){
+                行动()
+            }else if(o!=""){
+                document.getElementById("玩家A").innerHTML="玩家A准备好了";
+            }else if(k!=""){
+                document.getElementById("玩家B").innerHTML="玩家B准备好了";
+            }
+        }
     }
 
     window.document.onkeydown=disableRefresh;
@@ -243,34 +289,8 @@ let 代码={
                 if(evt.keyCode==39){k='1'}
                 if(evt.keyCode==38){k='2'}
                 if(evt.keyCode==37){k='3'}
-            }else{//PVE
-
-/*
-    "0":"休息",
-    "1":"后退",
-    "2":"跳跃",
-    "3":"攻击",
-*/
-                if(B能量<1){k=0}
-                else if(A能量<1&&B能量>0||B蓄力==1&&B能量>0){k=3}
-                else if(A蓄力==1&&B能量>1){k=2}
-                else if(A蓄力==1&&B能量>0){k=1}
-                else if(B能量>2){k=Math.floor(Math.random()*3)+1}
-                else{k=Math.floor(Math.random()*4)}
-                if(k==2&&B能量<2){k=0}
-                k+="";
             }
-
-            if(o=='2'&&A能量<2||o!=""&&o!='0'&&A能量<1){o="";document.getElementById("玩家A").innerHTML="玩家A的能量不够";}
-            if(k=='2'&&B能量<2||k!=""&&k!='0'&&B能量<1){k="";document.getElementById("玩家B").innerHTML="玩家B的能量不够";}
-
-            if(o!=""&&k!=""){
-                行动()
-            }else if(o!=""){
-                document.getElementById("玩家A").innerHTML="玩家A准备好了";
-            }else if(k!=""){
-                document.getElementById("玩家B").innerHTML="玩家B准备好了";
-            }
+            按钮()
         }
     }
     }
