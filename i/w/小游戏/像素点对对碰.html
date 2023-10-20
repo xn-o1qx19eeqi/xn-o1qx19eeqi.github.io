@@ -28,8 +28,8 @@ div0: 1
     @keyframes B01{0%{left:520px}70%{left:600px}100%{left:520px}}
     @keyframes A02{0%,100%{top:123px}50%{top:140px}}
     @keyframes B02{0%,100%{top:123px}40%{top:50px}}
-    @keyframes A03{0%,100%{top:123px}50%{top:140px}0%,30%,80%,100%{left:240px}50%{left:220px;}}
-    @keyframes B03{0%{left:520px}40%{left:240px}100%{left:520px}}
+    @keyframes A03{0%,100%{top:123px}50%{top:140px}0%,20%,80%,100%{left:240px}50%{left:220px;}}
+    @keyframes B03{0%{left:520px}30%{left:240px}100%{left:520px}}
 
     @keyframes A10{0%{left:240px}70%{left:160px}100%{left:240px}}
     @keyframes B10{0%,100%{top:123px}50%{top:140px}}
@@ -47,18 +47,22 @@ div0: 1
     @keyframes A22{0%,100%{top:123px}40%{top:50px}}
     @keyframes B22{0%,100%{top:123px}40%{top:50px}}
     @keyframes A23{0%,50%,100%{top:123px}40%{top:50px}}
-    @keyframes B23{0%{left:520px}40%{left:240px}60%{left:270px}100%{left:520px}}
+    @keyframes B23{0%{left:520px}40%{left:240px}60%{left:270px}100%{left:520px}0%,40%,100%{top:123px}60%{top:140px}}
 
-    @keyframes A30{0%{left:240px}40%{left:520px}100%{left:240px}}
-    @keyframes B30{0%,100%{top:123px}50%{top:140px;}0%,30%,80%,100%{left:520px;}50%{left:540px;}}
+    @keyframes A30{0%{left:240px}30%{left:520px}100%{left:240px}}
+    @keyframes B30{0%,100%{top:123px}50%{top:140px;}0%,20%,80%,100%{left:520px;}50%{left:540px;}}
     @keyframes A31{0%{left:240px}40%{left:520px}100%{left:240px}}
     @keyframes B31{0%{left:520px}70%{left:600px}100%{left:520px}}
-    @keyframes A32{0%{left:240px}40%{left:520px}60%{left:490px}100%{left:240px}}
+    @keyframes A32{0%{left:240px}40%{left:520px}60%{left:490px}100%{left:240px}0%,40%,100%{top:123px}60%{top:140px}}
     @keyframes B32{0%,50%,100%{top:123px}40%{top:50px;}}
     @keyframes A33{0%{left:240px}20%{left:360px}100%{left:240px}}
     @keyframes B33{0%{left:520px}20%{left:400px}100%{left:520px}}
 
     @keyframes C{0%,100%{}}
+    @keyframes Awin{0%{left:520px}40%,100%{left:240px}0%,40%,60%,80%,100%{top:123px}50%,70%{top:73px}}
+    @keyframes Awin33{0%{left:360px}40%,100%{left:240px}0%,40%,60%,80%,100%{top:123px}50%,70%{top:73px}}
+    @keyframes Bwin{0%{left:240px}40%,100%{left:520px}0%,40%,60%,80%,100%{top:123px}50%,70%{top:73px}}
+    @keyframes Bwin33{0%{left:400px}40%,100%{left:520px}0%,40%,60%,80%,100%{top:123px}50%,70%{top:73px}}
 
     #状态栏{font-size:1.2em;font-weight:bold;}
     #按钮{display:none;}
@@ -71,7 +75,6 @@ div0: 1
         #状态栏{font-size:10px}
         #按钮{display:inline;}
     }
-   
 </style>
 
 <div id="地图">
@@ -126,12 +129,13 @@ div0: 1
 <br>
 
 <b>更新日志</b>：<br>
+2023.10.20：小改动<br>
 2023.10.19：代码写完<br>
 <br>
 </small>
 
 <script>
-let 动画=1,执行=1,pvp=1,名字=localStorage.getItem("像素点名字"),编号=localStorage.getItem("像素点");
+let 动画=1,执行=1,pvp=1,ok='00',名字=localStorage.getItem("像素点名字"),编号=localStorage.getItem("像素点");
 if(!名字){名字="玩家A"}if(!编号){编号="000000"}
 let A生命=5,A能量=3,A蓄力=0;
 let B生命=5,B能量=3,B蓄力=0;
@@ -209,9 +213,11 @@ document.getElementById("style").append("#点点{background-color:#"+编号+"}#�
         if(A生命<0){A生命=0}
         if(B生命<0){B生命=0}
 
-        document.getElementById("点点").style="animation-name:A"+o+k;
-        document.getElementById("点点2").style="animation-name:B"+o+k;
-        document.getElementById("行动").style="animation-duration:"+代码[o+k]+"s;animation-name:C";
+        ok=o+k;
+
+        document.getElementById("点点").style="animation-name:A"+ok;
+        document.getElementById("点点2").style="animation-name:B"+ok;
+        document.getElementById("行动").style="animation-duration:"+代码[ok]+"s;animation-name:C";
         document.getElementById('行动').addEventListener('animationend',function(){结算()});
 
         o="",k=""
@@ -222,8 +228,12 @@ document.getElementById("style").append("#点点{background-color:#"+编号+"}#�
         document.getElementById("玩家B").innerHTML="<a onclick='再来一局()'>再来一局</a>";
         if(A生命>0&&B生命<1){//A胜
             document.getElementById("玩家A").innerHTML="恭喜"+名字+"获胜";
+            if(ok!='33'){document.getElementById("点点").style="animation-name:Awin";}
+            else{document.getElementById("点点").style="animation-name:Awin33";}
         }else if(A生命<1&&B生命>0){//B胜
             document.getElementById("玩家A").innerHTML="恭喜"+玩家B+"获胜";
+            if(ok!='33'){document.getElementById("点点2").style="animation-name:Bwin";}
+            else{document.getElementById("点点2").style="animation-name:Bwin33";}
         }else if(A生命<1&&B生命<1){//平局
             document.getElementById("玩家A").innerHTML="平局";
         }else{
@@ -240,6 +250,7 @@ document.getElementById("style").append("#点点{background-color:#"+编号+"}#�
             document.getElementById("B能量有").innerHTML=代码["能量"+B能量][0];
             document.getElementById("B能量无").innerHTML=代码["能量"+B能量][1];
         // }
+
     }
 
     结算()
