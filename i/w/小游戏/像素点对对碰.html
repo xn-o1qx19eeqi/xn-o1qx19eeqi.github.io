@@ -280,17 +280,19 @@ document.getElementById("style").append("#点点{background-color:#"+编号+"}#�
                     else{k=Math.floor(Math.random()*4)}
                 }
                 if(玩家B=="小猪又"){
-                    // "0":"休息",
-                    // "1":"后退",
-                    // "2":"跳跃",
-                    // "3":"攻击",
+                    /*
+                        0 休息
+                        1 后退
+                        2 跳跃
+                        3攻击
+                    */
                     k=Math.floor(Math.random()*3)+1;
-                    if(B蓄力==1&&B能量>1||A能量<1&&B能量>1){k=3} 
+                    if(B蓄力==1||A能量<1){k=3} 
                 }
                 if(玩家B=="安全员"){
                     k=Math.floor(Math.random()*3)
                     if(k==0){k=3}else{k=2}
-                    if(A能量<1&&B能量>1){k=3} 
+                    if(A能量<1&&B能量>0){k=3} 
                 }
 
                 if(k==2&&B能量<2||k!=0&&B能量<1){k=0}
