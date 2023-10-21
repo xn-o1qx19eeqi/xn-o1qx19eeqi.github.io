@@ -60,9 +60,11 @@ div0: 1
 
     @keyframes C{0%,100%{}}
     @keyframes Awin{0%{left:520px}40%,100%{left:240px}0%,40%,60%,80%,100%{top:123px}50%,70%{top:73px}}
-    @keyframes Awin33{0%{left:360px}40%,100%{left:240px}0%,40%,60%,80%,100%{top:123px}50%,70%{top:73px}}
+    @keyframes Awin2{0%,100%{left:240px}0%,40%,60%,80%,100%{top:123px}50%,70%{top:73px}}
+    @keyframes Awin3{0%{left:360px}40%,100%{left:240px}0%,40%,60%,80%,100%{top:123px}50%,70%{top:73px}}
     @keyframes Bwin{0%{left:240px}40%,100%{left:520px}0%,40%,60%,80%,100%{top:123px}50%,70%{top:73px}}
-    @keyframes Bwin33{0%{left:400px}40%,100%{left:520px}0%,40%,60%,80%,100%{top:123px}50%,70%{top:73px}}
+    @keyframes Bwin2{0%,100%{left:520px}0%,10%,30%,50%,100%{top:123px}20%,40%{top:73px}}
+    @keyframes Bwin3{0%{left:400px}40%,100%{left:520px}0%,40%,60%,80%,100%{top:123px}50%,70%{top:73px}}
 
     #状态栏{font-size:1.2em;font-weight:bold;}
     #按钮{display:none;}
@@ -129,7 +131,7 @@ div0: 1
 <br>
 
 <b>更新日志</b>：<br>
-2023.10.21：修复了后退攻击伤害没有增加的BUG<br>
+2023.10.21：修复了后退攻击伤害没有增加的BUG，修正了部分动画<br>
 2023.10.20：小改动<br>
 2023.10.19：代码写完<br>
 <br>
@@ -231,12 +233,14 @@ document.getElementById("style").append("#点点{background-color:#"+编号+"}#�
         document.getElementById("玩家B").innerHTML="<a onclick='再来一局()'>再来一局</a>";
         if(A生命>0&&B生命<1){//A胜
             document.getElementById("玩家A").innerHTML="恭喜"+名字+"获胜";
-            if(ok!='33'){document.getElementById("点点").style="animation-name:Awin";}
-            else{document.getElementById("点点").style="animation-name:Awin33";}
+            if(ok=='30'){document.getElementById("点点").style="animation-name:Awin"}
+            else if(ok=='23'){document.getElementById("点点").style="animation-name:Awin2"}
+            else if(ok=='33'){document.getElementById("点点").style="animation-name:Awin3"}
         }else if(A生命<1&&B生命>0){//B胜
             document.getElementById("玩家A").innerHTML="恭喜"+玩家B+"获胜";
-            if(ok!='33'){document.getElementById("点点2").style="animation-name:Bwin";}
-            else{document.getElementById("点点2").style="animation-name:Bwin33";}
+            if(ok=='03'){document.getElementById("点点2").style="animation-name:Bwin"}
+            else if(ok=='32'){document.getElementById("点点2").style="animation-name:Bwin2"}
+            else if(ok=='33'){document.getElementById("点点2").style="animation-name:Bwin3"}
         }else if(A生命<1&&B生命<1){//平局
             document.getElementById("玩家A").innerHTML="平局";
         }else{
