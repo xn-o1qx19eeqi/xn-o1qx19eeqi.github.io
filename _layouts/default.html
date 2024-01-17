@@ -52,6 +52,23 @@
 
 {{ content }}
 
+{% if page.ShuBiao %}
+<div id="鼠标"></div>
+<script>
+    let 鼠标=localStorage.getItem("像素点");
+    if(鼠标){
+        document.getElementById("鼠标").style="position:absolute;width:10px;height:10px;background-color:#"+鼠标;
+        鼠标=document.getElementById('鼠标');
+        document.addEventListener('mousemove',function (e){
+            let x=e.pageX;
+            let y=e.pageY;
+            鼠标.style.left=x+13+'px';
+            鼠标.style.top=y+13+'px';
+        });
+    }
+</script>
+{% endif %}
+
 <script>
     target = document.querySelectorAll('img');
     if (target[0]) {
