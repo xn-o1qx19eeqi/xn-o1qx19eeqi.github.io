@@ -39,14 +39,16 @@ div0: 1
 
 </style>
 
-<!-- 保存图片：<a onclick="saveCertificateBook(0.4)">小图</a>　<a onclick="saveCertificateBook(1)">普通</a>　<a onclick="saveCertificateBook(10)">大图</a><br> -->
-<!-- 调整大小：<input type="range" id="调整大小" onchange="调整大小()"> <a onclick="调整大小()">确定</a> <a onclick="恢复默认()">恢复默认</a><br>
+保存图片：<a onclick="saveCertificateBook(0.4)">小图</a>　<a onclick="saveCertificateBook(1)">普通</a>　<a onclick="saveCertificateBook(10)">大图</a><br>
+调整大小：<input type="range" id="调整大小" onchange="调整大小()"> <a onclick="调整大小()">确定</a> <a onclick="恢复默认()">恢复默认</a><br>
 <a onclick="document.getElementById('黑幕').style='';">关灯</a><br>
-<br> -->
+<br>
 
-<!-- <div id="黑幕" onclick="document.getElementById('黑幕').style='display:none;';" style="display:none;"></div> -->
+<div id="黑幕" onclick="document.getElementById('黑幕').style='display:none;';" style="display:none;"></div>
 
 <div id="htmlElement"><div id="房间"></div></div>
+
+<div id="下载" style="display:none;"></div>
 
 
 <br>
@@ -162,46 +164,51 @@ function 恢复默认(){
 }
 
 
-// function saveCertificateBook(o){
-//     var date = new Date();
-//     const canvasID = document.getElementById("房间");
-//     const rect=document.getElementById("房间").getBoundingClientRect()
-//     // 生成图片并上传到数据库保存
-//     html2canvas(canvasID, {
-//     scale: o, // 数值越大生成的图片越清晰
-//     useCORS: true,
-//     allowTaint: true,
-//     y: 0, // 滚动条高度修复
-//     x: 0,
-//     allowTaint: true, //开启跨域
-//     useCORS: true,
-//     scrollX: 0,
-//     scrollY: rect.top, // 关键代码
-//     height: rect.height, // 加高度，避免截取不全
-//     }).then((canvas) => {
-//             let dataURL = canvas.toDataURL("image/png"); // 拿到数据流     
-//             var aLink = document.createElement("a"); // 创建一个a标签
-//             var blob = base64ToBlob(dataURL);
-//             var event = document.createEvent("HTMLEvents");
-//             event.initEvent("click", true, true);
-//             aLink.download = date.getTime() + "." + blob.type.split("/")[1]; // 使用时间戳给文件命名
-//             aLink.href = URL.createObjectURL(blob);
-//             aLink.click();
-//     })
-// }
+function saveCertificateBook(o){
 
-//     // base64转Blob对象
-//     function   base64ToBlob(code) {
-//         var parts = code.split(";base64,");
-//         var contentType = parts[0].split(":")[1];
-//         var raw = window.atob(parts[1]);
-//         var rawLength = raw.length;
-//         var uint8Array = new Uint8Array(rawLength);
-//         for (var i = 0; i < rawLength; i++) {
-//             uint8Array[i] = raw.charCodeAt(i);
-//         }
-//         return new Blob([uint8Array], {type: contentType});
-//     }
+    html2canvas(document.querySelector("#htmlElement")).then(canvas => {
+        document.getElementById("下载").innerHTML=canvas;
+});
+
+    var date = new Date();
+    const canvasID = document.getElementById("下载");
+    const rect=document.getElementById("下载").getBoundingClientRect()
+    // 生成图片并上传到数据库保存
+    html2canvas(canvasID, {
+    scale: o, // 数值越大生成的图片越清晰
+    useCORS: true,
+    allowTaint: true,
+    y: 0, // 滚动条高度修复
+    x: 0,
+    allowTaint: true, //开启跨域
+    useCORS: true,
+    scrollX: 0,
+    scrollY: rect.top, // 关键代码
+    height: rect.height, // 加高度，避免截取不全
+    }).then((canvas) => {
+            let dataURL = canvas.toDataURL("image/png"); // 拿到数据流     
+            var aLink = document.createElement("a"); // 创建一个a标签
+            var blob = base64ToBlob(dataURL);
+            var event = document.createEvent("HTMLEvents");
+            event.initEvent("click", true, true);
+            aLink.download = date.getTime() + "." + blob.type.split("/")[1]; // 使用时间戳给文件命名
+            aLink.href = URL.createObjectURL(blob);
+            aLink.click();
+    })
+}
+
+    // base64转Blob对象
+    function   base64ToBlob(code) {
+        var parts = code.split(";base64,");
+        var contentType = parts[0].split(":")[1];
+        var raw = window.atob(parts[1]);
+        var rawLength = raw.length;
+        var uint8Array = new Uint8Array(rawLength);
+        for (var i = 0; i < rawLength; i++) {
+            uint8Array[i] = raw.charCodeAt(i);
+        }
+        return new Blob([uint8Array], {type: contentType});
+    }
 
     if(window.location.href.indexOf("?")!=-1){
         document.getElementById("输入").value=decodeURI(window.location.href.split("?")[1]);
@@ -212,7 +219,5 @@ function 恢复默认(){
 
 
 <script>
-    html2canvas(document.querySelector("#htmlElement")).then(canvas => {
-    document.body.appendChild(canvas); // 将生成的canvas添加到body中
-});
+
 </script>
