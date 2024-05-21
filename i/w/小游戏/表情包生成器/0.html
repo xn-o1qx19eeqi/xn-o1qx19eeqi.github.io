@@ -11,6 +11,8 @@ div0: 1
 ---
 <!-- <script src="/i/5/new_html2canvas.js"></script> -->
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+
 <style>
     br.sj{display:none}
     @media screen and (max-width: 767px){#房子{margin:0 0 0 -2.6%;transform-origin:left center;transform:scale(0.88)}br.sj{display:inline}}
@@ -44,7 +46,8 @@ div0: 1
 
 <!-- <div id="黑幕" onclick="document.getElementById('黑幕').style='display:none;';" style="display:none;"></div> -->
 
-<div id="房间"></div>
+<div id="htmlElement"><div id="房间"></div></div>
+
 
 <br>
 
@@ -205,4 +208,11 @@ function 恢复默认(){
         加载()
     }
 
+</script>
+
+
+<script>
+    html2canvas(document.querySelector("#htmlElement")).then(canvas => {
+    document.body.appendChild(canvas); // 将生成的canvas添加到body中
+});
 </script>
