@@ -3,122 +3,111 @@ layout: default
 ---
 <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
 <style>
-    html,body {margin: 0;padding: 0;}
-    body {
-        /* background-repeat: no-repeat; */
-        background-size: 100% auto;
-        background-attachment: fixed;
-    }
+html,body {margin: 0;padding: 0;}
+body {
+    /* background-repeat: no-repeat; */
+    background-size: 100% auto;
+    background-attachment: fixed;
+}
 
-    .大标题,.下箭头{
-        text-align: center;
-        text-shadow:#00000050 0px 0px 3px;
-    }
+.大标题,.下箭头{
+    text-align: center;
+    text-shadow:#00000050 0px 0px 3px;
+}
 
-    .标题{
-        display: inline-block;
-        position: relative;
-        font-size: 40px;
-        height: 60px;
-        line-height: 60px;
-        color: #ffffff;
-    }
+.标题{
+    display: inline-block;
+    position: relative;
+    font-size: 40px;
+    height: 60px;
+    line-height: 60px;
+    color: #ffffff;
+}
 
-    .标题::after{
-        content: '';
-        position: absolute;
-        right: -10px;
-        top: 5px;
-        height: 50px;
-        width: 3px;
+.标题::after{
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: 5px;
+    height: 50px;
+    width: 3px;
+    background-color: #fff;
+    animation: 标题变化 0.5s steps(1) infinite;
+}
+
+@keyframes 标题变化{
+    0%,
+    100% {
         background-color: #fff;
-        animation: 标题变化 0.5s steps(1) infinite;
     }
-
-    @keyframes 标题变化{
-        0%,
-        100% {
-            background-color: #fff;
-        }
-        50% {
-            background-color: transparent;
-        }
+    50% {
+        background-color: transparent;
     }
+}
 
-    .下箭头{
-        position: absolute;
-        animation: 下箭头变化 1s infinite;
-    }
-    .下箭头:before{font-size:1.4em;color:#ffffff;content:"▼";}
-    @keyframes 下箭头变化{
-        0%{top:0px}
-        30%{top:10px;}
-        100%{top:0px;}
-    }
+.下箭头{
+    position: absolute;
+    animation: 下箭头变化 1s infinite;
+}
+.下箭头:before{font-size:1.4em;color:#ffffff;content:"▼";}
+@keyframes 下箭头变化{
+    0%{top:0px}
+    30%{top:10px;}
+    100%{top:0px;}
+}
 
-    .内容0{
-        position: relative;
-        width: 80%;
-        margin: 0 auto;
-        padding: 30px 50px;
-        background-color: #ffffff50;
-        border-radius: 25px;
-    }
+.内容0{
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+    padding: 30px 50px;
+    background-color: #ffffff50;
+    border-radius: 25px;
+}
 
-    @media screen and (max-width: 767px){
-        .内容0{padding:3%;margin:0;width:95%;}
-    }
+@media screen and (max-width: 767px){
+    .内容0{padding:3%;margin:0;width:95%;}
+}
 
-    .导航{
-        position: fixed;
-        top:0;
-        margin: 15px;font-weight:bold;
-        text-shadow:#00000050 0px 0px 3px;
-        z-index: 2000;
-    }
+.导航{
+    position: fixed;
+    top:0;
+    margin: 15px;font-weight:bold;
+    text-shadow:#00000050 0px 0px 3px;
+    z-index: 2000;
+}
 
-    .左.导航{
-        left:0;
-    }
+.左.导航{left:0;}
+.右.导航{right:0;}
+.导航 a{color:#ffffff;}
+.导航 a:hover{color:#d1d1d1;}
 
-    .右.导航{
-        right:0;
-    }
+.内容背景{
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    width:auto;
+    height:auto;
+    z-index: -2000;
+    background-size: 100% auto;
+    background-position: center top;
+    /* background-repeat: no-repeat; */
+    background-attachment: fixed;
+    -webkit-filter: blur(10px);
+    -moz-filter: blur(10px);
+    -ms-filter: blur(10px);
+    -o-filter: blur(10px);
+    filter: blur(10px);
+}
 
-    .导航 a{
-        color:#ffffff;
-    }
+.书名,.章节{font-weight:800;cursor:default;font-size: 24px;}
+.章节{margin:auto 8px;}
+.书名:before,.书名:after{color:var(--huise-color);}
+.书名:before{content:"‹‹ ";}.书名:after{content:" ››\00A0";}
 
-    .导航 a:hover{
-        color:#d1d1d1;
-    }
-
-    .内容背景{
-        position: absolute;
-        top:0;
-        left:0;
-        right:0;
-        bottom:0;
-        width:auto;
-        height:auto;
-        z-index: -2000;
-        background-size: 100% auto;
-        background-position: center top;
-        /* background-repeat: no-repeat; */
-        background-attachment: fixed;
-        -webkit-filter: blur(10px);
-        -moz-filter: blur(10px);
-        -ms-filter: blur(10px);
-        -o-filter: blur(10px);
-        filter: blur(10px);
-    }
-
-    .书名,.章节{font-weight:800;cursor:default;font-size: 24px;}
-    .章节{margin:auto 8px;}
-    .书名:before,.书名:after{color:var(--huise-color);}
-    .书名:before{content:"‹‹ ";}.书名:after{content:" ››\00A0";}
-
-    footer{position: relative;top: 300px;z-index: -1001;}footer img {position: relative;bottom: 50px;display: block;margin: 0 auto;}
+footer{position: relative;top: 300px;z-index: -1001;}footer img {position: relative;bottom: 50px;display: block;margin: 0 auto;}
 </style>
 
 </head>
