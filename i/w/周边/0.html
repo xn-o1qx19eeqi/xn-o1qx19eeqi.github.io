@@ -14,20 +14,20 @@ h2: <a href="/">返回</a>
 .cj img{width:200px;}
 .cj b{color:var(--fanse-color)}
 .cj a b{color:var(--a-color)}
-.tsxt {border:1px solid #c0c0c0;visibility:hidden;width:157px;background-color:var(--zhengse-color);text-align:center;border-radius:6px;padding:5px 0;font-size:85%;position:absolute;z-index:1;top:170px;left:-2px;margin-left:0px;}
+.tsxt{border:1px solid #c0c0c0;visibility:hidden;width:157px;background-color:var(--zhengse-color);text-align:center;border-radius:6px;padding:5px 0;font-size:85%;position:absolute;z-index:1;top:220px;left:-2px;margin-left:0px;}
 .cj:hover .tsxt{visibility:visible;transform:translate(0,20px);transition:all 0.5s;}
 .hs{color:var(--body-color);}
-@media screen and (min-width:768px){
+/* @media screen and (min-width:768px){
 .内容0{width:60%}
-}
-@media screen and (max-width:767px){
+} */
+@media screen and(max-width:767px){
 .cj{margin:10px;padding:6px;}
 }
 </style>
 <div id="dy"></div>
 <script>
     let d=[
-        //[".","文字"], 直接显示文字
+        //[".","文字"], 直接显示文字(记得在前后加<br>)
         //["图片cj(.png)","标题","文字说明","链接(可留空)","额外介绍(可留空)"],
         ["11775857","打卡成功","透卡","/","带小像素点出去玩"],
         ["11775857","打卡成功","透卡","/",""],
