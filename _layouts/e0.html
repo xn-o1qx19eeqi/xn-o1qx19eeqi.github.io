@@ -209,13 +209,13 @@ footer{position: relative;top: 300px;z-index: -1001;}footer img {position: relat
                 localStorage.removeItem("改字体");
                 document.getElementById("ziti").innerHTML="";
             }else{
-                document.getElementById("ziti").innerHTML="@font-face{font-family:"+o+";src:url('/i/w/字体/"+o+".ttf')}body{font-family:'"+o+"'}";
+                document.getElementById("ziti").innerHTML="@font-face{font-family:"+o+";src:url('/i/5/zt/"+o+".ttf')}body{font-family:'"+o+"'}";
                 localStorage.setItem("改字体",o);
             }
         }
 
         if(localStorage.getItem("改字体")){
-            document.getElementById("ziti").innerHTML="@font-face{font-family:"+localStorage.getItem("改字体")+";src:url('/i/w/字体/"+localStorage.getItem("改字体")+".ttf')}";
+            document.getElementById("ziti").innerHTML="@font-face{font-family:"+localStorage.getItem("改字体")+";src:url('/i/5/zt/"+localStorage.getItem("改字体")+".ttf')}";
         }
 
         window.onload=function(){
