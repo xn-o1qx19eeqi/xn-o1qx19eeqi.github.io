@@ -3,9 +3,9 @@ layout: e0
 permalink: zb
 BeiJing: 0
 BeiJing_SJ: 0
-BiaoTi: 周边
-title: 周边
-h1: 周边
+BiaoTi: 周边商品
+title: 周边商品
+h1: 周边商品
 h2: <a href="/">返回</a>
 div0: 1
 ---
@@ -16,10 +16,10 @@ div0: 1
 .cj b{color:var(--fanse-color)}
 .cj a b{color:var(--a-color)}
 .cj sup,.开放下载{color:#00e61b;}
-.cj sub{color:#c90000;}
+.cj sub,.不推荐{color:#c90000;}
 .tsxt{border:1px solid #c0c0c0;visibility:hidden;width:157px;background-color:var(--zhengse-color);text-align:center;border-radius:6px;padding:5px 0;font-size:85%;position:absolute;z-index:1;top:220px;left:-2px;margin-left:0px;}
 .cj:hover .tsxt{visibility:visible;transform:translate(0,20px);transition:all 0.5s;}
-.hs{color:var(--body-color);}
+.hs,.cj small{color:var(--body-color);}
 /* @media screen and (min-width:768px){
 .内容0{width:60%}
 } */
@@ -27,8 +27,8 @@ div0: 1
 .cj{margin:10px;padding:6px;}
 }
 </style>
-我设计这些周边是出于自己的兴趣，并不是为了赚钱，所以我会将素材文件分享出来（标注为<sup class="开放下载">开放下载</sup>），大家可以自行下载、修改、联系店铺定制。<br>
-也可以找我购买（QQ:<a onclick="复(制='123719932')">123719932</a>），我会在成本+运费的基础上，额外加收5到10元。<br>
+我设计这些周边是出于自己的兴趣，并不是为了赚钱，所以我会将素材文件分享出来，大家可以自行下载、修改、联系店铺定制。<br>
+也可以找我购买<small>（QQ:<a onclick="复(制='123719932')">123719932</a>）</small><sup class="不推荐">不推荐</sup>，我会在成本+运费的基础上，额外加收5到10元。<br>
 
 <hr>
 <div id="dy"></div>
@@ -38,7 +38,8 @@ div0: 1
         //["图片cj(.png)","标题","文字说明","链接(可留空)","额外介绍(可留空)"],
         // <sup>可购买 开放下载 寄售</sup> <sub>停售</sub>
     
-        ["1","仿主页 透卡 <sup>可购买 开放下载</sup>","带小像素点出去玩~","/zb/1","约5+10=<b>15元</b>"],
+        ["1","仿主页 透卡","带小像素点出去玩~","/zb/1","约12元"],
+        ["2","安全出口 钥匙扣","　","/zb/2","约10元"],
         // ["","","","/",""],
     ];
     let dy="";
@@ -49,7 +50,7 @@ div0: 1
             if(d[i][3]&&d[i][3]!=""){d[i][3]=["<a href='"+d[i][3]+"'>","</a>"]}else{d[i][3]=["",""]}
             if(d[i][4]&&d[i][4]!=""){d[i][4]="<span class='tsxt hs'>"+d[i][4]+"</span>"}else{d[i][4]=""}
 
-            dy+="<div class='cj'>"+d[i][3][0]+"<img src='/i/w/周边/cj/"+d[i][0]+"'><small>"+d[i][0]+".</small><b>"+d[i][1]+"</b>"+d[i][3][1]+"<br><span class='hs'>"+d[i][2]+"</span>"+d[i][4]+"</div>";
+            dy+="<div class='cj'>"+d[i][3][0]+"<img src='/i/w/周边/cj/"+d[i][0]+"'><small>"+d[i][0].split(".")[0]+".</small><b>"+d[i][1]+"</b>"+d[i][3][1]+"<br><span class='hs'>"+d[i][2]+"</span>"+d[i][4]+"</div>";
         }
     }
     document.getElementById("dy").innerHTML=dy;
