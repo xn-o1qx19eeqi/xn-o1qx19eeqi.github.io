@@ -1,0 +1,114 @@
+---
+layout: o
+permalink: 定制留言代码
+BiaoTi: 定制留言代码
+title: 定制留言代码
+---
+<link rel="stylesheet" href="/css/all2.css"><a href="#底">底部</a><br>
+
+<hr>
+
+1.模糊
+<style>.留言1 span{font-size:22px;font-weight:600;animation:留言1 3s linear infinite;line-height:20px;transition:all 0.5s;letter-spacing:0.2em;}@keyframes 留言1{0%, 90%{filter:blur(0);}50%{filter:blur(10px);}}</style><div class="留言1">
+<!----><span>一段文字</span></div>
+（文字可更改）
+
+<hr>
+
+2.彩虹柱
+<style>
+.留言2{height:50px;display:flex;align-items:flex-end;gap:3px;}.留言2 div{height:5px;width:12px;animation-duration:0.45s;animation-name:留言2;animation-iteration-count:infinite;animation-direction:alternate;}.留言2a{background-color:#E50000;box-shadow:1px 1px 10px #E50000;animation-delay:0.10s;}.留言2b{background-color:#FF8D00;box-shadow:1px 1px 10px #FF8D00;animation-delay:0.20s;}.留言2c{background-color:#FFEE00;box-shadow:1px 1px 10px #FFEE00;animation-delay:0.25s;}.留言2d{background-color:#008121;box-shadow:1px 1px 10px #008121;animation-delay:0.30s;}.留言2e{background-color:#004CFF;box-shadow:1px 1px 10px #004CFF;animation-delay:0.35s;}.留言2f{background-color:#760188;box-shadow:1px 1px 10px #760188;animation-delay:0.40s;}@keyframes 留言2{from{height:5px;}to{height:40px;}}</style><div class="留言2"><div class="留言2a"></div><div class="留言2b"></div><div class="留言2c"></div><div class="留言2d"></div><div class="留言2e"></div><div class="留言2f"></div></div>
+
+<hr>
+
+3.马里奥顶砖块
+<style>.留言3{width:fit-content;font-size:17px;font-family:monospace;line-height:1.4;font-weight:bold;padding:30px 2px 50px;background:linear-gradient(#ECD003 0 0) 0 0/100% 100% content-box padding-box no-repeat;position:relative;overflow:hidden;animation:留言3a 2s infinite cubic-bezier(1, 175, 0.5, 175);}.留言3::before{content:"　+1　";color:#ECD003;display:inline-block;animation:留言3c 2s infinite;}.留言3::after{content:"";position:absolute;width:34px;height:28px;top:110%;left:calc(50% - 16px);background:linear-gradient(90deg,#0000 12px,#f92033 0 22px,#0000 0 26px,#fdc98d 0 32px,#0000)bottom 26px left 50%,linear-gradient(90deg, #0000 10px, #f92033 0 28px, #fdc98d 0 32px, #0000 0)bottom 24px left 50%,linear-gradient(90deg,#0000 10px,#643700 0 16px,#fdc98d 0 20px,#000 0 22px,#fdc98d 0 24px,#000 0 26px,#f92033 0 32px,#0000 0)bottom 22px left 50%,linear-gradient(90deg,#0000 8px,#643700 0 10px,#fdc98d 0 12px,#643700 0 14px,#fdc98d 0 20px,#000 0 22px,#fdc98d 0 28px,#f92033 0 32px,#0000 0)bottom 20px left 50%,linear-gradient(90deg,#0000 8px,#643700 0 10px,#fdc98d 0 12px,#643700 0 16px,#fdc98d 0 22px,#000 0 24px,#fdc98d 0 30px,#f92033 0 32px,#0000 0)bottom 18px left 50%,linear-gradient(90deg,#0000 8px,#643700 0 12px,#fdc98d 0 20px,#000 0 28px,#f92033 0 30px,#0000 0)bottom 16px left 50%,linear-gradient(90deg, #0000 12px, #fdc98d 0 26px, #f92033 0 30px, #0000 0)bottom 14px left 50%,linear-gradient(90deg,#fdc98d 6px,#f92033 0 14px,#222a87 0 16px,#f92033 0 22px,#222a87 0 24px,#f92033 0 28px,#0000 0 32px,#643700 0)bottom 12px left 50%,linear-gradient(90deg,#fdc98d 6px,#f92033 0 16px,#222a87 0 18px,#f92033 0 24px,#f92033 0 26px,#0000 0 30px,#643700 0)bottom 10px left 50%,linear-gradient(90deg,#0000 10px,#f92033 0 16px,#222a87 0 24px,#feee49 0 26px,#222a87 0 30px,#643700 0)bottom 8px left 50%,linear-gradient(90deg,#0000 12px,#222a87 0 18px,#feee49 0 20px,#222a87 0 30px,#643700 0)bottom 6px left 50%,linear-gradient(90deg, #0000 8px, #643700 0 12px, #222a87 0 30px, #643700 0)bottom 4px left 50%,linear-gradient(90deg, #0000 6px, #643700 0 14px, #222a87 0 26px, #0000 0)bottom 2px left 50%,linear-gradient(90deg, #0000 6px, #643700 0 10px, #0000 0) bottom 0px left 50%;background-size:34px 2px;background-repeat:no-repeat;animation:inherit;animation-name:留言3b;}@keyframes 留言3a{0%,30%{background-position:0 0px;}50%,100%{background-position:0 -0.1px;}}@keyframes 留言3b{50%,100%{top:109.5%;}}@keyframes 留言3c{0%,30%{transform:translateY(0);}80%,100%{transform:translateY(-260%);}}</style><div class="留言3"></div>
+
+<hr>
+
+4.流星
+<style>.留言4{--clr-text:#F6F4EB;--clr-space:#120e1e;--clr-space-gr:#271950;--clr-star:#E9F8F9;--size:3rem;position:relative;outline:1px solid var(--clr-shadow__border);width:240px;}.留言4a{font-weight:600;font-size:1.5rem;letter-spacing:0.2rem;background:transparent;padding:calc(var(--size) / 3) var(--size);border:none;color:var(--clr-text);text-shadow:2px 0px var(--clr-shadow__border),0px 2px var(--clr-shadow__border),-2px 0px var(--clr-shadow__border), 0px -2px var(--clr-shadow__border);}.留言4b{width:100%;height:100%;bottom:0%;gap:1.5rem;transition:0.5s ease-in-out;z-index:-1;opacity:0;overflow:hidden;position:absolute;display:flex;background:linear-gradient( 160deg, var(--clr-space), var(--clr-space-gr));opacity:1;}.留言4c{height:4rem;width:0.3rem;transition:0.5s;border-radius:50px;clip-path:polygon(50% 0%, 100% 100%, 0% 100%);position:relative;background-color:var(--clr-star);animation:留言4d calc(0.1s * var(--i)) linear infinite;}@keyframes 留言4d{0%{transform:rotate(-30deg) translateY(calc(-52% * var(--i)));}100%{transform:rotate(-30deg) translateY(calc(52% * var(--i)));}}</style><div class="留言4">
+<!----><button class="留言4a">文字</button>
+<div class="留言4b"><span style="--i:31" class="留言4c"></span><span style="--i:12" class="留言4c"></span><span style="--i:57" class="留言4c"></span><span style="--i:93" class="留言4c"></span><span style="--i:23" class="留言4c"></span><span style="--i:70" class="留言4c"></span><span style="--i:6" class="留言4c"></span></div></div>
+（文字可更改）
+
+<hr>
+
+5.心电图
+<style>.留言5 svg polyline{fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;}.留言5 svg polyline#留言5c{fill:none;stroke:#ff4d5033;}.留言5 svg polyline#留言5b{fill:none;stroke:#ff4d4f;stroke-dasharray:48, 144;stroke-dashoffset:192;animation:留言5a 1.4s linear infinite;}@keyframes 留言5a{72.5%{opacity:0;}to{stroke-dashoffset:0;}}</style><div class="留言5"><svg width="64px" height="48px"><polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="留言5c"></polyline><polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="留言5b"></polyline></svg></div>
+
+<hr>
+
+6.3D方块
+<style>.留言6{position:relative;left:20px;top:20px;width:44px;height:44px;animation:留言6a 2s infinite ease;transform-style:preserve-3d;}.留言6>div{
+/**/background-color:#004dff;
+height:100%;position:absolute;width:100%;border:2px solid #ffffff;}.留言6 div:nth-of-type(1){transform:translateZ(-22px) rotateY(180deg);}.留言6 div:nth-of-type(2){transform:rotateY(-270deg) translateX(50%);transform-origin:top right;}.留言6 div:nth-of-type(3){transform:rotateY(270deg) translateX(-50%);transform-origin:center left;}.留言6 div:nth-of-type(4){transform:rotateX(90deg) translateY(-50%);transform-origin:top center;}.留言6 div:nth-of-type(5){transform:rotateX(-90deg) translateY(50%);transform-origin:bottom center;}.留言6 div:nth-of-type(6){transform:translateZ(22px);}@keyframes 留言6a{0%{transform:rotate(45deg) rotateX(-25deg) rotateY(25deg);}50%{transform:rotate(45deg) rotateX(-385deg) rotateY(25deg);}100%{transform:rotate(45deg) rotateX(-385deg) rotateY(385deg);}}</style><div class="留言6"><div></div><div></div><div></div><div></div><div></div><div></div></div><br><br>
+（颜色可更改）
+
+<hr>
+
+7.跳跳跳
+<style>.留言7{width:200px;height:60px;position:relative;z-index:1;}.留言7a{width:20px;height:20px;position:absolute;
+/**/background-color:#fe0606;
+left:15%;transform-origin:50%;animation:留言7d .5s alternate infinite ease;}@keyframes 留言7d{0%{top:60px;height:5px;transform:scaleX(1.7);}40%{height:20px;transform:scaleX(1);}100%{top:0%;}}.留言7a:nth-child(2){left:45%;animation-delay:.2s;
+/**/background-color:#4400ff;
+}.留言7a:nth-child(3){left:auto;right:15%;animation-delay:.3s;
+/**/background-color:#15ff00;
+}.留言7b{width:20px;height:4px;background-color:#00000050;position:absolute;top:62px;transform-origin:50%;z-index:-1;left:15%;filter:blur(1px);animation:留言7c .5s alternate infinite ease;}@keyframes 留言7c{0%{transform:scaleX(1.5);}40%{transform:scaleX(1);opacity:.7;}100%{transform:scaleX(.2);opacity:.4;}}.留言7b:nth-child(4){left:45%;animation-delay:.2s}.留言7b:nth-child(5){left:auto;right:15%;animation-delay:.3s;}</style><div class="留言7"><div class="留言7a"></div><div class="留言7a"></div><div class="留言7a"></div><div class="留言7b"></div><div class="留言7b"></div><div class="留言7b"></div></div><br>
+（颜色可分别更改）
+
+<hr>
+
+8.输入代码
+<style>@keyframes 留言8i{50%{border-right-color:transparent;}}@keyframes 留言8j{0%,10%{width:0;}45%,55%{width:
+/*字数*/4em;}90%,100%{width:0;}}.留言8a{border:0.1em solid #333;background-color:#1a1a1a;color:#0f0;font-size:1em;padding:1.5em 1em;width:12em;box-shadow:0 4px 8px rgba(0, 0, 0, 0.2);border-radius:4px;position:relative;overflow:hidden;box-sizing:border-box;}.留言8b{position:absolute;top:0;left:0;right:0;height:1.5em;background-color:#333;border-top-left-radius:4px;border-top-right-radius:4px;padding:0 0.4em;box-sizing:border-box;}.留言8d{float:right;}.留言8{display:inline-block;width:0.6em;height:0.6em;margin-left:0.4em;border-radius:50%;background-color:#777;}.留言8.留言8e{background-color:#e33;}.留言8.留言8f{background-color:#ee0;}.留言8.留言8g{background-color:#0b0;}.留言8c{float:left;line-height:1.5em;color:#eee;}.留言8h{display:inline-block;white-space:nowrap;overflow:hidden;border-right:0.2em solid green;animation:留言8j 4s steps(
+/*字数*/4) infinite,留言8i 0.5s step-end infinite alternate;margin-top:1.5em;}</style><div class="留言8a"><div class="留言8b"><div class="留言8c">
+<!---->Status</div><div class="留言8d"><div class="留言8 留言8e"></div><div class="留言8 留言8f"></div><div class="留言8 留言8g"></div></div></div><div class="留言8h">
+<!---->一段文字</div></div>
+（文字可更改）
+
+<hr>
+
+9.立体长条 显示2条文字（鼠标移动到上面）
+
+<style>.留言9{width:10em;justify-content:center;align-items:center;}.留言9 div{color:#ccc;cursor:pointer;font-family:'Roboto', sans-serif;transition:all 0.85s cubic-bezier(.20,.60,.20,1);transform-style:preserve-3d;transform-origin:100% 50%;width:10em;height:4em;}.留言9 div:hover{transform:rotateX(-90deg) rotateZ(-20deg);}.留言9a{box-sizing:border-box;position:absolute;display:inline-block;height:4em;width:10em;text-align:center;text-transform:uppercase;padding-top:1.5em;font-weight:bold;}.留言9b{background:wheat;color:#222229;transform:rotateX(90deg) translate3d(0, 0, 2em);box-shadow:inset 0 0 0 5px #fff;}.留言9c{background:#222229;color:#fff;box-shadow:inset 0 0 0 5px #fff;transform:translate3d(0, 0, 2em);}.留言9d{height:4em;width:4em;background:#222229;box-shadow:inset 0 0 0 5px #fff;transform:rotateY(90deg) translate3d(0, 0, 8em);}</style><div class="留言9"><div><span class="留言9a 留言9b">
+<!---->文字2</span><span class="留言9a 留言9c">
+<!---->文字1</span><span class="留言9a 留言9d"></span></div></div>
+（文字可更改）
+
+<hr>
+
+10.彩虹背景
+
+<style>.留言10{display:block;--width:150px;--timing:2s;border:0;width:var(--width);padding-block:1em;color:#fff;font-weight:bold;font-size:1em;transition:all 0.2s;border-radius:3px;cursor:pointer;background-image:linear-gradient(to right,rgb(250,82,82),rgb(250,82,82) 16.65%,rgb(190,75,219) 16.65%,rgb(190,75,219) 33.3%,rgb(76,110,245) 33.3%,rgb(76,110,245) 49.95%,rgb(64,192,87) 49.95%,rgb(64,192,87) 66.6%,rgb(250,176,5) 66.6%,rgb(250,176,5) 83.25%,rgb(253,126,20) 83.25%,rgb(253,126,20) 100%,rgb(250,82,82) 100%);animation:var(--timing) linear 留言10a infinite;}@keyframes 留言10a{to{background-position:var(--width);}}</style><button class="留言10">
+<!---->文字</button>
+（文字可更改）
+
+<hr>
+
+11.假加载图标
+
+<style>.留言11{font-size:28px;position:relative;display:inline-block;width:1em;height:1em;}.留言11 div{position:absolute;left:0.4629em;bottom:0;width:0.074em;height:0.2777em;border-radius:0.0555em;background-color:transparent;-webkit-transform-origin:center -0.2222em;-ms-transform-origin:center -0.2222em;transform-origin:center -0.2222em;animation:留言11a 1s infinite linear;}.留言11 div:nth-child(1){-webkit-animation-delay:0s;animation-delay:0s;-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}.留言11 div:nth-child(2){-webkit-animation-delay:0.083s;animation-delay:0.083s;-webkit-transform:rotate(30deg);-ms-transform:rotate(30deg);transform:rotate(30deg);}.留言11 div:nth-child(3){-webkit-animation-delay:0.166s;animation-delay:0.166s;-webkit-transform:rotate(60deg);-ms-transform:rotate(60deg);transform:rotate(60deg);}.留言11 div:nth-child(4){-webkit-animation-delay:0.249s;animation-delay:0.249s;-webkit-transform:rotate(90deg);-ms-transform:rotate(90deg);transform:rotate(90deg);}.留言11 div:nth-child(5){-webkit-animation-delay:0.332s;animation-delay:0.332s;-webkit-transform:rotate(120deg);-ms-transform:rotate(120deg);transform:rotate(120deg);}.留言11 div:nth-child(6){-webkit-animation-delay:0.415s;animation-delay:0.415s;-webkit-transform:rotate(150deg);-ms-transform:rotate(150deg);transform:rotate(150deg);}.留言11 div:nth-child(7){-webkit-animation-delay:0.498s;animation-delay:0.498s;-webkit-transform:rotate(180deg);-ms-transform:rotate(180deg);transform:rotate(180deg);}.留言11 div:nth-child(8){-webkit-animation-delay:0.581s;animation-delay:0.581s;-webkit-transform:rotate(210deg);-ms-transform:rotate(210deg);transform:rotate(210deg);}.留言11 div:nth-child(9){-webkit-animation-delay:0.664s;animation-delay:0.664s;-webkit-transform:rotate(240deg);-ms-transform:rotate(240deg);transform:rotate(240deg);}.留言11 div:nth-child(10){-webkit-animation-delay:0.747s;animation-delay:0.747s;-webkit-transform:rotate(270deg);-ms-transform:rotate(270deg);transform:rotate(270deg);}.留言11 div:nth-child(11){-webkit-animation-delay:0.83s;animation-delay:0.83s;-webkit-transform:rotate(300deg);-ms-transform:rotate(300deg);transform:rotate(300deg);}.留言11 div:nth-child(12){-webkit-animation-delay:0.913s;animation-delay:0.913s;-webkit-transform:rotate(330deg);-ms-transform:rotate(330deg);transform:rotate(330deg);}@keyframes 留言11a{0%{background-color:#69717d;}100%{background-color:transparent;}}</style><div class="留言11"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
+<hr>
+
+12.黑幕（鼠标移动到上面）<br>
+123<span class='heimu'>456</span>789
+
+<hr>
+
+13.模糊幕（鼠标移动到上面）<br>
+123<span class='mohumu'>456</span>789
+
+<hr>
+
+14.爱心（可点击）
+
+<style>.留言14{--heart-color:#ff5b89;position:relative;width:50px;height:50px;transition:.3s;}.留言14 .留言14d{position:absolute;width:100%;height:100%;opacity:0;z-index:20;cursor:pointer;}.留言14 .留言14e{width:100%;height:100%;display:flex;justify-content:center;align-items:center;}.留言14 .留言14c,.留言14 .留言14b{fill:var(--heart-color);position:absolute;}.留言14 .留言14b{animation:keyframes-留言14b 1s;display:none;}.留言14 .留言14a{position:absolute;animation:keyframes-留言14a .5s;animation-fill-mode:forwards;display:none;stroke:var(--heart-color);fill:var(--heart-color);stroke-width:2px;}.留言14 .留言14d:checked~.留言14e .留言14b{display:block}.留言14 .留言14d:checked~.留言14e .留言14a{display:block}@keyframes keyframes-留言14b{0%{transform:scale(0);}25%{transform:scale(1.2);}50%{transform:scale(1);filter:brightness(1.5);}}@keyframes keyframes-留言14a{0%{transform:scale(0);}50%{opacity:1;filter:brightness(1.5);}100%{transform:scale(1.4);opacity:0;display:none;}}</style><div class="留言14"><input type="checkbox" class="留言14d"><div class="留言14e"><svg viewBox="0 0 24 24" class="留言14c" xmlns="http://www.w3.org/2000/svg"><path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z"></path></svg><svg viewBox="0 0 24 24" class="留言14b" xmlns="http://www.w3.org/2000/svg"><path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z"></path></svg><svg class="留言14a" width="100" height="100" xmlns="http://www.w3.org/2000/svg"><polygon points="10,10 20,20"></polygon><polygon points="10,50 20,50"></polygon><polygon points="20,80 30,70"></polygon><polygon points="90,10 80,20"></polygon><polygon points="90,50 80,50"></polygon><polygon points="80,80 70,70"></polygon></svg></div></div>
+
+
+
+
+
+
+<a name="底"></a>
