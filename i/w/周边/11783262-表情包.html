@@ -1,0 +1,55 @@
+---
+layout: e0
+permalink: zb/11783262
+BeiJing: 0
+BeiJing_SJ: 0
+BiaoTi: 表情包
+title: 表情包
+h1: 表情包
+h2: <a href="/zb">周边</a>
+div0: 1
+---
+<style>
+.cj{display:inline-block;margin:20px;padding:12px;line-height:20px;border-width:2px;border-color:#ffffff40;border-style:solid;width:130px;height:245px;opacity:0.8;filter:alpha(opacity=80);transition:all 0.3s;position:relative;font-size:90%;}
+.cj:hover{opacity:1.0;filter:alpha(opacity=100);transform:scale(1.2);z-index:10;}
+.cj img{width:130px;}
+.cj b{color:var(--fanse-color)}
+.cj a b{color:var(--a-color)}
+.cj sup,.开放下载{color:#00e61b;}
+.cj sub,.不推荐{color:#eb0000;}
+.tsxt{border:1px solid #c0c0c0;visibility:hidden;width:157px;background-color:var(--zhengse-color);text-align:center;border-radius:6px;padding:5px 0;font-size:85%;position:absolute;z-index:1;top:170px;left:-2px;margin-left:0px;}
+.cj:hover .tsxt{visibility:visible;transform:translate(0,20px);transition:all 0.5s;}
+.hs,.cj small{color:var(--body-color);}
+/* @media screen and (min-width:768px){
+.内容0{width:60%}
+} */
+@media screen and(max-width:767px){
+.cj{margin:10px;padding:6px;}
+}
+</style>
+默认是小黑点(<a href="/000000">#000000</a>)，可以下载PSD版本自行修改。
+
+<hr>
+<div id="dy"></div>
+<script>
+    let d=[//"文件名.gif", 其他格式
+        "1-叹号",
+        "2-问号",
+        "3-流汗",
+        // "／<hr><h3>标题</h3>",
+    
+    ];
+    let dy="";
+    for(let i=0;d.length>i;i++){
+        if(d[i][0]=="／"){
+            dy+=d[i].split("／")[1];
+        }else{
+            d[i]=d[i].split(".");
+            d[i][1]=d[i][1]||"jpg";
+            dy+="<div class='cj'><img src='/i/w/周边/xz/表情包/"+d[i][0]+"."+d[i][1]+"'><b>"+d[i][0].split("-")[1]+"</b><br><span class='hs'><a href='/i/w/周边/xz/表情包/"+d[i][0]+"."+d[i][1]+"' download='"+d[i][0]+"."+d[i][1]+"'>图片</a>　<a href='/i/w/周边/xz/表情包/"+d[i][0]+".psd0' download='"+d[i][0]+".psd'>PSD</a></span></div>"
+        }
+    }
+    document.getElementById("dy").innerHTML=dy;
+</script>
+
+

@@ -848,30 +848,33 @@ if(互模==1){
 }
 }
 function 简易模式(o){
-    if(o==0){
+    try{
+        if(o==0){
         document.getElementById("杂").style="display:none;";
         document.getElementById("杂2").style="";
-        document.getElementById("vcomments").style="";
-        document.getElementById("vcomments_2").style="";
         document.getElementById("简易模式").style="";
         localStorage.setItem("简易模式","0")
+        document.getElementById("vcomments").style="";
+        document.getElementById("vcomments_2").style="";
     }
     if(o==1){
         document.getElementById("杂").style="";
         document.getElementById("杂2").style="";
-        document.getElementById("vcomments").style="";
-        document.getElementById("vcomments_2").style="";
         document.getElementById("简易模式").style="display:none;";
         localStorage.setItem("简易模式","1")
+        document.getElementById("vcomments").style="";
+        document.getElementById("vcomments_2").style="";
     }
     if(o==2){
         document.getElementById("杂").style="display:none;";
         document.getElementById("杂2").style="display:none;";
-        document.getElementById("vcomments").style="display:none;";
-        document.getElementById("vcomments_2").style="display:none;";
         document.getElementById("简易模式").style="";
         localStorage.setItem("简易模式","2")
+        document.getElementById("vcomments").style="display:none;";
+        document.getElementById("vcomments_2").style="display:none;";
     }
+}catch(e){}
+    
 }
 if(!localStorage.getItem("简易模式")){localStorage.setItem("简易模式","0")}
 简易模式(localStorage.getItem("简易模式"));
