@@ -7,6 +7,30 @@ title: 可用留言代码
 <link rel="stylesheet" href="/css/all2.css"><br>
 （试运行，希望不会出bug……）<a href="#底">　</a>
 
+<style id="灯"></style>
+<style>#按钮{position:fixed;bottom:10px;right:10px;z-index:999;}
+body{background-color:var(--zhengse-color);color:var(--body-color)}
+.switch{font-size:17px;position:relative;display:inline-block;width:64px;height:34px;}.switch input{opacity:0;width:0;height:0;}.slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background-color:#73C0FC;transition:.4s;border-radius:30px;}.slider:before{position:absolute;content:"";height:30px;width:30px;border-radius:20px;left:2px;bottom:2px;z-index:2;background-color:#e8e8e8;transition:.4s;}.sun svg{position:absolute;top:6px;left:36px;z-index:1;width:24px;height:24px;}.moon svg{fill:#73C0FC;position:absolute;top:5px;left:5px;z-index:1;width:24px;height:24px;}.sun svg{animation:rotate 15s linear infinite;}@keyframes rotate{0%{transform:rotate(0);}100%{transform:rotate(360deg);}}.moon svg{animation:tilt 5s linear infinite;}@keyframes tilt{0%{transform:rotate(0deg);}25%{transform:rotate(-10deg);}75%{transform:rotate(10deg);}100%{transform:rotate(0deg);}}.input:checked + .slider{background-color:#183153;}.input:focus + .slider{box-shadow:0 0 1px #183153;}.input:checked + .slider:before{transform:translateX(30px);}</style>
+<script>let 开关=0;
+function 按钮(){
+if(开关==0){开关=1;//开灯
+document.getElementById("灯").innerHTML=":root{--a-color:#006699;--a-hover-color:#0085a1;--body-color:#404040;--huise-color:#8c8b8b;--fanse-color:#000000;--zhengse-color:#ffffff;}";
+}else{开关=0;//关灯
+document.getElementById("灯").innerHTML=":root{--a-color:#50a3ec;--a-hover-color:#8cbee9;--body-color:#e0e0e0;--huise-color:#bbbbbb;--fanse-color:#ffffff;--zhengse-color:#000000;}";
+}
+}
+按钮();
+</script>
+
+<div id="按钮">
+<label class="switch">
+<span class="sun"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="#ffd43b"><circle r="5" cy="12" cx="12"></circle><path d="m21 13h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm-17 0h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm13.66-5.66a1 1 0 0 1 -.66-.29 1 1 0 0 1 0-1.41l.71-.71a1 1 0 1 1 1.41 1.41l-.71.71a1 1 0 0 1 -.75.29zm-12.02 12.02a1 1 0 0 1 -.71-.29 1 1 0 0 1 0-1.41l.71-.66a1 1 0 0 1 1.41 1.41l-.71.71a1 1 0 0 1 -.7.24zm6.36-14.36a1 1 0 0 1 -1-1v-1a1 1 0 0 1 2 0v1a1 1 0 0 1 -1 1zm0 17a1 1 0 0 1 -1-1v-1a1 1 0 0 1 2 0v1a1 1 0 0 1 -1 1zm-5.66-14.66a1 1 0 0 1 -.7-.29l-.71-.71a1 1 0 0 1 1.41-1.41l.71.71a1 1 0 0 1 0 1.41 1 1 0 0 1 -.71.29zm12.02 12.02a1 1 0 0 1 -.7-.29l-.66-.71a1 1 0 0 1 1.36-1.36l.71.71a1 1 0 0 1 0 1.41 1 1 0 0 1 -.71.24z"></path></g></svg></span>
+<span class="moon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="m223.5 32c-123.5 0-223.5 100.3-223.5 224s100 224 223.5 224c60.6 0 115.5-24.2 155.8-63.4 5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6-96.9 0-175.5-78.8-175.5-176 0-65.8 36-123.1 89.3-153.3 6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"></path></svg></span>   
+<input type="checkbox" onclick="按钮()" class="input">
+<span class="slider"></span>
+</label>
+</div>
+
 <hr>
 
 1.模糊
@@ -28,9 +52,8 @@ title: 可用留言代码
 <hr>
 
 4.流星
-<style>.留言4{--clr-text:#F6F4EB;--clr-space:#120e1e;--clr-space-gr:#271950;--clr-star:#E9F8F9;--size:3rem;position:relative;outline:1px solid var(--clr-shadow__border);width:240px;}.留言4a{font-weight:600;font-size:1.5rem;letter-spacing:0.2rem;background:transparent;padding:calc(var(--size) / 3) var(--size);border:none;color:var(--clr-text);text-shadow:2px 0px var(--clr-shadow__border),0px 2px var(--clr-shadow__border),-2px 0px var(--clr-shadow__border), 0px -2px var(--clr-shadow__border);}.留言4b{width:100%;height:100%;bottom:0%;gap:1.5rem;transition:0.5s ease-in-out;z-index:-1;opacity:0;overflow:hidden;position:absolute;display:flex;background:linear-gradient( 160deg, var(--clr-space), var(--clr-space-gr));opacity:1;}.留言4c{height:4rem;width:0.3rem;transition:0.5s;border-radius:50px;clip-path:polygon(50% 0%, 100% 100%, 0% 100%);position:relative;background-color:var(--clr-star);animation:留言4d calc(0.1s * var(--i)) linear infinite;}@keyframes 留言4d{0%{transform:rotate(-30deg) translateY(calc(-52% * var(--i)));}100%{transform:rotate(-30deg) translateY(calc(52% * var(--i)));}}</style><div class="留言4">
-<!----><button class="留言4a">文字</button>
-<div class="留言4b"><span style="--i:31" class="留言4c"></span><span style="--i:12" class="留言4c"></span><span style="--i:57" class="留言4c"></span><span style="--i:93" class="留言4c"></span><span style="--i:23" class="留言4c"></span><span style="--i:70" class="留言4c"></span><span style="--i:6" class="留言4c"></span></div></div>
+<style>.留言4{--clr-text:#F6F4EB;--clr-space:#120e1e;--clr-space-gr:#271950;--clr-star:#E9F8F9;--size:3rem;position:relative;outline:1px solid var(--clr-shadow__border);width:240px;}.留言4a{font-weight:600;font-size:1.5rem;letter-spacing:0.2rem;background:transparent;padding:calc(var(--size) / 3) var(--size);border:none;color:var(--clr-text);text-shadow:2px 0px var(--clr-shadow__border),0px 2px var(--clr-shadow__border),-2px 0px var(--clr-shadow__border), 0px -2px var(--clr-shadow__border);}.留言4b{width:100%;height:100%;bottom:0%;gap:1.5rem;transition:0.5s ease-in-out;z-index:-1;opacity:0;overflow:hidden;position:absolute;display:flex;background:linear-gradient( 160deg, var(--clr-space), var(--clr-space-gr));opacity:1;}.留言4c{height:4rem;width:0.3rem;transition:0.5s;border-radius:50px;clip-path:polygon(50% 0%, 100% 100%, 0% 100%);position:relative;background-color:var(--clr-star);animation:留言4d calc(0.1s * var(--i)) linear infinite;}@keyframes 留言4d{0%{transform:rotate(-30deg) translateY(calc(-52% * var(--i)));}100%{transform:rotate(-30deg) translateY(calc(52% * var(--i)));}}</style><div class="留言4"><button class="留言4a">
+<!---->文字</button><div class="留言4b"><span style="--i:31" class="留言4c"></span><span style="--i:12" class="留言4c"></span><span style="--i:57" class="留言4c"></span><span style="--i:93" class="留言4c"></span><span style="--i:23" class="留言4c"></span><span style="--i:70" class="留言4c"></span><span style="--i:6" class="留言4c"></span></div></div>
 （文字可更改）
 
 <hr>
@@ -41,21 +64,17 @@ title: 可用留言代码
 <hr>
 
 6.3D方块
-<style>.留言6{position:relative;left:20px;top:20px;width:44px;height:44px;animation:留言6a 2s infinite ease;transform-style:preserve-3d;}.留言6>div{
-/**/background-color:#004dff;
-height:100%;position:absolute;width:100%;border:2px solid #ffffff;}.留言6 div:nth-of-type(1){transform:translateZ(-22px) rotateY(180deg);}.留言6 div:nth-of-type(2){transform:rotateY(-270deg) translateX(50%);transform-origin:top right;}.留言6 div:nth-of-type(3){transform:rotateY(270deg) translateX(-50%);transform-origin:center left;}.留言6 div:nth-of-type(4){transform:rotateX(90deg) translateY(-50%);transform-origin:top center;}.留言6 div:nth-of-type(5){transform:rotateX(-90deg) translateY(50%);transform-origin:bottom center;}.留言6 div:nth-of-type(6){transform:translateZ(22px);}@keyframes 留言6a{0%{transform:rotate(45deg) rotateX(-25deg) rotateY(25deg);}50%{transform:rotate(45deg) rotateX(-385deg) rotateY(25deg);}100%{transform:rotate(45deg) rotateX(-385deg) rotateY(385deg);}}</style><div class="留言6"><div></div><div></div><div></div><div></div><div></div><div></div></div><br><br>
+<style>.留言6{position:relative;left:20px;top:20px;width:44px;height:44px;animation:留言6a 2s infinite ease;transform-style:preserve-3d;}.留言6>div{background-color:
+/**/#004dff;height:100%;position:absolute;width:100%;border:2px solid #ffffff;}.留言6 div:nth-of-type(1){transform:translateZ(-22px) rotateY(180deg);}.留言6 div:nth-of-type(2){transform:rotateY(-270deg) translateX(50%);transform-origin:top right;}.留言6 div:nth-of-type(3){transform:rotateY(270deg) translateX(-50%);transform-origin:center left;}.留言6 div:nth-of-type(4){transform:rotateX(90deg) translateY(-50%);transform-origin:top center;}.留言6 div:nth-of-type(5){transform:rotateX(-90deg) translateY(50%);transform-origin:bottom center;}.留言6 div:nth-of-type(6){transform:translateZ(22px);}@keyframes 留言6a{0%{transform:rotate(45deg) rotateX(-25deg) rotateY(25deg);}50%{transform:rotate(45deg) rotateX(-385deg) rotateY(25deg);}100%{transform:rotate(45deg) rotateX(-385deg) rotateY(385deg);}}</style><div class="留言6"><div></div><div></div><div></div><div></div><div></div><div></div></div><br><br>
 （颜色可更改）
 
 <hr>
 
 7.跳跳跳
-<style>.留言7{width:200px;height:60px;position:relative;z-index:1;}.留言7a{width:20px;height:20px;position:absolute;
-/**/background-color:#fe0606;
-left:15%;transform-origin:50%;animation:留言7d .5s alternate infinite ease;}@keyframes 留言7d{0%{top:60px;height:5px;transform:scaleX(1.7);}40%{height:20px;transform:scaleX(1);}100%{top:0%;}}.留言7a:nth-child(2){left:45%;animation-delay:.2s;
-/**/background-color:#4400ff;
-}.留言7a:nth-child(3){left:auto;right:15%;animation-delay:.3s;
-/**/background-color:#15ff00;
-}.留言7b{width:20px;height:4px;background-color:#00000050;position:absolute;top:62px;transform-origin:50%;z-index:-1;left:15%;filter:blur(1px);animation:留言7c .5s alternate infinite ease;}@keyframes 留言7c{0%{transform:scaleX(1.5);}40%{transform:scaleX(1);opacity:.7;}100%{transform:scaleX(.2);opacity:.4;}}.留言7b:nth-child(4){left:45%;animation-delay:.2s}.留言7b:nth-child(5){left:auto;right:15%;animation-delay:.3s;}</style><div class="留言7"><div class="留言7a"></div><div class="留言7a"></div><div class="留言7a"></div><div class="留言7b"></div><div class="留言7b"></div><div class="留言7b"></div></div><br>
+<style>.留言7{width:200px;height:60px;position:relative;z-index:1;}.留言7a{width:20px;height:20px;position:absolute;background-color:
+/**/#fe0606;left:15%;transform-origin:50%;animation:留言7d .5s alternate infinite ease;}@keyframes 留言7d{0%{top:60px;height:5px;transform:scaleX(1.7);}40%{height:20px;transform:scaleX(1);}100%{top:0%;}}.留言7a:nth-child(2){left:45%;animation-delay:.2s;background-color:
+/**/#4400ff;}.留言7a:nth-child(3){left:auto;right:15%;animation-delay:.3s;background-color:
+/**/#15ff00;}.留言7b{width:20px;height:4px;background-color:#00000050;position:absolute;top:62px;transform-origin:50%;z-index:-1;left:15%;filter:blur(1px);animation:留言7c .5s alternate infinite ease;}@keyframes 留言7c{0%{transform:scaleX(1.5);}40%{transform:scaleX(1);opacity:.7;}100%{transform:scaleX(.2);opacity:.4;}}.留言7b:nth-child(4){left:45%;animation-delay:.2s}.留言7b:nth-child(5){left:auto;right:15%;animation-delay:.3s;}</style><div class="留言7"><div class="留言7a"></div><div class="留言7a"></div><div class="留言7a"></div><div class="留言7b"></div><div class="留言7b"></div><div class="留言7b"></div></div><br>
 （颜色可分别更改）
 
 <hr>
@@ -71,7 +90,6 @@ left:15%;transform-origin:50%;animation:留言7d .5s alternate infinite ease;}@k
 <hr>
 
 9.立体长条 显示2条文字（鼠标移动到上面）
-
 <style>.留言9{width:10em;justify-content:center;align-items:center;}.留言9 div{color:#ccc;font-family:'Roboto', sans-serif;transition:all 0.85s cubic-bezier(.20,.60,.20,1);transform-style:preserve-3d;transform-origin:100% 50%;width:10em;height:4em;}.留言9 div:hover{transform:rotateX(-90deg) rotateZ(-20deg);}.留言9a{box-sizing:border-box;position:absolute;display:inline-block;height:4em;width:10em;text-align:center;text-transform:uppercase;padding-top:1.5em;font-weight:bold;}.留言9b{background:wheat;color:#222229;transform:rotateX(90deg) translate3d(0, 0, 2em);box-shadow:inset 0 0 0 5px #fff;}.留言9c{background:#222229;color:#fff;box-shadow:inset 0 0 0 5px #fff;transform:translate3d(0, 0, 2em);}.留言9d{height:4em;width:4em;background:#222229;box-shadow:inset 0 0 0 5px #fff;transform:rotateY(90deg) translate3d(0, 0, 8em);}</style><div class="留言9"><div><span class="留言9a 留言9b">
 <!---->文字2</span><span class="留言9a 留言9c">
 <!---->文字1</span><span class="留言9a 留言9d"></span></div></div>
@@ -80,7 +98,6 @@ left:15%;transform-origin:50%;animation:留言7d .5s alternate infinite ease;}@k
 <hr>
 
 10.彩虹背景
-
 <style>.留言10{display:block;--width:150px;--timing:2s;border:0;width:var(--width);padding-block:1em;color:#fff;font-weight:bold;font-size:1em;transition:all 0.2s;border-radius:3px;background-image:linear-gradient(to right,rgb(250,82,82),rgb(250,82,82) 16.65%,rgb(190,75,219) 16.65%,rgb(190,75,219) 33.3%,rgb(76,110,245) 33.3%,rgb(76,110,245) 49.95%,rgb(64,192,87) 49.95%,rgb(64,192,87) 66.6%,rgb(250,176,5) 66.6%,rgb(250,176,5) 83.25%,rgb(253,126,20) 83.25%,rgb(253,126,20) 100%,rgb(250,82,82) 100%);animation:var(--timing) linear 留言10a infinite;}@keyframes 留言10a{to{background-position:var(--width);}}</style><button class="留言10">
 <!---->文字</button>
 （文字可更改）
@@ -88,12 +105,11 @@ left:15%;transform-origin:50%;animation:留言7d .5s alternate infinite ease;}@k
 <hr>
 
 11.假加载图标
-
 <style>.留言11{font-size:28px;position:relative;display:inline-block;width:1em;height:1em;}.留言11 div{position:absolute;left:0.4629em;bottom:0;width:0.074em;height:0.2777em;border-radius:0.0555em;background-color:transparent;-webkit-transform-origin:center -0.2222em;-ms-transform-origin:center -0.2222em;transform-origin:center -0.2222em;animation:留言11a 1s infinite linear;}.留言11 div:nth-child(1){-webkit-animation-delay:0s;animation-delay:0s;-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}.留言11 div:nth-child(2){-webkit-animation-delay:0.083s;animation-delay:0.083s;-webkit-transform:rotate(30deg);-ms-transform:rotate(30deg);transform:rotate(30deg);}.留言11 div:nth-child(3){-webkit-animation-delay:0.166s;animation-delay:0.166s;-webkit-transform:rotate(60deg);-ms-transform:rotate(60deg);transform:rotate(60deg);}.留言11 div:nth-child(4){-webkit-animation-delay:0.249s;animation-delay:0.249s;-webkit-transform:rotate(90deg);-ms-transform:rotate(90deg);transform:rotate(90deg);}.留言11 div:nth-child(5){-webkit-animation-delay:0.332s;animation-delay:0.332s;-webkit-transform:rotate(120deg);-ms-transform:rotate(120deg);transform:rotate(120deg);}.留言11 div:nth-child(6){-webkit-animation-delay:0.415s;animation-delay:0.415s;-webkit-transform:rotate(150deg);-ms-transform:rotate(150deg);transform:rotate(150deg);}.留言11 div:nth-child(7){-webkit-animation-delay:0.498s;animation-delay:0.498s;-webkit-transform:rotate(180deg);-ms-transform:rotate(180deg);transform:rotate(180deg);}.留言11 div:nth-child(8){-webkit-animation-delay:0.581s;animation-delay:0.581s;-webkit-transform:rotate(210deg);-ms-transform:rotate(210deg);transform:rotate(210deg);}.留言11 div:nth-child(9){-webkit-animation-delay:0.664s;animation-delay:0.664s;-webkit-transform:rotate(240deg);-ms-transform:rotate(240deg);transform:rotate(240deg);}.留言11 div:nth-child(10){-webkit-animation-delay:0.747s;animation-delay:0.747s;-webkit-transform:rotate(270deg);-ms-transform:rotate(270deg);transform:rotate(270deg);}.留言11 div:nth-child(11){-webkit-animation-delay:0.83s;animation-delay:0.83s;-webkit-transform:rotate(300deg);-ms-transform:rotate(300deg);transform:rotate(300deg);}.留言11 div:nth-child(12){-webkit-animation-delay:0.913s;animation-delay:0.913s;-webkit-transform:rotate(330deg);-ms-transform:rotate(330deg);transform:rotate(330deg);}@keyframes 留言11a{0%{background-color:#69717d;}100%{background-color:transparent;}}</style><div class="留言11"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 
 <hr>
 
-12.黑幕（鼠标移动到上面）<br>
+12.黑幕（鼠标移动到上面）<br><style>.heimu{background-color:var(--fanse-color);color:var(--fanse-color);transition:color 0.2s;}.heimu:hover{color:var(--zhengse-color)}</style>
 123<span class='heimu'>456</span>789
 
 <hr>
@@ -104,12 +120,44 @@ left:15%;transform-origin:50%;animation:留言7d .5s alternate infinite ease;}@k
 <hr>
 
 14.爱心（可点击）
-
 <style>.留言14{--heart-color:#ff5b89;position:relative;width:50px;height:50px;transition:.3s;}.留言14 .留言14d{position:absolute;width:100%;height:100%;opacity:0;z-index:20;cursor:pointer;}.留言14 .留言14e{width:100%;height:100%;display:flex;justify-content:center;align-items:center;}.留言14 .留言14c,.留言14 .留言14b{fill:var(--heart-color);position:absolute;}.留言14 .留言14b{animation:keyframes-留言14b 1s;display:none;}.留言14 .留言14a{position:absolute;animation:keyframes-留言14a .5s;animation-fill-mode:forwards;display:none;stroke:var(--heart-color);fill:var(--heart-color);stroke-width:2px;}.留言14 .留言14d:checked~.留言14e .留言14b{display:block}.留言14 .留言14d:checked~.留言14e .留言14a{display:block}@keyframes keyframes-留言14b{0%{transform:scale(0);}25%{transform:scale(1.2);}50%{transform:scale(1);filter:brightness(1.5);}}@keyframes keyframes-留言14a{0%{transform:scale(0);}50%{opacity:1;filter:brightness(1.5);}100%{transform:scale(1.4);opacity:0;display:none;}}</style><div class="留言14"><input type="checkbox" class="留言14d"><div class="留言14e"><svg viewBox="0 0 24 24" class="留言14c" xmlns="http://www.w3.org/2000/svg"><path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z"></path></svg><svg viewBox="0 0 24 24" class="留言14b" xmlns="http://www.w3.org/2000/svg"><path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z"></path></svg><svg class="留言14a" width="100" height="100" xmlns="http://www.w3.org/2000/svg"><polygon points="10,10 20,20"></polygon><polygon points="10,50 20,50"></polygon><polygon points="20,80 30,70"></polygon><polygon points="90,10 80,20"></polygon><polygon points="90,50 80,50"></polygon><polygon points="80,80 70,70"></polygon></svg></div></div>
 
+<hr>
 
+15.精灵球
+<style>.留言15{height:60px;aspect-ratio:1;position:relative;}.留言15::before,.留言15::after{content:"";position:absolute;inset:0;border-radius:50%;transform-origin:bottom;}.留言15::after{background:radial-gradient(at 75% 15%,#0000,#0000 35%),radial-gradient(at 80% 40%,#0000,#0008),radial-gradient(circle 5px,#fff 94%,#0000),radial-gradient(circle 10px,#000 94%,#0000),linear-gradient(#FE0000 0 0) top/100% calc(50% - 5px),linear-gradient(#fff 0 0) bottom/100% calc(50% - 5px)#000;background-repeat:no-repeat;animation:留言15a 1s infinite cubic-bezier(0.5,120,0.5,-120);}.留言15::before{background:#ddd;filter:blur(8px);transform:scaleY(0.4) translate(-13px, 0px);}@keyframes 留言15a{30%,70%{transform:rotate(0deg)}49.99%{transform:rotate(0.2deg)}50%{transform:rotate(-0.2deg)}}</style><div class="留言15"></div>
 
+<hr>
 
+16.下雨
+<style>.代码16{width:200px;--clr-shadow__border:#5987a3;--clr-text:#F6F4EB;--clr-rain:#192333;--clr-raindrop:#E9F8F9;--size:3rem;position:relative;outline:1px solid var(--clr-shadow__border);}.代码16 button{font-weight:600;font-size:1.5rem;background:transparent;padding:calc(var(--size) / 3) var(--size);border:none;color:var(--clr-text);letter-spacing:0.2rem;}.代码16 div{width:100%;height:100%;bottom:0%;gap:0.6rem;z-index:-1;opacity:0;transition:0.5s ease-in-out;overflow:hidden;position:absolute;display:flex;background:var(--clr-rain);opacity:1;}.代码16 div span{height:1.4rem;min-width:0.1rem;box-shadow:60px 100px var(--clr-raindrop),-40px -90px var(--clr-raindrop);background-color:var(--clr-raindrop);animation:代码16b calc(0.05s * var(--i)) linear infinite;opacity:.3;}@keyframes 代码16b{0%{transform:rotate(20deg) translateY(calc(-100% * var(--i)));}100%{transform:rotate(20deg) translateY(calc(100% * var(--i)));}}</style><div class="代码16"><button>
+<!---->文字</button><div><span style="--i:15"></span><span style="--i:8"></span><span style="--i:19"></span><span style="--i:9"></span><span style="--i:12"></span><span style="--i:14"></span><span style="--i:11"></span><span style="--i:18"></span><span style="--i:16"></span><span style="--i:9"></span><span style="--i:19"></span><span style="--i:17"></span><span style="--i:9"></span><span style="--i:20"></span></div></div>
+（文字可更改）
 
+<hr>
+
+17.音符
+<style>.留言17{--icon-count:3;--inner-height:4em;--ratio:2/3;--period:1s;display:flex;align-items:center;justify-content:center;height:var(--inner-height);width:calc(var(--inner-height) * var(--ratio) * var(--icon-count));}.留言17 span{width:calc(100% / var(--icon-count));height:calc(100% * var(--ratio));animation:留言17a var(--period) infinite linear;}.留言17 span:nth-of-type(2){animation-delay:calc(1 / 5 * var(--period));}.留言17 span:nth-of-type(3){animation-delay:calc(2 / 5 * var(--period));}@keyframes 留言17a{20%{transform:translateY(calc(-50% * (1 - var(--ratio))));}40%{transform:translateY(calc(50% * (1 - var(--ratio))));}60%{transform:translateY(0);}80%{transform:translateY(0);}}</style><div class="留言17"><span><svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0" y="0" viewBox="0 0 100 100"><ellipse transform="rotate(-21.283 49.994 75.642)" cx="50" cy="75.651" rx="19.347" ry="16.432" fill="currentColor"></ellipse><path fill="currentColor" d="M58.474 7.5h10.258v63.568H58.474z"></path></svg></span><span><svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0" y="0" viewBox="0 0 100 100"><ellipse transform="rotate(-21.283 49.994 75.642)" cx="50" cy="75.651" rx="19.347" ry="16.432" fill="currentColor"></ellipse><path fill="currentColor" d="M58.474 7.5h10.258v63.568H58.474z"></path></svg></span><span><svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0" y="0" viewBox="0 0 100 100"><ellipse transform="rotate(-21.283 49.994 75.642)" cx="50" cy="75.651" rx="19.347" ry="16.432" fill="currentColor"></ellipse><path fill="currentColor" d="M58.474 7.5h10.258v63.568H58.474z"></path></svg></span></div>
+
+<hr>
+
+18.日夜交替
+<style>.留言18{width:80px;height:40px;border-radius:100px 100px 0 0;position:relative;overflow:hidden;}.留言18:before{content:"";position:absolute;inset:0 0 -100%;background:radial-gradient(farthest-side,#ffd738 80%,#0000) left 70% top    20%/15px 15px,radial-gradient(farthest-side,#020308 92%,#0000) left 65% bottom 19%/12px 12px,radial-gradient(farthest-side,#ecfefe 92%,#0000) left 70% bottom 20%/15px 15px,linear-gradient(#9eddfe 50%,#020308 0);background-repeat:no-repeat;animation:留言18a 2s infinite;}@keyframes 留言18a{0%,20%{transform:rotate(0)}40%,60%{transform:rotate(.5turn)}80%,100%{transform:rotate(1turn)}}</style><div class="留言18"></div>
+
+<hr>
+
+19.显示文字（鼠标移动到上面）
+<style>.留言19{display:flex;align-items:center;justify-content:center;gap:5px;height:45px;width:60px;border:none;border-radius:10px;background-color:#434D5A;cursor:pointer;transition:all 0.3s;overflow:hidden;}.留言19b,.留言19c{font-size:18px;transition:all 0.3s;color:#ffffff;}.留言19a{font-size:15px;width:0;transform:scale(0);transition:all 0.3s;color:white;}.留言19:hover .留言19c{display:none;}.留言19:hover{width:
+/*按字数增加*/6em;}.留言19:hover .留言19a{transform:scale(1);width:
+/*按字数增加*/3em;}</style><button class="留言19"><span class="留言19b">&lt;</span><span class="留言19c">&nbsp;/</span><span class="留言19a">
+<!---->文字</span><span class="留言19b">></span></button>
+（文字可更改）
+
+<hr>
+
+20.一行飘浮的文字
+<style>#留言20{position:relative;width:600px;height:36px;left:240px;margin-left:-300px;overflow:visible;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;}#留言20 div{position:absolute;width:20px;height:36px;opacity:0;font-family:Helvetica, Arial, sans-serif;animation:留言20 2s linear infinite;-o-animation:留言20 2s linear infinite;-moz-animation:留言20 2s linear infinite;-webkit-animation:留言20 2s linear infinite;transform:rotate(180deg);-o-transform:rotate(180deg);-moz-transform:rotate(180deg);-webkit-transform:rotate(180deg);color:#35C4F0;}#留言20 div:nth-child(2){animation-delay:0.2s;-o-animation-delay:0.2s;-moz-animation-delay:0.2s;-webkit-animation-delay:0.2s;}#留言20 div:nth-child(3){animation-delay:0.4s;-o-animation-delay:0.4s;-webkit-animation-delay:0.4s;-webkit-animation-delay:0.4s;}#留言20 div:nth-child(4){animation-delay:0.6s;-o-animation-delay:0.6s;-moz-animation-delay:0.6s;-webkit-animation-delay:0.6s;}#留言20 div:nth-child(5){animation-delay:0.8s;-o-animation-delay:0.8s;-moz-animation-delay:0.8s;-webkit-animation-delay:0.8s;}#留言20 div:nth-child(6){animation-delay:1s;-o-animation-delay:1s;-moz-animation-delay:1s;-webkit-animation-delay:1s;}#留言20 div:nth-child(7){animation-delay:1.2s;-o-animation-delay:1.2s;-moz-animation-delay:1.2s;-webkit-animation-delay:1.2s;}@keyframes 留言20{100%{left:0;opacity:0;}65%{left:41%;-moz-transform:rotate(0deg);-webkit-transform:rotate(0deg);-o-transform:rotate(0deg);transform:rotate(0deg);opacity:1;}35%{left:59%;-moz-transform:rotate(0deg);-webkit-transform:rotate(0deg);-o-transform:rotate(0deg);transform:rotate(0deg);opacity:1;}0%{left:100%;-moz-transform:rotate(-180deg);-webkit-transform:rotate(-180deg);-o-transform:rotate(-180deg);transform:rotate(-180deg);opacity:0;}}@-moz-keyframes 留言20{0%{left:0;opacity:0;}35%{left:41%;-moz-transform:rotate(0deg);transform:rotate(0deg);opacity:1;}65%{left:59%;-moz-transform:rotate(0deg);transform:rotate(0deg);opacity:1;}100%{left:100%;-moz-transform:rotate(-180deg);transform:rotate(-180deg);opacity:0;}}@-webkit-keyframes 留言20{0%{left:0;opacity:0;}35%{left:41%;-webkit-transform:rotate(0deg);transform:rotate(0deg);opacity:1;}65%{left:59%;-webkit-transform:rotate(0deg);transform:rotate(0deg);opacity:1;}100%{left:100%;-webkit-transform:rotate(-180deg);transform:rotate(-180deg);opacity:0;}}@-o-keyframes 留言20{0%{left:0;opacity:0;}35%{left:41%;-o-transform:rotate(0deg);transform:rotate(0deg);opacity:1;}65%{left:59%;-o-transform:rotate(0deg);transform:rotate(0deg);opacity:1;}100%{left:100%;-o-transform:rotate(-180deg);transform:rotate(-180deg);opacity:0;}}</style><div id="留言20"><div>
+<!---->一</div><div>行</div><div>飘</div><div>浮</div><div>的</div><div>文</div><div>字</div></div>
+（文字可更改，限6个字）
 
 <a name="底"></a>
