@@ -41,16 +41,22 @@ div0: 1
         ["1","仿主页 透卡","带小像素点出去玩~","/zb/1","约12元"],
         ["2","安全出口 钥匙扣","　","/zb/2","约10元"],
         // ["","","","/",""],
+
+        [".","<hr><a name='非实体周边'></a><h3>非实体周边</h3>"],
+        ["11783052","安全出口 壁纸","","/zb/11783052",""],
+        // ["","","","/",""],
     ];
     let dy="";
     for(let i=0;d.length>i;i++){
         if(d[i][0]=="."){dy+=d[i][1]}
         else{
             if(d[i][0].indexOf(".")!=-1){}else{d[i][0]+=".jpg"}
+            if(d[i][0].split(".")[0]<10000000){d[i][1]="<small>"+d[i][0].split(".")[0]+".</small><b>"+d[i][1]+"</b>";}
+            else{d[i][1]="<b>"+d[i][1]+"</b>"}
             if(d[i][3]&&d[i][3]!=""){d[i][3]=["<a href='"+d[i][3]+"'>","</a>"]}else{d[i][3]=["",""]}
             if(d[i][4]&&d[i][4]!=""){d[i][4]="<span class='tsxt hs'>"+d[i][4]+"</span>"}else{d[i][4]=""}
 
-            dy+="<div class='cj'>"+d[i][3][0]+"<img src='/i/w/周边/cj/"+d[i][0]+"'><small>"+d[i][0].split(".")[0]+".</small><b>"+d[i][1]+"</b>"+d[i][3][1]+"<br><span class='hs'>"+d[i][2]+"</span>"+d[i][4]+"</div>";
+            dy+="<div class='cj'>"+d[i][3][0]+"<img src='/i/w/周边/cj/"+d[i][0]+"'>"+d[i][1]+d[i][3][1]+"<br><span class='hs'>"+d[i][2]+"</span>"+d[i][4]+"</div>";
         }
     }
     document.getElementById("dy").innerHTML=dy;

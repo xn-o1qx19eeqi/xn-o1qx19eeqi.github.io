@@ -119,4 +119,8 @@
     if(location.href.split(".cn")[1].length<3){
         document.getElementById("留言板注意").innerHTML="这里是里世界，可能因为网络问题？我不知道，请刷新页面试试能不能回到正常留言板（当然，你也可以在这里留言，只是不一定会被别人看到）";
     }
+    if(localStorage.getItem("简易模式")&&localStorage.getItem("简易模式")=="2"){
+        document.getElementById("vcomments").style="display:none;";
+        document.getElementById("vcomments_2").style="display:none;";
+    }
 </script>
