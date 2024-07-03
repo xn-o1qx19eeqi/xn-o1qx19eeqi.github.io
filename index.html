@@ -493,7 +493,7 @@ if(背景[0]=="#"){
     document.getElementById("输入颜色_背景").placeholder=背景颜色;
     if(localStorage.getItem("像素点")==颜色){localStorage.setItem("像素点背景",背景颜色)}
 }else{
-    document.getElementById("房子").style="background-image:url(/i/y/"+背景+")";
+    document.getElementById("房子").style="background-size:400px 400px;background-image:url(/i/y/"+背景+")";
     document.getElementById("输入颜色_背景").placeholder=背景;
 }
     document.getElementById("style_root").innerHTML=":root{--点点:#"+颜色+";--背景:"+背景颜色+";--反色:"+反色+"}";
