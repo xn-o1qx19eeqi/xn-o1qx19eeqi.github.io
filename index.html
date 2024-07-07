@@ -248,6 +248,7 @@ let 日程={
     "玩电脑／〈x〉在写日记。",
     "看电视／〈x〉在看小像素点运动会。",
     "玩电脑／〈x〉玩电脑的时候，发现了一个可以认养小小像素点的网站。",
+    "玩电脑／〈x〉在浏览〈z〉的主页。",
 ]],
 
 "玩闹":["今天又是快乐的一天，贪玩的〈x〉想尽情的玩乐。",[
@@ -766,9 +767,9 @@ else{dy+=临时2[i2]}
 document.getElementById("小窝").innerHTML=dy2+"<div id='点点'></div>";
 互动="";
 document.getElementById("style").innerHTML=dy;
-// if(临时[2]){if(主人!="无"&&主人!="（不可认养）"){临时[1]=临时[2]}}
 临时[1]=临时[1].replace(new RegExp('〈x〉',"g"),"<b>"+名字+"</b>");
-临时[1]=临时[1].replace(new RegExp('〈z〉',"g"),"<b>"+主人+"</b>");
+let 主人z=主人;if(主人z=="（不可认养）"||主人z=="无"){主人z="某人"}
+临时[1]=临时[1].replace(new RegExp('〈z〉',"g"),"<b>"+主人z+"</b>");
 if(临时[1].indexOf("＼")!=-1){
     临时[1]=临时[1].split("＼");
     临时[1]=临时[1][Math.floor(Math.random()*临时[1].length)];
