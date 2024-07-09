@@ -63,7 +63,7 @@ ShuBiao: 1
 
 <script>
   let 更多背景=["夜空.jpg","幻想空间.jpg","像素星球.gif","草方块.png","200321.jpg"];
-  let dy="<table class='tm 长表格'>";
+  let dy="<table class='tm'>";
   for(let i=0;更多背景.length>i;i++){
     dy+="<tr><td>"+更多背景[i]+"</td><td><img id=\"a"+i+"\"><a id=\"b"+i+"\" onclick=\"document.getElementById('b"+i+"').innerHTML='';document.getElementById('a"+i+"').src='/i/y/"+更多背景[i]+"';document.getElementById('a"+i+"').style='width:100px';\">预览</a></td></tr>";
   }
@@ -90,7 +90,7 @@ ShuBiao: 1
 <a name="留言代码"></a><h2>留言代码</h2>
 写在小像素点的留言里，在中括号[]里可以写一些特定代码。<br>
 注意：“中括号[]”是小写中括号（<a onclick="复(制='\[\]')">点击复制</a>），中括号里不可以包含其他中括号，除了代码需要以外不可以有小写逗号（,），不可以有小写的双引号（"）、单引号（'）、其他特殊字符。<br>
-<table class="tm">
+<table class="tm 长表格">
   <tr class="tr" style="background-color:#00000080 !important;">
     <td>作用</td><td>代码</td><td>例子</td><td>效果</td></tr>
   <tr><td>换行</td><td>[n]</td><td>第一句[n]第二句</td><td>第一句<br>第二句</td></tr>
