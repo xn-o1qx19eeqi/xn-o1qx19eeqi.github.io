@@ -149,8 +149,12 @@ let 判;function 断(){
     if(o==0){判=判[判.length-1];if(判.indexOf("|")!=-1){判=""}}
 }
 
+console.log()
 function 动作(d){
-    let 临时=data[d].replace(new RegExp('/i/y/m/',"g"),"C:/mq/博客/xn-o1qx19eeqi.github.io/i/y/m/")
+    let 临时=data[d];
+    if(location.href.indexOf("file://")!=-1){
+        临时=临时.replace(new RegExp('/i/y/m/',"g"),"C:/mq/博客/xn-o1qx19eeqi.github.io/i/y/m/")
+}
     临时=临时.split("／");
     dy="";
 
