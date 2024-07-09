@@ -25,7 +25,7 @@ ShuBiao: 1
 普通的动作输入指令名即可生效，部分需要配合参数使用，代码为：<b>指令/参数</b>，多个参数之间用“_”分隔。<br>
 颜色编号无需“#”，直接用六位号码即可，如“92D1E2”。<br>
 特殊玩法：在小像素点的链接后面加上“?h=指令”，可以在访问时自动触发一次指令，比如<a href="/92D1E2?h=生日快乐">像素点.cn/92D1E2?h=生日快乐</a>，打开就能看到小猫球在祝你生日快乐。<br>
-<table class="tm 动作代码">
+<table class="tm 动作代码 长表格">
     <tr class='tr' style="background-color:#00000080 !important;">
       <td>指令</td><td>参数</td><td>例子</td><td>说明</td></tr>
     <tr><td>吃</td><td>/物品_物品颜色</td><td>吃/<i>果味软糖_FFA800</i></td><td></td></tr>
@@ -63,7 +63,7 @@ ShuBiao: 1
 
 <script>
   let 更多背景=["夜空.jpg","幻想空间.jpg","像素星球.gif","草方块.png","200321.jpg"];
-  let dy="<table class='tm'>";
+  let dy="<table class='tm 长表格'>";
   for(let i=0;更多背景.length>i;i++){
     dy+="<tr><td>"+更多背景[i]+"</td><td><img id=\"a"+i+"\"><a id=\"b"+i+"\" onclick=\"document.getElementById('b"+i+"').innerHTML='';document.getElementById('a"+i+"').src='/i/y/"+更多背景[i]+"';document.getElementById('a"+i+"').style='width:100px';\">预览</a></td></tr>";
   }
