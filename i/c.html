@@ -13,10 +13,21 @@ ShuBiao: 1
 .tr{font-weight:bold;position:sticky;top:0;background-color:#00000080 !important;}
 .授权记录 td:nth-child(3){font-size:0.8em;}
 .动作代码 i{color:#aaaaaa;}
+
+.checkbox-wrapper input[type="checkbox"]{visibility:hidden;display:none}.checkbox-wrapper *,.checkbox-wrapper ::after,.checkbox-wrapper ::before{box-sizing:border-box;user-select:none}.checkbox-wrapper{position:relative;display:inline;overflow:hidden}.checkbox-wrapper .label{cursor:pointer}.checkbox-wrapper .check{width:50px;height:50px;position:absolute;opacity:0}.checkbox-wrapper .label svg{vertical-align:middle}.checkbox-wrapper .path1{stroke-dasharray:400;stroke-dashoffset:400;transition:.5s stroke-dashoffset;opacity:0}.checkbox-wrapper .check:checked+label svg g path{stroke-dashoffset:0;opacity:1}
 </style>
 
 <a name="动作代码"></a><h2>动作指令</h2>
-<small><a onclick="document.getElementById('说明1').style='';">“指令”右侧的<input type="checkbox" checked>是什么？</a></small>
+<small><a onclick="document.getElementById('说明1').style='';">“指令”右侧的
+  <div class="checkbox-wrapper">
+    <input type="checkbox" class="check">
+    <label class="label">
+    <svg width="30" height="30" viewBox="0 0 95 95" style="margin:-6px"><rect x="30" y="20" width="50" height="50" stroke="var(--fanse-color)" fill="none"></rect><g transform="translate(0,-952.36222)"><path d="m 56,963 c -102,122 6,9 7,9 17,-5 -66,69 -38,52 122,-77 -7,14 18,4 29,-11 45,-43 23,-4" stroke="var(--fanse-color)" stroke-width="3" fill="none" class="path1"></path></g></svg><span></span></label>
+  </div>
+  </div>
+  是什么？</a></small>
+
+<!-- <small><a onclick="document.getElementById('说明1').style='';">“指令”右侧的<input type="checkbox" checked>是什么？</a></small> -->
 <div id="说明1" style="display:none;">
   原本的互动需要等待当前动作完成才会执行，有人希望可以点击互动后立刻执行，在像素点页面勾选它，将会开启“立即执行”模式。
 </div>
@@ -39,13 +50,14 @@ ShuBiao: 1
     <tr><td>早上好</td><td></td><td></td><td></td></tr>
     <tr><td>生日快乐</td><td></td><td></td><td>小像素点拿来了蛋糕，祝你生日快乐！</td></tr>
     <tr><td>吃蛋糕</td><td></td><td></td><td>你给了小像素点一个大蛋糕。</td></tr>
+    <tr><td>喝可乐</td><td></td><td></td><td></td></tr>
     <tr><td colspan="4"><hr></td></tr>
     <tr><td>看电视</td><td></td><td></td><td></td></tr>
-    <tr><td>喝可乐</td><td></td><td></td><td></td></tr>
     <tr><td>薄荷糖</td><td></td><td></td><td></td></tr>
     <tr><td>后空翻</td><td></td><td></td><td></td></tr>
     <tr><td>蜘蛛</td><td></td><td></td><td></td></tr>
     <tr><td>奇怪的知识</td><td></td><td></td><td></td></tr>
+    <tr><td>魔术</td><td></td><td></td><td></td></tr>
 </table>
 
 
