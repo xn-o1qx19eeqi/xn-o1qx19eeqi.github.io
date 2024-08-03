@@ -11,6 +11,7 @@
 <small id="成功" style="display:none;">打卡成功</small>
 <small id="失败" style="display:none;">打卡失败<br>请<a target="_blank" style="color:#50A3EC"
         href="https://wj.qq.com/s2/10560058/b06e">点此使用表格</a></small>
+<small id="失败2" style="display:none;">打卡失败<br>您的打卡次数过多</small>
 <small id="加载" style="background-color:#000000;"><a onclick="javascript:location.reload();">请点此处验证</a></small>
 
 <script>
@@ -24,29 +25,36 @@
                 o = 3;
             }
 
-            try {
-                AV.init({
-                    appId: "ZvAplyDOpQXqSHj4pKeaoHZJ-gzGzoHsz",
-                    appKey: "cBfrhtl738wwWQeOIEHJpiZg",
-                    serverURL: "https://zvaplydo.lc-cn-n1-shared.com"
-                });
-                const TestObject = AV.Object.extend('xsd');
-                const testObject = new TestObject();
-                testObject.set('words', url);
-                testObject.save().then((testObject) => {
-                    o = 1;
-                    document.getElementById("成功").style = "background-color:#01EC0C;";
-                    document.getElementById("加载").style = "display:none;";
-                })
-
-            }
-            catch (e) {
-                o = 2;
-                document.getElementById("失败").style = "background-color:#FF0000;";
+            let 打卡次数=localStorage.getItem(new Date().getFullYear()+"_"+new Date().getMonth()+"_"+new Date().getDate())||"";
+            if(打卡次数.indexOf(url)!=-1){}else{打卡次数+="／"+url;}
+            if(打卡次数.split("／").length>10){
+                document.getElementById("失败2").style = "background-color:#FF0000;";
                 document.getElementById("加载").style = "display:none;";
-            }
-            if (o == 0) {
-                window.location.href = location.href + '&加载失败';
+            }else{
+                try {
+                    AV.init({
+                        appId: "ZvAplyDOpQXqSHj4pKeaoHZJ-gzGzoHsz",
+                        appKey: "cBfrhtl738wwWQeOIEHJpiZg",
+                        serverURL: "https://zvaplydo.lc-cn-n1-shared.com"
+                    });
+                    const TestObject = AV.Object.extend('xsd');
+                    const testObject = new TestObject();
+                    testObject.set('words', url);
+                    testObject.save().then((testObject) => {
+                        o = 1;
+                        document.getElementById("成功").style = "background-color:#01EC0C;";
+                        document.getElementById("加载").style = "display:none;";
+                    })
+
+                }
+                catch (e) {
+                    o = 2;
+                    document.getElementById("失败").style = "background-color:#FF0000;";
+                    document.getElementById("加载").style = "display:none;";
+                }
+                if (o == 0) {
+                    window.location.href = location.href + '&加载失败';
+                }
             }
         }
         else {
