@@ -34,7 +34,7 @@ div0: 1
     let 锁;
     let arr;function 随机(){let _arr=arr.slice();for(let i=0;i<_arr.length;i++){let j=getRandomInt(0,i);let t=_arr[i];_arr[i]=_arr[j];_arr[j]=t;}function getRandomInt(min,max){return Math.floor(Math.random()*(max-min+1)+min);}arr=_arr;}
     function 重新开始(){
-        document.getElementById("实时").innerHTM="";
+        document.getElementById("实时").innerHTML="";
         document.getElementById("表格").style="";
         document.getElementById("开始游戏").innerHTML="重新开始";
         for(let i=1;10>i;i++){
@@ -43,7 +43,7 @@ div0: 1
             棋盘[i]=0;
         }
         锁=0;
-        if(Math.floor(Math.random()*2)!=0){点点执行(Math.floor(Math.random()*9)+1);document.getElementById("实时").innerHTM=名字+"的回合"}else{document.getElementById("实时").innerHTM="你的回合"}
+        if(Math.floor(Math.random()*2)!=0){点点执行(Math.floor(Math.random()*9)+1);document.getElementById("实时").innerHTML=名字+"的回合"}else{document.getElementById("实时").innerHTML="你的回合"}
     }
 
     function 按钮(o){
@@ -132,7 +132,7 @@ div0: 1
         setTimeout("点点执行('"+o+"')",500);
     }
     function 点点执行(o){
-        document.getElementById("实时").innerHTM=名字+"的回合"
+        document.getElementById("实时").innerHTML=名字+"的回合"
         棋盘[o]=10;
         document.getElementById("按钮"+o).innerHTML="<span class='cuo'>Ｘ</span>";
         let 检测=0;
@@ -165,7 +165,7 @@ div0: 1
             发送("平局")
             锁=1;
         }else{
-            document.getElementById("实时").innerHTM="你的回合"
+            document.getElementById("实时").innerHTML="你的回合"
         }
     }
 
