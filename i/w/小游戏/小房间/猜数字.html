@@ -29,9 +29,11 @@ div0: 1
     <button onclick="确定()">确定</button>
 </div>
 
-<div id="a7" style="display:none"><br><button onclick="再来一局()">再来一局</button></div>
+<div id="a7" style="display:none"><br><a onclick="再来一局()" class="anniu">再来一局</a></div>
 
 <script>
+    
+    document.getElementById("实时").innerHTML="和"+名字+"玩猜数字。";
     let 模式;
     let 最大;
     let 最小;
@@ -76,12 +78,13 @@ div0: 1
                 document.getElementById("a3").style.display = "none";
                 document.getElementById("a2").innerHTML = "x=" + x;
                 document.getElementById("a2").className = "cuo";
-                document.getElementById("a5").innerHTML = "很遗憾，点点获胜（你选择" + 输入 + " 点点选择" + 点点选择 + "）";
+                document.getElementById("a5").innerHTML = 名字+"获胜（你选择" + 输入 + 名字 + " 选择" + 点点选择 + "）";
+                发送('点点赢了')
                 document.getElementById("a7").style.display = "block";
             }
             else {
                 if (输入 != x) {
-                    document.getElementById("a5").innerHTML = "你选择" + 输入 + " 点点选择" + 点点选择;
+                    document.getElementById("a5").innerHTML = "你选择" + 输入 + 名字 + " 选择" + 点点选择;
                 }
             }
 
@@ -94,6 +97,7 @@ div0: 1
 
     }
     function 再来一局(){
+        document.getElementById("实时").innerHTML="";
         document.getElementById("a1").style.display = "block";
         document.getElementById("a3").style.display = "none";
         document.getElementById("a7").style.display = "none";
@@ -103,12 +107,3 @@ div0: 1
         选择();
     }
 </script>
-
-<!--游戏内容
-预设["文字"]=["动作名／动作〈x〉文字＼另一个动作／动作〈x〉文字"];
-发送("文字") 按照预设执行
-变量 名字=像素点名字 颜色=像素点颜色
-
--->
-
-
