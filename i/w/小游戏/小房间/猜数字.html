@@ -1,0 +1,114 @@
+---
+layout: e0
+permalink: 小房间/猜数字
+BeiJing: 0／0-01.png
+BeiJing_SJ: 0／0-01.png
+BiaoTi: 猜数字
+div0: 1
+---
+<link rel="stylesheet" href="/i/5/xfj.css">
+
+<style id="style_root"></style><style id="style"></style>
+<div id="屋顶"></div><div id="房子"><div id="小窝"><div id='点点'></div></div></div><div id="实时"></div><br>
+
+<script src="/i/5/xfj.js"></script>
+
+<div id="a1" style="display:block">
+    <button onclick="选择(模式=1)" class="anniu">开始游戏</button><br>
+</div>
+
+<div id="a2" style="font-size:1.5em">　</div>
+
+<br>
+
+<div id="a5">　</div>
+
+<div id="a3" style="display:none">
+    你<span id="a4"></span>的选择：<br>
+    <input id="a6" style="width:50px" onkeyup="if(event.keyCode==13){确定()}"/>
+    <button onclick="确定()">确定</button>
+</div>
+
+<div id="a7" style="display:none"><br><button onclick="再来一局()">再来一局</button></div>
+
+<script>
+    let 模式;
+    let 最大;
+    let 最小;
+    let x;
+    let 你;
+    let 点点选择;
+    function 选择() {
+        document.getElementById("a1").style.display = "none";
+        document.getElementById("a3").style.display = "block";
+        document.getElementById("a2").innerHTML = "0 &lt; x &lt; 100";
+        x = Math.floor(Math.random() * 99) + 1;
+        最大 = 100;
+        最小 = 0;
+        你 = "";
+        document.getElementById("a4").innerHTML = "";
+    }
+    function 确定() {
+        let 输入 = document.getElementById("a6").value;
+        输入 *= 1;
+        document.getElementById("a6").value = "";
+        if (输入 <= 最小 || 输入 >= 最大 || 输入 === "" || isNaN(输入)) {
+            输入 = 最小 + 1;
+        }
+        if (输入 == x) {
+            发送('你赢了')
+            document.getElementById("a3").style.display = "none";
+            document.getElementById("a2").innerHTML = "x=" + x;
+            document.getElementById("a2").className = "dui";
+            document.getElementById("a5").innerHTML = "恭喜你" + 你 + "获得胜利！";
+            document.getElementById("a7").style.display = "block";
+        }
+
+        if (输入 > x) { 最大 = 输入; }
+        else { 最小 = 输入; }
+
+        if (模式 == 1) {
+            let aa = 最大 - 最小 - 1;
+            let ab = 最小 + 1;
+            点点选择 = Math.floor(Math.random() * aa) + ab;
+
+            if (点点选择 == x) {
+                document.getElementById("a3").style.display = "none";
+                document.getElementById("a2").innerHTML = "x=" + x;
+                document.getElementById("a2").className = "cuo";
+                document.getElementById("a5").innerHTML = "很遗憾，点点获胜（你选择" + 输入 + " 点点选择" + 点点选择 + "）";
+                document.getElementById("a7").style.display = "block";
+            }
+            else {
+                if (输入 != x) {
+                    document.getElementById("a5").innerHTML = "你选择" + 输入 + " 点点选择" + 点点选择;
+                }
+            }
+
+            if (点点选择 > x) { 最大 = 点点选择; }
+            else { 最小 = 点点选择; }
+        }
+        if (输入 != x && 点点选择 != x) {
+            document.getElementById("a2").innerHTML = 最小 + " &lt; x &lt; " + 最大;
+        }
+
+    }
+    function 再来一局(){
+        document.getElementById("a1").style.display = "block";
+        document.getElementById("a3").style.display = "none";
+        document.getElementById("a7").style.display = "none";
+        document.getElementById("a2").innerHTML = "　";
+        document.getElementById("a5").innerHTML = "　";
+        document.getElementById("a2").className = "";
+        选择();
+    }
+</script>
+
+<!--游戏内容
+预设["文字"]=["动作名／动作〈x〉文字＼另一个动作／动作〈x〉文字"];
+发送("文字") 按照预设执行
+变量 名字=像素点名字 颜色=像素点颜色
+
+-->
+
+
