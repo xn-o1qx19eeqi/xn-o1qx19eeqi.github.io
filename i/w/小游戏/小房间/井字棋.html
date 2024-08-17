@@ -43,7 +43,7 @@ div0: 1
             棋盘[i]=0;
         }
         锁=0;
-        if(Math.floor(Math.random()*2)!=0){点点执行(Math.floor(Math.random()*9)+1);document.getElementById("实时").innerHTML=名字+"的回合"}else{document.getElementById("实时").innerHTML="你的回合"}
+        if(Math.floor(Math.random()*2)!=0){点点执行(Math.floor(Math.random()*9)+1);document.getElementById("实时").innerHTML=名字+"选好了，该你了。"}else{document.getElementById("实时").innerHTML="你的回合。"}
     }
 
     function 按钮(o){
@@ -132,7 +132,7 @@ div0: 1
         setTimeout("点点执行('"+o+"')",500);
     }
     function 点点执行(o){
-        document.getElementById("实时").innerHTML=名字+"的回合"
+        document.getElementById("实时").innerHTML=名字+"的回合。"
         棋盘[o]=10;
         document.getElementById("按钮"+o).innerHTML="<span class='cuo'>Ｘ</span>";
         let 检测=0;
@@ -150,6 +150,7 @@ div0: 1
             锁=1;
         }else{
             锁=0;
+            document.getElementById("实时").innerHTML="你的回合。"
             平局检测();
         }
     }
@@ -164,8 +165,6 @@ div0: 1
         if(检测==0){
             发送("平局")
             锁=1;
-        }else{
-            document.getElementById("实时").innerHTML="你的回合"
         }
     }
 
