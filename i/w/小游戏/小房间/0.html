@@ -22,9 +22,9 @@ div0: 1
 
 <br>
 
-测试 :<span style="font-size:2em;">
+测试 :
 <a href="" class="anniu">测试</a>
-</span>
+
 
 <!--
 🙂微笑 😗亲亲 😐一般 😴睡觉
@@ -32,3 +32,23 @@ div0: 1
 
 
 <script src="/i/5/xfj.js"></script>
+
+<script>
+预设["开始"]=["o／来到〈x〉的小房间。"],
+表情="开始";
+function 选择(o){
+表情=o;
+document.getElementById("输入").value+=o;
+}
+function showkey() {
+key = event.keyCode;
+switch (key) {
+    case 13:
+        发送();
+        break;
+}
+}
+document.onkeydown = showkey;
+
+发送();
+</script>

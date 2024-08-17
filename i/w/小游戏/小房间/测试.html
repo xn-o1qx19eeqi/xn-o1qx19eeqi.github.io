@@ -1,4 +1,33 @@
-let 颜色="000000";
+<style>
+#房子{width:400px;height:400px;overflow:hidden;background-color:var(--背景)}#小窝{position:relative;top:270px;left:191px}#点点,.群演{position:relative;width:10px;height:10px;top:0;left:0;animation-duration:20s;animation-delay:3s;background-color:var(--点点)}.群演{position:absolute;opacity:0}#上一条{font-size:0.8em;color:#aaaaaa;}@media screen and (max-width: 767px){#房子{margin: 0 0 0 -3%}}#实时{font-size:0.8em;}br.sj{display:none}
+@media screen and (max-width: 767px){#房子{margin:0 0 0 -2.6%;transform-origin:left center;transform:scale(0.88)}br.sj{display:inline}}
+</style>
+
+<style id="style_root"></style><style id="style"></style>
+<div id="屋顶"></div><div id="房子"><div id="小窝"><div id='点点'></div></div></div><div id="实时"></div><br>
+<div id="上一条"></div><div id="聊天记录"></div><br>
+
+<input class="xsan" type="text" placeholder="你要说的话" autocomplete="off" id="输入" style="width:500px;font-size:1.2em;"><br class="sj"><br class="sj">
+<a class="xsan" onclick="发送()">发送</a><br>
+表情 :<span style="font-size:2em;">
+<a onclick="选择('😃')">😃</a>
+<a onclick="选择('🙁')">🙁</a>
+<a onclick="选择('🎂')">🎂</a>
+</span>
+
+<br>
+
+测试 :<span style="font-size:2em;">
+<a href="" class="anniu">测试</a>
+</span>
+
+<!--
+🙂微笑 😗亲亲 😐一般 😴睡觉
+-->
+
+
+<script>
+    let 颜色="000000";
 if(localStorage.getItem("像素点")){颜色=localStorage.getItem("像素点")}else{localStorage.setItem("像素点",颜色)}
 let 背景="";
 let 反色="";
@@ -30,6 +59,7 @@ document.getElementById("style_root").innerHTML=":root{--点点:#"+颜色+";--�
 document.getElementById("屋顶").innerHTML="<h2>"+名字+"<small>的小房间</small></h2>";
 
 let 预设={
+"开始":["o／来到〈x〉的小房间。"],
 "o":[
     "o／〈x〉在认真聆听。",
     "o／〈x〉在认真聆听。",
@@ -45,13 +75,6 @@ let 预设={
 "😃":["高兴跳跳／〈x〉跳了跳。"],
 "🙁":["凑近／〈x〉蹭了蹭你。＼〈x〉拍了拍你。＼〈x〉给了你一把薯片。"],
 "🎂":["蛋糕／〈x〉拿来了一个蛋糕。"],
-
-
-
-"点点赢了":["高兴跳跳／〈x〉赢了。"],
-"你赢了":["凑近／〈x〉恭喜你获得胜利。"],
-"平局":["小跳两下／平局。","小跳两下／平局。","小跳两下／平局。","小跳两下／平局，〈x〉想再来一局。＼歪头／平局，〈x〉问你要不要再来一局？"],
-
 }
 
 let 动作={
@@ -132,3 +155,6 @@ document.getElementById("style").innerHTML=dy;
 document.getElementById("点点").style="animation-name:"+表情+";";
 表情="o";
 }
+
+
+</script>

@@ -13,11 +13,6 @@ div0: 1
 <div id="上一条"></div><div id="聊天记录"></div><br>
 
 
-
-
-
-
-
 <style>
     .按钮{font-size:2em;}
     .按钮 td{color:#AAAAAA;}
@@ -25,7 +20,7 @@ div0: 1
     .cuo{color:#db0202;}
 </style>
 
-<a onclick="重新开始()" id="开始游戏">开始游戏</a>
+<a onclick="重新开始()" id="开始游戏" class="anniu">开始游戏</a>
 <table id="表格" class="按钮" style="display:none;">
     <tr><td id="按钮1" onclick="按钮(1)"></td><td id="按钮2" onclick="按钮(2)"></td><td id="按钮3" onclick="按钮(3)"></td></tr>
     <tr><td id="按钮4" onclick="按钮(4)"></td><td id="按钮5" onclick="按钮(5)"></td><td id="按钮6" onclick="按钮(6)"></td></tr>
@@ -49,7 +44,7 @@ div0: 1
             棋盘[i]=0;
         }
         锁=0;
-        if(Math.floor(Math.random()*2)!=0){try{notyf.alert("电脑的回合");}catch(e){alert("电脑的回合");};电脑执行(Math.floor(Math.random()*9)+1)}else{try{notyf.confirm("玩家的回合")}catch(e){alert("玩家的回合");}}
+        if(Math.floor(Math.random()*2)!=0){点点执行(Math.floor(Math.random()*9)+1)}
     }
 
     function 按钮(o){
@@ -69,17 +64,16 @@ div0: 1
                             document.getElementById("按钮"+i).className="dui";
                         }
                     }
-                    try{notyf.confirm("恭喜获胜")}catch(e){alert("恭喜获胜");}
-                    余额(10);
+                    表情="你赢了";发送()
                     锁=1;
                 }else{
                     平局检测();
                     检测=0;
-                    for(let i=0;w.length>i;i++){//电脑有2连
+                    for(let i=0;w.length>i;i++){//点点有2连
                         if(棋盘[w[i][0]]+棋盘[w[i][1]]+棋盘[w[i][2]]==20){
-                            if(棋盘[w[i][0]]==0){电脑(w[i][0])}
-                            else if(棋盘[w[i][1]]==0){电脑(w[i][1])}
-                            else{电脑(w[i][2])}
+                            if(棋盘[w[i][0]]==0){点点(w[i][0])}
+                            else if(棋盘[w[i][1]]==0){点点(w[i][1])}
+                            else{点点(w[i][2])}
                             检测=1;
                             break;
                         }
@@ -87,21 +81,21 @@ div0: 1
                     if(检测==0){
                         for(let i=0;w.length>i;i++){//玩家有2连
                         if(棋盘[w[i][0]]+棋盘[w[i][1]]+棋盘[w[i][2]]==2){
-                            if(棋盘[w[i][0]]==0){电脑(w[i][0])}
-                            else if(棋盘[w[i][1]]==0){电脑(w[i][1])}
-                            else{电脑(w[i][2])}
+                            if(棋盘[w[i][0]]==0){点点(w[i][0])}
+                            else if(棋盘[w[i][1]]==0){点点(w[i][1])}
+                            else{点点(w[i][2])}
                             检测=1;
                             break;
                         }
                     }
                     }
-                    if(检测==0&&棋盘[5]==0&&Math.floor(Math.random()*4)==0){检测=1;电脑(5);}
+                    if(检测==0&&棋盘[5]==0&&Math.floor(Math.random()*4)==0){检测=1;点点(5);}
                     if(检测==0){
-                        for(let i=0;w.length>i;i++){//顺着 优先电脑 x
+                        for(let i=0;w.length>i;i++){//顺着 优先点点 x
                         if(棋盘[w[i][0]]+棋盘[w[i][1]]+棋盘[w[i][2]]==10){
-                            if(棋盘[w[i][0]]==0){电脑(w[i][0])}
-                            else if(棋盘[w[i][1]]==0){电脑(w[i][1])}
-                            else{电脑(w[i][2])}
+                            if(棋盘[w[i][0]]==0){点点(w[i][0])}
+                            else if(棋盘[w[i][1]]==0){点点(w[i][1])}
+                            else{点点(w[i][2])}
                             检测=1;
                             break;
                         }
@@ -110,9 +104,9 @@ div0: 1
                     if(检测==0){
                         for(let i=0;w.length>i;i++){//顺着 优先玩家 x
                         if(棋盘[w[i][0]]+棋盘[w[i][1]]+棋盘[w[i][2]]==1){
-                            if(棋盘[w[i][0]]==0){电脑(w[i][0])}
-                            else if(棋盘[w[i][1]]==0){电脑(w[i][1])}
-                            else{电脑(w[i][2])}
+                            if(棋盘[w[i][0]]==0){点点(w[i][0])}
+                            else if(棋盘[w[i][1]]==0){点点(w[i][1])}
+                            else{点点(w[i][2])}
                             检测=1;
                             break;
                         }
@@ -122,24 +116,22 @@ div0: 1
                         arr=随机数;随机();
                         for(let i=0;arr.length>i;i++){
                             if(棋盘[arr[i]]==0){
-                                电脑(arr[i]);
+                                点点(arr[i]);
                                 break;
                             }
                         }
                     }
                 }
             }else{
-                try{notyf.alert("这里不可选");}catch(e){alert("这里不可选");}
             }
         }else{
-            try{notyf.alert("本局已经结束了");}catch(e){alert("本局已经结束了");}
         }
 
     }
-    function 电脑(o){
-        setTimeout("电脑执行('"+o+"')",500);
+    function 点点(o){
+        setTimeout("点点执行('"+o+"')",500);
     }
-    function 电脑执行(o){
+    function 点点执行(o){
         棋盘[o]=10;
         document.getElementById("按钮"+o).innerHTML="<span class='cuo'>Ｘ</span>";
         let 检测=0;
@@ -147,13 +139,13 @@ div0: 1
             if(棋盘[w[i][0]]+棋盘[w[i][1]]+棋盘[w[i][2]]==30){检测=1;}
         }
         if(检测==1){
-            //电脑获胜
+            //点点获胜
             for(let i=1;10>i;i++){
                 if(棋盘[i]==10){
                     document.getElementById("按钮"+i).className="cuo";
                 }
             }
-            try{notyf.alert("电脑获胜");}catch(e){alert("电脑获胜");}
+            表情="点点赢了";发送()
             锁=1;
         }else{
             锁=0;
@@ -169,12 +161,8 @@ div0: 1
             }
         }
         if(检测==0){
-            try{notyf.alert("平局");}catch(e){alert("平局");}
-            余额(1);
+            表情="平局";发送()
             锁=1;
-            // for(let i=1;10>i;i++){
-            //     document.getElementById("按钮"+i).className="cuo";
-            // }
         }
     }
 </script>
