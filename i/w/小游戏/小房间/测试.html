@@ -7,7 +7,7 @@
 <div id="屋顶"></div><div id="房子"><div id="小窝"><div id='点点'></div></div></div><div id="实时"></div><br>
 <div id="上一条"></div><div id="聊天记录"></div><br>
 
-<input class="xsan" type="text" placeholder="你要说的话" autocomplete="off" id="输入" style="width:500px;font-size:1.2em;"><br class="sj"><br class="sj">
+<!-- <input class="xsan" type="text" placeholder="你要说的话" autocomplete="off" id="输入" style="width:500px;font-size:1.2em;"><br class="sj"><br class="sj"> -->
 <a class="xsan" onclick="发送()">发送</a><br>
 表情 :<span style="font-size:2em;">
 <a onclick="选择('😃')">😃</a>
@@ -89,9 +89,11 @@ let 动作={
 let 表情="";
 
 function 发送(){
-document.getElementById("上一条").innerHTML=document.getElementById("聊天记录").innerHTML;
-document.getElementById("聊天记录").innerHTML=document.getElementById("输入").value;
-document.getElementById("输入").value="";
+    if(document.getElementById("输入")){
+    document.getElementById("上一条").innerHTML=document.getElementById("聊天记录").innerHTML;
+    document.getElementById("聊天记录").innerHTML=document.getElementById("输入").value;
+    document.getElementById("输入").value="";
+}
 
 let 临时=预设[表情];
 临时=临时[Math.floor(Math.random()*临时.length)].split("／");
