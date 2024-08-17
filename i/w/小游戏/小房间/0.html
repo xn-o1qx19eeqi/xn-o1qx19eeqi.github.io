@@ -13,7 +13,7 @@ div0: 1
 <div id="上一条"></div><div id="聊天记录"></div><br>
 
 <input class="xsan" type="text" placeholder="你要说的话" autocomplete="off" id="输入" style="width:500px;font-size:1.2em;"><br class="sj"><br class="sj">
-<a class="xsan" onclick="发送()">发送</a><br>
+<a class="xsan" onclick="发送前();发送()">发送</a><br>
 表情 :<span style="font-size:2em;">
 <a onclick="选择('😃')">😃</a>
 <a onclick="选择('🙁')">🙁</a>
@@ -23,7 +23,7 @@ div0: 1
 <br>
 
 测试 :
-<a href="" class="anniu">测试</a>
+<a href="/小房间/井字棋" class="anniu">井字棋</a>
 
 
 <!--
@@ -36,6 +36,13 @@ div0: 1
 <script>
 预设["开始"]=["o／来到〈x〉的小房间。"],
 表情="开始";
+
+function 发送前(){
+    document.getElementById("上一条").innerHTML=document.getElementById("聊天记录").innerHTML;
+    document.getElementById("聊天记录").innerHTML=document.getElementById("输入").value;
+    document.getElementById("输入").value="";
+}
+
 function 选择(o){
 表情=o;
 document.getElementById("输入").value+=o;
@@ -44,11 +51,11 @@ function showkey() {
 key = event.keyCode;
 switch (key) {
     case 13:
-        发送();
+        发送前();发送();
         break;
 }
 }
 document.onkeydown = showkey;
 
-发送();
+发送前();发送();
 </script>

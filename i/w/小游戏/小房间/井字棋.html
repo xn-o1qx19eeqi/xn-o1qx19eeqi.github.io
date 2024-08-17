@@ -10,8 +10,6 @@ div0: 1
 
 <style id="style_root"></style><style id="style"></style>
 <div id="屋顶"></div><div id="房子"><div id="小窝"><div id='点点'></div></div></div><div id="实时"></div><br>
-<div id="上一条"></div><div id="聊天记录"></div><br>
-
 
 <style>
     .按钮{font-size:2em;}
@@ -20,13 +18,12 @@ div0: 1
     .cuo{color:#db0202;}
 </style>
 
-<a onclick="重新开始()" id="开始游戏" class="anniu">开始游戏</a>
 <table id="表格" class="按钮" style="display:none;">
     <tr><td id="按钮1" onclick="按钮(1)"></td><td id="按钮2" onclick="按钮(2)"></td><td id="按钮3" onclick="按钮(3)"></td></tr>
     <tr><td id="按钮4" onclick="按钮(4)"></td><td id="按钮5" onclick="按钮(5)"></td><td id="按钮6" onclick="按钮(6)"></td></tr>
     <tr><td id="按钮7" onclick="按钮(7)"></td><td id="按钮8" onclick="按钮(8)"></td><td id="按钮9" onclick="按钮(9)"></td></tr>
 </table>
-
+<a onclick="重新开始()" id="开始游戏" class="anniu">开始游戏</a>
 
 
 <script>
@@ -35,6 +32,7 @@ div0: 1
     let 随机数=[1,2,3,4,5,6,7,8,9]
     let w=["123","159","147","258","357","369","456","789"]
     let 锁;
+    let arr;function 随机(){let _arr=arr.slice();for(let i=0;i<_arr.length;i++){let j=getRandomInt(0,i);let t=_arr[i];_arr[i]=_arr[j];_arr[j]=t;}function getRandomInt(min,max){return Math.floor(Math.random()*(max-min+1)+min);}arr=_arr;}
     function 重新开始(){
         document.getElementById("表格").style="";
         document.getElementById("开始游戏").innerHTML="重新开始";
@@ -64,7 +62,7 @@ div0: 1
                             document.getElementById("按钮"+i).className="dui";
                         }
                     }
-                    表情="你赢了";发送()
+                    发送("你赢了")
                     锁=1;
                 }else{
                     平局检测();
@@ -145,7 +143,7 @@ div0: 1
                     document.getElementById("按钮"+i).className="cuo";
                 }
             }
-            表情="点点赢了";发送()
+            发送("点点赢了")
             锁=1;
         }else{
             锁=0;
@@ -161,10 +159,13 @@ div0: 1
             }
         }
         if(检测==0){
-            表情="平局";发送()
+            发送("平局")
             锁=1;
         }
     }
+
+    预设["临时"]=["o／和〈x〉玩井字棋。"]
+    发送("临时")
 </script>
 
 

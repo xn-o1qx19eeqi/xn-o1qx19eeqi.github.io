@@ -65,14 +65,15 @@ let 动作={
 
 let 表情="";
 
-function 发送(){
-if(document.getElementById("输入")){
-    document.getElementById("上一条").innerHTML=document.getElementById("聊天记录").innerHTML;
-    document.getElementById("聊天记录").innerHTML=document.getElementById("输入").value;
-    document.getElementById("输入").value="";
+function 发送(o){
+if(o){
+    if(o.indexOf("／")!=-1){
+        预设["临时"]=o;
+        表情="临时";
+    }else{
+        表情=o;
+    }
 }
-
-
 let 临时=预设[表情];
 临时=临时[Math.floor(Math.random()*临时.length)].split("／");
 
