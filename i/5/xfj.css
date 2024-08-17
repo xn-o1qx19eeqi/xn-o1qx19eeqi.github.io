@@ -1,0 +1,2 @@
+#房子{width:400px;height:400px;overflow:hidden;background-color:var(--背景)}#小窝{position:relative;top:270px;left:191px}#点点,.群演{position:relative;width:10px;height:10px;top:0;left:0;animation-duration:20s;animation-delay:3s;background-color:var(--点点)}.群演{position:absolute;opacity:0}#上一条{font-size:0.8em;color:#aaaaaa;}@media screen and (max-width: 767px){#房子{margin: 0 0 0 -3%}}#实时{font-size:0.8em;}br.sj{display:none}
+@media screen and (max-width: 767px){#房子{margin:0 0 0 -2.6%;transform-origin:left center;transform:scale(0.88)}br.sj{display:inline}}
