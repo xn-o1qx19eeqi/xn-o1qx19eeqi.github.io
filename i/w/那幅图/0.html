@@ -1,0 +1,55 @@
+---
+layout: e0
+permalink: nft
+BeiJing: 0／0-01.png
+BeiJing_SJ: 0／0-01.png
+BiaoTi: 那幅图
+div0: 1
+---
+
+<div id="房子"></div>
+<div id="元素"></div>
+
+
+<script>
+
+let w={
+    "ceshi":"#房子{width:400px;height:400px}#房子 img{width:400px;height:400px;position:relative;top:0;left:0}#点点{position:relative;width:160px;height:160px;top:160px;left:120px}",
+}
+
+
+try{
+    let q="/i/w/那幅图/";
+    let 地址=q+"0/"+location.href.split("?")[1]+".json";
+    let GetJson=$.ajax({
+        url:地址,
+        type:"GET",
+        dataType:"json",
+        async:false,
+        success:function(data){
+        }
+    });
+    地址=GetJson.responseJSON;
+    q=q+地址["w"]+"/";
+
+    let dy1="<style>"+w[地址["w"]]+"</style>";
+    let dy2="";
+    for(let i=0;地址["q"].length>i;i++){
+        dy1+="<img src='"+q+地址["q"][i][0]+"."+地址["q"][i][2]+"'>";
+        dy2+=地址["q"][i][0]+"<sup "+地址["q"][i][2]+"></sup>"+"　";
+    }
+    dy1+="<div id='点点' style='background-color:#"+地址["x"]+"'></div>"
+    for(let i=0;地址["e"].length>i;i++){
+        dy1+="<img src='"+q+地址["e"][i]+"'>";
+        dy2+=地址["e"][i].split(".")[0]+"　";
+    }
+    document.getElementById("房子").innerHTML=dy1;
+    document.getElementById("元素").innerHTML="<b>像素点：</b><a href='/"+地址["x"]+"'>"+地址["x"]+"</a><br><b>元素：</b>"+dy2;
+
+    }catch(e){
+    notyf.alert("失败，代码有误或网络故障");
+}
+
+</script>
+
+
