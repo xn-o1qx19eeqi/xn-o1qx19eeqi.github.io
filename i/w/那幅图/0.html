@@ -17,6 +17,7 @@ div0: 1
 
 
   <button onclick="capture()">Capture</button>
+  <button onclick="capture1()">Capture1</button>
 
 <script>
 let dz=location.href.split("?")[1];
@@ -59,18 +60,8 @@ try{
     notyf.alert("失败，代码有误或网络故障");
 }
 
-function capture(){
-    const element=document.querySelector("#房子");
-    const rect = element.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-
-  html2canvas(element,{
-    scale: window.devicePixelRatio
-  }).then(canvas=>{
-    canvas.width = width;
-    canvas.height = height;
-
+function capture1(){
+  html2canvas(document.querySelector("#房子")).then(canvas=>{
     // 将canvas转换为图片
     let img=canvas.toDataURL("image/png");
     
@@ -80,10 +71,62 @@ function capture(){
     a.href=img;
     a.download=dz+".png";
     a.click();
-  }).catch(error=>{
-    notyf.alert("截图失败")
   });
+
+
+function capture() {
+    const element = document.querySelector("#房子");
+
+    // 使用html2canvas进行截图，不需要手动设置画布尺寸
+    html2canvas(element, {
+        scale: window.devicePixelRatio, // 确保高清截图
+        useCORS: true, // 如果图片有跨域问题，请确保设置了useCORS，并且图片服务器支持CORS
+    }).then(canvas => {
+        // 将canvas转换为图片
+        let img = canvas.toDataURL("image/png");
+
+        // 创建一个a元素用于下载图片
+        let a = document.createElement("a");
+        a.href = img;
+        a.download = "screenshot.png"; // 设置下载的文件名，确保dz变量是有定义的或者直接使用字符串
+        a.style.display = "none"; // 隐藏a元素
+        document.body.appendChild(a); // 将a元素添加到页面中（为了触发下载）
+        a.click(); // 触发下载
+        document.body.removeChild(a); // 下载后移除a元素
+    }).catch(error => {
+        console.error('截图失败:', error);
+        notyf.alert("截图失败：请检查控制台中的错误信息");
+    });
 }
+
+
+
+
+
+}
+
+// function capture(){
+//     const element=document.querySelector("#房子");
+//     const rect = element.getBoundingClientRect();
+//     const width = rect.width;
+//     const height = rect.height;
+
+//   html2canvas(element,{
+//     scale: window.devicePixelRatio
+//   }).then(canvas=>{
+//     canvas.width = width;
+//     canvas.height = height;
+
+//     let img=canvas.toDataURL("image/png");
+    
+//     let a=document.createElement("a");
+//     a.href=img;
+//     a.download=dz+".png";
+//     a.click();
+//   }).catch(error=>{
+//     notyf.alert("截图失败")
+//   });
+// }
 
 </script>
 
