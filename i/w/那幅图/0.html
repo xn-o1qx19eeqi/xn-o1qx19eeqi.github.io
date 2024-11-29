@@ -19,6 +19,7 @@ div0: 1
   <button onclick="capture()">Capture</button>
 
 <script>
+let dz=location.href.split("?")[1];
 
 let w={
     "ceshi":"#房子{width:400px;height:400px}#房子 img{width:400px;height:400px;position:absolute;top:0;left:0}#点点{position:relative;width:160px;height:160px;top:160px;left:120px}",
@@ -27,7 +28,7 @@ let w={
 
 try{
     let q="/i/w/那幅图/";
-    let 地址=q+"0/"+location.href.split("?")[1]+".json";
+    let 地址=q+"0/"+dz+".json";
     let GetJson=$.ajax({
         url:地址,
         type:"GET",
@@ -37,8 +38,6 @@ try{
         }
     });
     地址=GetJson.responseJSON;
-
-    console.log(1,地址)
 
     q=q+地址["w"]+"/";
 
@@ -60,17 +59,29 @@ try{
     notyf.alert("失败，代码有误或网络故障");
 }
 
-function capture() {
-  html2canvas(document.querySelector("#房子")).then(canvas => {
+function capture(){
+    const element=document.querySelector("#房子");
+    const rect = element.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+
+  html2canvas(element,{
+    scale: window.devicePixelRatio
+  }).then(canvas=>{
+    canvas.width = width;
+    canvas.height = height;
+
     // 将canvas转换为图片
-    var img = canvas.toDataURL("image/png");
+    let img=canvas.toDataURL("image/png");
     
     // 可以选择将图片添加到页面中预览或者下载
     // 创建一个a元素用于下载
-    var a = document.createElement("a");
-    a.href = img;
-    a.download = "screenshot.png";
+    let a=document.createElement("a");
+    a.href=img;
+    a.download=dz+".png";
     a.click();
+  }).catch(error=>{
+    notyf.alert("截图失败")
   });
 }
 
