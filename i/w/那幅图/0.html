@@ -15,9 +15,8 @@ div0: 1
 <div id="房子"></div>
 <div id="元素"></div>
 
-<div id="下载" style="display:none;"></div>
 
-<a onclick="saveCertificateBook(1)">保存图片</a><br>
+  <button onclick="capture()">Capture</button>
 
 <script>
 
@@ -61,50 +60,18 @@ try{
     notyf.alert("失败，代码有误或网络故障");
 }
 
-function saveCertificateBook(o){
-
-html2canvas(document.querySelector("#房子")).then(canvas => {
-    document.getElementById("下载").innerHTML=canvas;
-});
-
-var date = new Date();
-const canvasID = document.getElementById("下载");
-const rect=document.getElementById("下载").getBoundingClientRect()
-// 生成图片并上传到数据库保存
-html2canvas(canvasID, {
-scale: o, // 数值越大生成的图片越清晰
-useCORS: true,
-allowTaint: true,
-y: 0, // 滚动条高度修复
-x: 0,
-allowTaint: true, //开启跨域
-useCORS: true,
-scrollX: 0,
-scrollY: rect.top, // 关键代码
-height: rect.height, // 加高度，避免截取不全
-}).then((canvas) => {
-        let dataURL = canvas.toDataURL("image/png"); // 拿到数据流     
-        var aLink = document.createElement("a"); // 创建一个a标签
-        var blob = base64ToBlob(dataURL);
-        var event = document.createEvent("HTMLEvents");
-        event.initEvent("click", true, true);
-        aLink.download = date.getTime() + "." + blob.type.split("/")[1]; // 使用时间戳给文件命名
-        aLink.href = URL.createObjectURL(blob);
-        aLink.click();
-})
-}
-
-// base64转Blob对象
-function   base64ToBlob(code) {
-    var parts = code.split(";base64,");
-    var contentType = parts[0].split(":")[1];
-    var raw = window.atob(parts[1]);
-    var rawLength = raw.length;
-    var uint8Array = new Uint8Array(rawLength);
-    for (var i = 0; i < rawLength; i++) {
-        uint8Array[i] = raw.charCodeAt(i);
-    }
-    return new Blob([uint8Array], {type: contentType});
+function capture() {
+  html2canvas(document.querySelector("#房子")).then(canvas => {
+    // 将canvas转换为图片
+    var img = canvas.toDataURL("image/png");
+    
+    // 可以选择将图片添加到页面中预览或者下载
+    // 创建一个a元素用于下载
+    var a = document.createElement("a");
+    a.href = img;
+    a.download = "screenshot.png";
+    a.click();
+  });
 }
 
 </script>
