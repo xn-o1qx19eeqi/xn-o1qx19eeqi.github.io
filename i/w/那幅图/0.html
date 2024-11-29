@@ -18,7 +18,7 @@ div0: 1
 <script>
 
 let w={
-    "ceshi":"#房子{width:400px;height:400px}#房子 img{width:400px;height:400px;position:relative;top:0;left:0}#点点{position:relative;width:160px;height:160px;top:160px;left:120px}",
+    "ceshi":"#房子{width:400px;height:400px}#房子 img{width:400px;height:400px;position:absolute;top:0;left:0}#点点{position:relative;width:160px;height:160px;top:160px;left:120px}",
 }
 
 
@@ -42,12 +42,12 @@ try{
     let dy1="<style>"+w[地址["w"]]+"</style>";
     let dy2="";
     for(let i=0;地址["q"].length>i;i++){
-        dy1+="<img src='"+q+地址["q"][i][0]+"."+地址["q"][i][2]+"'>";
+        dy1+="<img src='"+q+地址["q"][i][0]+"."+地址["q"][i][1]+"'>";
         dy2+=地址["q"][i][0]+"<sup "+地址["q"][i][2]+"></sup>"+"　";
     }
     dy1+="<div id='点点' style='background-color:#"+地址["x"]+"'></div>"
     for(let i=0;地址["e"].length>i;i++){
-        dy1+="<img src='"+q+地址["e"][i][0]+"."+地址["e"][i][2]+"'>";
+        dy1+="<img src='"+q+地址["e"][i][0]+"."+地址["e"][i][1]+"'>";
         dy2+=地址["e"][i][0]+"<sup "+地址["e"][i][2]+"></sup>"+"　";
     }
     document.getElementById("房子").innerHTML=dy1;
