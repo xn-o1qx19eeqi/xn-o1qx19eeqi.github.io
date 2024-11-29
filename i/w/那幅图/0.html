@@ -7,6 +7,10 @@ BiaoTi: 那幅图
 div0: 1
 ---
 
+<style>
+    sup[S]{color:#ffc800;font-weight:bold}sup[A]{color:#d229db}sup[B]{color:#2977DB}sup[C]{color:#1456ad}sup[EX]{color:#1ff434}
+</style>
+
 <div id="房子"></div>
 <div id="元素"></div>
 
@@ -32,7 +36,7 @@ try{
     地址=GetJson.responseJSON;
 
     console.log(1,地址)
-    
+
     q=q+地址["w"]+"/";
 
     let dy1="<style>"+w[地址["w"]]+"</style>";
@@ -43,8 +47,8 @@ try{
     }
     dy1+="<div id='点点' style='background-color:#"+地址["x"]+"'></div>"
     for(let i=0;地址["e"].length>i;i++){
-        dy1+="<img src='"+q+地址["e"][i]+"'>";
-        dy2+=地址["e"][i].split(".")[0]+"　";
+        dy1+="<img src='"+q+地址["e"][i][0]+"."+地址["e"][i][2]+"'>";
+        dy2+=地址["e"][i][0]+"<sup "+地址["e"][i][2]+"></sup>"+"　";
     }
     document.getElementById("房子").innerHTML=dy1;
     document.getElementById("元素").innerHTML="<b>像素点：</b><a href='/"+地址["x"]+"'>"+地址["x"]+"</a><br><b>元素：</b>"+dy2;
