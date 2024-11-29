@@ -16,9 +16,6 @@ div0: 1
 <div id="元素"></div>
 
 <a onclick="capture()">保存截图</a>
-<a onclick="capture2()">保存截图</a>
-<a onclick="capture3()">保存截图</a>
-<a onclick="capture4()">保存截图</a>
 
 <script>
 let dz=location.href.split("?")[1];
@@ -62,8 +59,19 @@ try{
 }
 
 function capture(){
+    const canvasID = document.getElementById("房子");
+    const rect=canvasID.getBoundingClientRect()
   html2canvas(document.querySelector("#房子"),{
-    scale: window.devicePixelRatio
+    scale: 1, // 数值越大生成的图片越清晰
+    useCORS: true,
+    allowTaint: true,
+    y: 0, // 滚动条高度修复
+    x: 0,
+    allowTaint: true, //开启跨域
+    useCORS: true,
+    scrollX: 0,
+    scrollY: rect.top, // 关键代码
+    height: rect.height, // 加高度，避免截取不全
   }).then(canvas=>{
     let img=canvas.toDataURL("image/png");
 
@@ -74,42 +82,6 @@ function capture(){
   });
 }
 
-function capture2(){
-  html2canvas(document.querySelector("#房子"),{
-    scale: 1
-  }).then(canvas=>{
-    let img=canvas.toDataURL("image/png");
-
-    let a=document.createElement("a");
-    a.href=img;
-    a.download=dz+".png";
-    a.click();
-  });
-}
-function capture3(){
-  html2canvas(document.querySelector("#房子"),{
-    scale: 2
-  }).then(canvas=>{
-    let img=canvas.toDataURL("image/png");
-
-    let a=document.createElement("a");
-    a.href=img;
-    a.download=dz+".png";
-    a.click();
-  });
-}
-function capture4(){
-  html2canvas(document.querySelector("#房子"),{
-    scale: 10
-  }).then(canvas=>{
-    let img=canvas.toDataURL("image/png");
-
-    let a=document.createElement("a");
-    a.href=img;
-    a.download=dz+".png";
-    a.click();
-  });
-}
 
 </script>
 
