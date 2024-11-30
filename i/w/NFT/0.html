@@ -3,7 +3,7 @@ layout: e0
 permalink: nft
 BeiJing: 0／0-01.png
 BeiJing_SJ: 0／0-01.png
-BiaoTi: 那幅图
+BiaoTi: 那幅图NFT
 div0: 1
 ---
 <style>
@@ -20,11 +20,12 @@ let dz=location.href.split("?")[1];
 let w={
     "ceshi":"#房子{position:relative;background-color:#ffffff}#房子,#房子 img{width:400px;height:400px}#房子 img{position:absolute;top:0;left:0}#点点{position:relative;width:160px;height:160px;top:160px;left:120px}",
     "愚公移山":"#房子{position:relative;background-color:#ffffff}#房子,#房子 img{width:420px;height:420px}#房子 img{position:absolute;top:0;left:0}#点点{position:relative;width:105px;height:105px;top:210px;left:159px}",
+    "一张白纸的梦":"#房子{position:relative;background-color:#ffffff}#房子,#房子 img{width:420px;height:420px}#房子 img{position:absolute;top:0;left:0}#点点{position:relative;width:105px;height:105px;top:210px;left:159px}",
 }
 
 
 try{
-    let q="/i/w/那幅图/";
+    let q="/i/w/NFT/";
     let 地址=q+"0/"+dz+".json";
     let GetJson=$.ajax({
         url:地址,
@@ -44,14 +45,20 @@ try{
         dy1+="<img src='"+q+地址["e"][i][0]+"."+地址["e"][i][1]+"'>";
         dy2=地址["e"][i][0]+"<sup "+地址["e"][i][2]+"></sup>"+"　"+dy2;
     }
-    dy1+="<div id='点点' style='background-color:#"+地址["x"]+"'></div>";
+    if(地址["x"]&&地址["x"]!=""&&地址["x"]!="无"){dy1+="<div id='点点' style='background-color:#"+地址["x"]+"'></div>";}
     for(let i=地址["q"].length-1;i>-1;i--){
         dy1+="<img src='"+q+地址["q"][i][0]+"."+地址["q"][i][1]+"'>";
         dy2=地址["q"][i][0]+"<sup "+地址["q"][i][2]+"></sup>"+"　"+dy2;
     }
 
+    if(地址["x"]&&地址["x"]!=""&&地址["x"]!="无"){dy2="<b><small>所属像素点编号：</small></b><a href='/"+地址["x"]+"'>"+地址["x"]+"</a><br>"+dy2;}
+    dy2="<b><small>元素：</small></b>"+dy2;
+
+    if(地址["t"]){dy2=地址["t"]+"<br>"+dy2;}
+    dy2+="<br><br><a onclick=\"制='{{ site.mq_url }}/NFT?"+dz+";复()\">复制地址</a>";
+
     document.getElementById("房子").innerHTML=dy1;
-    document.getElementById("元素").innerHTML="<b><small>所属像素点编号：</small></b><a href='/"+地址["x"]+"'>"+地址["x"]+"</a><br><b><small>元素：</small></b>"+dy2;
+    document.getElementById("元素").innerHTML=dy2;
 
     }catch(e){
     notyf.alert("失败，代码有误或网络故障");
