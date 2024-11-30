@@ -1,0 +1,168 @@
+<a onclick="抽取(1)">抽取</a><br>
+<a onclick="抽取(100)">抽取100次</a><br><br>
+<a onclick="复制结果()">复制结果</a><br>
+<a onclick="复制查重()">复制查重</a><br><br>
+<div id="查重"></div><br>
+<div id="结果"></div>
+
+<script>
+    let 数据=[
+        [//【q】
+            [//前景
+                ["bug","gif","S"],
+                ["二扯","png","A"],
+            ],[//头饰
+                ["汉堡","png","B"],
+                ["蝴蝶结","png","C"],
+                ["姜饼人","png","B"],
+                ["金钥匙","png","B"],
+                ["可乐","png","B"],
+                ["老三","png","B"],
+                ["帽帽","png","B"],
+                ["礼帽","png","B"],
+                ["猫球","png","A"],
+                ["抹茶蛋糕","png","B"],
+                ["生日帽","png","C"],
+                ["圣诞帽","png","B"],
+                ["奶茶","gif","B"],
+            ],[//面部
+                ["墨镜","png","C"],
+                ["项链","png","C"],
+            ]
+        ],[//【e】
+            [//描边
+                ["描边","png","D"],
+            ],[//身后
+                ["蝙蝠翅膀","png","B"],
+                ["柴犬","gif","A"],
+                ["猫耳","png","A"],
+                ["兔兔","png","A"],
+            ]
+        ]
+    ];
+    let 已有=[
+
+    ]
+    let data=[[],[]];
+    let D={}
+    let 最大数=0;
+    for(let i=0;数据[0].length>i;i++){
+        let 临时数=0;
+        data[0][i]=[];
+        for(let k=0;数据[0][i].length>k;k++){
+            if(数据[0][i][k][2]=="S"){临时数+=1;for(let l=0;1>l;l++){data[0][i][data[0][i].length]=数据[0][i][k]}}
+            if(数据[0][i][k][2]=="A"){临时数+=5;for(let l=0;5>l;l++){data[0][i][data[0][i].length]=数据[0][i][k]}}
+            if(数据[0][i][k][2]=="B"){临时数+=20;for(let l=0;20>l;l++){data[0][i][data[0][i].length]=数据[0][i][k]}}
+            if(数据[0][i][k][2]=="C"){临时数+=50;for(let l=0;50>l;l++){data[0][i][data[0][i].length]=数据[0][i][k]}}
+            if(数据[0][i][k][2]=="D"){临时数+=1;if(!D["0_"+i]){D["0_"+i]=[数据[0][i][k]]}else{D["0_"+i][D["0_"+i].length]=数据[0][i][k]}}
+        }
+        if(临时数>最大数){最大数=临时数;}
+    }
+    for(let i=0;数据[1].length>i;i++){
+        let 临时数=0;
+        data[1][i]=[];
+        for(let k=0;数据[1][i].length>k;k++){
+            if(数据[1][i][k][2]=="S"){临时数+=1;for(let l=0;1>l;l++){data[1][i][data[1][i].length]=数据[1][i][k]}}
+            if(数据[1][i][k][2]=="A"){临时数+=5;for(let l=0;5>l;l++){data[1][i][data[1][i].length]=数据[1][i][k]}}
+            if(数据[1][i][k][2]=="B"){临时数+=20;for(let l=0;20>l;l++){data[1][i][data[1][i].length]=数据[1][i][k]}}
+            if(数据[1][i][k][2]=="C"){临时数+=50;for(let l=0;50>l;l++){data[1][i][data[1][i].length]=数据[1][i][k]}}
+            if(数据[1][i][k][2]=="D"){临时数+=1;if(!D["1_"+i]){D["1_"+i]=[数据[1][i][k]]}else{D["1_"+i][D["1_"+i].length]=数据[1][i][k]}}
+        }
+        if(临时数>最大数){最大数=临时数;}
+    }
+
+    for(let i=0;数据[0].length>i;i++){
+        data[0][i]=data[0][i].concat(Array(最大数).fill(0).slice(data[0][i].length))
+    }
+    for(let i=0;数据[1].length>i;i++){
+        data[1][i]=data[1][i].concat(Array(最大数).fill(0).slice(data[1][i].length))
+    }
+
+    function 抽取(o){
+        let 结果=[[],[]];
+        let 查重="";
+
+        for(let i=0;数据[0].length>i;i++){
+            let 临时=Math.floor(Math.random()*最大数);
+            if(data[0][i][临时]==0){
+                if(D["0_"+i]){
+                    临时=Math.floor(Math.random()*D["0_"+i].length);
+                    临时=D["0_"+i][临时];
+                    结果[0][结果[0].length]=临时;
+                    查重+=临时[0]+"."+临时[1]+"／";
+                }else{
+                    临时=0;
+                    结果[0][结果[0].length]=0;
+                    查重+="0／";
+                }
+            }else{
+                临时=data[0][i][临时];
+                结果[0][结果[0].length]=临时;
+                查重+=临时[0]+"."+临时[1]+"／";
+            }
+        }
+        for(let i=0;数据[1].length>i;i++){
+            let 临时=Math.floor(Math.random()*最大数);
+            if(data[1][i][临时]==0){
+                if(D["1_"+i]){
+                    临时=Math.floor(Math.random()*D["1_"+i].length);
+                    临时=D["1_"+i][临时];
+                    结果[1][结果[1].length]=临时;
+                    查重+=临时[0]+"."+临时[1]+"／";
+                }else{
+                    临时=0;
+                    结果[1][结果[1].length]=0;
+                    查重+="0／";
+                }
+            }else{
+                临时=data[1][i][临时];
+                结果[1][结果[1].length]=临时;
+                查重+=临时[0]+"."+临时[1]+"／";
+            }
+        }
+
+        let dy='{"x":"","w":"愚公移山","q":[';
+        let 临时="";
+        for(let i=0;结果[0].length>i;i++){
+            if(结果[0][i]!=0){
+                if(临时!=""){临时+=","}
+                临时+='["'+结果[0][i][0]+'","'+结果[0][i][1]+'","'+结果[0][i][2]+'"]'
+            }
+        }
+        dy+=临时+'],"e":[';
+        临时="";
+        for(let i=0;结果[1].length>i;i++){
+            if(结果[1][i]!=0){
+                if(临时!=""){临时+=","}
+                临时+='["'+结果[1][i][0]+'","'+结果[1][i][1]+'","'+结果[1][i][2]+'"]'
+            }
+        }
+        dy+=临时+']}';
+
+        if(已有.indexOf(查重)!=-1){
+            if(o<=1){
+                document.getElementById("结果").innerHTML=dy;
+                document.getElementById("查重").innerHTML="【有重复，但次数用尽】";
+            }else{
+                o-=1;
+                抽取(o);
+            }
+        }else{
+            document.getElementById("结果").innerHTML=dy;
+            document.getElementById("查重").innerHTML="查重：【<span id='查重结果'>"+查重+"</span>】";
+        }
+    }
+
+
+function 复(o){
+document.getElementById('复制').value=o;let 复制=document.querySelector('#复制');复制.select();document.execCommand("Copy");}
+
+function 复制结果(){
+    复(document.getElementById("结果").innerHTML)
+}
+function 复制查重(){
+    复('"'+document.getElementById("查重结果").innerHTML+'",')
+}
+</script>
+
+<textArea id="复制" style="position:absolute;top:-1000px"></textArea>

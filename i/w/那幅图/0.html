@@ -6,11 +6,9 @@ BeiJing_SJ: 0／0-01.png
 BiaoTi: 那幅图
 div0: 1
 ---
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
-
 <style>
-    sup[S],sup[A],sup[B],sup[C],sup[D],sup[EX]{font-weight:bold}
-    sup[S]:before{content:" S";color:#ffc800}sup[A]:before{content:" A";color:#d229db}sup[B]:before{content:" B";color:#2977DB}sup[C]:before{content:" C";color:#1456ad}sup[D]:before{content:" D";color:#072852}sup[EX]:before{content:" EX";color:#1ff434}
+    sup[S],sup[A],sup[B],sup[C],sup[EX]{font-weight:bold}
+    sup[S]:before{content:" S";color:#ffc800}sup[A]:before{content:" A";color:#d229db}sup[B]:before{content:" B";color:#2977DB}sup[C]:before{content:" C";color:#1456ad}sup[EX]:before{content:" EX";color:#1ff434}
 </style>
 
 <div id="房子"></div>
@@ -20,8 +18,8 @@ div0: 1
 let dz=location.href.split("?")[1];
 
 let w={
-    "ceshi":"#房子,#房子 img{width:400px;height:400px}#房子 img{position:absolute;top:0;left:0}#点点{position:relative;width:160px;height:160px;top:160px;left:120px}",
-    "愚公移山":"#房子,#房子 img{width:420px;height:420px}#房子 img{position:absolute;top:0;left:0}#点点{position:relative;width:105px;height:105px;top:180px;left:110px}",
+    "ceshi":"#房子{background-color:#ffffff}#房子,#房子 img{width:400px;height:400px}#房子 img{position:absolute;top:0;left:0}#点点{position:relative;width:160px;height:160px;top:160px;left:120px}",
+    "愚公移山":"#房子{background-color:#ffffff}#房子,#房子 img{width:420px;height:420px}#房子 img{position:absolute;top:9px;left:9px}#点点{position:relative;width:105px;height:105px;top:180px;left:110px}",
 }
 
 
@@ -44,16 +42,16 @@ try{
     let dy2="";
     for(let i=地址["e"].length-1;i>-1;i--){
         dy1+="<img src='"+q+地址["e"][i][0]+"."+地址["e"][i][1]+"'>";
-        dy2+=地址["e"][i][0]+"<sup "+地址["e"][i][2]+"></sup>"+"　";
+        dy2=地址["e"][i][0]+"<sup "+地址["e"][i][2]+"></sup>"+"　"+dy2;
     }
     dy1+="<div id='点点' style='background-color:#"+地址["x"]+"'></div>";
     for(let i=地址["q"].length-1;i>-1;i--){
         dy1+="<img src='"+q+地址["q"][i][0]+"."+地址["q"][i][1]+"'>";
-        dy2+=地址["q"][i][0]+"<sup "+地址["q"][i][2]+"></sup>"+"　";
+        dy2=地址["q"][i][0]+"<sup "+地址["q"][i][2]+"></sup>"+"　"+dy2;
     }
 
     document.getElementById("房子").innerHTML=dy1;
-    document.getElementById("元素").innerHTML="<b><small>像素点编号：</small></b><a href='/"+地址["x"]+"'>"+地址["x"]+"</a><br><b><small>元素：</small></b>"+dy2;
+    document.getElementById("元素").innerHTML="<b><small>所属像素点编号：</small></b><a href='/"+地址["x"]+"'>"+地址["x"]+"</a><br><b><small>元素：</small></b>"+dy2;
 
     }catch(e){
     notyf.alert("失败，代码有误或网络故障");
