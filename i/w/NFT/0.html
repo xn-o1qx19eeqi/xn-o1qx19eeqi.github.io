@@ -3,7 +3,7 @@ layout: e0
 permalink: nft
 BeiJing: 0／0-01.png
 BeiJing_SJ: 0／0-01.png
-BiaoTi: 那幅图NFT
+BiaoTi: 那幅图 NFT
 div0: 1
 ---
 <style>
@@ -20,7 +20,8 @@ let dz=location.href.split("?")[1];
 let w={
     "ceshi":"#房子{position:relative;background-color:#ffffff}#房子,#房子 img{width:400px;height:400px}#房子 img{position:absolute;top:0;left:0}#点点{position:relative;width:160px;height:160px;top:160px;left:120px}",
     "愚公移山":"#房子{position:relative;background-color:#ffffff}#房子,#房子 img{width:420px;height:420px}#房子 img{position:absolute;top:0;left:0}#点点{position:relative;width:105px;height:105px;top:210px;left:159px}",
-    "一张白纸的梦":"#房子{position:relative;background-color:#ffffff}#房子,#房子 img{width:420px;height:420px}#房子 img{position:absolute;top:0;left:0}#点点{position:relative;width:105px;height:105px;top:210px;left:159px}",
+
+    "一张白纸的梦":"#房子{position:relative;background-color:#ffffff}#房子,#房子 img{width:1000px;height:563px}#房子 img{position:absolute;top:0;left:0}#点点{display:none;}",
 }
 
 
@@ -55,7 +56,7 @@ try{
     dy2="<b><small>元素：</small></b>"+dy2;
 
     if(地址["t"]){dy2=地址["t"]+"<br>"+dy2;}
-    dy2+="<br><br><a onclick=\"制='{{ site.mq_url }}/NFT?"+dz+";复()\">复制地址</a>";
+    dy2+="<br><br><a onclick=\"制='{{ site.mq_url }}/nft?"+dz+"';复()\">复制地址</a>";
 
     document.getElementById("房子").innerHTML=dy1;
     document.getElementById("元素").innerHTML=dy2;
