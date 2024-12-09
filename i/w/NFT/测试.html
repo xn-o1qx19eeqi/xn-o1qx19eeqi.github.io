@@ -1,0 +1,25 @@
+<style>body{background-color:#b9b9b9;image-rendering: optimizeSpeed;image-rendering: -moz-crisp-edges;image-rendering: -o-crisp-edges;image-rendering: -webkit-optimize-contrast;image-rendering: pixelated;-ms-interpolation-mode: nearest-neighbor;}#房子{position:relative;background-color:#ffffff}#房子,#房子 img{width:420px;height:420px}#房子 img{position:absolute;top:0;left:0}#点点{position:relative;width:105px;height:105px;top:210px;left:159px}</style>
+
+
+
+
+
+
+<div id="房子"></div><script>let data=
+
+{"x":"","w":"愚公移山","q":[["奶茶","gif","B"]],"e":[["描边","png","D"]]}
+
+
+let q="";
+for(let i=0;data['q'].length>i;i++){
+    q="<img src='"+data["w"]+"/"+data['q'][i][0]+"."+data['q'][i][1]+"'>"+q;
+}
+let e="";
+for(let i=0;data['e'].length>i;i++){
+    e="<img src='"+data["w"]+"/"+data['e'][i][0]+"."+data['e'][i][1]+"'>"+e;
+}
+document.getElementById("房子").innerHTML=e+"<div id='点点' style='background-color:#92D1E2'></div>"+q+"</div>";
+
+
+
+</script>

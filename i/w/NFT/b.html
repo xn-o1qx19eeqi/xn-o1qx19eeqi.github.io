@@ -1,0 +1,46 @@
+---
+layout: e0
+permalink: nft/b
+BeiJing: 0
+BeiJing_SJ: 0
+BiaoTi: 那幅图 - 列表
+div0: 1
+---
+<input type="text" placeholder="输入像素点编号" autocomplete="off" id="输入"> <button oninput="按钮()">搜索</button><br>
+<br>
+
+<div id="dy"></div>
+<script>
+    let d=[
+        // ["",""],
+        // ["",""],
+        // ["",""],
+        ["FDB23B","0010010000101"],
+    ];
+
+    let dy="<table class='tm'>";
+    for(let i=0;d.length>i&&1000>i;i++){
+        dy+="<tr><td>"+d[i][0]+"</td><td><a href='/nft?"+d[i][1]+"<'>"+d[i][1]+"</a></td></tr>";
+    }
+    document.getElementById("dy").innerHTML=dy+"</table>";
+
+    function 按钮(){
+        let l=document.getElementById("输入").value.replace(new RegExp('#',"g"),"").toUpperCase();
+        if(l.length!=6||l.replace(/[0-9A-F]/g,"")!=""){
+            document.getElementById("dy").innerHTML="输入的内容有误，请输入6位的像素点编号，由数字0到6和英文字母A到F组成，如“C77232”。";
+        }else{
+            dy="";
+            for(let i=0;d.length>i;i++){
+                if(l==d[i][0]){
+                    dy+="<tr><td>"+d[i][0]+"</td><td><a href='/nft?"+d[i][1]+"<'>"+d[i][1]+"</a></td></tr>";
+                }
+            }
+            if(dy==""){dy="没有查询到相关信息。"}else{dy="<table class='tm'>"+dy+"</table>"}
+            document.getElementById("dy").innerHTML=dy;
+        }
+    }
+</script>
+
+
+
+
