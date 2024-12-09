@@ -6,7 +6,7 @@ BeiJing_SJ: 0
 BiaoTi: 那幅图 - 列表
 div0: 1
 ---
-<input type="text" placeholder="输入像素点编号" autocomplete="off" id="输入"> <button oninput="按钮()">搜索</button><br>
+<input type="text" placeholder="输入像素点编号" autocomplete="off" id="输入"> <button onclick="按钮()">搜索</button><br>
 <br>
 
 <div id="dy"></div>
@@ -20,7 +20,7 @@ div0: 1
 
     let dy="<table class='tm'>";
     for(let i=0;d.length>i&&1000>i;i++){
-        dy+="<tr><td>"+d[i][0]+"</td><td><a href='/nft?"+d[i][1]+"<'>"+d[i][1]+"</a></td></tr>";
+        dy+="<tr><td>"+d[i][0]+"</td><td><a href='/nft?"+d[i][1]+"'>"+d[i][1]+"</a></td></tr>";
     }
     document.getElementById("dy").innerHTML=dy+"</table>";
 
@@ -32,7 +32,7 @@ div0: 1
             dy="";
             for(let i=0;d.length>i;i++){
                 if(l==d[i][0]){
-                    dy+="<tr><td>"+d[i][0]+"</td><td><a href='/nft?"+d[i][1]+"<'>"+d[i][1]+"</a></td></tr>";
+                    dy+="<tr><td>"+d[i][0]+"</td><td><a href='/nft?"+d[i][1]+"'>"+d[i][1]+"</a></td></tr>";
                 }
             }
             if(dy==""){dy="没有查询到相关信息。"}else{dy="<table class='tm'>"+dy+"</table>"}
