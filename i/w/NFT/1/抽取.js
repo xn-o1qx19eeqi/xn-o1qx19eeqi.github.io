@@ -6,8 +6,15 @@ for(let i=0;数据[0].length>i;i++){
     data[0][i]=[];
     for(let k=0;数据[0][i].length>k;k++){
 
-        数据[0][i][k][3]=(k+1+"").padStart(2,'0');
-        if(数据[0][i][k][3]>99){notyf.alert("元素超过99个")}
+        let 此号=k+1;
+        if(此号>1290){
+            notyf.alert("元素数量过多")
+        }else if(此号>99){
+            此号=此号.toString(36);
+        }else if(此号<10){
+            此号=(此号+"").padStart(2,'0');
+        }
+        数据[0][i][k][3]=数据[0][i][k][3]||此号;
 
         if(数据[0][i][k][2]=="S"){临时数+=1;for(let l=0;1>l;l++){data[0][i][data[0][i].length]=数据[0][i][k]}}
         if(数据[0][i][k][2]=="A"){临时数+=5;for(let l=0;5>l;l++){data[0][i][data[0][i].length]=数据[0][i][k]}}
@@ -22,8 +29,15 @@ for(let i=0;数据[1].length>i;i++){
     data[1][i]=[];
     for(let k=0;数据[1][i].length>k;k++){
 
-        数据[1][i][k][3]=(k+1+"").padStart(2,'0');
-        if(数据[1][i][k][3]>99){notyf.alert("元素超过99个")}
+        let 此号=k+1;
+        if(此号>1290){
+            notyf.alert("元素数量过多")
+        }else if(此号>99){
+            此号=此号.toString(36);
+        }else if(此号<10){
+            此号=(此号+"").padStart(2,'0');
+        }
+        数据[1][i][k][3]=数据[1][i][k][3]||此号;
 
         if(数据[1][i][k][2]=="S"){临时数+=1;for(let l=0;1>l;l++){data[1][i][data[1][i].length]=数据[1][i][k]}}
         if(数据[1][i][k][2]=="A"){临时数+=5;for(let l=0;5>l;l++){data[1][i][data[1][i].length]=数据[1][i][k]}}
@@ -94,6 +108,8 @@ function 抽取(o){
         }
     }
 
+    编号2=编号2.replace(new RegExp('x',"g"),"")
+
     dy='{"x":"","w":"'+标题[1]+'","q":[';
     let 临时="";
     for(let i=0;结果[0].length>i;i++){
@@ -112,7 +128,7 @@ function 抽取(o){
     }
     dy+=临时+']}';
 
-    if(已有.indexOf(编号)!=-1){
+    if(已有.indexOf(编号2)!=-1){
         if(o<=1){
             document.getElementById("结果").innerHTML=dy;
             document.getElementById("编号").innerHTML="【有重复，但次数用尽】";
