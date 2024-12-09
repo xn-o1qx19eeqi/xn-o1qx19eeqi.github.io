@@ -14,17 +14,19 @@ div0: 1
 <div id="房子"></div>
 <div id="元素"></div>
 
+<div id="首页" style="display:none;">
+测试
+</div>
+
 <script>
 let dz=location.href.split("?")[1];
-
 let w={
     "ceshi":"#房子{position:relative;background-color:#ffffff}#房子,#房子 img{width:400px;height:400px}#房子 img{position:absolute;top:0;left:0}#点点{position:relative;width:160px;height:160px;top:160px;left:120px}",
     "愚公移山":"#房子{position:relative;background-color:#ffffff}#房子,#房子 img{width:420px;height:420px}#房子 img{position:absolute;top:0;left:0}#点点{position:relative;width:105px;height:105px;top:210px;left:159px}",
 
     "一张白纸的梦":"#房子{position:relative;background-color:#ffffff}#房子,#房子 img{width:1000px;height:563px}#房子 img{position:absolute;top:0;left:0}#点点{display:none;}",
 }
-
-
+if(dz){
 try{
     let q="/i/w/NFT/";
     let 地址=q+"0/"+dz+".json";
@@ -52,10 +54,11 @@ try{
         dy2=地址["q"][i][0]+"<sup "+地址["q"][i][2]+"></sup>"+"　"+dy2;
     }
 
-    dy2="<b><small>元素：</small></b>"+dy2;
+    dy2="<b><small>系列：</small></b>"+地址["w"]+"<br><b><small>元素：</small></b>"+dy2;
     
     if(地址["x"]&&地址["x"]!=""&&地址["x"]!="无"){dy2="<b><small>所属像素点编号：</small></b><a href='/"+地址["x"]+"'>"+地址["x"]+"</a><br>"+dy2;}
     
+    if(地址["r"]&&地址["r"]!=""){dy1+=地址["r"]}
 
     if(地址["t"]){dy2=地址["t"]+"<br>"+dy2;}
     dy2+="<br><br><a onclick=\"制='{{ site.mq_url }}/nft?"+dz+"';复()\">复制地址</a>";
@@ -66,7 +69,9 @@ try{
     }catch(e){
     notyf.alert("失败，代码有误或网络故障");
 }
-
+}else{
+    document.getElementById("首页").style="";
+}
 </script>
 
 
