@@ -1,14 +1,43 @@
 <style>body{background-color:#b9b9b9;image-rendering: optimizeSpeed;image-rendering: -moz-crisp-edges;image-rendering: -o-crisp-edges;image-rendering: -webkit-optimize-contrast;image-rendering: pixelated;-ms-interpolation-mode: nearest-neighbor;}#房子{position:relative;background-color:#ffffff}#房子,#房子 img{width:420px;height:420px}#房子 img{position:absolute;top:0;left:0}#点点{position:relative;width:105px;height:105px;top:210px;left:159px}</style>
 
 
-
-
-
-
 <div id="房子"></div><script>let data=
 
-{"x":"","w":"愚公移山","q":[["奶茶","gif","B"]],"e":[["描边","png","D"]]}
+// {"x":"","w":"愚公移山","q":[["奶茶","gif","B"]],"e":[["描边","png","D"]]}
 
+{"x":"","w":"那幅图","q":[],"e":[["描边","png","D"],["蝙蝠翅膀","png","B"],["_背景","png","D"]]}
+
+/*
+
+/0/ 存放 编号.json
+命名方式为： nft主题的编号（3位）+查重编号
+
+{
+    "x":"92D1E2 //像素点编号",
+    "w":"ceshi //标题、文件夹 //0.html 的 let w={",
+
+    "t":"<b>额外说明</b><br>额外的说明，可以没有。",
+
+    "q":[
+        ["前","png","A"],
+        ["图片名","png //后缀","S //稀有度 S A B C D（无稀有度） EX（例外）"]
+    ],
+    "e":[
+        ["后","png","S"]
+    ],
+
+    "r":"<div>内容</div> //加在'房子'的最后"
+}
+
+/1/ 存放模板和.js文件
+
+0.html NFT展示页，使用为 像素点.cn/nft?编号
+
+素材名_绘：作者名.png
+不想显示在页面里的可以写 x_素材名.png
+
+
+*/
 
 let q="";
 for(let i=0;data['q'].length>i;i++){

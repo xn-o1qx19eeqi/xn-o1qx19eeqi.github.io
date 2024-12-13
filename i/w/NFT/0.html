@@ -3,7 +3,7 @@ layout: e0
 permalink: nft
 BeiJing: 0／0-01.png
 BeiJing_SJ: 0／0-01.png
-BiaoTi: 那幅图 NFT
+BiaoTi: 伪·NFT
 div0: 1
 ---
 <style>
@@ -15,7 +15,7 @@ div0: 1
 <div id="元素"></div>
 
 <div id="首页" style="display:none;">
-测试
+这里是小像素点的“伪·NFT”，点击<a href="/nft/b">这里</a>跳转到查询页。
 </div>
 
 <script>
@@ -46,12 +46,22 @@ try{
     let dy2="";
     for(let i=地址["e"].length-1;i>-1;i--){
         dy1+="<img src='"+q+地址["e"][i][0]+"."+地址["e"][i][1]+"'>";
-        dy2=地址["e"][i][0]+"<sup "+地址["e"][i][2]+"></sup>"+"　"+dy2;
+        if(地址["e"][i][0].indexOf("_")!=-1){
+            let 临时=址["e"][i][0].split("_");
+            if(临时[0]!="x"){
+                dy2="<span class='提示' data-msg='"+临时[1]+"'>"+临时[0]+"</span><sup "+地址["e"][i][2]+"></sup>"+"　"+dy2;
+            }
+        }else{dy2=地址["e"][i][0]+"<sup "+地址["e"][i][2]+"></sup>"+"　"+dy2;}
     }
     if(地址["x"]&&地址["x"]!=""&&地址["x"]!="无"){dy1+="<div id='点点' style='background-color:#"+地址["x"]+"'></div>";}
     for(let i=地址["q"].length-1;i>-1;i--){
         dy1+="<img src='"+q+地址["q"][i][0]+"."+地址["q"][i][1]+"'>";
-        dy2=地址["q"][i][0]+"<sup "+地址["q"][i][2]+"></sup>"+"　"+dy2;
+        if(地址["q"][i][0].indexOf("_")!=-1){
+            let 临时=址["q"][i][0].split("_");
+            if(临时[0]!="x"){
+                dy2="<span class='提示' data-msg='"+临时[1]+"'>"+临时[0]+"</span><sup "+地址["q"][i][2]+"></sup>"+"　"+dy2;
+            }
+        }else{dy2=地址["q"][i][0]+"<sup "+地址["q"][i][2]+"></sup>"+"　"+dy2;}
     }
 
     dy2="<b><small>系列：</small></b>"+地址["w"]+"<br><b><small>元素：</small></b>"+dy2;
