@@ -47,7 +47,7 @@ try{
     for(let i=地址["e"].length-1;i>-1;i--){
         dy1+="<img src='"+q+地址["e"][i][0]+"."+地址["e"][i][1]+"'>";
         if(地址["e"][i][0].indexOf("_")!=-1){
-            let 临时=址["e"][i][0].split("_");
+            let 临时=地址["e"][i][0].split("_");
             if(临时[0]!="x"){
                 dy2="<span class='提示' data-msg='"+临时[1]+"'>"+临时[0]+"</span><sup "+地址["e"][i][2]+"></sup>"+"　"+dy2;
             }
@@ -57,7 +57,7 @@ try{
     for(let i=地址["q"].length-1;i>-1;i--){
         dy1+="<img src='"+q+地址["q"][i][0]+"."+地址["q"][i][1]+"'>";
         if(地址["q"][i][0].indexOf("_")!=-1){
-            let 临时=址["q"][i][0].split("_");
+            let 临时=地址["q"][i][0].split("_");
             if(临时[0]!="x"){
                 dy2="<span class='提示' data-msg='"+临时[1]+"'>"+临时[0]+"</span><sup "+地址["q"][i][2]+"></sup>"+"　"+dy2;
             }
