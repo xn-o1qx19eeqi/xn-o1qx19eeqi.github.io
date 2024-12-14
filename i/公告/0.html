@@ -33,11 +33,13 @@ ShuBiao: 1
     function 关闭(){
         document.getElementById("关闭").style="display:none;";
         document.getElementById("开启").style="";
+        try{notyf.alert("已禁用");}catch(e){alert("已禁用");}
         localStorage.setItem("公告",99999999);
     }
     function 开启(){
         document.getElementById("开启").style="display:none;";
         document.getElementById("关闭").style="";
+        try{notyf.confirm("已启用")}catch(e){alert("已启用");}
         localStorage.setItem("公告",0);
     }
 </script>
