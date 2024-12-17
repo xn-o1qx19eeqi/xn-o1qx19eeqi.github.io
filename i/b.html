@@ -45,8 +45,8 @@ ShuBiao: 1
 <a onclick="展示所有('通过')">展示所有已通过的申请</a>　<a onclick="展示所有('未通过')">展示所有未通过的申请</a>　（记录较多，网页可能会很卡，慎点）
 </small>
 <script>
-let 申请={"通过":[
-],"未通过":[
+let 申请={"通过":"/i/x/b.json","未通过":[
+
 //20241201
 ["EEDB84","小棉题","远柠","a"],
 //20241208
@@ -71,7 +71,6 @@ let 原因={
 }
 
 try{
-    申请["通过"]="/i/x/b.json";
     let GetJson=$.ajax({
         url:申请["通过"],
         type:"GET",
@@ -83,7 +82,7 @@ try{
     申请["通过"]=GetJson.responseJSON["d"];
 
     }catch(e){
-    notyf.alert("失败，代码有误或网络故障");
+    notyf.alert("代码有误或网络故障");
 }
 
 
