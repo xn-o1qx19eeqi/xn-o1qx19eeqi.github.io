@@ -2,11 +2,11 @@
 layout: o1
 permalink: i/13445466
 BiaoTi: 我猜我们现在要开始生产小像素点了
-h1: 我猜我们现在要开始生产小像素点了
-h2: <a href="/">返回</a>
+h1: 　
 ---
 <style>
     body{background-color:#ffffff;}
+    hr{display:none;}
     #流水线 img{position:absolute;top:0;left:0}
     .点点{
         position:absolute;width:40px;height:40px;
@@ -27,8 +27,6 @@ h2: <a href="/">返回</a>
     <div id="点点1"></div>
     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfIAAAE+AgMAAAAL1XqMAAAADFBMVEUAAAAAAAD///8AAADFTF0nAAAAAnRSTlMA4aGeH9YAAAUXSURBVHja7dxBrtNADAbgHK1H6KK9D0dhbat4AxskYo7AgncJs6UbV4zJzKSd1xZ21AbqX3pK1fekT048zjR66gS/ytvpMbllUk899dRb3HWFmu9TS5D+fmpJPfXUU0899dRT/0P6h6klSD9MLamnnrqDjhqpk4Tq8Jx6qfq7w2aqcdfnqjMG6jxH6nPq0/SEegnVNVSH1JeE6CVU1+fVMVaX59UpVofn1SH1aUo99dRTTz311FP/J3U2M43S0Wqi9FY3aYyO1kTTEN3kcvHFXSeDHjJTb51M7lfcfjctcdC5wL1ux1q9g75497rgfvljB/3jL3X4cVO856QVqMXH6fBjF6nDcRep43Hfs43QAa3nZb9x10fI9lt/fYRfXHWF6xz2LTsXHW51tJYv7voIllBdInUO1Q0idX24zr/X8fE6/V43CdTRwEu3e53ET78vnsFN13JXenHU+VY3fbxutup0N+Ph4Tr+Vidx0IX7UUlvp6yHbmulZNe/8NFbzZVmub69Oegk7RRbud1cGXjo/RlC6+8Cr6JOOiy6ADDMMMIeOo5WK/paN4GWr4/UR6OjDv1VD7x/qD48ea2TROoGLjrKWf+26Pft8OGhOpUzeJKhj8FzeKTObKPLh27gos/z2l8nMSmwhtRLR7k8sr2YLM666FjjWMBJZ5SF7bpAD/npJmB2rRs46YwmWEjQ9DLfsDjpTURBgUXn8Z6Tjqv+umQGH72T1HXTqxNv5fE68KL3zYVddTyaeeha9cU0Oevn3aY8Xseuko1Bt7YeOujA1jJWWek61DcfrsMNTnoeBEvkofrI7a293ftQvfWyHhgLQHHVx2ZWS/9wddh46iyrrmgCKOiqG/ScFL8poLrqpGddSOqFd9VZLrW3z3Wzq15gjeoM7KyTvtbJWWcZOotr7WPGn6pOVhz1MWrMZNHBnHuems4FBUp96bveuYkmiz4XWGLiqHfx1HS2GvDT1yd3WHWmioujztpPtqKcd1Yu+thDswkoCaD66mit9G+Lbgts5qpT1biWbF0HT52rbopKtf4lrnpppSuoFfTXtQ2aAqcy++u46GQyY/1Rd10WHWVmg5nddeo62wxs7jpD15WB1V0vTTcTAgZ3Xateb3BExV2npmNBIfbXWapOBZXKTN76DFW3GZR1Nmcdm7eUDWbCZX2o4aVT12FGO6m1q/Cy34uTzrDqXNYndcft1OOgl1VnU2ql427y03XVTZW14j82fjquOhmcCiz5tJ/8dJJ+4AKmreUmR52h6zOj9Zbz1MuqfyRqW5zd5KijrjqQtX+p3LjqctELAB6nKUZnWUrfBemt545TjN56jndRutWlvonSS1vqUboA7aYQvee48df18mo3uetw0T9tIvWXKVDnbaCOL5tA/dN2CtRfpkj9S+qp++klVJ9TT91dp9RTfzIdJfXUn0uHv6H2r6H6+1D9Q6h+SD31Z9M3kTrG6ttIHb6kHqR/DdXfh+ofQvVD6lH6JlLHWH0bqcOX1FN317+H6u9TTz311J9A/xCqH1KP0jeROv7nuoTqFqqzSaAOZhKoA5dIHVhudHXVbzvPVQeWSB01UgcL1VnD9Pvii69++xX4zjqYRupkkTqwSaAOViJ1YDOJ08nMAvQRLpE6WLnSt746mna954uTPvhIHbhE6mglQh+8WYQ+eIGer476fd4/sf5h37ML0cl6jovvrY/g4rdsfPXht3wO0EfepJ566qmnnnrqf7/+E93i1daJevDGAAAAAElFTkSuQmCC">
 </div>
-
-<div id="计时器" style="animation-name:计时器;"></div>
 
 <script>
 let 列表="/i/x/b.json";
@@ -60,6 +58,9 @@ try{
         i+=1;
         if(i==列表.length){
             i=0;
+            console.log("循环")
         }
     }, 1500);
+
+    console.log("原梗作者：@MeatMarket__")
 </script>
