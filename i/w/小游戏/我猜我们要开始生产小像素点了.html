@@ -53,7 +53,7 @@ try{
     let 当前=0;
     // let i=0;
     setInterval(()=>{
-        let i=Math.floor(Math.random()*列表);
+        let i=Math.floor(Math.random()*列表.length);
         document.getElementById("点点"+当前).innerHTML="<div class='点点 提示' style='animation-name:动作;background-color:#"+列表[i][0]+"' onmousemove='进入("+i+")' onmouseout='离开()'></div>";
         if(当前==1){
             当前=0;
