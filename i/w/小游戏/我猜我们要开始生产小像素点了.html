@@ -56,11 +56,11 @@ try{
 }
 
     let 当前=0;
-    let 等待=0;
+    let 等待=2;
     // let i=0;
     setInterval(()=>{
         let i=Math.floor(Math.random()*列表.length);
-        document.getElementById("点点"+当前).innerHTML="<div class='点点 提示' style='animation-name:动作;background-color:#"+列表[i][0]+"' onmousemove=\"进入('"+i+"')\" onmouseout='离开()'></div>";
+        document.getElementById("点点"+当前).innerHTML="<div class='点点 提示' style='animation-name:动作;background-color:#"+列表[i][0]+"' onmousemove=\"进入('"+i+"')\"></div>";
 
         // console.log("#"+列表[i][0]+" | "+列表[i][1]+" | 认养人:"+列表[i][2]);
 
@@ -74,16 +74,14 @@ try{
         //     i=0;
         //     console.log("循环结束")
         // }
-        if(等待!=0){等待-=1;}
+        if(等待==0){document.getElementById("弹窗").style="display:none";}
+        if(等待==1){等待=1;}
     },1500);
 
     function 进入(o){
         document.getElementById("弹窗").innerHTML=列表[o][1]+"<br><small>认养人："+列表[o][2]+"</small>";
         document.getElementById("弹窗").style="";
-        等待=2;
-    }
-    function 离开(){
-        if(等待==0){document.getElementById("弹窗").style="display:none"}
+        等待=1;
     }
 
     console.log("原梗作者：@MeatMarket__")
