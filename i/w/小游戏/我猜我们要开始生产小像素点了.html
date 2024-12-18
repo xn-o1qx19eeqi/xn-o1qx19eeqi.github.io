@@ -11,7 +11,7 @@ h1: 　
     #流水线 img{position:absolute;top:0;left:0}
     .点点{
         position:absolute;width:40px;height:40px;
-        box-shadow:-5px -5px #353540,-5px 5px #353540,5px -5px #353540,5px 5px #353540;
+        box-shadow:-2px -2px #353540,-2px 2px #353540,2px -2px #353540,2px 2px #353540;
         animation-duration:3s;
         animation-timing-function:linear;
         animation-fill-mode:forwards;
@@ -61,7 +61,7 @@ try{
         let i=Math.floor(Math.random()*列表.length);
         document.getElementById("点点"+当前).innerHTML="<div class='点点 提示' style='animation-name:动作;background-color:#"+列表[i][0]+"' onmousemove=\"进入('"+i+"')\" onmouseout='离开()'></div>";
 
-        console.log("#"+列表[i][0]+" | "+列表[i][1]+" | 认养人:"+列表[i][2]);
+        // console.log("#"+列表[i][0]+" | "+列表[i][1]+" | 认养人:"+列表[i][2]);
 
         if(当前==1){
             当前=0;
