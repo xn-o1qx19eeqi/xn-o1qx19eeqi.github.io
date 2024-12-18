@@ -56,6 +56,7 @@ try{
 }
 
     let 当前=0;
+    let 等待=0;
     // let i=0;
     setInterval(()=>{
         let i=Math.floor(Math.random()*列表.length);
@@ -73,13 +74,17 @@ try{
         //     i=0;
         //     console.log("循环结束")
         // }
+        if(等待!=0){等待-=1;}
     },1500);
 
     function 进入(o){
         document.getElementById("弹窗").innerHTML=列表[o][1]+"<br><small>认养人："+列表[o][2]+"</small>";
         document.getElementById("弹窗").style="";
+        等待=2;
     }
-    function 离开(){document.getElementById("弹窗").style="display:none"}
+    function 离开(){
+        if(等待==0){document.getElementById("弹窗").style="display:none"}
+    }
 
     console.log("原梗作者：@MeatMarket__")
 </script>
