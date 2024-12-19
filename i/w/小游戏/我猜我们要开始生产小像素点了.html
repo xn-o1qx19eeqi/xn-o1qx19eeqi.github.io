@@ -10,6 +10,7 @@ h1: 　
     #流水线{position:relative;}
     #流水线 img{position:absolute;top:0;left:0}
     .点点{
+        cursor:pointer;
         position:absolute;width:40px;height:40px;
         box-shadow:-2px -2px #353540,-2px 2px #353540,2px -2px #353540,2px 2px #353540;
         animation-duration:3s;
@@ -85,7 +86,8 @@ try{
     }
 
     function 打开(o){
-        window.location.href="/"+列表[o][1];
+        console.log("/"+列表[o][1])
+        // window.location.href="/"+列表[o][1];
     }
 
     console.log("原梗作者：@MeatMarket__")
