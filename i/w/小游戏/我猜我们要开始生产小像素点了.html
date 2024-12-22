@@ -45,7 +45,7 @@ h1: 　
     <div id="按钮" onclick="按钮()"></div>
 </div>
 
-<small id="说明" onclick="说明()">说明</small>
+<small id="说明" onclick="说明()"><span style="cursor:pointer">说明</span></small>
 
 <script>
 let 列表="/i/x/b.json";
@@ -89,6 +89,6 @@ try{
     }
 
     function 说明(){
-        document.getElementById("说明").innerHTML="原梗作者：<a href='https://x.com/MeatMarket__'>@MeatMarket__</a><br>点击机器上的灯可以开启/关闭介绍模式<br>点击小像素点跳转到对应页面<br><a onclick=\"document.getElementById('说明').style='display:none;';\">隐藏说明</a>";
+        document.getElementById("说明").innerHTML="原梗作者：<a href='https://x.com/MeatMarket__'>@MeatMarket__</a><br><br>点击机器上的灯可以开启/关闭介绍模式<br>点击小像素点跳转到对应页面<br><a onclick=\"document.getElementById('说明').style='display:none;';\">隐藏说明</a>";
     }
 </script>
