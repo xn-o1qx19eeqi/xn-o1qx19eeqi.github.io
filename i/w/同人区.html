@@ -7,6 +7,7 @@ BiaoTi: 同人区
 title: 同人区
 h1: 同人区
 h2: <a href="/">返回</a>
+div0: 1
 ---
 <!--
 收藏夹：<a href="">B站</a> . <a href="">lofter</a>
@@ -27,7 +28,7 @@ if(location.href.indexOf("?")!=-1){
     document.getElementById("dy").innerHTML="正在跳转中……";
     window.location.href=d[url][3];
 }else{
-    let dy="<table><tr><td></td><td>作品</td><td>作者</td><td>主演</td><td></td></tr>";
+    let dy="<table class='tm'><tr><td></td><td>作品</td><td>作者</td><td>主演</td><td></td></tr>";
     for(let i=0;d.length>i;i++){
         dy+="<tr><td><small>"+(i+1)+"</small></td><td>"+d[i][0];
         if(d[i][1]!=""){dy+="<small>（"+d[i][1]+"）</small>"}
