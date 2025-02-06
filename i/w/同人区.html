@@ -26,7 +26,7 @@ let d=[
 if(location.href.indexOf("?")!=-1){
     let url=location.href.split("?")[1]*1-1;
     document.getElementById("dy").innerHTML="正在跳转中……";
-    window.location.href=d[url][3];
+    window.location.href=d[url][4];
 }else{
     let dy="<table class='tm'><tr><td></td><td>作品</td><td>作者</td><td>主演</td><td></td></tr>";
     for(let i=0;d.length>i;i++){

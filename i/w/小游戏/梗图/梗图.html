@@ -1,0 +1,72 @@
+---
+layout: e0
+permalink: 梗图
+BeiJing: 0
+BeiJing_SJ: 0
+BiaoTi: 梗图
+div0: 1
+---
+
+<style>
+    .按钮{margin:auto 0.6em;line-height:2em;padding:2px 6px;border:1.4px solid #bcbcbc;border-radius:6px;}
+    #dy2{position:relative;}
+    #dy2 div{background-color:#000000;}
+    #dy2 img{position:absolute;top:0;left:0;}
+</style>
+
+<div id="dy"></div><br>
+<div id="dy3"></div><br>
+<div id="dy2"></div>
+
+<script>
+    let 目录=[];
+    let d={
+        "目录":["目录","点点结局","兄弟，像素点不错","点点结局","兄弟，像素点不错","点点结局","兄弟，像素点不错","点点结局","兄弟，像素点不错","点点结局","兄弟，像素点不错","点点结局","兄弟，像素点不错","点点结局","兄弟，像素点不错","点点结局","兄弟，像素点不错","点点结局","兄弟，像素点不错"],
+
+        "点点结局":["#点1{position:relative;width:154px;height:146px;top:248px;left:322px}","编号／background-color:#【】","jpg"],
+        "兄弟，像素点不错":["png","点","jpg"],
+    }
+
+    let 点数;
+    function 打开(o){
+        点数=[o];
+        目录=d[o];
+        if(目录[0]=="目录"){
+            let dy="";
+            for(let i=0;目录.length>i;i++){if(i==0&&o=="目录"){}else{dy+="<span class='按钮' onclick=\"打开('"+目录[i]+"')\">"+目录[i]+"</span>"}}
+            document.getElementById("dy").innerHTML=dy;
+        }else{
+            let dy="";
+            let dy2="";
+            for(let i=d[o].length-1;i>0;i--){
+                if(d[o][i]=="jpg"||d[o][i]=="png"||d[o][i]=="gif"){
+                    //C:/mq/博客/xn-o1qx19eeqi.github.io/i/w/小游戏/梗图/
+                    dy+="<img src='/i/w/小游戏/梗图/"+o+i+"."+d[o][i]+"'>";
+                }else{
+                    点数[点数.length]=i;
+                    dy+="<div id='点"+i+"'></div>";
+                    dy2+="<input type='text' placeholder='"+d[o][i].split("／")[0]+"' autocomplete='off' id='输入"+i+"'>";
+                }
+            }
+            document.getElementById("dy2").innerHTML=dy;
+            if(dy2!=""){
+                document.getElementById("dy3").innerHTML="<style>"+d[o][0]+"</style>"+dy2+"<br><a onclick='确定()'>确定</a>";
+            }
+        }
+    }
+
+    function 确定(){
+        for(let i=1;点数.length>i;i++){
+            let 临时=document.getElementById("输入"+点数[i]).value;
+            document.getElementById("点"+点数[i]).style=d[点数[0]][点数[i]].split("／")[1].replace(new RegExp('【】',"g"),临时);
+        }
+    }
+
+    let url=location.href;
+    if(url.indexOf("?")!=-1){url=url.split("?")[1]}
+    else{url="目录"}
+    打开(url);
+
+    
+</script>
+
