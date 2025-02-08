@@ -35,6 +35,8 @@ div0: 1
     }
 
     let 点数;
+    let 颜色="000000";
+    if(localStorage.getItem("像素点")){颜色=localStorage.getItem("像素点")}else{localStorage.setItem("像素点",颜色)}
     function 打开(o){
         点数=[o];
         目录=d[o];
@@ -50,7 +52,7 @@ div0: 1
                     dy+="<img src='/i/w/小游戏/梗图/"+o+i+"."+d[o][i]+"'>";
                 }else{
                     点数[点数.length]=i;
-                    dy+="<div id='点"+i+"'></div>";
+                    dy+="<div id='点"+i+"' style='"+d[o][i].split("／")[1].replace(new RegExp('【】',"g"),颜色)+"'></div>";
                     dy2+="<input type='text' placeholder='"+d[o][i].split("／")[0]+"' autocomplete='off' id='输入"+i+"'>";
                 }
             }
