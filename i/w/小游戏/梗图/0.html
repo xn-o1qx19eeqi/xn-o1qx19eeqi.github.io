@@ -15,6 +15,7 @@ div0: 1
     #dy2 img{position:absolute;top:0;left:0;}
 </style>
 
+<style id=用户输入></style>
 <div id="dy"></div><br>
 <div id="dy3"></div><br>
 <div id="dy2"></div><br>
@@ -25,13 +26,18 @@ div0: 1
     let d={
         "目录":["目录","点点结局","兄弟，像素点不错"],
 
-        // ["目录","标题1","标题2"]
-        // ["#点1{}#div4{height:图片高度-120px}","内容1","内容2"]
-        // 内容：jpg gif png / "提示文字／js【替换】"
-        // #点x 和 图片后的数字 取决于在变量里的位置
+        // ["目录","标题1","标题2"],
+    
+        // ["#点1{background-color:var(--yh)}#div4{height:图片高度-120px}",[
+        //      ["yh","默认","提示文字"],[下一个]
+        // ],"内容1","内容2"]
+        // 默认为"点"则是用户的默认像素点颜色
+    
+        // 内容：.jpg 1.gif 2.png / <div id='点1'></div>
 
-        "点点结局":["#点1{position:relative;width:154px;height:146px;top:248px;left:322px}#div4{height:800px}","像素点编号／background-color:#【】","jpg"],
-        "兄弟，像素点不错":["#点2{position:relative;width:122px;height:122px;top:346px;left:398px}#div4{height:508px}","png","像素点编号／background-color:#【】"],
+        "点点结局":["#点{position:relative;width:154px;height:146px;top:248px;left:322px;background-color:var(--yh)}#div4{height:800px}",[["yh","点","像素点编号"]],"<div id='点'></div>",".jpg"],
+        "兄弟，像素点不错":["#点{position:relative;width:122px;height:122px;top:346px;left:398px}#div4{height:508px}",[["yh","点","像素点编号"]],".png","<div id='点'></div>"],
+
     }
 
     let 点数;
@@ -47,16 +53,23 @@ div0: 1
         }else{
             let dy="";
             let dy2="";
-            for(let i=d[o].length-1;i>0;i--){
-                if(d[o][i]=="jpg"||d[o][i]=="png"||d[o][i]=="gif"){
+            for(let i=d[o].length-1;i>1;i--){
+                if(d[o][i].endsWith(".jpg")||d[o][i].endsWith(".png")||d[o][i].endsWith(".gif")){
                     dy+="<img src='/i/w/小游戏/梗图/"+o+i+"."+d[o][i]+"'>";
                 }else{
-                    点数[点数.length]=i;
-                    dy+="<div id='点"+i+"' style='"+d[o][i].split("／")[1].replace(new RegExp('【】',"g"),颜色)+"'></div>";
-                    dy2+="<input type='text' placeholder='"+d[o][i].split("／")[0]+"' autocomplete='off' id='输入"+i+"'>";
+                    dy+=d[o][i];
                 }
             }
+            let dy3=":root{";
+            for(let i=0;d[o][1].length>i;i++){
+                点数[点数.length]=d[o][1][i][0];
+                dy2+="<input type='text' placeholder='"+d[o][1][i][2]+"' autocomplete='off' id='输入"+d[o][1][i][0]+"'>";
+                if(d[o][1][i][1]=="点"){d[o][1][i][1]="#"+颜色}
+                dy3+="--"+d[o][1][i][0]+":"+d[o][1][i][1]+";";
+            }
+            dy3+="}";
             document.getElementById("dy2").innerHTML=dy;
+            document.getElementById("用户输入").innerHTML=dy3;
             if(dy2!=""){
                 document.getElementById("dy3").innerHTML="<style>"+d[o][0]+"</style>"+dy2+"<br><a onclick='确定()'>确定</a>";
             }
@@ -64,10 +77,13 @@ div0: 1
     }
 
     function 确定(){
+        let dy3=":root{"
         for(let i=1;点数.length>i;i++){
             let 临时=document.getElementById("输入"+点数[i]).value;
-            document.getElementById("点"+点数[i]).style=d[点数[0]][点数[i]].split("／")[1].replace(new RegExp('【】',"g"),临时);
+            dy3+="--"+点数[i]+":"+临时+";";
         }
+        dy3+="}"
+        document.getElementById("用户选择").innerHTML=dy3;
     }
 
     let url=location.href;
