@@ -18,11 +18,10 @@ div0: 1
 
 <script>
 let d=[
-    ["强风大背头","视频","李猫球","<span class='提示' data-msg='DF7460'>小胡糊</span> . <span class='提示' data-msg='FEBCC0'>小猪又</span>","https://www.bilibili.com/video/BV13z4y1p7Df"],
-    ["我猜我们现在要开始生产小像素点了","网页","李猫球","所有小像素点","/i/13445466"],
-    ["我猜我们现在要开始生产小像素点了","视频","李猫球","所有小像素点","https://www.bilibili.com/video/BV1tUkFYbEJq"],
-    ["你是否承认小像素点非常可爱？","网页","李猫球","小像素点","/i/14035916"],
-    // ["作品","类型","作者","主演","地址"],
+    ["强风大背头","李猫球","<span class='提示' data-msg='DF7460'>小胡糊</span> . <span class='提示' data-msg='FEBCC0'>小猪又</span>","<a href='https://www.bilibili.com/video/BV13z4y1p7Df'>视频</a>"],
+    ["我猜我们现在要开始生产小像素点了","李猫球","所有小像素点","<a href='/i/13445466'>网页</a> . <a href='https://www.bilibili.com/video/BV1tUkFYbEJq'>视频</a>"],
+    ["你是否承认小像素点非常可爱？","李猫球","小像素点","<a href='/i/14035916'>网页</a>"],
+    // ["作品","作者","主演","<a href=''></a>"],
 ];
 if(location.href.indexOf("?")!=-1){
     let url=location.href.split("?")[1]*1-1;
@@ -32,8 +31,7 @@ if(location.href.indexOf("?")!=-1){
     let dy="<table class='tm'><tr><td></td><td>作品</td><td>作者</td><td>主演</td><td></td></tr>";
     for(let i=0;d.length>i;i++){
         dy+="<tr><td><small>"+(i+1)+"</small></td><td>"+d[i][0];
-        if(d[i][1]!=""){dy+="<small>（"+d[i][1]+"）</small>"}
-        dy+="</td><td>"+d[i][2]+"</td><td>"+d[i][3]+"</td><td><a href='"+d[i][4]+"'>打开</a></td></tr>"
+        dy+="</td><td>"+d[i][1]+"</td><td>"+d[i][2]+"</td><td>"+d[i][3]+"</td></tr>"
     }
     dy+="</table>";
     document.getElementById("dy").innerHTML=dy;
