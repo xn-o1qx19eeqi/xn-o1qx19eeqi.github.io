@@ -98,11 +98,31 @@ button {
 <small id="说明" onclick="说明()"><span style="cursor:pointer">说明</span></small>
 
 <script>
+let 像素点="小像素点";
 let url=window.location.href;
 if(url.indexOf("?")!=-1){
     url=url.split("?")[1];
+
+
+    try{
+    let GetJson=$.ajax({
+        url:"/i/x"+url+".json",
+        type:"GET",
+        dataType:"json",
+        async:false,
+        success:function(data){
+        }
+    });
+    let 临时=GetJson.responseText.split("／")[0];
+    if(临时.length<30){像素点=临时}
+
+    }catch(e){
+    }
+
+
 }else{url="000000"}
 document.getElementById("mainImage").style="background-color:#"+url;
+document.getElementById("question").innerHTML="你是否承认"+像素点+"非常可爱？";
 
 let yesButton = document.getElementById("yes");
 let noButton = document.getElementById("no");
