@@ -85,8 +85,6 @@ button {
     text-align:left;}
 </style>
 
-<script src="/js/jquery.min.js"></script>
-
 <div id="body">
     <div class="container">
         <div id="mainImage"></div>
@@ -108,7 +106,7 @@ if(url.indexOf("?")!=-1){
 
     try{
     let GetJson=$.ajax({
-        url:"/i/x"+url+".json",
+        url:"/i/x/"+url+".json",
         type:"GET",
         dataType:"json",
         async:false,
