@@ -77,9 +77,9 @@ function 打开(o){
         }
         document.getElementById("st").innerHTML=dy;
         if(dy2!=""){
-            document.getElementById("dy3").innerHTML="<a onclick='截图()'>截图</a><br>"+dy2+"<br><a onclick='确定()'>确定</a>";
+            document.getElementById("dy3").innerHTML="<a onclick='截图()'>保存图片</a><br>"+dy2+"<br><a onclick='确定()'>确定</a>";
         }else{
-            document.getElementById("dy3").innerHTML="<a onclick='截图()'>截图</a>";
+            document.getElementById("dy3").innerHTML="<a onclick='截图()'>保存图片</a>";
         }
     }
 }
@@ -131,14 +131,14 @@ function 截图(){
         const imgData = canvas.toDataURL('image/png',1.0);
     
         const link = document.createElement('a');
-        const formattedDateTime = ((d) => `${d.getFullYear()}${(d.getMonth()+1+'').padStart(2,'0')}${(d.getDate()+'').padStart(2,'0')} ${d.getHours().toString().padStart(2,'0')}${d.getMinutes().toString().padStart(2,'0')}${d.getSeconds().toString().padStart(2,'0')}${d.getMilliseconds().toString().padStart(3,'0')}`)(new Date())
+        const formattedDateTime = ((d) => `${d.getFullYear()}${(d.getMonth()+1+'').padStart(2,'0')}${(d.getDate()+'').padStart(2,'0')} ${d.getHours().toString().padStart(2,'0')}${d.getMinutes().toString().padStart(2,'0')}${d.getSeconds().toString().padStart(2,'0')}`)(new Date())
         link.download = formattedDateTime +'.png';
         link.href = imgData;
     
         link.click();
         URL.revokeObjectURL(link.href);
     }).catch(error => {
-        try{notyf.alert("截图失败");}catch(e){alert("截图失败");}
+        try{notyf.alert("存图失败");}catch(e){alert("存图失败");}
     });
 };
 
