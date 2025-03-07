@@ -6,7 +6,7 @@ BeiJing_SJ: 0
 BiaoTi: 梗图
 div0: 1
 ---
-
+<script src="/i/5/new_html2canvas.js"></script>
 <style>
     .按钮{margin:auto 0.6em;line-height:2em;padding:2px 6px;border:1.4px solid #bcbcbc;border-radius:6px;cursor:pointer}
     .按钮:hover{border:1.4px solid #0084ff;}
@@ -14,11 +14,11 @@ div0: 1
     #dy2 img{position:absolute;top:0;left:0;}
 </style>
 
+
 <style id="st"></style>
 <div id="dy"></div><br>
 <div id="dy3"></div><br>
 <div id="dy2"></div><br>
-<div id="div4"></div>
 
 <script>
 let 测试="/i/w/小游戏/梗图/";
@@ -31,7 +31,7 @@ let d={
 
     "":["目录","标题1","标题2"],
     
-    "":["#点1{position:relative;width:154px;height:146px;top:248px;left:322px;background-color:#【1】}#div4{height:图片高度120px}",[
+    "":["#点1{position:relative;width:154px;height:146px;top:248px;left:322px;background-color:#【1】}#dy2{width:图片宽度px;height:图片高度px}",[
             ["1","默认","提示文字"],[下一个] //选项 "默认"为"点"是用户默认像素点颜色
     ],"1.png","<div id='点'></div>","2.png"] //内容可以是.jpg 或 <div>其他元素</div>
 
@@ -39,9 +39,9 @@ let d={
     
     */
 
-    "点点结局":["#点{position:relative;width:154px;height:146px;top:248px;left:322px;background-color:#【1】}#div4{height:800px}",[["1","点","像素点编号"]],"<div id='点'></div>",".jpg"],
-    "兄弟，像素点不错":["#点{position:relative;width:122px;height:122px;top:346px;left:398px;background-color:#【1】}#div4{height:508px}",[["1","点","像素点编号"]],".png","<div id='点'></div>"],
-    "This is Fine":["#点{position:relative;width:118px;height:121px;top:248px;left:176px;background-color:#【1】}#div4{height:509px}",[["1","点","像素点编号"]],"1.png","<div id='点'></div>","2.png"],
+    "点点结局":["#点{position:relative;width:154px;height:146px;top:248px;left:322px;background-color:#【1】}#dy2{width:800px;height:800px}",[["1","点","像素点编号"]],"<div id='点'></div>",".jpg"],
+    "兄弟，像素点不错":["#点{position:relative;width:122px;height:122px;top:346px;left:398px;background-color:#【1】}#dy2{width:583px;height:508px}",[["1","点","像素点编号"]],".png","<div id='点'></div>"],
+    "This is Fine":["#点{position:relative;width:118px;height:121px;top:248px;left:176px;background-color:#【1】}#dy2{width:500px;height:509px}",[["1","点","像素点编号"]],"1.png","<div id='点'></div>","2.png"],
 }
 
 let 点数,输入;
@@ -77,7 +77,9 @@ function 打开(o){
         }
         document.getElementById("st").innerHTML=dy;
         if(dy2!=""){
-            document.getElementById("dy3").innerHTML=dy2+"<br><a onclick='确定()'>确定</a>";
+            document.getElementById("dy3").innerHTML="<a onclick='截图()'>截图</a><br>"+dy2+"<br><a onclick='确定()'>确定</a>";
+        }else{
+            document.getElementById("dy3").innerHTML="<a onclick='截图()'>截图</a>";
         }
     }
 }
@@ -96,6 +98,49 @@ if(url.indexOf("?")!=-1){url=url.split("?")[1]}
 else{url="目录"}
 打开(url);
 
+function 截图(){
+    const element = document.getElementById('dy2');
+    const devicePixelRatio = window.devicePixelRatio || 1;
+    const scale = Math.min(2, devicePixelRatio);
+
+    const options = {
+        logging: true,
+        useCORS: true,
+        allowTaint: false,
+        scale: scale,
+        width: element.offsetWidth,
+        height: element.offsetHeight,
+        backgroundColor: null,
+        onclone: (clonedDoc) => {
+            const cloneElement = clonedDoc.getElementById('dy2');
+            if (cloneElement) {
+                cloneElement.style.cssText += `
+                    transform: translateZ(0) !important; /* 强制GPU渲染 */
+                    image-rendering: -webkit-optimize-contrast !important;
+                    text-rendering: optimizeLegibility !important;
+                `;
+            }
+        }
+    };
+
+    html2canvas(element, options).then(canvas => {
+        const ctx = canvas.getContext('2d');
+        ctx.imageSmoothingEnabled = false;
+        ctx.mozImageSmoothingEnabled = false;
+        ctx.webkitImageSmoothingEnabled = false;
+        const imgData = canvas.toDataURL('image/png',1.0);
+    
+        const link = document.createElement('a');
+        const formattedDateTime = ((d) => `${d.getFullYear()}${(d.getMonth()+1+'').padStart(2,'0')}${(d.getDate()+'').padStart(2,'0')} ${d.getHours().toString().padStart(2,'0')}${d.getMinutes().toString().padStart(2,'0')}${d.getSeconds().toString().padStart(2,'0')}${d.getMilliseconds().toString().padStart(3,'0')}`)(new Date())
+        link.download = formattedDateTime +'.png';
+        link.href = imgData;
+    
+        link.click();
+        URL.revokeObjectURL(link.href);
+    }).catch(error => {
+        try{notyf.alert("截图失败");}catch(e){alert("截图失败");}
+    });
+};
 
 </script>
 
