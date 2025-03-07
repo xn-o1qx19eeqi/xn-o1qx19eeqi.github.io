@@ -32,7 +32,7 @@ let d={
 
     "":["目录","标题1","标题2"],
     
-    "":["#点1{position:relative;width:154px;height:146px;top:248px;left:322px;background-color:#【1】}#div2{width:图片宽度px}#div2,#div4{height:图片高度px}",[
+    "":["#点1{position:relative;width:154px;height:146px;top:248px;left:322px;background-color:#【1】}#dy2{width:图片宽度px}#div2,#div4{height:图片高度px}",[
             ["1","默认","提示文字"],[下一个] //选项 "默认"为"点"是用户默认像素点颜色
     ],"1.png","<div id='点'></div>","2.png"] //内容可以是.jpg 或 <div>其他元素</div>
 
@@ -40,9 +40,9 @@ let d={
     
     */
 
-    "点点结局":["#点{position:relative;width:154px;height:146px;top:248px;left:322px;background-color:#【1】}#div2{width:800px}#div2,#div4{height:800px}",[["1","点","像素点编号"]],"<div id='点'></div>",".jpg"],
-    "兄弟，像素点不错":["#点{position:relative;width:122px;height:122px;top:346px;left:398px;background-color:#【1】}#div2{width:583px}#div2,#div4{height:508px}",[["1","点","像素点编号"]],".png","<div id='点'></div>"],
-    "This is Fine":["#点{position:relative;width:118px;height:121px;top:248px;left:176px;background-color:#【1】}#div2{width:500px}#div2,#div4{height:509px}",[["1","点","像素点编号"]],"1.png","<div id='点'></div>","2.png"],
+    "点点结局":["#点{position:relative;width:154px;height:146px;top:248px;left:322px;background-color:#【1】}#dy2{width:800px}#dy2,#div4{height:800px}",[["1","点","像素点编号"]],"<div id='点'></div>",".jpg"],
+    "兄弟，像素点不错":["#点{position:relative;width:122px;height:122px;top:346px;left:398px;background-color:#【1】}#dy2{width:583px}#dy2,#div4{height:508px}",[["1","点","像素点编号"]],".png","<div id='点'></div>"],
+    "This is Fine":["#点{position:relative;width:118px;height:121px;top:248px;left:176px;background-color:#【1】}#dy2{width:500px}#dy2,#div4{height:509px}",[["1","点","像素点编号"]],"1.png","<div id='点'></div>","2.png"],
 }
 
 let 点数,输入;
@@ -100,23 +100,49 @@ else{url="目录"}
 function 截图(){
     // 获取目标元素
     const element = document.getElementById('dy2');
+    const devicePixelRatio = window.devicePixelRatio || 1;
+    const scale = 3 * devicePixelRatio; // 基础倍数 x 设备像素比
+
+    const options = {
+        logging: true,
+        useCORS: true,
+        allowTaint: false,
+        scale: scale,
+        width: element.offsetWidth,   // 精确获取元素实际宽度
+        height: element.offsetHeight, // 精确获取元素实际高度
+        windowWidth: element.scrollWidth,
+        windowHeight: element.scrollHeight,
+        onclone: (clonedDoc) => {
+            // 克隆文档时强制优化字体渲染
+            clonedDoc.getElementById('capture').style.cssText += `
+                transform: none !important;
+                image-rendering: crisp-edges !important;
+                -webkit-font-smoothing: subpixel-antialiased !important;
+            `;
+        }
+    };
     
     // 配置选项（可根据需要调整）
-    const options = {
-        logging: false,    // 关闭日志
-        useCORS: true,     // 启用跨域支持
-        scale: 2,         // 提高截图分辨率（2倍）
-        backgroundColor: null // 保持背景透明
-    };
+    // const options = {
+    //     logging: false,    // 关闭日志
+    //     useCORS: true,     // 启用跨域支持
+    //     scale: 2,         // 提高截图分辨率（2倍）
+    //     backgroundColor: null // 保持背景透明
+    // };
 
     // 执行截图
     html2canvas(element, options).then(canvas => {
+        // 二次锐化处理
+        const ctx = canvas.getContext('2d');
+        ctx.imageSmoothingEnabled = false;
+        ctx.mozImageSmoothingEnabled = false;
+        ctx.webkitImageSmoothingEnabled = false;
         // 转换为图片
-        const imgData = canvas.toDataURL('image/png');
+        const imgData = canvas.toDataURL('image/png',1.0);
         
         // 创建下载链接
         const link = document.createElement('a');
-        const formattedDateTime = ((d) => `${d.getFullYear()}-${(d.getMonth()+1+'').padStart(2,'0')}-${(d.getDate()+'').padStart(2,'0')} ${d.getHours().toString().padStart(2,'0')}:${d.getMinutes().toString().padStart(2,'0')}:${d.getSeconds().toString().padStart(2,'0')}.${d.getMilliseconds().toString().padStart(3,'0')}`)(new Date())
+        const formattedDateTime = ((d) => `${d.getFullYear()}${(d.getMonth()+1+'').padStart(2,'0')}${(d.getDate()+'').padStart(2,'0')} ${d.getHours().toString().padStart(2,'0')}${d.getMinutes().toString().padStart(2,'0')}${d.getSeconds().toString().padStart(2,'0')}${d.getMilliseconds().toString().padStart(3,'0')}`)(new Date())
         link.download = formattedDateTime +'.png';
         link.href = imgData;
         
