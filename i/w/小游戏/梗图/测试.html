@@ -110,15 +110,23 @@ function 截图(){
         scale: scale,
         width: element.offsetWidth,   // 精确获取元素实际宽度
         height: element.offsetHeight, // 精确获取元素实际高度
-        windowWidth: element.scrollWidth,
-        windowHeight: element.scrollHeight,
+        // windowWidth: element.scrollWidth,
+        // windowHeight: element.scrollHeight,
         onclone: (clonedDoc) => {
             // 克隆文档时强制优化字体渲染
-            clonedDoc.getElementById('capture').style.cssText += `
-                transform: none !important;
-                image-rendering: crisp-edges !important;
-                -webkit-font-smoothing: subpixel-antialiased !important;
-            `;
+            // clonedDoc.getElementById('capture').style.cssText += `
+            //     transform: none !important;
+            //     image-rendering: crisp-edges !important;
+            //     -webkit-font-smoothing: subpixel-antialiased !important;
+            // `;
+            const cloneElement = clonedDoc.getElementById('dy2');
+            if (cloneElement) {
+                cloneElement.style.cssText += `
+                    transform: none !important;
+                    image-rendering: crisp-edges !important;
+                    -webkit-font-smoothing: subpixel-antialiased !important;
+                `;
+            }
         }
     };
     
