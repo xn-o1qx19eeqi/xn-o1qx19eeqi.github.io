@@ -19,21 +19,24 @@ div0: 1
 <div id="dy"></div><br>
 <div id="dy3"></div><br>
 <div id="dy2"></div><br>
+<br>
+<a onclick='截图()'>保存图片</a>
 
 <script>
 let 测试="/i/w/小游戏/梗图/";
 // 测试="";
 let 目录=[];
 let d={
-    "目录":["目录","点点结局","兄弟，像素点不错","This is Fine","br","可能引发不适"],
+    "目录":["目录","点点结局","兄弟，像素点不错","This is Fine","猫球UFO",
+        "<br>分类：","可能引发不适"],
     "可能引发不适":["目录","蘑菇乐园"],
 
     /*
 
-    "":["目录","标题1","标题2"],
+    "":["目录","标题1","标题2","<span>文字"],
     
     "":["#点1{position:relative;width:154px;height:146px;top:248px;left:322px;background-color:#【1】}#dy2{width:图片宽度px;height:图片高度px}",[
-            ["1","默认","提示文字"],[下一个] //选项 "默认"为"点"是用户默认像素点颜色
+            ["1","默认","提示文字"],"直接显示文字，记得加<br>",下一个 //选项 "默认"为"点"是用户默认像素点颜色
     ],"1.png","<div id='点'></div>","2.png"] //内容可以是.jpg 或 <div>其他元素</div>
 
     图片名=标题 如果标题有空格，文件要删掉空格
@@ -42,8 +45,9 @@ let d={
 
     "点点结局":["#点{position:relative;width:96px;height:92px;top:155px;left:201px;background-color:#【1】}#dy2{width:800px;height:800px}",[["1","点","像素点编号"]],"<div id='点'></div>",".jpg"],
     "兄弟，像素点不错":["#点{position:relative;width:122px;height:122px;top:346px;left:398px;background-color:#【1】}#dy2{width:583px;height:508px}",[["1","点","像素点编号"]],".png","<div id='点'></div>"],
-    "This is Fine":["#点{position:relative;width:118px;height:121px;top:248px;left:176px;background-color:#【1】}#dy2{width:500px;height:509px}",[["1","点","像素点编号"]],"1.png","<div id='点'></div>","2.png"],
+    "This is Fine":["#点{position:relative;width:118px;height:121px;top:248px;left:176px;background-color:#【1】}#dy2{width:500px;height:509px}",["<small>素材来源：K.C.Green «Gunshow»</small><br>",["1","点","像素点编号"]],"1.png","<div id='点'></div>","2.png"],
     "蘑菇乐园":["#点{position:relative;width:113px;height:113px;top:514px;left:473px;background-color:#【1】}#dy2{width:1000px;height:667px}",[["1","点","像素点编号"]],"<div id='点'></div>",".jpg"],
+    "猫球UFO":["#点{position:relative;width:190px;height:190px;top:570px;left:145px;background-color:#【1】}#dy2{width:600px;height:956px}",["<small>作者：莱斯哈耶</small><br>",["1","点","像素点编号"]],".png","<div id='点'></div>"],
 }
 
 let 点数,输入;
@@ -54,7 +58,11 @@ function 打开(o){
     目录=d[o];
     if(目录[0]=="目录"){
         let dy="";
-        for(let i=0;目录.length>i;i++){if(i==0&&o=="目录"){}else if(目录[i]=="br"){dy+="<br>"}else{dy+="<span class='按钮' onclick=\"打开('"+目录[i]+"')\">"+目录[i]+"</span>"}}
+        for(let i=0;目录.length>i;i++){if(i==0&&o=="目录"){}else if(目录[i][0]=="<"){dy+=目录[i]}else{
+            if(d[目录[i]][0]=="目录"){dy+="<span class='按钮' onclick=\"打开('"+目录[i]+"')\"><b>"+目录[i]+"</b></span>"}
+            else{dy+="<span class='按钮' onclick=\"打开('"+目录[i]+"')\">"+目录[i]+"</span>"}
+        }
+        }
         document.getElementById("dy").innerHTML=dy;
     }else{
         let dy="";
@@ -67,10 +75,15 @@ function 打开(o){
             }
         }
         for(let i=0;d[o][1].length>i;i++){
-            点数[点数.length]=d[o][1][i][0];
-            dy2+="<input type='text' placeholder='"+d[o][1][i][2]+"' autocomplete='off' id='输入"+d[o][1][i][0]+"'>";
-            if(d[o][1][i][1]=="点"){d[o][1][i][1]=颜色}
-            输入[d[o][1][i][0]]=d[o][1][i][1];
+            if(Array.isArray(d[o][1][i])){
+                点数[点数.length]=d[o][1][i][0];
+                dy2+="<input type='text' placeholder='"+d[o][1][i][2]+"' autocomplete='off' id='输入"+d[o][1][i][0]+"'>";
+                if(d[o][1][i][1]=="点"){d[o][1][i][1]=颜色}
+                输入[d[o][1][i][0]]=d[o][1][i][1];
+            }else{
+                dy2+=d[o][1][i];
+            }
+
         }
         document.getElementById("dy2").innerHTML=dy;
         dy=d[o][0];
@@ -79,9 +92,9 @@ function 打开(o){
         }
         document.getElementById("st").innerHTML=dy;
         if(dy2!=""){
-            document.getElementById("dy3").innerHTML="<a onclick='截图()'>保存图片</a><br>"+dy2+"<br><a onclick='确定()'>确定</a>";
+            document.getElementById("dy3").innerHTML=dy2+"<br><a onclick='确定()'>确定</a>";
         }else{
-            document.getElementById("dy3").innerHTML="<a onclick='截图()'>保存图片</a>";
+            document.getElementById("dy3").innerHTML="";
         }
     }
 }
