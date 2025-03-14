@@ -70,21 +70,22 @@
 
 
 
-<style id="stfollower"></style>
+
+<style>
+.follower {
+width: 13px;
+height: 13px;
+position: fixed;
+pointer-events: none;
+transition: transform 0.3s ease-out;
+}
+</style>
 
 <div class="follower"></div>
 
 <script>
-document.getElementById("stfollower").innerHTML=`
-width: 13px;
-height: 13px;
-background: #`+localStorage.getItem("像素点")+`;
-position: fixed;
-pointer-events: none;
-transition: transform 0.3s ease-out;
-`;
 const follower=document.querySelector('.follower');
-
+follower.style.background="#"+localStorage.getItem("像素点");
 let mouseX=0,mouseY=0,posX=0,posY=0;
 let rotation=0;
 let lastMoveTime=0;
@@ -113,6 +114,7 @@ requestAnimationFrame(animate);
 }
 animate();
 </script>
+    
     
 
 
