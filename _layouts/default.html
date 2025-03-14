@@ -53,7 +53,7 @@
 {{ content }}
 
 {% if page.ShuBiao %}
-<div id="鼠标"></div>
+<!-- <div id="鼠标"></div>
 <script>
     let 鼠标=localStorage.getItem("像素点");
     if(鼠标){
@@ -66,7 +66,56 @@
             鼠标.style.top=y+13+'px';
         });
     }
+</script> -->
+
+
+
+<style id="stfollower"></style>
+
+<div class="follower"></div>
+
+<script>
+document.getElementById("stfollower").innerHTML=`
+width: 13px;
+height: 13px;
+background: #`+localStorage.getItem("像素点")+`;
+position: fixed;
+pointer-events: none;
+transition: transform 0.3s ease-out;
+`;
+const follower=document.querySelector('.follower');
+
+let mouseX=0,mouseY=0,posX=0,posY=0;
+let rotation=0;
+let lastMoveTime=0;
+
+document.addEventListener('mousemove',(e) => {
+mouseX=e.clientX;
+mouseY=e.clientY;
+lastMoveTime=Date.now();
+});
+
+function animate() {
+const deltaTime=Date.now()-lastMoveTime;
+
+posX+=(mouseX-posX) * 0.2;
+posY+=(mouseY-posY) * 0.2;
+
+const deltaX=mouseX-posX;
+const deltaY=mouseY-posY;
+rotation=Math.atan2(deltaY,deltaX)*180/Math.PI;
+follower.style.transform=`
+translate(${posX +13}px,${posY +13}px)
+rotate(${rotation}deg)
+`;
+
+requestAnimationFrame(animate);
+}
+animate();
 </script>
+    
+
+
 {% endif %}
 
 <script>
