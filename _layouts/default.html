@@ -53,24 +53,6 @@
 {{ content }}
 
 {% if page.ShuBiao %}
-<!-- <div id="鼠标"></div>
-<script>
-    let 鼠标=localStorage.getItem("像素点");
-    if(鼠标){
-        document.getElementById("鼠标").style="position:absolute;width:10px;height:10px;transition:all 0.4s;background-color:#"+鼠标;
-        鼠标=document.getElementById('鼠标');
-        document.addEventListener('mousemove',function (e){
-            let x=e.pageX;
-            let y=e.pageY;
-            鼠标.style.left=x+13+'px';
-            鼠标.style.top=y+13+'px';
-        });
-    }
-</script> -->
-
-
-
-
 <style>
 .follower {
 width: 13px;
@@ -84,40 +66,68 @@ transition: transform 0.3s ease-out;
 <div class="follower"></div>
 
 <script>
-const follower=document.querySelector('.follower');
-follower.style.background="#"+localStorage.getItem("像素点");
-let mouseX=0,mouseY=0,posX=0,posY=0;
-let rotation=0;
-let lastMoveTime=0;
+const follower = document.querySelector('.follower');
+follower.style.background = "#"+localStorage.getItem("像素点");
+let mouseX = 0, mouseY = 0, posX = 0, posY = 0;
+let rotation = 0;
+let lastMoveTime = 0;
+let jumpOffset = 0;
 
-document.addEventListener('mousemove',(e) => {
-mouseX=e.clientX;
-mouseY=e.clientY;
-lastMoveTime=Date.now();
+document.addEventListener('mousemove', (e) => {
+mouseX = e.clientX;
+mouseY = e.clientY;
+lastMoveTime = Date.now();
+});
+
+document.addEventListener('click', () => {
+const start = Date.now();
+const jumpDuration = 200;
+const jumpHeight = 30;
+
+function updateJump() {
+    const elapsed = Date.now() - start;
+    const progress = Math.min(elapsed / jumpDuration, 1);
+    jumpOffset = Math.sin(progress * Math.PI) * jumpHeight;
+    if (progress < 1) {
+        requestAnimationFrame(updateJump);
+    } else {
+        jumpOffset = 0;
+    }
+}
+requestAnimationFrame(updateJump);
 });
 
 function animate() {
-const deltaTime=Date.now()-lastMoveTime;
+const currentTime = Date.now();
+const deltaTime = currentTime - lastMoveTime;
 
-posX+=(mouseX-posX) * 0.2;
-posY+=(mouseY-posY) * 0.2;
+posX += (mouseX - posX) * 0.2;
+posY += (mouseY - posY) * 0.2;
 
-const deltaX=mouseX-posX;
-const deltaY=mouseY-posY;
-rotation=Math.atan2(deltaY,deltaX)*180/Math.PI;
-follower.style.transform=`
-translate(${posX +13}px,${posY +13}px)
-rotate(${rotation}deg)
+const deltaX = mouseX - posX;
+const deltaY = mouseY - posY;
+let targetRotation;
+
+if (deltaTime < 500) {
+    targetRotation = Math.atan2(deltaY, deltaX) * 180 / Math.PI;
+    targetRotation = Math.min(30, Math.max(-30, targetRotation));
+} else {
+    targetRotation = 0;
+}
+
+rotation += (targetRotation - rotation) * 0.15;
+
+follower.style.transform = `
+    translate(${posX + 13}px, ${posY + 13}px)
+    translateY(${-jumpOffset}px)
+    rotate(${rotation}deg)
 `;
 
 requestAnimationFrame(animate);
 }
+
 animate();
 </script>
-    
-    
-
-
 {% endif %}
 
 <script>
