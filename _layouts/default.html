@@ -48,6 +48,8 @@
     function dmx(){
         document.getElementById("弹窗").style="display:none;";
     }
+
+    if(!localStorage.getItem("像素点")){localStorage.setItem("像素点","000000");localStorage.setItem("像素点背景","FFFFFF");localStorage.setItem("像素点名字","小黑点")}
 </script>
 
 {{ content }}
