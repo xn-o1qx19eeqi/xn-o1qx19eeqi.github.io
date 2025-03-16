@@ -494,7 +494,7 @@ if(背景[0]=="#"){
     背景颜色=背景;
     document.getElementById("选择颜色_背景").value=背景颜色;
     document.getElementById("输入颜色_背景").placeholder=背景颜色;
-    if(localStorage.getItem("像素点")==颜色){localStorage.setItem("像素点背景",背景颜色)}
+    if(localStorage.getItem("像素点")==颜色){localStorage.setItem("像素点背景",背景颜色.split("#")[1])}
 }else{
     document.getElementById("房子").style="background-size:400px 400px;background-image:url(/i/y/"+背景+")";
     document.getElementById("输入颜色_背景").placeholder=背景;
@@ -834,7 +834,7 @@ function 看望打卡(o){
 function 设为默认(){
     localStorage.setItem("像素点名字",名字);
     localStorage.setItem("像素点",颜色);
-    localStorage.setItem("像素点背景",背景颜色);
+    localStorage.setItem("像素点背景",背景颜色.split("#")[1]);
     notyf.confirm("已设置为默认像素点");
     document.getElementById("设为默认").innerHTML="";
 }
@@ -887,7 +887,7 @@ function 随机串门(o){
 }
 
 if(localStorage.getItem("互动模式")){document.getElementById("互动模式").checked="checked";互模=1}
-if(!localStorage.getItem("像素点")){localStorage.setItem("像素点",颜色);localStorage.setItem("像素点名字",名字);localStorage.setItem("像素点背景",背景颜色)}
+if(!localStorage.getItem("像素点")){localStorage.setItem("像素点",颜色);localStorage.setItem("像素点名字",名字);localStorage.setItem("像素点背景",背景颜色.split("#")[1])}
 
 function 改url(){
     let url=location.href.split("?")[0].split("#")[0].split(".cn")[0]+".cn/";
