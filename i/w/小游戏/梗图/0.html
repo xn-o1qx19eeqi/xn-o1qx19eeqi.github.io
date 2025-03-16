@@ -125,7 +125,7 @@ function 打开(o){
 function 确定(){
     let dy=输入[0];
     for(let i=1;点数.length>i;i++){
-        输入[i]=document.getElementById("输入"+i).value;
+        输入[i]=document.getElementById("输入"+i).value||输入[i];
         dy=dy.replace(new RegExp('【'+点数[i]+'】',"g"),输入[i])
     }
     document.getElementById("st").innerHTML=dy;
