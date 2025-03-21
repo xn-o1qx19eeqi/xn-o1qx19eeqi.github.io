@@ -53,6 +53,7 @@ let d={
     "This is Fine":["#点{position:relative;width:118px;height:121px;top:248px;left:176px;background-color:#【1】}#dy{width:500px;height:509px}",["<small>素材来源：K.C.Green «Gunshow»</small><br>",["1","点"],"确定","/","保存图片","<br><small>梗：This is Fine</small>"],"1.png","<div id='点'></div>","2.png"],
     "蘑菇乐园":["#点{position:relative;width:113px;height:113px;top:514px;left:473px;background-color:#【1】}#dy{width:1000px;height:667px}",[["1","点"],"确定","/","保存图片","<br><small>摄于长春</small>"],"<div id='点'></div>",".jpg"],
     "猫球UFO":["#点{position:relative;width:190px;height:190px;top:570px;left:145px;background-color:#【1】}#dy{width:600px;height:956px}",["<small>作者：莱斯哈耶</small><br>",["1","点"],"确定","/","保存图片"],".png","<div id='点'></div>"],
+    "彩虹猫":["#点{position:relative;width:860px;height:530px;top:0px;left:0px;background-color:#【1】}#img2{width:860px}#dy{width:860px;height:530px}",[["1","点"],"确定","/","<br><small>梗：彩虹猫</small>"],".gif","<div id='点'></div>"],
 
 
 
@@ -86,7 +87,7 @@ function 打开(o){
         let dy="";
         for(let i=d[o].length-1;i>1;i--){
             if(d[o][i].endsWith(".jpg")||d[o][i].endsWith(".png")||d[o][i].endsWith(".gif")){
-                dy+="<img src='"+测试+o.replace(new RegExp(' ',"g"),"")+d[o][i]+"'>";
+                dy+="<img id='img"+i+"' src='"+测试+o.replace(new RegExp(' ',"g"),"")+d[o][i]+"'>";
             }else{
                 dy+=d[o][i];
             }
@@ -137,7 +138,7 @@ function 确定(){
 }
 
 let url=location.href;
-if(url.indexOf("?")!=-1){url=url.split("?")[1]}
+if(url.indexOf("?")!=-1){url=decodeURI(url.split("?")[1])}
 else{url="目录"}
 打开(url);
 
