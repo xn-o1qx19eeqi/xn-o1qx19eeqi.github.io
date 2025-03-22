@@ -26,10 +26,7 @@ if(url.indexOf("file:///")!=-1){测试=""}
 if(url.indexOf("?")!=-1){url=url.split("?")[1]}else{url="目录"}
 let 目录=[];
 let 通用={
-    // "NFT":"#点{position:absolute;width:100px;height:100px;top:200px;left:151px;background-color:#【1】}#描边{position:absolute;width:120px;height:120px;top:190px;left:141px;background-color:#123456}#dy{background-image:url('NFT_【2】.jpg');background-size:cover}#dy,#dy img{width:400px;height:400px}",
-    // "NFT背景":(o)=>{return [o,"选择","愚公移山","纯白背景"]},
-
-    "NFT":(o)=>{return ["#点{position:absolute;width:100px;height:100px;top:200px;left:151px;background-color:#【1】}#描边{position:absolute;width:120px;height:120px;top:190px;left:141px;background-color:#123456}#dy{background-image:url('NFT_【2】.jpg');background-size:cover}#dy,#dy img{width:400px;height:400px}",["<small>绘："+o+"</small><br>",["1","点"],["2","选择","愚公移山","纯白背景"],"确定","/","保存图片"],".png","<div id='点'></div>","<div id='描边'></div>"]}
+    "NFT":(o)=>{return ["#点{position:absolute;width:100px;height:100px;top:200px;left:151px;background-color:#【1】}#描边{position:absolute;width:120px;height:120px;top:190px;left:141px;background-color:#123456}#dy{background-image:url('"+测试+"NFT_【2】.jpg');background-size:cover}#dy,#dy img{width:400px;height:400px}",["<small>绘："+o+"</small><br>",["1","点"],["2","选择","愚公移山","纯白背景"],"确定","/","保存图片"],".png","<div id='点'></div>","<div id='描边'></div>"]}
 };
 let d={
 "目录":["目录",
@@ -79,7 +76,7 @@ let d={
 
 "":["#点{position:absolute;width:96px;height:92px;top:155px;left:201px;background-color:#【1】}#dy{width:500px;height:500px}",[["1","点"],"确定","/","保存图片","<br><small>梗：</small>"],"<div id='点'></div>",".jpg"],
 
-background-image:url('图.png');
+background-image:url('"+测试+"图.png');
 
 */
 
