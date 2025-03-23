@@ -41,7 +41,6 @@ div0: 1
     height:30px;
     position:absolute;
     z-index:10;
-    background-color:#0000ff;
     border:2px solid #808080;
 }
 
@@ -87,6 +86,7 @@ div0: 1
     margin:10px;
 }
 </style>
+<style id="sty">.玩家{background-color:#000000;}</style>
 
 <div id="info">当前关卡：<span id="level">1</span></div>
 <div id="map"></div>
@@ -116,6 +116,8 @@ div0: 1
 
 
 <script>
+let 颜色=localStorage.getItem("像素点")||"000000";
+document.getElementById("sty").innerHTML=".玩家{background-color:#"+颜色+"}";
 const levels=[
 [
 [9,9,9,1,1,1,1,1,1,9,9,9],
