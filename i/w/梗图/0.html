@@ -22,11 +22,12 @@ div0: 1
 <script>
 let 测试="/i/w/梗图/";
 let url=decodeURI(location.href);
-if(url.indexOf("file:///")!=-1){测试=""}
-if(url.indexOf("?")!=-1){url=url.split("?")[1]}else{url="目录"}
+if(url.indexOf("file:///")!=-1){测试=""};
+if(url.indexOf("?")!=-1){url=url.split("?")[1]}else{url="目录"};
 let 目录=[];
 let 通用={
-    "NFT":(o)=>{return ["#点{position:absolute;width:100px;height:100px;top:200px;left:151px;background-color:#【1】}#描边{position:absolute;width:120px;height:120px;top:190px;left:141px;background-color:#123456}#dy{background-image:url('"+测试+"NFT_【2】.jpg');background-size:cover}#dy,#dy img{width:400px;height:400px}",["<small>绘："+o+"</small><br>",["1","点"],["2","选择","愚公移山","纯白背景"],"确定","/","保存图片"],".png","<div id='点'></div>","<div id='描边'></div>"]}
+    "NFT":(a,b)=>{b=b||[".png","<div id='点'></div>"];a=["#点{position:absolute;width:100px;height:100px;top:200px;left:151px;background-color:#【1】}#描边{position:absolute;width:120px;height:120px;top:190px;left:141px;background-color:#123456}#dy{background-image:url('"+测试+"NFT_【2】.jpg');background-size:cover}#dy,#dy img{width:400px;height:400px}",["<small>绘："+a+"</small><br>",["1","点"],["2","选择","愚公移山","纯白背景"],"确定","/","保存图片"],"<div id='描边'></div>"];a.splice(2,0,...b);return a},//["作者",["<div></div>",".png"]] //[1]可留空
+    "表情包":(a,b)=>{b=b||a;return ["#dy{width:"+a+"px;height:"+a+"px;background-color:#【1】}",[["1","点"],"确定","/","保存图片"],".png"];},//图片宽高 正方形只写一个
 };
 let d={
 "目录":["目录",
@@ -43,18 +44,6 @@ let d={
 ],
 
 "普通表情包":["目录","<small>每个表情包都有深色背景和浅色背景两种，请根据你的需求选择。</small><br>","叹号:","浅_叹号","深_叹号"," /　问号:","浅_问号","深_问号"," /　流汗:","浅_流汗","深_流汗"],
-
-"加载中_NFT":通用["NFT"]("mdyx3728"),
-"白旗_NFT":通用["NFT"]("恒泽"),
-"对话框_NFT":通用["NFT"]("恒泽"),
-"快捷方式_NFT":通用["NFT"]("mdyx3728"),
-"脸红_NFT":通用["NFT"]("恒泽"),
-"猫咪_NFT":通用["NFT"]("恒泽"),
-"魔法师_NFT":通用["NFT"]("深渊y"),
-"乌云_NFT":通用["NFT"]("恒泽"),
-"小白鸟_NFT":通用["NFT"]("晴影"),
-"行星环_NFT":通用["NFT"]("恒泽"),
-"音符_NFT":通用["NFT"]("恒泽"),
 
 /*
 
@@ -89,12 +78,24 @@ background-image:url('"+测试+"图.png');
 
 "旋转像素点":[`#背景{background-color:#03FF2D;width:800px;height:500px;display:flex;justify-content:center;align-items:center;margin:0;perspective:1200px}.cube{position:absolute;width:200px;height:200px;transform-style:preserve-3d;animation:spinAndFloat 4s linear infinite}.face{position:absolute;width:100%;height:100%;opacity:1;background:#【1】;border:2px solid #【2】}.front{transform:translateZ(100px)}.back{transform:rotateY(180deg) translateZ(100px)}.right{transform:rotateY(90deg) translateZ(100px)}.left{transform:rotateY(-90deg) translateZ(100px)}.top{transform:rotateX(90deg) translateZ(100px)}.bottom{transform:rotateX(-90deg) translateZ(100px)}@keyframes spinAndFloat{0%,50%{transform:scale(1.1) translateY(0) rotateY(0);animation-timing-function:ease-in}51%{transform:scale(0.8) translateY(0)}70%{transform:scale(0.8) translateY(-40px) rotateY(720deg)}90%{transform:scale(0.8) translateY(20px) rotateY(1080deg)}100%{transform:scale(0.8) translateY(0) rotateY(1440deg)}}#dy{width:800px;height:500px}`,[["1","点"],["2","描边"],"确定","/","<small>梗：旋转猫meme</small>"],"<div id='背景'><div class='cube'><div class='face front'></div><div class='face back'></div><div class='face right'></div><div class='face left'></div><div class='face top'></div><div class='face bottom'></div></div></div>"],
 
-"深_叹号":["#dy{width:536px;height:536px;background-color:#【1】}",[["1","点"],"确定","/","保存图片"],".png"],
-"浅_叹号":["#dy{width:536px;height:536px;background-color:#【1】}",[["1","点"],"确定","/","保存图片"],".png"],
-"深_问号":["#dy{width:536px;height:536px;background-color:#【1】}",[["1","点"],"确定","/","保存图片"],".png"],
-"浅_问号":["#dy{width:536px;height:536px;background-color:#【1】}",[["1","点"],"确定","/","保存图片"],".png"],
-"深_流汗":["#dy{width:296px;height:296px;background-color:#【1】}",[["1","点"],"确定","/","保存图片"],".png"],
-"浅_流汗":["#dy{width:296px;height:296px;background-color:#【1】}",[["1","点"],"确定","/","保存图片"],".png"],
+"深_叹号":通用["表情包"](536),
+"浅_叹号":通用["表情包"](536),
+"深_问号":通用["表情包"](536),
+"浅_问号":通用["表情包"](536),
+"深_流汗":通用["表情包"](296),
+"浅_流汗":通用["表情包"](296),
+
+"加载中_NFT":通用["NFT"]("mdyx3728"),
+"白旗_NFT":通用["NFT"]("恒泽"),
+"对话框_NFT":通用["NFT"]("恒泽"),
+"快捷方式_NFT":通用["NFT"]("mdyx3728"),
+"脸红_NFT":通用["NFT"]("恒泽"),
+"猫咪_NFT":通用["NFT"]("恒泽"),
+"魔法师_NFT":通用["NFT"]("深渊y"),
+"乌云_NFT":通用["NFT"]("恒泽"),
+"小白鸟_NFT":通用["NFT"]("晴影"),
+"行星环_NFT":通用["NFT"]("恒泽"),
+"音符_NFT":通用["NFT"]("恒泽"),
 
 
 
@@ -122,53 +123,47 @@ function 打开(o){
     }else{
         let dy="";
         for(let i=d[o].length-1;i>1;i--){
-            if(d[o][i].endsWith(".jpg")||d[o][i].endsWith(".png")||d[o][i].endsWith(".gif")){
-                dy+="<img id='"+去空+"' src='"+测试+去空+d[o][i]+"'>";
-            }else{
-                dy+=d[o][i];
-            }
+            if(d[o][i].endsWith(".jpg")||d[o][i].endsWith(".png")||d[o][i].endsWith(".gif")){dy+="<img id='"+去空+"' src='"+测试+去空+d[o][i]+"'>";
+            }else{dy+=d[o][i]}
         }
         document.getElementById("dy").innerHTML=dy;
-
         dy=[""];
 
-        for(let i=0;d[o][1].length>i;i++){
-            if(Array.isArray(d[o][1][i])){//数组
-                if(d[o][1][i][1]=="选择"){
-                    点数[点数.length]=["选择",d[o][1][i][0]];
-                    dy[dy.length-1]+="<form>";
-                    for(let k=2;d[o][1][i].length>k;k++){
-                        dy[dy.length-1]+="<input type='radio' id='x"+i+"_"+k+"' name='x"+d[o][1][i][0]+"' value='"+d[o][1][i][k]+"'";
-                        if(k==2){dy[dy.length-1]+=" checked"}
-                        dy[dy.length-1]+="><label for='x"+i+"_"+k+"'>"+d[o][1][i][k]+"</label>";
-                    }
-                    dy[dy.length-1]+="<form>";
-                    输入[d[o][1][i][0]]=d[o][1][i][2];
+    for(let i=0;d[o][1].length>i;i++){
+    if(Array.isArray(d[o][1][i])){//数组
+        if(d[o][1][i][1]=="选择"){
+            点数[点数.length]=["选择",d[o][1][i][0]];
+            dy[dy.length-1]+="<form>";
+            for(let k=2;d[o][1][i].length>k;k++){
+                dy[dy.length-1]+="<input type='radio' id='x"+i+"_"+k+"' name='x"+d[o][1][i][0]+"' value='"+d[o][1][i][k]+"'";
+                if(k==2){dy[dy.length-1]+=" checked"}
+                dy[dy.length-1]+="><label for='x"+i+"_"+k+"'>"+d[o][1][i][k]+"</label>";
+            }
+            dy[dy.length-1]+="<form>";
+            输入[d[o][1][i][0]]=d[o][1][i][2];
 
-                }else{
-                    点数[点数.length]=d[o][1][i][0];
-                    if(d[o][1][i][1]=="点"){d[o][1][i][1]=颜色;d[o][1][i][2]=d[o][1][i][2]||"像素点编号 如92D1E2"}
-                    if(d[o][1][i][1]=="描边"){d[o][1][i][1]=描边;d[o][1][i][2]=d[o][1][i][2]||"描边颜色 如FFFFFF"}
-                    dy[dy.length-1]+="<input type='text' placeholder='"+d[o][1][i][2]+"' autocomplete='off' id='输入"+d[o][1][i][0]+"'>";
-                    输入[d[o][1][i][0]]=d[o][1][i][1];
-                }
+        }else{
+            点数[点数.length]=d[o][1][i][0];
+            if(d[o][1][i][1]=="点"){d[o][1][i][1]=颜色;d[o][1][i][2]=d[o][1][i][2]||"像素点编号 如C77232"}
+            if(d[o][1][i][1]=="描边"){d[o][1][i][1]=描边;d[o][1][i][2]=d[o][1][i][2]||"描边颜色 如FFFFFF"}
+            dy[dy.length-1]+="<input type='text' placeholder='"+d[o][1][i][2]+"' autocomplete='off' id='输入"+d[o][1][i][0]+"'>";
+            输入[d[o][1][i][0]]=d[o][1][i][1];
+        }
 
-            }else{//文字
-                if(d[o][1][i]=="/"){
-                    dy[1]="";
-                }else if(d[o][1][i]=="保存图片"){
-                    dy[dy.length-1]+="<a onclick='截图()'>保存图片</a>"
-                }else if(d[o][1][i]=="确定"){
-                    dy[dy.length-1]+="<br><a onclick='确定()'>确定</a>";
-                }else{
-                    dy[dy.length-1]+=d[o][1][i];
-                }
+        }else{//文字
+            if(d[o][1][i]=="/"){
+                dy[1]="";
+            }else if(d[o][1][i]=="保存图片"){
+                dy[dy.length-1]+="<a onclick='截图()'>保存图片</a>"
+            }else if(d[o][1][i]=="确定"){
+                dy[dy.length-1]+="<br><a onclick='确定()'>更换</a>";
+            }else{
+                dy[dy.length-1]+=d[o][1][i];
             }
         }
+    }
         document.getElementById("dy_头").innerHTML=dy[0];
-        if(dy[1]){
-            document.getElementById("dy_尾").innerHTML=dy[1];
-        }
+        if(dy[1]){document.getElementById("dy_尾").innerHTML=dy[1]}
         
         dy=输入[0];
         for(let i=1;点数.length>i;i++){
@@ -180,7 +175,7 @@ function 打开(o){
                 dy=dy.replace(new RegExp('【'+点数[i]+'】',"g"),输入[i])
             }
         }
-        document.getElementById("st").innerHTML=dy;
+        document.getElementById("st").innerHTML=dy
     }
 }
 
@@ -197,7 +192,7 @@ function 确定(){
             dy=dy.replace(new RegExp('【'+点数[i]+'】',"g"),输入[i]);
         }
     }
-    document.getElementById("st").innerHTML=dy;
+    document.getElementById("st").innerHTML=dy
 }
 
 打开(url);
@@ -211,23 +206,23 @@ const devicePixelRatio=window.devicePixelRatio||1;
 const scale=Math.min(2,devicePixelRatio);
 
 const options={
-    logging:true,
-    useCORS:true,
-    allowTaint:false,
-    scale:scale,
-    width:element.offsetWidth,
-    height:element.offsetHeight,
-    backgroundColor:null,
-    onclone:(clonedDoc)=>{
-        const cloneElement=clonedDoc.getElementById('dy');
-        if(cloneElement){
-            cloneElement.style.cssText+=`
-                transform:translateZ(0) !important;
-                image-rendering:-webkit-optimize-contrast !important;
-                text-rendering:optimizeLegibility !important;
-            `;
-        }
+logging:true,
+useCORS:true,
+allowTaint:false,
+scale:scale,
+width:element.offsetWidth,
+height:element.offsetHeight,
+backgroundColor:null,
+onclone:(clonedDoc)=>{
+    const cloneElement=clonedDoc.getElementById('dy');
+    if(cloneElement){
+        cloneElement.style.cssText+=`
+            transform:translateZ(0) !important;
+            image-rendering:-webkit-optimize-contrast !important;
+            text-rendering:optimizeLegibility !important;
+        `;
     }
+}
 };
 
 html2canvas(element,options).then(canvas=>{
@@ -243,10 +238,10 @@ html2canvas(element,options).then(canvas=>{
     link.href=imgData;
 
     link.click();
-    URL.revokeObjectURL(link.href);
+    URL.revokeObjectURL(link.href)
 }).catch(error=>{
     try{notyf.alert("存图失败")}catch(e){alert("存图失败")}
-});
+})
 };
 </script>
 
