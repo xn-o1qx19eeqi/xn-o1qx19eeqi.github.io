@@ -11,16 +11,16 @@
 <link rel="shortcut icon" href="/{% if page.favicon %}{{ page.favicon }}{% else %}{{ site.favicon }}{% endif %}" type="image/x-icon" />
 <link rel="stylesheet" href="/i/5/all.css">
 <style>
-    html,body{scroll-behavior: smooth;}
+    html,body{scroll-behavior:smooth}
     body{
-    user-select: none;-moz-user-select: none;-webkit-user-select: none;-ms-user-select: none;
-    image-rendering: optimizeSpeed;image-rendering: -moz-crisp-edges;image-rendering: -o-crisp-edges;image-rendering: -webkit-optimize-contrast;image-rendering: pixelated;-ms-interpolation-mode: nearest-neighbor;
+    user-select:none;-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;
+    image-rendering:optimizeSpeed;image-rendering:-moz-crisp-edges;image-rendering:-o-crisp-edges;image-rendering:-webkit-optimize-contrast;image-rendering:pixelated;-ms-interpolation-mode:nearest-neighbor
     }
-    hr{border-top: 2px dashed var(--huise-color);}
-    table{box-shadow:2px 2px 8px #00000030;}
-    table.tm{border: 1px solid;}
-    #弹窗{font-size:16px;position: absolute;left:0;position:fixed;bottom:0;margin:0 0 15px 20px;line-height:18px;padding:7px;width:300px;border-style:solid;border-radius:5px;border:2px solid #535353;z-index:999;}
-    .js{color:var(--body-color);border-bottom:1px solid #006699;user-select: none;-moz-user-select: none;-webkit-user-select: none;-ms-user-select: none;cursor:default;}
+    hr{border-top:2px dashed var(--huise-color)}
+    table{box-shadow:2px 2px 8px #00000030}
+    table.tm{border:1px solid}
+    #弹窗{font-size:16px;position:absolute;left:0;position:fixed;bottom:0;margin:0 0 15px 20px;line-height:18px;padding:7px;width:300px;border-style:solid;border-radius:5px;border:2px solid #535353;z-index:999}
+    .js{color:var(--body-color);border-bottom:1px solid #006699;user-select:none;-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;cursor:default}
 </style>
 <script src="{{ site.jquery }}"></script>
 <style>
@@ -35,14 +35,14 @@
 
 <script>
     !function(){function n(n,t){for(property in t)t.hasOwnProperty(property)&&(n[property]=t[property]);return n}function t(n,t){var i=document.createElement("div");i.className="notyf";var e=document.createElement("div");e.className="notyf-wrapper";var o=document.createElement("div");o.className="notyf-icon";var a=document.createElement("i");a.className=t;var r=document.createElement("div");r.className="notyf-message",r.innerHTML=n,o.appendChild(a),e.appendChild(o),e.appendChild(r),i.appendChild(e);var c=this;return setTimeout(function(){i.className+=" disappear",i.addEventListener(c.animationEnd,function(n){n.target==i&&c.container.removeChild(i)});var n=c.notifications.indexOf(i);c.notifications.splice(n,1)},c.options.delay),i}function i(){var n,t=document.createElement("fake"),i={transition:"animationend",OTransition:"oAnimationEnd",MozTransition:"animationend",WebkitTransition:"webkitAnimationEnd"};for(n in i)if(void 0!==t.style[n])return i[n]}this.Notyf=function(){this.notifications=[];var t={delay:2e3,alertIcon:"notyf-alert-icon",confirmIcon:"notyf-confirm-icon"};arguments[0]&&"object"==typeof arguments[0]?this.options=n(t,arguments[0]):this.options=t;var e=document.createDocumentFragment(),o=document.createElement("div");o.className="notyf-container",e.appendChild(o),document.body.appendChild(e),this.container=o,this.animationEnd=i()},this.Notyf.prototype.alert=function(n){var i=t.call(this,n,this.options.alertIcon);i.className+=" alert",this.container.appendChild(i),this.notifications.push(i)},this.Notyf.prototype.confirm=function(n){var i=t.call(this,n,this.options.confirmIcon);i.className+=" confirm",this.container.appendChild(i),this.notifications.push(i)}}();
-    let notyf = new Notyf({delay:3000});
+    let notyf=new Notyf({delay:3000});
 
-    let 制;function 复(){制=制.replace(/［换行］/g, "\n");notyf.confirm("已复制");document.getElementById('复制').value = 制;let 复制 = document.querySelector('#复制');复制.select();document.execCommand("Copy");}
+    let 制;function 复(){制=制.replace(/［换行］/g, "\n");notyf.confirm("已复制");document.getElementById('复制').value=制;let 复制=document.querySelector('#复制');复制.select();document.execCommand("Copy")}
 
     let dmd,dmm;
     function dm(){
-        document.getElementById("弹窗标题").innerHTML = "<b>"+dmd+"</b>";
-        document.getElementById("弹窗内容").innerHTML = dmm;
+        document.getElementById("弹窗标题").innerHTML="<b>"+dmd+"</b>";
+        document.getElementById("弹窗内容").innerHTML=dmm;
         document.getElementById("弹窗").style="";
     }
     function dmx(){
@@ -56,71 +56,71 @@
 
 {% if page.ShuBiao %}
 <style>
-.follower {
-width: 13px;
-height: 13px;
-position: fixed;
-pointer-events: none;
-transition: transform 0.3s ease-out;
+.follower{
+width:13px;
+height:13px;
+position:fixed;
+pointer-events:none;
+transition:transform 0.3s ease-out;
 }
 </style>
 
 <div class="follower"></div>
 
 <script>
-const follower = document.querySelector('.follower');
-follower.style.background = "#"+localStorage.getItem("像素点");
-let mouseX = 0, mouseY = 0, posX = 0, posY = 0;
-let rotation = 0;
-let lastMoveTime = 0;
-let jumpOffset = 0;
+const follower=document.querySelector('.follower');
+follower.style.background="#"+localStorage.getItem("像素点");
+let mouseX=0, mouseY=0, posX=0, posY=0;
+let rotation=0;
+let lastMoveTime=0;
+let jumpOffset=0;
 
-document.addEventListener('mousemove', (e) => {
-mouseX = e.clientX;
-mouseY = e.clientY;
-lastMoveTime = Date.now();
+document.addEventListener('mousemove',(e)=>{
+mouseX=e.clientX;
+mouseY=e.clientY;
+lastMoveTime=Date.now();
 });
 
-document.addEventListener('click', () => {
-const start = Date.now();
-const jumpDuration = 200;
-const jumpHeight = 30;
+document.addEventListener('click',()=>{
+const start=Date.now();
+const jumpDuration=200;
+const jumpHeight=30;
 
-function updateJump() {
-    const elapsed = Date.now() - start;
-    const progress = Math.min(elapsed / jumpDuration, 1);
-    jumpOffset = Math.sin(progress * Math.PI) * jumpHeight;
-    if (progress < 1) {
+function updateJump(){
+    const elapsed=Date.now()-start;
+    const progress=Math.min(elapsed / jumpDuration, 1);
+    jumpOffset=Math.sin(progress*Math.PI)*jumpHeight;
+    if(progress<1){
         requestAnimationFrame(updateJump);
-    } else {
-        jumpOffset = 0;
+    }else{
+        jumpOffset=0;
     }
 }
 requestAnimationFrame(updateJump);
 });
 
-function animate() {
-const currentTime = Date.now();
-const deltaTime = currentTime - lastMoveTime;
+function animate(){
+const currentTime=Date.now();
+const deltaTime=currentTime-lastMoveTime;
 
-posX += (mouseX - posX) * 0.2;
-posY += (mouseY - posY) * 0.2;
+posX+=(mouseX-posX)*0.2;
+posY+=(mouseY-posY)*0.2;
 
-const deltaX = mouseX - posX;
-const deltaY = mouseY - posY;
+const deltaX=mouseX-posX;
+const deltaY=mouseY-posY;
 let targetRotation;
 
-if (deltaTime < 500) {
-    targetRotation = Math.atan2(deltaY, deltaX) * 180 / Math.PI;
-    targetRotation = Math.min(30, Math.max(-30, targetRotation));
-} else {
-    targetRotation = 0;
+if(deltaTime<500){
+    targetRotation=Math.atan2(deltaY, deltaX)*180 / Math.PI;
+    targetRotation=Math.min(30, Math.max(-30, targetRotation));
+}else{
+    targetRotation=0;
 }
 
-rotation += (targetRotation - rotation) * 0.15;
+rotation+=(targetRotation-rotation)*0.15;
 
-follower.style.transform = `
-    translate(${posX + 13}px, ${posY + 13}px)
+follower.style.transform=`
+    translate(${posX+13}px,${posY+13}px)
     translateY(${-jumpOffset}px)
     rotate(${rotation}deg)
 `;
@@ -133,14 +133,8 @@ animate();
 {% endif %}
 
 <script>
-    target = document.querySelectorAll('img');
-    if (target[0]) {
-    for (let i = 0; i < target.length; i++) {
-        if (target[i]["onerror"]){}else{
-                target[i].setAttribute('onerror', "this.src='/img/404.jpg';this.onerror=null;");
-            }
-        }
-    }
+    target=document.querySelectorAll('img');
+    if(target[0]){for(let i=0;i<target.length;i++){if(target[i]["onerror"]){}else{target[i].setAttribute('onerror', "this.src='/img/404.jpg';this.onerror=null;")}}}
 </script>
 
 </html>
