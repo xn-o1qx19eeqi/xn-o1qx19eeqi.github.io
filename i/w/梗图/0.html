@@ -28,6 +28,7 @@ let 目录=[];
 let 通用={
     "NFT":(a,b)=>{b=b||[".png","<div id='点'></div>"];a=["#点{position:absolute;width:100px;height:100px;top:200px;left:151px;background-color:#【1】}#描边{position:absolute;width:120px;height:120px;top:190px;left:141px;background-color:#123456}#dy{background-image:url('"+测试+"NFT_【2】.jpg');background-size:cover}#dy,#dy img{width:400px;height:400px}",["<small>绘："+a+"</small><br>",["1","点"],["2","选择","愚公移山","纯白背景"],"确定","/","保存图片"],"<div id='描边'></div>"];a.splice(2,0,...b);return a},//["作者",["<div></div>",".png"]] //[1]可留空
     "表情包":(a,b)=>{b=b||a;return ["#dy{width:"+a+"px;height:"+a+"px;background-color:#【1】}",[["1","点"],"确定","/","保存图片"],".png"];},//图片宽高 正方形只写一个
+    "动图psd":"（需要手动更改图层颜色，然后点击：文件-导出-储存为Web所用格式-储存）",
 };
 let d={
 "目录":["目录",
@@ -75,7 +76,7 @@ background-image:url('"+测试+"图.png');
 "蘑菇乐园":["#点{position:absolute;width:113px;height:113px;top:514px;left:473px;background-color:#【1】}#dy{width:1000px;height:667px}",[["1","点"],"确定","/","保存图片","<br><small>摄于长春</small>"],"<div id='点'></div>",".jpg"],
 "猫球UFO":["#点{position:absolute;width:190px;height:190px;top:570px;left:145px;background-color:#【1】}#dy{width:600px;height:956px}",["<small>作者：莱斯哈耶</small><br>",["1","点"],"确定","/","保存图片"],".png","<div id='点'></div>"],
 "彩虹猫":["#点{position:absolute;width:860px;height:530px;top:0px;left:0px;background-color:#【1】}#【0】,#dy{width:860px;height:530px}",[["1","点"],"确定","/","<br><small>梗：彩虹猫</small>"],".gif","<div id='点'></div>"],
-"戳戳":["#点{position:absolute;width:500px;height:500px;top:0px;left:0px;background-color:#【1】}#【0】,#dy{width:500;height:500px}",[["1","点"],"确定","/","<a href='/x/14373887' download='戳戳.psd'>点击下载.psd文件</a>"],".gif","<div id='点'></div>"],
+"戳戳":["#点{position:absolute;width:500px;height:500px;top:0px;left:0px;background-color:#【1】}#【0】,#dy{width:500;height:500px}",[["1","点"],"确定","/","<a href='/x/14373887' download='戳戳.psd'>点击下载.psd文件</a>"+通用.动图psd],".gif","<div id='点'></div>"],
 
 "旋转像素点":[`#背景{background-color:#03FF2D;width:800px;height:500px;display:flex;justify-content:center;align-items:center;margin:0;perspective:1200px}.cube{position:absolute;width:200px;height:200px;transform-style:preserve-3d;animation:spinAndFloat 4s linear infinite}.face{position:absolute;width:100%;height:100%;opacity:1;background:#【1】;border:2px solid #【2】}.front{transform:translateZ(100px)}.back{transform:rotateY(180deg) translateZ(100px)}.right{transform:rotateY(90deg) translateZ(100px)}.left{transform:rotateY(-90deg) translateZ(100px)}.top{transform:rotateX(90deg) translateZ(100px)}.bottom{transform:rotateX(-90deg) translateZ(100px)}@keyframes spinAndFloat{0%,50%{transform:scale(1.1) translateY(0) rotateY(0);animation-timing-function:ease-in}51%{transform:scale(0.8) translateY(0)}70%{transform:scale(0.8) translateY(-40px) rotateY(720deg)}90%{transform:scale(0.8) translateY(20px) rotateY(1080deg)}100%{transform:scale(0.8) translateY(0) rotateY(1440deg)}}#dy{width:800px;height:500px}`,[["1","点"],["2","描边"],"确定","/","<small>梗：旋转猫meme</small>"],"<div id='背景'><div class='cube'><div class='face front'></div><div class='face back'></div><div class='face right'></div><div class='face left'></div><div class='face top'></div><div class='face bottom'></div></div></div>"],
 
