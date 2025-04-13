@@ -6,7 +6,7 @@ BeiJing_SJ: 0
 BiaoTi: 梗图
 div0: 1
 ---
-<style>
+<style id="原st">
 .按钮{margin:auto 0.6em;line-height:2em;padding:2px 6px;border:1.4px solid #bcbcbc;border-radius:6px;cursor:pointer}
 .按钮:hover{border:1.4px solid #0084ff}
 #dy{position:relative}
@@ -22,11 +22,11 @@ div0: 1
 <script>
 let 测试="/i/w/梗图/";
 let url=decodeURI(location.href);
-if(url.indexOf("file:///")!=-1){测试=""};
+if(url.indexOf("file:///")!=-1){测试="";document.getElementById('原st').insertAdjacentHTML('beforeend',"img{image-rendering:optimizeSpeed;image-rendering:-moz-crisp-edges;image-rendering:-o-crisp-edges;image-rendering:-webkit-optimize-contrast;image-rendering:pixelated;-ms-interpolation-mode:nearest-neighbor}");};
 if(url.indexOf("?")!=-1){url=url.split("?")[1]}else{url="目录"};
 let 目录=[];
 let 通用={
-    "NFT":(a,b)=>{b=b||[".png","<div id='点'></div>"];a=["#点{position:absolute;width:100px;height:100px;top:200px;left:151px;background-color:#【1】}#描边{position:absolute;width:120px;height:120px;top:190px;left:141px;background-color:#123456}#dy{background-image:url('"+测试+"NFT_【2】.jpg');background-size:cover}#dy,#dy img{width:400px;height:400px}",["<small>绘："+a+"</small><br>",["1","点"],["2","选择","愚公移山","纯白背景"],"确定","/","保存图片"],"<div id='描边'></div>"];a.splice(2,0,...b);return a},//["作者",["<div></div>",".png"]] //[1]可留空
+    "NFT":(a,b)=>{b=b||[".png","<div id='点'></div>"];a=["#点{position:absolute;width:100px;height:100px;top:199px;left:151px;background-color:#【1】}#描边{position:absolute;width:120px;height:120px;top:189px;left:141px;background-color:#123456}#dy{background-image:url('"+测试+"NFT_【2】.jpg');background-size:cover}#dy,#dy img{width:400px;height:400px}",["<small>绘："+a+"</small><br>",["1","点"],["2","选择","愚公移山","纯白背景"],"确定","/","保存图片"],"<div id='描边'></div>"];a.splice(2,0,...b);return a},//["作者",["<div></div>",".png"]] //[1]可留空
     "表情包":(a,b)=>{b=b||a;return ["#dy{width:"+a+"px;height:"+a+"px;background-color:#【1】}",[["1","点"],"确定","/","保存图片"],".png"];},//图片宽高 正方形只写一个
     "动图psd":"（需要手动更改图层颜色，然后点击：文件-导出-储存为Web所用格式-储存）",
 };
