@@ -11,6 +11,7 @@ div0: 1
 .按钮:hover{border:1.4px solid #0084ff}
 #dy{position:relative}
 #dy img{position:absolute;top:0;left:0}
+img{image-rendering:optimizeSpeed;image-rendering:-moz-crisp-edges;image-rendering:-o-crisp-edges;image-rendering:-webkit-optimize-contrast;image-rendering:pixelated;-ms-interpolation-mode:nearest-neighbor}
 </style>
 
 <style id="st"></style>
@@ -22,7 +23,6 @@ div0: 1
 <script>
 let 测试="/i/w/梗图/";
 let url=decodeURI(location.href);
-if(url.indexOf("file:///")!=-1){测试="";document.getElementById('原st').insertAdjacentHTML('beforeend',"img{image-rendering:optimizeSpeed;image-rendering:-moz-crisp-edges;image-rendering:-o-crisp-edges;image-rendering:-webkit-optimize-contrast;image-rendering:pixelated;-ms-interpolation-mode:nearest-neighbor}");};
 if(url.indexOf("?")!=-1){url=url.split("?")[1]}else{url="目录"};
 let 目录=[];
 let 通用={
