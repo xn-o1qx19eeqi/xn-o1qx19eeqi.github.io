@@ -11,18 +11,15 @@ div0: 1
 .按钮:hover{border:1.4px solid #0084ff}
 #dy{position:relative}
 #dy img{position:absolute;top:0;left:0}
+#dy [id^='输入_'],#dy [id^='图片_']{position:absolute;}
+.图片x{user-select:auto;-moz-user-select:auto;-webkit-user-select:auto;-ms-user-select:auto;image-rendering:auto;}
 </style>
-
-<style id="st"></style>
-<div id="目录"></div><br>
-<div id="dy_头"></div><br>
-<div id="dy"></div>
-<div id="dy_尾"></div>
-
+<style id="st"></style><div id="目录"></div><br><div id="dy_头"></div><br><div id="dy"></div><div id="dy_尾"></div>
+<input type="file" id="上传图片" accept="image/*" hidden>
 <script>
 let 测试="/i/w/梗图/";
 let url=decodeURI(location.href);
-if(url.indexOf("file:///")!=-1){测试="";document.getElementById('原st').insertAdjacentHTML('beforeend',"body{image-rendering:optimizeSpeed;image-rendering:-moz-crisp-edges;image-rendering:-o-crisp-edges;image-rendering:-webkit-optimize-contrast;image-rendering:pixelated;-ms-interpolation-mode:nearest-neighbor}")};
+if(url.indexOf("file:///")!=-1){测试="";document.getElementById('原st').insertAdjacentHTML('afterbegin',"body{image-rendering:optimizeSpeed;image-rendering:-moz-crisp-edges;image-rendering:-o-crisp-edges;image-rendering:-webkit-optimize-contrast;image-rendering:pixelated;-ms-interpolation-mode:nearest-neighbor}")};
 if(url.indexOf("?")!=-1){url=url.split("?")[1]}else{url="目录"};
 let 目录=[];
 let 通用={
@@ -32,7 +29,7 @@ let 通用={
 };
 let d={
 "目录":["目录",
-"点点结局","兄弟，像素点不错","<br>",
+"点点结局","兄弟，像素点不错","网恋奔现","<br>",
 "This is Fine","旋转像素点","彩虹猫","<br>",
 "猫球UFO","戳戳","<br>",
 "普通表情包","配饰","可能引发不适",
@@ -48,19 +45,21 @@ let d={
 
 /*
 
-"":["目录","标题1","标题2","<span>文字（或不存在于d[]之内）"],
+"":["目录","标题1","标题2","<span>文字（或d[]之内没有这个词条也会直接显示文字）"],
 
 "":["#点1{position:absolute;width:154px;height:146px;top:248px;left:322px;background-color:#【1】}#dy{width:图片宽度px;height:图片高度px}",[                              //【0】=标题（图片的id）
         ["1","默认","提示文字"],
                                      // "默认"的预设（提示文字可留空）："点"是用户默认像素点颜色 / "描边"是像素点描边色
                                      // [1,"选择","选择1","选择2"]
+                                     // [1,"输入","默认文字"] //<div id='输入_1'></div>
+                                     // [1,"图片"] //图片不用加 确定 按钮
         "直接显示文字，记得加<br>",
         "确定",                      //点击确定按钮
         "/",                         //后面的是 dy_尾
         "保存图片",
         //通常： <small>作者：xx</small><br> ["输入内容","",""] 确定 / 保存图片 <br><small>梗：xx</small>
 ],
-"1.png","<div id='点'></div>","2.png"] //内容可以是.jpg 或 <div>其他元素</div>
+"1.png","<div id='点'></div>","2.png"] //内容可以是.jpg 或 <div>其他元素</div> // _图片x.jpg 则是不像素的效果
 
 图片名=标题 如果标题有空格，文件要删掉空格
 
@@ -96,13 +95,32 @@ background-image:url('"+测试+"图.png');
 "行星环_NFT":通用["NFT"]("恒泽"),
 "音符_NFT":通用["NFT"]("恒泽"),
 
-
+"网恋奔现":["#点{position:absolute;top:0px;left:0px;background-color:#【3】}#dy,#点{width:707px;height:1000px}#输入_1{left:101px;top:776px}#输入_2{left:169px;top:859px}#图片_4{left:123px;top:582px;width:160px;height:160px;transform-origin:0 0;transform:rotate(5deg)}#输入_1,#输入_2{transform-origin:0 0;transform:rotate(10.5deg)}",[["1","输入","我到了哦"],["2","输入","在哪？"],["3","点"],["4","图片"],"确定","/","保存图片","<br><small>梗：网恋奔现需要谨慎</small>"],"<div id='输入_1'></div>","<div id='输入_2'></div>","_图片x.png","<div id='图片_4' class='图片x'></div>","<div id='点'></div>"],
 
 }
-
-let 点数,输入,选择记录={};
+const 上传图片=document.getElementById('上传图片');
+let 点数,输入,选择记录={},传图id;
 let 颜色=localStorage.getItem("像素点")||"000000";
 let 描边=localStorage.getItem("像素点描边")||"FFFFFF";
+
+上传图片.addEventListener('change',function(e){
+    const 传图=document.getElementById(传图id);
+    const file=e.target.files[0];
+    if(file&&file.type.startsWith('image/')){
+        const reader=new FileReader();
+        reader.onload=function(e){
+            const img=document.createElement('img');
+            img.id=传图id;
+            img.src=e.target.result;
+            传图.innerHTML='';
+            传图.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+    }else{
+        notyf.alert("图片上传失败")
+    }
+});
+
 function 打开(o){
     let 去空=o.replace(new RegExp(' ',"g"),"");
     点数=[o],输入={0:d[o][0].replace(new RegExp('【0】',"g"),去空)};
@@ -122,7 +140,7 @@ function 打开(o){
     }else{
         let dy="";
         for(let i=d[o].length-1;i>1;i--){
-            if(d[o][i].endsWith(".jpg")||d[o][i].endsWith(".png")||d[o][i].endsWith(".gif")){dy+="<img id='"+去空+"' src='"+测试+去空+d[o][i]+"'>";
+            if(d[o][i].endsWith(".jpg")||d[o][i].endsWith(".png")||d[o][i].endsWith(".gif")){dy+="<img id='"+去空+"' src='"+测试+去空+d[o][i]+"'"+((d[o][i].indexOf("_图片x")!=-1)?" class='图片x'":"")+">";
             }else{dy+=d[o][i]}
         }
         document.getElementById("dy").innerHTML=dy;
@@ -142,6 +160,14 @@ function 打开(o){
                 dy[dy.length-1]+="><label for='x"+i+"_"+k+"'>"+d[o][1][i][k]+"</label>";
             }
             dy[dy.length-1]+="<form>";
+
+        }else if(d[o][1][i][1]=="输入"){
+            点数[点数.length]=["输入",d[o][1][i][0]];
+            输入[d[o][1][i][0]]=d[o][1][i][2]||"输入文字";
+            dy[dy.length-1]+="<input type='text' placeholder='"+输入[d[o][1][i][0]]+"' value='"+输入[d[o][1][i][0]]+"' id='x"+d[o][1][i][0]+"' autocomplete='off'>";
+
+        }else if(d[o][1][i][1]=="图片"){
+            dy[dy.length-1]+=`<button onclick="传图id='图片_${d[o][1][i][0]}';document.getElementById('上传图片').click()">添加图片</button>`;
 
         }else{
             点数[点数.length]=d[o][1][i][0];
@@ -171,6 +197,8 @@ function 打开(o){
             if(Array.isArray(点数[i])){
                 if(点数[i][0]=="选择"){
                     dy=dy.replace(new RegExp('【'+点数[i][1]+'】',"g"),输入[i])
+                }else if(点数[i][0]=="输入"){
+                    document.getElementById("输入_"+点数[i][1]).innerHTML=输入[i];
                 }
             }else{
                 dy=dy.replace(new RegExp('【'+点数[i]+'】',"g"),输入[i])
@@ -188,6 +216,11 @@ function 确定(){
                 输入[i]=document.querySelector("input[name='x"+点数[i][1]+"']:checked").value||输入[i];
                 dy=dy.replace(new RegExp('【'+点数[i][1]+'】',"g"),输入[i]);
                 选择记录[选择记录[i]]=输入[i];
+            }else if(点数[i][0]=="输入"){
+                输入[i]=document.getElementById("x"+点数[i][1]).value;
+                document.getElementById("输入_"+点数[i][1]).innerHTML=输入[i];
+            }else if(点数[i][0]=="图片"){
+
             }
         }else{
             输入[i]=document.getElementById("输入"+i).value||输入[i];
