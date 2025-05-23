@@ -17,21 +17,16 @@ div0: 1
 <style id="st"></style><div id="目录"></div><br><div id="dy_头"></div><br><div id="dy"></div><div id="dy_尾"></div>
 <input type="file" id="上传图片" accept="image/*" hidden>
 <script>
-let 测试="/i/w/梗图/";
-let url=decodeURI(location.href);
+let 测试="/i/w/梗图/",url=decodeURI(location.href);
 if(url.indexOf("file:///")!=-1){测试="";document.getElementById('原st').insertAdjacentHTML('afterbegin',"body{image-rendering:optimizeSpeed;image-rendering:-moz-crisp-edges;image-rendering:-o-crisp-edges;image-rendering:-webkit-optimize-contrast;image-rendering:pixelated;-ms-interpolation-mode:nearest-neighbor}")};
 if(url.indexOf("?")!=-1){url=url.split("?")[1]}else{url="目录"};
-let 目录=[];
-let 通用={
+let 目录=[],通用={
     "NFT":(a,b)=>{b=b||[".png","<div id='点'></div>"];a=["#点{position:absolute;width:100px;height:100px;top:199px;left:151px;background-color:#【1】}#描边{position:absolute;width:120px;height:120px;top:189px;left:141px;background-color:#123456}#dy{background-image:url('"+测试+"【2】.png');background-size:cover}#dy,#dy img{width:400px;height:400px}",["<small>绘："+a+"</small><br>",["1","点"],["2","选择","愚公移山","纯白背景","深色背景"],"确定","/","保存图片"],"<div id='描边'></div>"];a.splice(2,0,...b);return a},//["作者",["<div></div>",".png"]] //[1]可留空
     "表情包":(a,b)=>{return ["#dy{width:"+a+"px;height:"+a+"px;background-color:#【1】;background-image:url('"+测试+b+"_【2】.png')}",[["1","点"],["2","选择","浅色背景","深色背景"],"确定","/","保存图片"]];},//图片宽高 正方形只写一个
     "下载动图":(a)=>{return "（<a href='"+测试+a+"' download='"+a+"'>点击下载</a>素材 → 用PS打开 → 在最底部新建图层，填充成像素点的颜色 → 打开时间轴 → 点击“文件”-“导出”-“储存为Web所用格式”-“储存”）"},//通用["下载动图"]("x.gif")
-};
-let d={
+},d={ // "":["目录","标题1","标题2","<span>文字（或d[]之内没有这个词条也会直接显示文字）"],
 "目录":["目录",
-"点点结局","兄弟，像素点不错",
-// "网恋奔现",
-"<br>",
+"点点结局","兄弟，像素点不错","网恋奔现","<br>",
 "This is Fine","旋转像素点","彩虹猫","<br>",
 "猫球UFO","戳戳","<br>",
 "普通表情包","配饰","可能引发不适",
@@ -47,27 +42,43 @@ let d={
 
 /*
 
-"":["目录","标题1","标题2","<span>文字（或d[]之内没有这个词条也会直接显示文字）"],
+图片名字 等同于 标题，但空格要删掉。
+如果需要写图片路径，路径在变量 测试 里，比如background-image:url('"+测试+"图.png');
 
-"":["#点1{position:absolute;width:154px;height:146px;top:248px;left:322px;background-color:#【1】}#dy{width:图片宽度px;height:图片高度px}",[                              //【0】=标题（图片的id）
-        ["1","默认","提示文字"],
-                                     // "默认"的预设（提示文字可留空）："点"是用户默认像素点颜色 / "描边"是像素点描边色
-                                     // [1,"选择","选择1","选择2"]
-                                     // [1,"输入","默认文字"] //<div id='输入_1'></div>
-                                     // [1,"图片"] //图片不用加 确定 按钮
-        "直接显示文字，记得加<br>",
-        "确定",                      //点击确定按钮
-        "/",                         //后面的是 dy_尾
-        "保存图片",
-        //通常： <small>作者：xx</small><br> ["输入内容","",""] 确定 / 保存图片 <br><small>梗：xx</small>
-],
-"1.png","<div id='点'></div>","2.png"] //内容可以是.jpg 或 <div>其他元素</div> // _图片x.jpg 则是不像素的效果
+"标题":["style",[部件,部件2],dy内容],
+style里的【数字】 和 部件里的["数字"] 具体要按照出现的顺序，从1开始。两边是对应的，比如background-color:#【1】，["1","输入"]，就是让用户输入的内容替换【1】。
+style里的【0】会替换成 标题 的文字，也就是 图片的id。
 
-图片名=标题 如果标题有空格，文件要删掉空格
+dy内容：
+".png", //还可以是.jpg .gif 如果图片不想被以像素风放大，图片名字最后要写“_图片x”。
+"<div id='点'></div>",
+"<div>其他元素</div>",
 
-"":["#点{position:absolute;width:96px;height:92px;top:155px;left:201px;background-color:#【1】}#dy{width:500px;height:500px}",[["1","点"],"确定","/","保存图片","<br><small>梗：</small>"],"<div id='点'></div>",".jpg"],
+部件：
+["1","点"], //改像素点颜色 #点{background-color:#【1】}
+["1","描边"], //改描边颜色 #点{border:2px solid #【1】}
+["1","选择","选项1","选项2"], //用选项文字替换对应的【1】
+["1","输入","默认文字"], //文字会打印到 <div id='输入_1'></div> 需要在style里改样式 #输入_1{left:左px;top:上px;transform-origin:0 0;transform:rotate(旋转deg)}
+["1","图片"], //用户上传图片并打印到 <div id="图片_1"></div> 不用加"确定"按钮。如果图片不想被以像素风放大，就加class='图片x'
 
-background-image:url('"+测试+"图.png');
+"直接显示文字，记得加<br>",
+"确定", //点击确定按钮
+"/", //从这里开始，后面的内容放在"dy_尾"里（也就是图片下方）
+"保存图片",
+
+------
+
+"例子":["#点{#点{position:absolute;top:0;left:0;background-color:#【1】}#dy,#点{width:图片宽度px;height:图片高度px}",[["1","点"],"确定","/","保存图片","<br><small>梗：</small>"],".png","<div id='点'></div>"],
+
+"标题":["style",[部件,部件2],dy内容],
+
+style的常用模板：
+#点{position:absolute;top:0;left:0;background-color:#【1】}#dy,#点{width:图片宽度px;height:图片高度px} //整个背景都是像素点的颜色
+#点{position:absolute;width:宽度px;height:高度px;top:位置px;left:位置px;background-color:#【1】}#dy{width:图片宽度px;height:图片高度px} //特定位置大小
+
+部件的常用模板：
+[["1","点"],"确定","/","保存图片","<br><small>梗：</small>"]
+["<small>作者：</small><br>",["1","点"],"确定","/","保存图片"]
 
 */
 
@@ -281,4 +292,3 @@ html2canvas(element,options).then(canvas=>{
 })
 };
 </script>
-
