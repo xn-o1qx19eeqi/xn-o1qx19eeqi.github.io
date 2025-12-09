@@ -21,7 +21,7 @@ let 测试="/i/w/梗图/",url=decodeURI(location.href);
 if(url.indexOf("file:///")!=-1){测试="";document.getElementById('原st').insertAdjacentHTML('afterbegin',"body{image-rendering:optimizeSpeed;image-rendering:-moz-crisp-edges;image-rendering:-o-crisp-edges;image-rendering:-webkit-optimize-contrast;image-rendering:pixelated;-ms-interpolation-mode:nearest-neighbor}")};
 if(url.indexOf("?")!=-1){url=url.split("?")[1]}else{url="目录"};
 let 目录=[],通用={
-    "NFT":(a,b)=>{b=b||[".png","<div id='点'></div>"];a=["#点{position:absolute;width:100px;height:100px;top:199px;left:151px;background-color:#【1】}#描边{position:absolute;width:120px;height:120px;top:189px;left:141px;background-color:#123456}#dy{background-image:url('"+测试+"【2】.png');background-size:cover}#dy,#dy img{width:400px;height:400px}",["<small>绘："+a+"</small><br>",["1","点"],["2","选择","愚公移山","纯白背景","深色背景"],"确定","/","保存图片"],"<div id='描边'></div>"];a.splice(2,0,...b);return a},//["作者",["<div></div>",".png"]] //[1]可留空
+    "NFT":(a,b)=>{b=b||[".png","<div id='点'></div>"];a=["#点{position:absolute;width:100px;height:100px;top:199px;left:151px;background-color:#【1】}#描边{position:absolute;width:120px;height:120px;top:189px;left:141px;background-color:#123456}#dy{background-image:url('"+测试+"【2】.png');background-size:cover}#dy,#dy img{width:400px;height:400px}",[((a=="")?"":"<small>绘："+a+"</small><br>"),["1","点"],["2","选择","愚公移山","纯白背景","深色背景"],"确定","/","保存图片"],"<div id='描边'></div>"];a.splice(2,0,...b);return a},//["作者",["<div></div>",".png"]] //[1]可留空
     "表情包":(a,b)=>{return ["#dy{width:"+a+"px;height:"+a+"px;background-color:#【1】;background-image:url('"+测试+b+"_【2】.png')}",[["1","点"],["2","选择","浅色背景","深色背景"],"确定","/","保存图片"]];},//图片宽高 正方形只写一个
     "下载动图":(a)=>{return "（<a href='"+测试+a+"' download='"+a+"'>点击下载</a>素材 → 用PS打开 → 在最底部新建图层，填充成像素点的颜色 → 打开时间轴 → 点击“文件”-“导出”-“储存为Web所用格式”-“储存”）"},//通用["下载动图"]("x.gif")
 },d={ // "":["目录","标题1","标题2","<span>文字（或d[]之内没有这个词条也会直接显示文字）"],
@@ -36,9 +36,17 @@ let 目录=[],通用={
 
 "可能引发不适":["目录","蘑菇乐园"],
 
-"配饰":["目录","<small>素材来自“‘伪·NFT’征稿活动”的网友投稿</small><br>",
-"脸红_NFT","猫咪_NFT","对话框_NFT","白旗_NFT","快捷方式_NFT","加载中_NFT","魔法师_NFT","乌云_NFT","小白鸟_NFT","行星环_NFT","音符_NFT",
+"配饰":["目录","<small>部分素材来自“‘伪·NFT’征稿活动”的网友投稿</small><br>",
+"脸红_NFT","猫咪_NFT","对话框_NFT","白旗_NFT","快捷方式_NFT","加载中_NFT","魔法师_NFT","乌云_NFT","小白鸟_NFT","行星环_NFT","音符_NFT","<br>",
+"圣诞帽_NFT","蝙蝠翅膀_NFT","姜饼人_NFT","礼帽_NFT","柴犬_NFT","<br>",
+"精灵球_NFT","马里奥_NFT","iwanna_NFT","小酒窝_NFT","以撒便便_NFT","<br>",
+"老三_NFT","帽帽_NFT",
 ],
+
+
+
+
+
 
 "过时梗":["目录","点点结局","兄弟，像素点不错","网恋奔现","你赢了吗？儿子"],
 "普通表情包":["目录","叹号","问号","流汗"],
@@ -114,6 +122,19 @@ style的常用模板：
 "小白鸟_NFT":通用["NFT"]("晴影"),
 "行星环_NFT":通用["NFT"]("恒泽"),
 "音符_NFT":通用["NFT"]("恒泽"),
+"圣诞帽_NFT":通用["NFT"](""),
+"蝙蝠翅膀_NFT":通用["NFT"](""),
+"姜饼人_NFT":通用["NFT"](""),
+"精灵球_NFT":通用["NFT"](""),
+"老三_NFT":通用["NFT"](""),
+"礼帽_NFT":通用["NFT"](""),
+"马里奥_NFT":通用["NFT"](""),
+"帽帽_NFT":通用["NFT"](""),
+"铁镐_NFT":通用["NFT"](""),
+"iwanna_NFT":通用["NFT"](""),
+"柴犬_NFT":通用["NFT"](""),
+"小酒窝_NFT":通用["NFT"](""),
+"以撒便便_NFT":通用["NFT"](""),
 
 "网恋奔现":["#点{position:absolute;top:0px;left:0px;background-color:#【3】}#dy,#点{width:707px;height:1000px}#输入_1{left:101px;top:776px}#输入_2{left:169px;top:859px}#图片_4{left:123px;top:582px;width:160px;height:160px;transform-origin:0 0;transform:rotate(5deg)}#输入_1,#输入_2{transform-origin:0 0;transform:rotate(10.5deg);color:#000000}",[["1","输入","我到了哦"],["2","输入","在哪？"],["3","点"],["4","图片"],"确定","/","保存图片","<br><small>梗：网恋奔现需要谨慎</small>"],"<div id='输入_1'></div>","<div id='输入_2'></div>","_图片x.png","<div id='图片_4' class='图片x'></div>","<div id='点'></div>"],
 
