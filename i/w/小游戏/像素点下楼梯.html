@@ -1,0 +1,282 @@
+---
+layout: o
+permalink: i/17694262
+BiaoTi: 像素点下楼梯
+---
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: #1a1a2e;
+        font-family: "Microsoft YaHei", sans-serif;
+        touch-action: manipulation;
+    }
+
+    .game-title {
+        color: #fff;
+        font-size: 28px;
+        margin-bottom: 15px;
+        /* text-shadow: 0 0 10px #ff6b6b; */
+    }
+
+    #gameContainer {
+        width: 100%;
+        max-width: 400px;
+        height: 90vh;
+        max-height: 600px;
+        border: 4px solid #fff;
+        border-radius: 8px;
+        position: relative;
+        overflow: hidden;
+        background: #16213e;
+    }
+
+    #player {
+        width: 40px;
+        height: 40px;
+        background: #000000;
+        border: 3px solid #d0d0d0;
+        border-radius: 2px;
+        position: absolute;
+        z-index: 10;
+    }
+
+    .stair {
+        height: 22px;
+        background: #224;
+        border: 2px solid #f44;
+        position: absolute;
+        border-radius: 2px;
+    }
+
+    .score-panel {
+        margin-top: 15px;
+        color: #fff;
+        font-size: 20px;
+    }
+
+    #gameOver {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        font-size: 26px;
+        text-align: center;
+        background: rgba(0,0,0,0.85);
+        padding: 25px 20px;
+        border: 3px solid #ff6b6b;
+        border-radius: 10px;
+        display: none;
+        z-index: 100;
+    }
+
+    #gameOver button {
+        margin-top: 15px;
+        padding: 8px 20px;
+        border: none;
+        background: #ff6b6b;
+        color: #fff;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+</style>
+
+<div class="game-title">像素点下楼梯</div>
+<div id="gameContainer">
+    <div id="player"></div>
+    <div id="gameOver">
+        游戏结束<br>
+        层数：<span id="finalScore"></span>
+        <br>
+        <button onclick="restartGame()">重新开始</button>
+    </div>
+</div>
+<div class="score-panel">
+    层数：<span id="score">0</span>
+</div>
+
+<script>
+    const game = document.getElementById('gameContainer');
+    const player = document.getElementById('player');
+    const scoreDom = document.getElementById('score');
+    const gameOverDom = document.getElementById('gameOver');
+    const finalScoreDom = document.getElementById('finalScore');
+    const pixel = localStorage.getItem("像素点")||"000000";
+
+    player.style.background="#" + pixel;
+
+    let W = game.clientWidth;
+    let H = game.clientHeight;
+    const pSize = 40;
+    let speedUp = 2;
+    let isOver = false;
+    let score = 0;
+
+    let px = W / 2 - pSize / 2;
+    let py = 120;
+    let fallSpeed = 0;
+    const gravity = 0.4;
+    const maxFall = 10;
+
+    const keys = { left: false, right: false };
+    let stairs = [];
+
+    window.addEventListener('resize', () => {
+        W = game.clientWidth;
+        H = game.clientHeight;
+    });
+
+    function setControlByPos(clientX) {
+        const rect = game.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        keys.left = clientX < centerX;
+        keys.right = clientX >= centerX;
+    }
+
+    game.addEventListener('mousedown', (e) => {
+        if (isOver) return;
+        setControlByPos(e.clientX);
+    });
+    game.addEventListener('touchstart', (e) => {
+        if (isOver) return;
+        setControlByPos(e.touches[0].clientX);
+    });
+
+    game.addEventListener('mouseup', () => {
+        keys.left = false;
+        keys.right = false;
+    });
+    game.addEventListener('mouseleave', () => {
+        keys.left = false;
+        keys.right = false;
+    });
+    game.addEventListener('touchend', () => {
+        keys.left = false;
+        keys.right = false;
+    });
+
+    document.addEventListener('keydown', e => {
+        if (e.key == 'ArrowLeft' || e.key == 'a') keys.left = true;
+        if (e.key == 'ArrowRight' || e.key == 'd') keys.right = true;
+        if (e.key === ' ' && isOver) restartGame();
+    });
+    document.addEventListener('keyup', e => {
+        if (e.key == 'ArrowLeft' || e.key == 'a') keys.left = false;
+        if (e.key == 'ArrowRight' || e.key == 'd') keys.right = false;
+    });
+
+    function newStair(top) {
+        const s = document.createElement('div');
+        s.className = 'stair';
+        const w = 100 + Math.random() * 60;
+        const x = Math.random() * (W - w);
+        s.style.width = w + 'px';
+        s.style.left = x + 'px';
+        s.style.top = top + 'px';
+        game.appendChild(s);
+        stairs.push({ el: s, x: x, w: w, y: top });
+    }
+
+    function init() {
+        stairs.forEach(s => s.el.remove());
+        stairs = [];
+        for (let i = 0; i < 8; i++) {
+            newStair(H - i * 80);
+        }
+        loop();
+    }
+
+    function checkCollide() {
+        let onGround = false;
+        for (let s of stairs) {
+            if (
+                py + pSize >= s.y &&
+                py + pSize <= s.y + 22 &&
+                px + pSize > s.x &&
+                px < s.x + s.w
+            ) {
+                onGround = true;
+                py = s.y - pSize;
+                break;
+            }
+        }
+        return onGround;
+    }
+
+    function update() {
+        if (keys.left && px > 0) px -= 6;
+        if (keys.right && px < W - pSize) px += 6;
+
+        let onStair = checkCollide();
+        if (!onStair) {
+            fallSpeed = Math.min(fallSpeed + gravity, maxFall);
+            py += fallSpeed;
+        } else {
+            fallSpeed = 0;
+        }
+
+        for (let i = stairs.length - 1; i >= 0; i--) {
+            let s = stairs[i];
+            s.y -= speedUp;
+            s.el.style.top = s.y + 'px';
+
+            if (s.y < -30) {
+                s.el.remove();
+                stairs.splice(i, 1);
+                newStair(H);
+                score++;
+                scoreDom.innerText = score;
+                speedUp = Math.min(2 + score / 80, 4.5);
+            }
+        }
+
+        if (py < -pSize || py > H) {
+            gameOver();
+            return;
+        }
+
+        player.style.left = px + 'px';
+        player.style.top = py + 'px';
+    }
+
+    function gameOver() {
+        isOver = true;
+        finalScoreDom.innerText = score;
+        gameOverDom.style.display = 'block';
+    }
+
+    function restartGame() {
+        stairs.forEach(s => s.el.remove());
+        stairs = [];
+        isOver = false;
+        score = 0;
+        speedUp = 2;
+        px = W / 2 - pSize / 2;
+        py = 120;
+        fallSpeed = 0;
+        scoreDom.innerText = 0;
+        gameOverDom.style.display = 'none';
+        init();
+    }
+
+    function loop() {
+        if (!isOver) {
+            update();
+            requestAnimationFrame(loop);
+        }
+    }
+
+    init();
+</script>
+</body>
+</html>
