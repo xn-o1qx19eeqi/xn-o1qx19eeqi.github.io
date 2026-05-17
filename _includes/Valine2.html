@@ -1,0 +1,24 @@
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
+<script type="module">
+    import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+
+    init({
+    el: '#waline',
+    serverURL: 'https://example.xn--o1qx19eeqi.cn',
+
+    emoji:['/img/em/kmj','/img/em/bqb','/img/em/mq','/img/em/BBS'],
+    search: false,//搜索表情包
+
+    locale:{
+        placeholder:"随便喵两句？",
+        sofa:"本页还没有评论",
+    },
+
+    avatar:'mp',
+
+//     reaction: [
+//     '/img/i/avatar/20220529.gif',
+//   ],
+
+    });
+</script>
