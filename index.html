@@ -41,7 +41,7 @@ PingLun: 1
 <b>app</b><small>(Android)</small>：<a class='提示' data-msg='只是网页套壳app，没有其他功能' href="https://pan.baidu.com/s/1Ch4lNU8-jUf-MOlaOUFcoQ?pwd=maoq">百度云</a> <small>提取码：maoq</small><br>
 <br>
 
-<a onclick="document.getElementById('疑问').style='';document.getElementById('疑问').scrollIntoView();">常见问题</a>　<a href="/g">公告</a><br>
+<a onclick="document.getElementById('疑问').style='';document.getElementById('疑问').scrollIntoView();">常见问题</a>　<a href="/g">公告</a>　<a href="https://wj.qq.com/s2/10560058/b06e">打卡</a><br>
 <a href="https://wj.qq.com/s2/11013288/5bdc">修改信息/放弃认养</a>　<a href="/b#申请进度">申请结果查询</a>　<a href="/e#问卷答复">问卷答复</a><br>
 <a href="/c#动作代码">更多动作指令</a>　<a href="/c#留言代码">留言代码</a>　<a href="/b?sj">随机访问</a><br>
 
@@ -525,24 +525,8 @@ try{
     if(内容[0].length<50){
         if(内容[0]&&内容[0]!=""){名字=内容[0]}else{名字="小像素点"}
         if(内容[1]&&内容[1]!=""){主人=内容[1]}else{主人="无"}
-        dy="<h2 style='display:inline'>"+名字+"</h2>　<small>#"+颜色+" <a onclick=\"复制像素点()\">复制地址</a>　<a id=\"设为默认\" onclick=\"设为默认()\" style='display:none;'>设为默认</a>　<a onclick='公告()' id='公告' style='display:none'>新公告</a></small><br><small>认养人：</small>"+主人;
-        //
-        if(主人!="（不可认养）"){
-            dy+=" <sup id=\"看望打卡\">"
-            let 打卡临时=localStorage.getItem("打卡"+颜色);
-            if(打卡临时&&打卡临时==今日){dy+="<span style='background-color:#01EC0C;color:#ffffff'>已打卡</span>"
-            // if(!localStorage.getItem("像素点")||localStorage.getItem("像素点")!=颜色){
-                // dy+=" <a id=\"设为默认\" onclick=\"设为默认()\">设为默认</a>"
-            // }
-            }else{
-                打卡临时=0;
-                if(内容[7]&&内容[7]!=""&&Math.trunc((new Date().getTime()-new Date(内容[7]).getTime())/1000/60/60/24)>90){
-                    dy+="<a onclick=\"看望打卡(0);\">打卡</a>";
-                }else{dy+="<a onclick=\"看望打卡(1)\">打卡</a>"}
-                }
-                dy+="</sup>"
-            }
-        //
+        dy="<h2 style='display:inline'>"+名字+"</h2>　<small>#"+颜色+"<span id='杂3'> <a onclick=\"复制像素点()\">复制地址</a>　<a id=\"设为默认\" onclick=\"设为默认()\" style='display:none;'>设为默认</a>　<a onclick='公告()' id='公告' style='display:none'>新公告</a></span></small><br><small>认养人：</small>"+主人;
+
         if(内容[2]&&内容[2]!=""){
             if(内容[2].indexOf("〈放弃认养〉")!=-1){内容[2]=内容[2].replace(/〈放弃认养〉/g,"");固定动作="放弃认养"}
             if(内容[2].indexOf("〈固定〉")!=-1){内容[2]=内容[2].replace(/〈固定〉/g,"");固定动作="固定"}
@@ -821,21 +805,9 @@ function 随机一只(){
 for(let i=0;6>i;i++){临时+=字母[Math.floor(Math.random()*字母.length)]}
 号码=临时;
 window.location.href="/"+号码;
-// document.getElementById("选择颜色").value="#"+临时;
-// document.getElementById("输入颜色").value=临时;
-// 互动="";
-// 改url();加载();
 }
 function 复制像素点(){制="{{ site.mq_url }}/"+颜色;复();
 if(!localStorage.getItem("像素点")||localStorage.getItem("像素点")!=颜色){document.getElementById("设为默认").style=""}
-}
-function 看望打卡(o){
-    let dy2="";
-    localStorage.setItem("打卡"+颜色,今日);
-    if(o==0){dy2="<iframe src='/i/5/看望打卡?"+颜色+"' frameborder='0' width='50%' height='30px'></iframe>"}
-    else{dy2="<span style='background-color:#01EC0C;color:#ffffff'>打卡成功</span>"}
-    // if(!localStorage.getItem("像素点")||localStorage.getItem("像素点")!=颜色){dy2+=" <a id=\"设为默认\" onclick=\"设为默认()\">设为默认</a>"}
-    document.getElementById("看望打卡").innerHTML=dy2;
 }
 function 设为默认(){
     localStorage.setItem("像素点名字",名字);
@@ -860,6 +832,7 @@ function 简易模式(o){
         if(o==0){
         document.getElementById("杂").style="display:none;";
         document.getElementById("杂2").style="";
+        document.getElementById("杂3").style="";
         document.getElementById("简易模式").style="";
         localStorage.setItem("简易模式","0");
         document.getElementById("waline").style="";
@@ -868,6 +841,7 @@ function 简易模式(o){
     if(o==1){
         document.getElementById("杂").style="";
         document.getElementById("杂2").style="";
+        document.getElementById("杂3").style="";
         document.getElementById("简易模式").style="display:none;";
         localStorage.setItem("简易模式","1");
         document.getElementById("waline").style="";
@@ -876,6 +850,7 @@ function 简易模式(o){
     if(o==2){
         document.getElementById("杂").style="display:none;";
         document.getElementById("杂2").style="display:none;";
+        document.getElementById("杂3").style="display:none;";
         document.getElementById("简易模式").style="";
         localStorage.setItem("简易模式","2");
         document.getElementById("waline").style="display:none;";
