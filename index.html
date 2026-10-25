@@ -37,11 +37,12 @@ PingLun: 1
 <br>
 <small><a onclick="简易模式(0)">收起</a>　<a onclick="简易模式(2)">专注模式</a></small><br>
 <hr><div id="oo">
+<a href="https://wj.qq.com/s2/10560058/b06e">打卡</a>　<a onclick="复制像素点()">复制地址</a>　<a id="设为默认" onclick="设为默认()" style='display:none;'>设为默认</a><br>
 <b>换字体</b>：<a onclick="改字体(0)">默认</a>、<a onclick="改字体('俐方体11号')">俐方体11号</a><br>
 <b>app</b><small>(Android)</small>：<a class='提示' data-msg='只是网页套壳app，没有其他功能' href="https://pan.baidu.com/s/1Ch4lNU8-jUf-MOlaOUFcoQ?pwd=maoq">百度云</a> <small>提取码：maoq</small><br>
 <br>
 
-<a onclick="document.getElementById('疑问').style='';document.getElementById('疑问').scrollIntoView();">常见问题</a>　<a href="/g">公告</a>　<a href="https://wj.qq.com/s2/10560058/b06e">打卡</a><br>
+<a onclick="document.getElementById('疑问').style='';document.getElementById('疑问').scrollIntoView();">常见问题</a>　<a href="/g">公告</a><br>
 <a href="https://wj.qq.com/s2/11013288/5bdc">修改信息/放弃认养</a>　<a href="/b#申请进度">申请结果查询</a>　<a href="/e#问卷答复">问卷答复</a><br>
 <a href="/c#动作代码">更多动作指令</a>　<a href="/c#留言代码">留言代码</a>　<a href="/b?sj">随机访问</a><br>
 
@@ -525,7 +526,7 @@ try{
     if(内容[0].length<50){
         if(内容[0]&&内容[0]!=""){名字=内容[0]}else{名字="小像素点"}
         if(内容[1]&&内容[1]!=""){主人=内容[1]}else{主人="无"}
-        dy="<h2 style='display:inline'>"+名字+"</h2>　<small>#"+颜色+"<span id='杂3'> <a onclick=\"复制像素点()\">复制地址</a>　<a id=\"设为默认\" onclick=\"设为默认()\" style='display:none;'>设为默认</a>　<a onclick='公告()' id='公告' style='display:none'>新公告</a></span></small><br><small>认养人：</small>"+主人;
+        dy="<h2 style='display:inline'>"+名字+"</h2>　<small>#"+颜色+"<span id='杂3'>　<a onclick='公告()' id='公告' style='display:none'>新公告</a></span></small><br><small>认养人：</small>"+主人;
 
         if(内容[2]&&内容[2]!=""){
             if(内容[2].indexOf("〈放弃认养〉")!=-1){内容[2]=内容[2].replace(/〈放弃认养〉/g,"");固定动作="放弃认养"}
