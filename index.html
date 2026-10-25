@@ -37,7 +37,7 @@ PingLun: 1
 <br>
 <small><a onclick="简易模式(0)">收起</a>　<a onclick="简易模式(2)">专注模式</a></small><br>
 <hr><div id="oo">
-<a href="https://wj.qq.com/s2/10560058/b06e">打卡</a>　<a onclick="复制像素点()">复制地址</a>　<a id="设为默认" onclick="设为默认()" style='display:none;'>设为默认</a><br>
+<a onclick="复制像素点()">复制地址</a>　<a href="https://wj.qq.com/s2/10560058/b06e">打卡</a>　<a onclick="设为默认()">设为默认</a><br>
 <b>换字体</b>：<a onclick="改字体(0)">默认</a>、<a onclick="改字体('俐方体11号')">俐方体11号</a><br>
 <b>app</b><small>(Android)</small>：<a class='提示' data-msg='只是网页套壳app，没有其他功能' href="https://pan.baidu.com/s/1Ch4lNU8-jUf-MOlaOUFcoQ?pwd=maoq">百度云</a> <small>提取码：maoq</small><br>
 <br>
@@ -807,15 +807,12 @@ for(let i=0;6>i;i++){临时+=字母[Math.floor(Math.random()*字母.length)]}
 号码=临时;
 window.location.href="/"+号码;
 }
-function 复制像素点(){制="{{ site.mq_url }}/"+颜色;复();
-if(!localStorage.getItem("像素点")||localStorage.getItem("像素点")!=颜色){document.getElementById("设为默认").style=""}
-}
+function 复制像素点(){制="{{ site.mq_url }}/"+颜色;复()}
 function 设为默认(){
     localStorage.setItem("像素点名字",名字);
     localStorage.setItem("像素点",颜色);
     localStorage.setItem("像素点描边",背景颜色.split("#")[1]);
     notyf.confirm("已设置为默认像素点");
-    document.getElementById("设为默认").innerHTML="";
 }
 function 互动模式(){if(互模==0){互模=1;notyf.confirm("开启立即执行模式");localStorage.setItem("互动模式","1")}else{互模=0;notyf.confirm("关闭立即执行模式");localStorage.removeItem("互动模式")}}
 function 新互动(d){
